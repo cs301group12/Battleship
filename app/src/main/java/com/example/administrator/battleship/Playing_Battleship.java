@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 
-public class Playing_Battleship extends ActionBarActivity {
+public class Playing_Battleship extends ActionBarActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

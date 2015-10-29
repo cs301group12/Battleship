@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#ff313131"
+    android:background="#ff000000"
     android:orientation="vertical"
     android:weightSum="1">
 
@@ -19,21 +19,25 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/button" />
+            android:text="Display Energy Level"
+            android:id="@+id/button"
+            android:textSize="20dp" />
 
         <Space
-            android:layout_width="270dp"
+            android:layout_width="145dp"
             android:layout_height="match_parent" />
 
         <TextView
             android:layout_width="200dp"
             android:layout_height="75dp"
-            android:text="New Text"
+            android:text="Status"
             android:id="@+id/textView32"
-            android:background="#ffd2d2d2"
+            android:background="#aa808080"
             android:textSize="40dp"
-            android:layout_weight="0" />
+            android:layout_weight="0"
+            android:gravity="center"
+            android:textColor="#fff0f0f0"
+            android:autoText="false" />
     </LinearLayout>
 
     <LinearLayout
