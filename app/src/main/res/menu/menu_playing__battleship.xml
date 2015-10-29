@@ -1,7 +1,16 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.administrator.battleship.Playing_Battleship">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/quitToMainItem"
+        android:orderInCategory="200"
+        android:title="Quit Game"/>
+    <item
+        android:id="@+id/restartGameItem"
+        android:orderInCategory="300"
+        android:title="Restart Game"/>
+    <item
+        android:id="@+id/howToPlayItem"
+        android:orderInCategory="400"
+        android:title="How To Play"/>
+
 </menu>
