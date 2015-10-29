@@ -1,9 +1,6 @@
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     tools:context="com.example.administrator.battleship.How_to_Play_Screen"
     android:background="#ff000000"
     android:orientation="vertical">
@@ -18,30 +15,19 @@
         android:layout_alignParentEnd="true"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_x="9dp"
-        android:layout_y="-5dp" />
+        android:layout_x="35dp"
+        android:layout_y="12dp" />
 
-    <ScrollView
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="962dp"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="195dp"
-        android:layout_marginStart="195dp"
-        android:layout_x="13dp"
-        android:layout_y="312dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Describe the game rules"
-            android:id="@+id/textView11"
-            android:textColor="#ffffffff"
-            android:textSize="30dp"
-            android:textStyle="bold" />
-    </ScrollView>
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="2 players; one human vs one AI. \n \n Each player starts with five ships. \n Players start by secretly placing their ships on their grid. \n     The ships are placed horizontally or vertically. \n     The ships cannot exit the grid or overlap one another. \n     The ships cannot be moved once the game has begun. \n \n The game begins when the human player has finished setup. \n The first player will be chosen randomly. \n The player will take their turn by: \n     Selecting a grid square on the opponents grid. Example: A4 \n     If an opponents ship is hit the square will turn red. \n     If it is a miss the square will turn white. \n     There will be a notification when either player has lost a ship. \n     This will continue until one player has destroyed all of the enemy ships. \n Destroying the enemy ships is the action that will result in victory"
+        android:id="@+id/textView11"
+        android:textColor="#ffffffff"
+        android:textSize="26dp"
+        android:textStyle="bold"
+        android:layout_x="45dp"
+        android:layout_y="81dp" />
 
 </AbsoluteLayout>
