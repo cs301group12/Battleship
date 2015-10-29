@@ -18,6 +18,7 @@ public class MainActivity extends ActionBarActivity {
 
         goToPlay();
         goToHowToPlay();
+        //hi
     }
 
     private void goToPlay(){

@@ -14,7 +14,7 @@ public class UserBoardSV extends SurfaceView{
     float width;
     float height;
     public UserBoardSV(Context context, AttributeSet attrs) {
-        super(context);
+        super(context,attrs);
         setWillNotDraw(false);
         userGrid = BitmapFactory.decodeResource(getResources(), R.mipmap.blue_square_grid);
         width=height=0;
