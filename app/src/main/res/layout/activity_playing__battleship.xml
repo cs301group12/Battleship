@@ -12,23 +12,24 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButton" />
-
         <Space
             android:layout_width="30dp"
             android:layout_height="20px" />
 
-        <TextView
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="New Button"
+            android:id="@+id/button" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="75dp"
             android:text="New Text"
             android:id="@+id/textView32"
             android:background="#ffd2d2d2"
             android:textSize="50dp"
-            android:layout_weight="1" />
+            android:layout_weight="0" />
     </LinearLayout>
 
     <LinearLayout

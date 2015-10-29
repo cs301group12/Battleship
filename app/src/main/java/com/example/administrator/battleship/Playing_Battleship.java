@@ -16,18 +16,10 @@ public class Playing_Battleship extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playing__battleship);
 
-        quitToMainMenu();
     }
 
-    private void quitToMainMenu(){
-        Button quit = (Button) findViewById(R.id.quitButton);
-        quit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

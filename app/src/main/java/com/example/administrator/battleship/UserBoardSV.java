@@ -29,10 +29,6 @@ public class UserBoardSV extends SurfaceView{
 
                 canvas.drawBitmap(userGrid, (float) (j * userGrid.getHeight()), (float) (i * userGrid.getWidth()), null);
                 canvas.drawBitmap(userGrid, (float) (i * userGrid.getWidth()), (float) (j * userGrid.getHeight()), null);
-                /*
-                canvas.drawBitmap(userGrid, height, (float) (j * userGrid.getHeight()), null);
-                canvas.drawBitmap(userGrid, (float) (i * userGrid.getWidth()), width, null);
-                */
 
             }
         }
