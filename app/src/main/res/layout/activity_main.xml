@@ -24,7 +24,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:layout_gravity="center_horizontal"
-        android:src="@mipmap/battleship_logo"
         android:layout_weight="0.56" />
 
     <Space
