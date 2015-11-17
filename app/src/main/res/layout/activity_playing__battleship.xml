@@ -31,7 +31,7 @@
             android:layout_width="200dp"
             android:layout_height="75dp"
             android:text="Status"
-            android:id="@+id/textView32"
+            android:id="@+id/gameInfo"
             android:background="#aa808080"
             android:textSize="40dp"
             android:layout_weight="0"
@@ -280,7 +280,7 @@
         android:layout_marginTop="0dp"
         android:orientation="horizontal">
 
-        <com.example.administrator.battleship.UserBoardSV
+        <com.example.administrator.battleship.BoardSV
             android:layout_width="500dp"
             android:layout_height="match_parent"
             android:id="@+id/surfaceView"
@@ -424,7 +424,7 @@
                 android:layout_marginRight="15dp" />
         </LinearLayout>
 
-        <com.example.administrator.battleship.UserBoardSV
+        <com.example.administrator.battleship.BoardSV
             android:layout_width="500dp"
             android:layout_height="match_parent"
             android:id="@+id/surfaceView2"

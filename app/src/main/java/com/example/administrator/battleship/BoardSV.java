@@ -8,12 +8,12 @@ import android.util.AttributeSet;
 import android.view.SurfaceView;
 
 
-public class UserBoardSV extends SurfaceView{
+public class BoardSV extends SurfaceView{
 
     Bitmap userGrid;
     float width;
     float height;
-    public UserBoardSV(Context context, AttributeSet attrs) {
+    public BoardSV(Context context, AttributeSet attrs) {
         super(context,attrs);
         setWillNotDraw(false);
         userGrid = BitmapFactory.decodeResource(getResources(), R.mipmap.blue_square_grid);

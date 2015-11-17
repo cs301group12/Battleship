@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Playing_Battleship"
+            android:name=".BattleshipHumanPlayer"
             android:label="@string/title_activity_playing__battleship" >
         </activity>
         <activity

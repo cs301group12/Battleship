@@ -26,7 +26,7 @@ public class MainActivity extends ActionBarActivity {
         playNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Playing_Battleship.class));
+                startActivity(new Intent(MainActivity.this, BattleshipHumanPlayer.class));
             }
         });
     }

@@ -5,16 +5,21 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 
-public class Playing_Battleship extends ActionBarActivity{
+public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnTouchListener{
 
+    TextView messageScreen;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playing__battleship);
+
+        messageScreen = (TextView) findViewById(R.id.gameInfo);
 
     }
 
@@ -41,5 +46,20 @@ public class Playing_Battleship extends ActionBarActivity{
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        float x = (int)motionEvent.getX();
+        float y = (int)motionEvent.getY();
+
+
+
+        if(x > 100) {
+            messageScreen.setText("Hit!");
+            return true;
+        }
+        return false;
     }
 }

@@ -44,8 +44,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_height="20dp" />
 
     <Button
         android:layout_width="wrap_content"
