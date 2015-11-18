@@ -1,25 +1,33 @@
 package com.example.administrator.battleship;
 
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
 public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnTouchListener{
 
     TextView messageScreen;
+    LinearLayout topLayout;
+    SurfaceView board;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playing__battleship);
 
         messageScreen = (TextView) findViewById(R.id.gameInfo);
+        topLayout = (LinearLayout) findViewById(R.id.topGUILayout);
+        topLayout.setOnTouchListener(this);
+
 
     }
 
@@ -51,15 +59,19 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        float x = (int)motionEvent.getX();
-        float y = (int)motionEvent.getY();
+        int x = (int) motionEvent.getX();
+        int y = (int) motionEvent.getY();
 
 
 
-        if(x > 100) {
+        if(x < 950 || x > 1000) {
             messageScreen.setText("Hit!");
             return true;
         }
+
+        messageScreen.setText("reset");
+
         return false;
     }
+
 }

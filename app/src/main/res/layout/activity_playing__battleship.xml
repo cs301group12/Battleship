@@ -4,13 +4,20 @@
     tools:context=".MainActivity"
     android:background="#ff000000"
     android:orientation="vertical"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:id="@+id/topGUILayout">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&lt;>"
+            android:id="@+id/button2" />
 
         <Space
             android:layout_width="30dp"
@@ -19,7 +26,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Display Energy Level"
+            android:text="Start Game"
             android:id="@+id/button"
             android:textSize="20dp" />
 
