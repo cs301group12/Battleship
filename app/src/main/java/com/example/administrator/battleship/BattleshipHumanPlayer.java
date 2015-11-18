@@ -14,11 +14,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnTouchListener{
+public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnTouchListener, View.OnClickListener{
 
     TextView messageScreen;
     LinearLayout topLayout;
-    SurfaceView board;
+    BoardSV ship1;
+    Canvas canvas;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +29,8 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         messageScreen = (TextView) findViewById(R.id.gameInfo);
         topLayout = (LinearLayout) findViewById(R.id.topGUILayout);
         topLayout.setOnTouchListener(this);
+        ship1 = (BoardSV) findViewById(R.id.userBoard);
+        ship1.setOnTouchListener(this);
 
 
     }
@@ -62,6 +66,11 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         int x = (int) motionEvent.getX();
         int y = (int) motionEvent.getY();
 
+        canvas = ship1.getHolder().lockCanvas();
+        ship1.x = motionEvent.getX();
+        ship1.y = motionEvent.getY();
+        ship1.getHolder().unlockCanvasAndPost(canvas);
+        ship1.postInvalidate();
 
 
         if(x < 950 || x > 1000) {
@@ -74,4 +83,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         return false;
     }
 
+
+    @Override
+    public void onClick(View view) {
+
+    }
 }

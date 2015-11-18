@@ -290,7 +290,7 @@
         <com.example.administrator.battleship.BoardSV
             android:layout_width="500dp"
             android:layout_height="match_parent"
-            android:id="@+id/surfaceView"
+            android:id="@+id/userBoard"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -431,7 +431,7 @@
                 android:layout_marginRight="15dp" />
         </LinearLayout>
 
-        <com.example.administrator.battleship.BoardSV
+        <com.example.administrator.battleship.AIBoardSV
             android:layout_width="500dp"
             android:layout_height="match_parent"
             android:id="@+id/surfaceView2"
