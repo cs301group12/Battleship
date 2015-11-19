@@ -16,11 +16,17 @@ import android.widget.TextView;
 
 public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnTouchListener, View.OnClickListener{
 
-    TextView messageScreen;
-    LinearLayout topLayout;
-    BoardSV ship1;
-    Carrier carrier;
-    Canvas canvas;
+    private TextView messageScreen;
+    private LinearLayout topLayout;
+    private BoardSV ship1;
+    private Canvas canvas;
+    private boolean moveCarrier = true;
+    private boolean moveBattleship = true;
+    private boolean moveDestroyer = true;
+    private boolean moveSubmarine = true;
+    private boolean movePTBoat = true;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +73,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
     public boolean onTouch(View view, MotionEvent motionEvent) {
         int x = (int) motionEvent.getX();
         int y = (int) motionEvent.getY();
+
 
         canvas = ship1.getHolder().lockCanvas();
         ship1.carrierX = motionEvent.getX();
