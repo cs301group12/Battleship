@@ -19,6 +19,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
     TextView messageScreen;
     LinearLayout topLayout;
     BoardSV ship1;
+    Carrier carrier;
     Canvas canvas;
 
     @Override
@@ -31,6 +32,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         topLayout.setOnTouchListener(this);
         ship1 = (BoardSV) findViewById(R.id.userBoard);
         ship1.setOnTouchListener(this);
+
 
 
     }
@@ -67,8 +69,8 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         int y = (int) motionEvent.getY();
 
         canvas = ship1.getHolder().lockCanvas();
-        ship1.x = motionEvent.getX();
-        ship1.y = motionEvent.getY();
+        ship1.carrierX = motionEvent.getX();
+        ship1.carrierY = motionEvent.getY();
         ship1.getHolder().unlockCanvasAndPost(canvas);
         ship1.postInvalidate();
 

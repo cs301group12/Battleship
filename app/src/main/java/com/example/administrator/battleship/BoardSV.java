@@ -15,8 +15,8 @@ public class BoardSV extends SurfaceView{
     Bitmap userGrid;
     float width;
     float height;
-    float x;
-    float y;
+    float carrierX;
+    float carrierY;
     public BoardSV(Context context, AttributeSet attrs) {
         super(context,attrs);
         setWillNotDraw(false);
@@ -37,9 +37,9 @@ public class BoardSV extends SurfaceView{
             }
         }
 
-        Paint shipColor = new Paint();
-        shipColor.setColor(Color.GRAY);
-        canvas.drawOval(200+x,100+y,400+x,200+y,shipColor);
+        Paint carrierColor = new Paint();
+        carrierColor.setColor(Color.GRAY);
+        canvas.drawRect(300+carrierX, 200+carrierY, 500, 300,carrierColor );
     }
 
 
