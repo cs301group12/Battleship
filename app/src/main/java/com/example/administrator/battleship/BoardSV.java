@@ -15,8 +15,8 @@ public class BoardSV extends SurfaceView{
     Bitmap userGrid;
     float width;
     float height;
-    float carrierX;
-    float carrierY;
+    float[] shipsX = new float[5];
+    float[] shipsY = new float[5];
     public BoardSV(Context context, AttributeSet attrs) {
         super(context,attrs);
         setWillNotDraw(false);
