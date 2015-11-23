@@ -39,7 +39,7 @@ public class BoardSV extends SurfaceView{
 
         Paint carrierColor = new Paint();
         carrierColor.setColor(Color.GRAY);
-        canvas.drawRect(300+carrierX, 200+carrierY, 500, 300,carrierColor );
+
     }
 
 
