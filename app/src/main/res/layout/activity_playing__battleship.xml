@@ -454,7 +454,8 @@
                 android:layout_gravity="center_vertical"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -462,7 +463,8 @@
                 android:id="@+id/B1"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -470,7 +472,8 @@
                 android:id="@+id/C1"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -478,7 +481,8 @@
                 android:id="@+id/D1"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -486,7 +490,8 @@
                 android:id="@+id/E1"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -494,7 +499,8 @@
                 android:id="@+id/F1"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -502,7 +508,8 @@
                 android:id="@+id/G1"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -510,7 +517,8 @@
                 android:id="@+id/H1"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -518,7 +526,8 @@
                 android:id="@+id/I1"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -526,7 +535,8 @@
                 android:id="@+id/J1"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
         </LinearLayout>
 
@@ -544,7 +554,8 @@
                 android:layout_gravity="center_vertical"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -552,7 +563,8 @@
                 android:id="@+id/B2"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -560,7 +572,8 @@
                 android:id="@+id/C2"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -568,7 +581,8 @@
                 android:id="@+id/D2"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -576,7 +590,8 @@
                 android:id="@+id/E2"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -584,7 +599,8 @@
                 android:id="@+id/F2"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -592,7 +608,8 @@
                 android:id="@+id/G2"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -600,7 +617,8 @@
                 android:id="@+id/H2"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -608,7 +626,8 @@
                 android:id="@+id/I2"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -616,7 +635,8 @@
                 android:id="@+id/J2"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
         </LinearLayout>
 
         <LinearLayout
@@ -624,7 +644,8 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_marginTop="2dp"
-            android:id="@+id/column3">
+            android:id="@+id/column3"
+            >
 
             <Button
                 android:layout_width="43dp"
@@ -633,7 +654,8 @@
                 android:layout_gravity="center_vertical"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -649,7 +671,8 @@
                 android:id="@+id/C3"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -657,7 +680,8 @@
                 android:id="@+id/D3"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -665,7 +689,8 @@
                 android:id="@+id/E3"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -673,7 +698,8 @@
                 android:id="@+id/F3"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -681,7 +707,8 @@
                 android:id="@+id/G3"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -689,7 +716,8 @@
                 android:id="@+id/H3"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -697,7 +725,8 @@
                 android:id="@+id/I3"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -705,7 +734,8 @@
                 android:id="@+id/J3"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
         </LinearLayout>
 
         <LinearLayout
@@ -722,7 +752,8 @@
                 android:layout_gravity="center_vertical"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -730,7 +761,8 @@
                 android:id="@+id/B4"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -738,7 +770,8 @@
                 android:id="@+id/C4"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -746,7 +779,8 @@
                 android:id="@+id/D4"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -754,7 +788,8 @@
                 android:id="@+id/E4"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -762,7 +797,8 @@
                 android:id="@+id/F4"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -770,7 +806,8 @@
                 android:id="@+id/G4"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -778,7 +815,8 @@
                 android:id="@+id/H4"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -786,7 +824,8 @@
                 android:id="@+id/I4"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -794,7 +833,8 @@
                 android:id="@+id/J4"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
         </LinearLayout>
 
         <LinearLayout
@@ -811,7 +851,8 @@
                 android:layout_gravity="center_vertical"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -819,7 +860,8 @@
                 android:id="@+id/B5"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -827,7 +869,8 @@
                 android:id="@+id/C5"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -835,7 +878,8 @@
                 android:id="@+id/D5"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -843,7 +887,8 @@
                 android:id="@+id/E5"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -851,7 +896,8 @@
                 android:id="@+id/F5"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -859,7 +905,8 @@
                 android:id="@+id/G5"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -867,7 +914,8 @@
                 android:id="@+id/H5"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -875,7 +923,8 @@
                 android:id="@+id/I5"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -883,7 +932,8 @@
                 android:id="@+id/J5"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
         </LinearLayout>
 
         <LinearLayout
@@ -900,7 +950,8 @@
                 android:layout_gravity="center_vertical"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -908,7 +959,8 @@
                 android:id="@+id/B6"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -916,7 +968,8 @@
                 android:id="@+id/C6"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -924,7 +977,8 @@
                 android:id="@+id/D6"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -932,7 +986,8 @@
                 android:id="@+id/E6"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -940,7 +995,8 @@
                 android:id="@+id/F6"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -948,7 +1004,8 @@
                 android:id="@+id/G6"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -956,7 +1013,8 @@
                 android:id="@+id/H6"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -964,7 +1022,8 @@
                 android:id="@+id/I6"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -972,7 +1031,8 @@
                 android:id="@+id/J6"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
         </LinearLayout>
 
         <LinearLayout
@@ -989,7 +1049,8 @@
                 android:layout_gravity="center_vertical"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -997,7 +1058,8 @@
                 android:id="@+id/B7"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1005,7 +1067,8 @@
                 android:id="@+id/C7"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1013,7 +1076,8 @@
                 android:id="@+id/D7"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1021,7 +1085,8 @@
                 android:id="@+id/E7"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1029,7 +1094,8 @@
                 android:id="@+id/F7"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1037,7 +1103,8 @@
                 android:id="@+id/G7"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1045,7 +1112,8 @@
                 android:id="@+id/H7"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1053,7 +1121,8 @@
                 android:id="@+id/I7"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1061,7 +1130,8 @@
                 android:id="@+id/J7"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
         </LinearLayout>
 
         <LinearLayout
@@ -1078,7 +1148,8 @@
                 android:layout_gravity="center_vertical"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1086,7 +1157,8 @@
                 android:id="@+id/B8"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1094,7 +1166,8 @@
                 android:id="@+id/C8"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1102,7 +1175,8 @@
                 android:id="@+id/D8"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1110,7 +1184,8 @@
                 android:id="@+id/E8"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1118,7 +1193,8 @@
                 android:id="@+id/F8"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1126,7 +1202,8 @@
                 android:id="@+id/G8"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1134,7 +1211,8 @@
                 android:id="@+id/H8"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1142,7 +1220,8 @@
                 android:id="@+id/I8"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1150,7 +1229,8 @@
                 android:id="@+id/J8"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
         </LinearLayout>
 
         <LinearLayout
@@ -1167,7 +1247,8 @@
                 android:layout_gravity="center_vertical"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1175,7 +1256,8 @@
                 android:id="@+id/B9"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1183,7 +1265,8 @@
                 android:id="@+id/C9"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1191,7 +1274,8 @@
                 android:id="@+id/D9"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1199,7 +1283,8 @@
                 android:id="@+id/E9"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1207,7 +1292,8 @@
                 android:id="@+id/F9"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1215,7 +1301,8 @@
                 android:id="@+id/G9"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1223,7 +1310,8 @@
                 android:id="@+id/H9"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1231,7 +1319,8 @@
                 android:id="@+id/I9"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1239,7 +1328,8 @@
                 android:id="@+id/J9"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
         </LinearLayout>
 
         <LinearLayout
@@ -1257,7 +1347,8 @@
                 android:layout_gravity="center_vertical"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1265,7 +1356,8 @@
                 android:id="@+id/B10"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1273,7 +1365,8 @@
                 android:id="@+id/C10"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1281,7 +1374,8 @@
                 android:id="@+id/D10"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1289,7 +1383,8 @@
                 android:id="@+id/E10"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1297,7 +1392,8 @@
                 android:id="@+id/F10"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1305,7 +1401,8 @@
                 android:id="@+id/G10"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1313,7 +1410,8 @@
                 android:id="@+id/H10"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1321,7 +1419,8 @@
                 android:id="@+id/I10"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"
@@ -1329,7 +1428,8 @@
                 android:id="@+id/J10"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
         </LinearLayout>
 
     </LinearLayout>
