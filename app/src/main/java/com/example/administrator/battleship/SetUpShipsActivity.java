@@ -9,17 +9,20 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.ImageView;
 
 /**
  * Created by aljawad18 on 11/23/2015.
  */
 public class SetUpShipsActivity extends SurfaceView{
 
+    ImageView carrier;
     Bitmap userGrid;
     float width;
     float height;
     float[] shipsX = new float[5];
     float[] shipsY = new float[5];
+
     public SetUpShipsActivity(Context context, AttributeSet attrs) {
         super(context, attrs);
         setWillNotDraw(false);
@@ -42,8 +45,6 @@ public class SetUpShipsActivity extends SurfaceView{
 
             }
         }
-
-        canvas.drawCircle(250+shipsX[0], 100+shipsY[0], 30, red);
     }
 
 

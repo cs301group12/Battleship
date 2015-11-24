@@ -1,8 +1,10 @@
 package com.example.administrator.battleship;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 
@@ -17,12 +20,28 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
     private SetUpShipsActivity board;
     private LinearLayout top;
+    ImageView carrierImageHor;
+    ImageView battleshipImageHor;
+    ImageView destroyerImageHor;
+    ImageView submarineImageHor;
+    ImageView patrolBoatImageHor;
+
+    ImageView carrierImageVer;
+    ImageView battleshipImageVer;
+    ImageView destroyerImageVer;
+    ImageView submarineImageVer;
+    ImageView patrolBoatImageVer;
+
+    ShipImage carrier;
+    ShipImage battleship;
+    ShipImage destroyer;
+    ShipImage submarine;
+    ShipImage patrolBoat;
+
     private Button moveUp;
     private Button moveLeft;
     private Button moveDown;
     private Button moveRight;
-
-    private Button carrier;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +51,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         top.setOnTouchListener(this);
         board = (SetUpShipsActivity) findViewById(R.id.board);
         board.setOnTouchListener(this);
+        /*
         moveLeft = (Button) findViewById(R.id.moveLeft);
         moveLeft.setOnClickListener(this);
 
@@ -43,9 +63,35 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
         moveDown = (Button) findViewById(R.id.moveDown);
         moveDown.setOnClickListener(this);
+        */
 
-        carrier = (Button) findViewById(R.id.carrierButton);
-        carrier.setOnClickListener(this);
+
+
+        carrierImageHor = (ImageView) findViewById(R.id.carrierHor);
+        battleshipImageHor = (ImageView) findViewById(R.id.battleshipHor);
+        destroyerImageHor = (ImageView) findViewById(R.id.destroyerHor);
+        submarineImageHor = (ImageView) findViewById(R.id.submarineHor);
+        patrolBoatImageHor = (ImageView) findViewById(R.id.ptBoatHor);
+
+
+        carrierImageVer = (ImageView) findViewById(R.id.carrierVer);
+        battleshipImageVer = (ImageView) findViewById(R.id.battleshipVer);
+        destroyerImageVer = (ImageView) findViewById(R.id.destroyerVer);
+        submarineImageVer = (ImageView) findViewById(R.id.submarineVer);
+        patrolBoatImageVer = (ImageView) findViewById(R.id.ptBoatVer);
+
+        carrierImageHor.setOnClickListener(this);
+        battleshipImageHor.setOnClickListener(this);
+        destroyerImageHor.setOnClickListener(this);
+        submarineImageHor.setOnClickListener(this);
+        patrolBoatImageHor.setOnClickListener(this);
+
+        carrierImageVer.setOnClickListener(this);
+        battleshipImageVer.setOnClickListener(this);
+        destroyerImageVer.setOnClickListener(this);
+        submarineImageVer.setOnClickListener(this);
+        patrolBoatImageVer.setOnClickListener(this);
+
 
     }
 
@@ -73,37 +119,23 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
+
         return false;
     }
 
     @Override
     public void onClick(View view)
     {
-        Canvas canvas = new Canvas();
+        if(view == battleshipImageHor)
+        {
+            float x = battleshipImageHor.getX();
+            float y = battleshipImageHor.getY();
 
-            if(view == view.findViewById(R.id.moveUp))
-            {
-                board.shipsY[0] = 50;
-                board.shipsX[0] = 200;
-                Log.i("Yoo","Move Up");
-            }
-            else if(view == view.findViewById(R.id.moveDown))
-            {
-                Log.i("Yoo", "Move Down");
-            }
-            else if(view == view.findViewById(R.id.moveRight))
-            {
-                Log.i("Yoo", "Move Right");
-            }
-            else if(view == moveLeft)
-            {
-                Log.i("Yoo", "Move Left");
-            }
-            else
-            {
-                Log.i("Yoo","Not moving");
-            }
 
+            Log.i("Clicked","Battleship image clicked");
+            System.out.println(x);
+            System.out.println(y);
+        }
 
     }
 }
