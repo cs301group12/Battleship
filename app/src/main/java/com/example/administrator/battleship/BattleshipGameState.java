@@ -272,6 +272,7 @@ public class BattleshipGameState {
                     this.shipMissed(row, col);//there is a miss in this location
                 }
             }
+        printBoard();
     }
 
     /**

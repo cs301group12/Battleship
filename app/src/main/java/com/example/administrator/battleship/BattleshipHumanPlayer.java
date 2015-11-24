@@ -145,7 +145,6 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         switch (view.getId()) {
             case R.id.A1:
                 gameState.shipHit(0,0,1);
-                messageScreen.setText("yo");
                 break;
 
             case R.id.A2:
@@ -162,7 +161,6 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
 
             case R.id.A5:
                 gameState.shipHit(0,4,1);
-                messageScreen.setText("wut");
                 break;
 
             case R.id.A6:
@@ -544,6 +542,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
             case R.id.J10:
                 gameState.shipHit(9,9,1);
                 break;
+
 
         }
 
