@@ -20,6 +20,10 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
     private LinearLayout topLayout;
     private BoardSV ship1;
     private Canvas canvas;
+    private Button readyToPlay;
+
+    private BattleshipGameState gameState;
+
     private boolean moveCarrier = true;
     private boolean moveBattleship = true;
     private boolean moveDestroyer = true;
@@ -39,7 +43,21 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         ship1 = (BoardSV) findViewById(R.id.userBoard);
         ship1.setOnTouchListener(this);
 
+        readyToPlay = (Button) findViewById(R.id.readyToPlay);
+        readyToPlay.setOnClickListener(this);
 
+        gameState = new BattleshipGameState();
+        Ships[] AIships = new Ships[] {
+                new Ships(5),
+                new Ships(4),
+                new Ships(3),
+                new Ships(3),
+                new Ships(2),
+        };
+        //battleshipBoard.place(ships);
+
+        gameState.setUpComputerShips(AIships);
+        gameState.printBoard();
 
     }
 
@@ -96,5 +114,8 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
     @Override
     public void onClick(View view) {
 
+        if (view == readyToPlay) {
+
+        }
     }
 }
