@@ -36,7 +36,5 @@ public class AIBoardSV extends SurfaceView{
         }
     }
 
-    public int[] randomSetUp(){
 
-    }
 }
