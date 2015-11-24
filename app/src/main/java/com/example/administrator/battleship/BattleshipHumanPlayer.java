@@ -18,7 +18,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
 
     private TextView messageScreen;
     private LinearLayout topLayout;
-    private BoardSV ship1;
+    private BoardSV userBoard;
     private Canvas canvas;
     private Button readyToPlay;
 
@@ -40,8 +40,8 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         messageScreen = (TextView) findViewById(R.id.gameInfo);
         topLayout = (LinearLayout) findViewById(R.id.topGUILayout);
         topLayout.setOnTouchListener(this);
-        ship1 = (BoardSV) findViewById(R.id.userBoard);
-        ship1.setOnTouchListener(this);
+        userBoard = (BoardSV) findViewById(R.id.userBoard);
+        userBoard.setOnTouchListener(this);
 
         readyToPlay = (Button) findViewById(R.id.readyToPlay);
         readyToPlay.setOnClickListener(this);
@@ -92,14 +92,43 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         int x = (int) motionEvent.getX();
         int y = (int) motionEvent.getY();
 
-
-        canvas = ship1.getHolder().lockCanvas();
-        ship1.carrierX = motionEvent.getX();
-        ship1.carrierY = motionEvent.getY();
-        ship1.getHolder().unlockCanvasAndPost(canvas);
-        ship1.postInvalidate();
-
-
+        if (motionEvent.getAction() == MotionEvent.ACTION_MOVE) {
+            if (moveCarrier && !moveBattleship && !moveDestroyer && !movePTBoat && !moveSubmarine) {
+                canvas = userBoard.getHolder().lockCanvas();
+                userBoard.shipsX[0] = motionEvent.getX();
+                userBoard.shipsY[0] = motionEvent.getY();
+                userBoard.getHolder().unlockCanvasAndPost(canvas);
+                userBoard.postInvalidate();
+            }
+            if (moveBattleship && !moveCarrier && !moveDestroyer && !movePTBoat && !moveSubmarine) {
+                canvas = userBoard.getHolder().lockCanvas();
+                userBoard.shipsX[1] = motionEvent.getX();
+                userBoard.shipsY[1] = motionEvent.getY();
+                userBoard.getHolder().unlockCanvasAndPost(canvas);
+                userBoard.postInvalidate();
+            }
+            if (moveDestroyer && !moveBattleship && !moveCarrier && !movePTBoat && !moveSubmarine) {
+                canvas = userBoard.getHolder().lockCanvas();
+                userBoard.shipsX[2] = motionEvent.getX();
+                userBoard.shipsY[2] = motionEvent.getY();
+                userBoard.getHolder().unlockCanvasAndPost(canvas);
+                userBoard.postInvalidate();
+            }
+            if (moveSubmarine && !moveBattleship && !moveDestroyer && !movePTBoat && !moveCarrier) {
+                canvas = userBoard.getHolder().lockCanvas();
+                userBoard.shipsX[3] = motionEvent.getX();
+                userBoard.shipsY[3] = motionEvent.getY();
+                userBoard.getHolder().unlockCanvasAndPost(canvas);
+                userBoard.postInvalidate();
+            }
+            if (movePTBoat && !moveBattleship && !moveDestroyer && !moveCarrier && !moveSubmarine) {
+                canvas = userBoard.getHolder().lockCanvas();
+                userBoard.shipsX[4] = motionEvent.getX();
+                userBoard.shipsY[4] = motionEvent.getY();
+                userBoard.getHolder().unlockCanvasAndPost(canvas);
+                userBoard.postInvalidate();
+            }
+        }
         if(x < 950 || x > 1000) {
             messageScreen.setText("Hit!");
             return true;
@@ -107,7 +136,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
 
         messageScreen.setText("reset");
 
-        return false;
+        return true;
     }
 
 

@@ -8,17 +8,20 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
+import android.view.View;
 
-
-public class BoardSV extends SurfaceView{
+/**
+ * Created by aljawad18 on 11/23/2015.
+ */
+public class SetUpShipsActivity extends SurfaceView{
 
     Bitmap userGrid;
     float width;
     float height;
     float[] shipsX = new float[5];
     float[] shipsY = new float[5];
-    public BoardSV(Context context, AttributeSet attrs) {
-        super(context,attrs);
+    public SetUpShipsActivity(Context context, AttributeSet attrs) {
+        super(context, attrs);
         setWillNotDraw(false);
         userGrid = BitmapFactory.decodeResource(getResources(), R.mipmap.blue_square_grid);
         width=height=0;
@@ -27,6 +30,9 @@ public class BoardSV extends SurfaceView{
     @Override
     protected void onDraw(Canvas canvas)
     {
+        Paint red = new Paint();
+        red.setColor(Color.RED);
+
         for(int i =0; i<10; i++)
         {
             for(int j = 0;j<10;j++) {
@@ -37,7 +43,7 @@ public class BoardSV extends SurfaceView{
             }
         }
 
-
+        canvas.drawCircle(250+shipsX[0], 100+shipsY[0], 30, red);
     }
 
 

@@ -15,6 +15,8 @@ public class AIBoardSV extends SurfaceView{
     Bitmap userGrid;
     float width;
     float height;
+    float[] AIshipsX = new float[5];
+    float[] AIshipsY = new float[5];
     public AIBoardSV(Context context, AttributeSet attrs) {
         super(context,attrs);
         setWillNotDraw(false);
@@ -33,4 +35,6 @@ public class AIBoardSV extends SurfaceView{
             }
         }
     }
+
+
 }
