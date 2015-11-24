@@ -478,7 +478,7 @@ public class BattleshipGameState {
 
         int[][] checked = new int[ROWS][COLS];
         Random ran = new Random();
-        for (int i = 0; i < AIships.length - 1; i++) {
+        for (int i = 0; i <= AIships.length - 1; i++) {
             for (int j = 0; j < ROWS; j++)
                 for (int k = 0; k < COLS; k++)
                     checked[j][k] = 0; // Unchecked position

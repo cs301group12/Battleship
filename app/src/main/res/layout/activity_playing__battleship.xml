@@ -900,7 +900,9 @@
                 android:layout_gravity="center_vertical"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"
+                android:nestedScrollingEnabled="false" />
 
             <Button
                 android:layout_width="43dp"
@@ -908,7 +910,9 @@
                 android:id="@+id/B6"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"
+                android:nestedScrollingEnabled="false" />
 
             <Button
                 android:layout_width="43dp"
