@@ -33,8 +33,6 @@ public class SetUpShipsActivity extends SurfaceView{
     @Override
     protected void onDraw(Canvas canvas)
     {
-        Paint red = new Paint();
-        red.setColor(Color.RED);
 
         for(int i =0; i<10; i++)
         {
@@ -45,6 +43,9 @@ public class SetUpShipsActivity extends SurfaceView{
 
             }
         }
+
+        Bitmap battleship = BitmapFactory.decodeResource(getResources(), R.drawable.battleship_horizontal);
+        canvas.drawBitmap(battleship, shipsX[1], shipsY[1], null);
     }
 
 

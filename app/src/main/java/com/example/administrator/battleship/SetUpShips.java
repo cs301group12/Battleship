@@ -2,6 +2,7 @@ package com.example.administrator.battleship;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.AttributeSet;
@@ -42,6 +43,10 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     private Button moveLeft;
     private Button moveDown;
     private Button moveRight;
+    private Button goToPlayGame;
+
+
+    private Canvas canvas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +97,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         submarineImageVer.setOnClickListener(this);
         patrolBoatImageVer.setOnClickListener(this);
 
-
+        //goToPlayGame = (Button) findViewById(R.id.)
     }
 
     @Override
@@ -120,6 +125,16 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 
+        if (event.getAction() == MotionEvent.ACTION_MOVE) {
+
+
+            canvas = board.getHolder().lockCanvas();
+            board.shipsX[1] = MotionEventCompat.getX();
+            board.shipsY[1] = event.getY();
+            board.getHolder().unlockCanvasAndPost(canvas);
+            board.postInvalidate();
+            return true;
+        }
         return false;
     }
 
@@ -128,13 +143,11 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     {
         if(view == battleshipImageHor)
         {
-            float x = battleshipImageHor.getX();
-            float y = battleshipImageHor.getY();
 
 
-            Log.i("Clicked","Battleship image clicked");
-            System.out.println(x);
-            System.out.println(y);
+            Log.i("Clicked", "Battleship image clicked");
+            //System.out.println(x);
+            //System.out.println(y);
         }
 
     }

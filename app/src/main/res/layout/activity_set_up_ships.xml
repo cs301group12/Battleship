@@ -7,7 +7,8 @@
     tools:context="com.example.administrator.battleship.SetUpShipActivity"
     android:background="#ff000000"
     android:id="@+id/topView"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:orientation="horizontal">
 
     <com.example.administrator.battleship.SetUpShipsActivity
         android:layout_width="500dp"
@@ -52,49 +53,62 @@
             android:id="@+id/ptBoatHor"
             android:background="@drawable/boat_horizontal" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    </LinearLayout>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/carrierVer"
-                android:layout_gravity="right"
-                android:background="@drawable/carrier_vertical"
-                android:visibility="invisible" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/battleshipVer"
-                android:background="@drawable/battleship_vertical"
-                android:visibility="invisible" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/carrierVer"
+            android:layout_gravity="right"
+            android:background="@drawable/carrier_vertical"
+            android:visibility="invisible" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/destroyerVer"
-                android:background="@drawable/submarine_vertical"
-                android:visibility="invisible" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/battleshipVer"
+            android:background="@drawable/battleship_vertical"
+            android:visibility="invisible" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/submarineVer"
-                android:background="@drawable/submarine_vertical"
-                android:visibility="invisible"
-                android:focusableInTouchMode="false" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/destroyerVer"
+            android:background="@drawable/submarine_vertical"
+            android:visibility="invisible" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ptBoatVer"
-                android:background="@drawable/boat_vertical"
-                android:visibility="invisible" />
-        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/submarineVer"
+            android:background="@drawable/submarine_vertical"
+            android:visibility="invisible"
+            android:focusableInTouchMode="false" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ptBoatVer"
+            android:background="@drawable/boat_vertical"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.97">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="New Button"
+            android:id="@+id/button" />
     </LinearLayout>
 
 </LinearLayout>
