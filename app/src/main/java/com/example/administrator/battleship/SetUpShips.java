@@ -23,6 +23,11 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
     private SetUpShipsActivity board;
     private LinearLayout top;
+    ImageView carrierImageHor;
+    ImageView battleshipImageHor;
+    ImageView destroyerImageHor;
+    ImageView submarineImageHor;
+    ImageView patrolBoatImageHor;
 
     ShipImage carrier;
     ShipImage battleship;
