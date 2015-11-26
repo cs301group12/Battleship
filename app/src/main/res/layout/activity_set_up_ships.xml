@@ -20,95 +20,70 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/carrierHor"
-            android:background="@drawable/carrier_horizontal" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/battleshipHor"
-            android:background="@drawable/battleship_horizontal" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/destroyerHor"
-            android:background="@drawable/destroyer_horizontal" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/submarineHor"
-            android:background="@drawable/submarine_horizontal" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ptBoatHor"
-            android:background="@drawable/boat_horizontal" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/carrierVer"
-            android:layout_gravity="right"
-            android:background="@drawable/carrier_vertical"
-            android:visibility="invisible" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/battleshipVer"
-            android:background="@drawable/battleship_vertical"
-            android:visibility="invisible" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/destroyerVer"
-            android:background="@drawable/submarine_vertical"
-            android:visibility="invisible" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/submarineVer"
-            android:background="@drawable/submarine_vertical"
-            android:visibility="invisible"
-            android:focusableInTouchMode="false" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ptBoatVer"
-            android:background="@drawable/boat_vertical"
-            android:visibility="invisible" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.97">
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:layout_marginLeft="60dp">
 
         <Button
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:text="New Button"
-            android:id="@+id/button" />
+            android:layout_width="286dp"
+            android:layout_height="wrap_content"
+            android:text="Select Carrier"
+            android:id="@+id/selectCarrier"
+            android:textSize="25dp"
+            android:layout_weight="0.02"
+            android:background="#ff000000"
+            android:textColor="#ffffffff"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Battleship"
+            android:id="@+id/selectBattleship"
+            android:textSize="25dp"
+            android:layout_weight="0.02"
+            android:background="#ff000000"
+            android:textColor="#ffffffff"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Destroyer"
+            android:id="@+id/selectDestroyer"
+            android:textSize="25dp"
+            android:layout_weight="0.02"
+            android:background="#ff000000"
+            android:textColor="#ffffffff"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Submarine"
+            android:id="@+id/selectSubmarine"
+            android:textSize="25dp"
+            android:layout_weight="0.02"
+            android:background="#ff000000"
+            android:textColor="#ffffffff"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select PT Boat"
+            android:id="@+id/selectPTBoat"
+            android:textSize="25dp"
+            android:layout_weight="0.02"
+            android:background="#ff000000"
+            android:textColor="#ffffffff"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_horizontal" />
+
     </LinearLayout>
 
 </LinearLayout>
