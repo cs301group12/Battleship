@@ -23,17 +23,6 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
     private SetUpShipsActivity board;
     private LinearLayout top;
-    ImageView carrierImageHor;
-    ImageView battleshipImageHor;
-    ImageView destroyerImageHor;
-    ImageView submarineImageHor;
-    ImageView patrolBoatImageHor;
-
-    ImageView carrierImageVer;
-    ImageView battleshipImageVer;
-    ImageView destroyerImageVer;
-    ImageView submarineImageVer;
-    ImageView patrolBoatImageVer;
 
     ShipImage carrier;
     ShipImage battleship;
@@ -41,18 +30,19 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     ShipImage submarine;
     ShipImage patrolBoat;
 
-    private Button moveUp;
-    private Button moveLeft;
-    private Button moveDown;
-    private Button moveRight;
-    private Button goToPlayGame;
-
-    private int deltaX;
-    private int deltaY;
+    private Button carrierButton;
+    private Button battleshipButton;
+    private Button destroyerButton;
+    private Button submarineButton;
+    private Button ptBoatButton;
 
     private Canvas canvas;
 
-    private int mActivePointerId = -1;
+    private boolean moveCarrier = true;
+    private boolean moveBattleship = true;
+    private boolean moveDestroyer = true;
+    private boolean moveSubmarine = true;
+    private boolean movePtBoat = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,46 +52,24 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         top.setOnTouchListener(this);
         board = (SetUpShipsActivity) findViewById(R.id.board);
         board.setOnTouchListener(this);
-        /*
-        moveLeft = (Button) findViewById(R.id.moveLeft);
-        moveLeft.setOnClickListener(this);
 
-        moveRight = (Button) findViewById(R.id.moveRight);
-        moveRight.setOnClickListener(this);
+        carrierButton = (Button) findViewById(R.id.selectCarrier);
+        carrierButton.setOnClickListener(this);
 
-        moveUp = (Button) findViewById(R.id.moveUp);
-        moveUp.setOnClickListener(this);
+        battleshipButton = (Button) findViewById(R.id.selectBattleship);
+        battleshipButton.setOnClickListener(this);
 
-        moveDown = (Button) findViewById(R.id.moveDown);
-        moveDown.setOnClickListener(this);
-        */
+        destroyerButton = (Button) findViewById(R.id.selectDestroyer);
+        destroyerButton.setOnClickListener(this);
 
+        submarineButton = (Button) findViewById(R.id.selectSubmarine);
+        submarineButton.setOnClickListener(this);
 
-
-        carrierImageHor = (ImageView) findViewById(R.id.carrierHor);
-        battleshipImageHor = (ImageView) findViewById(R.id.battleshipHor);
-        destroyerImageHor = (ImageView) findViewById(R.id.destroyerHor);
-        submarineImageHor = (ImageView) findViewById(R.id.submarineHor);
-        patrolBoatImageHor = (ImageView) findViewById(R.id.ptBoatHor);
+        ptBoatButton = (Button) findViewById(R.id.selectPTBoat);
+        ptBoatButton.setOnClickListener(this);
 
 
-        carrierImageVer = (ImageView) findViewById(R.id.carrierVer);
-        battleshipImageVer = (ImageView) findViewById(R.id.battleshipVer);
-        destroyerImageVer = (ImageView) findViewById(R.id.destroyerVer);
-        submarineImageVer = (ImageView) findViewById(R.id.submarineVer);
-        patrolBoatImageVer = (ImageView) findViewById(R.id.ptBoatVer);
 
-        carrierImageHor.setOnClickListener(this);
-        battleshipImageHor.setOnClickListener(this);
-        destroyerImageHor.setOnClickListener(this);
-        submarineImageHor.setOnClickListener(this);
-        patrolBoatImageHor.setOnClickListener(this);
-
-        carrierImageVer.setOnClickListener(this);
-        battleshipImageVer.setOnClickListener(this);
-        destroyerImageVer.setOnClickListener(this);
-        submarineImageVer.setOnClickListener(this);
-        patrolBoatImageVer.setOnClickListener(this);
 
         //goToPlayGame = (Button) findViewById(R.id.)
 
@@ -134,8 +102,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
         if (event.getAction() == MotionEvent.ACTION_MOVE) {
             canvas = board.getHolder().lockCanvas();
-            System.out.println("getX: " + event.getX() + " getY: " + event.getY() + " shipX: " + board.shipsX[1] + " shipY: " + board.shipsY[1]);
-            if (event.getX() == (board.shipsX[1]+100) && event.getY() == (board.shipsY[1]+20)) {
+            if ( moveBattleship && !moveCarrier) {
                 if (event.getX() > 700) {
                     board.shipsX[1] = 700;
                 } else if (event.getX() < 1.7) {
@@ -173,81 +140,46 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             board.postInvalidate();
         }
         return true;
-        // Let the ScaleGestureDetector inspect all events.
 
-        /*
-        final int action = MotionEventCompat.getActionMasked(event);
-        float mLastTouchX = 0;
-        float mLastTouchY = 0;
-
-        switch (action) {
-            case MotionEvent.ACTION_DOWN: {
-                final int pointerIndex = MotionEventCompat.getActionIndex(event);
-                final float x = MotionEventCompat.getX(event, pointerIndex);
-                final float y = MotionEventCompat.getY(event, pointerIndex);
-
-                // Remember where we started (for dragging)
-                mLastTouchX = x;
-                mLastTouchY = y;
-                // Save the ID of this pointer (for dragging)
-                mActivePointerId = MotionEventCompat.getPointerId(event, 0);
-                break;
-            }
-
-            case MotionEvent.ACTION_MOVE:
-            {
-                // Find the index of the active pointer and fetch its position
-                final int pointerIndex =
-                        MotionEventCompat.findPointerIndex(event, mActivePointerId);
-
-                final float x = MotionEventCompat.getX(event, pointerIndex);
-                final float y = MotionEventCompat.getY(event, pointerIndex);
-
-                // Calculate the distance moved
-                final float dx = x - mLastTouchX;
-                final float dy = y - mLastTouchY;
-
-                board.shipsX[1] += dx;
-                board.shipsY[1] += dy;
-
-                board.invalidate();
-
-                // Remember this touch position for the next move event
-                mLastTouchX = x;
-                mLastTouchY = y;
-
-                break;
-            }
-
-            case MotionEvent.ACTION_UP: {
-                break;
-            }
-
-            case MotionEvent.ACTION_CANCEL: {
-                mActivePointerId = -1;
-                break;
-            }
-
-            case MotionEvent.ACTION_POINTER_UP: {
-
-                break;
-            }
-        }
-        return true;
-        */
     }
 
     @Override
     public void onClick(View view)
     {
-        if(view == battleshipImageHor)
-        {
-
-
-            Log.i("Clicked", "Battleship image clicked");
-            //System.out.println(x);
-            //System.out.println(y);
+        if(view == carrierButton){
+            moveCarrier = true;
+            moveBattleship = false;
+            moveDestroyer = false;
+            moveSubmarine = false;
+            movePtBoat = false;
         }
-
+        if (view == battleshipButton){
+            moveCarrier = false;
+            moveBattleship = true;
+            moveDestroyer = false;
+            moveSubmarine = false;
+            movePtBoat = false;
+        }
+        if (view == destroyerButton) {
+            moveCarrier = false;
+            moveBattleship = false;
+            moveDestroyer = true;
+            moveSubmarine = false;
+            movePtBoat = false;
+        }
+        if (view == submarineButton){
+            moveCarrier = false;
+            moveBattleship = false;
+            moveDestroyer = false;
+            moveSubmarine = true;
+            movePtBoat = false;
+        }
+        if (view == ptBoatButton){
+            moveCarrier = false;
+            moveBattleship = false;
+            moveDestroyer = false;
+            moveSubmarine = false;
+            movePtBoat = true;
+        }
     }
 }
