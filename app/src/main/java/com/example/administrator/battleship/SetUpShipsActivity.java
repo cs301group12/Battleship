@@ -16,23 +16,31 @@ import android.widget.ImageView;
  */
 public class SetUpShipsActivity extends SurfaceView{
 
-    ImageView carrier;
     Bitmap userGrid;
+    Bitmap battleship;
+    Bitmap carrier;
     float width;
     float height;
     float[] shipsX = new float[5];
     float[] shipsY = new float[5];
+
+
 
     public SetUpShipsActivity(Context context, AttributeSet attrs) {
         super(context, attrs);
         setWillNotDraw(false);
         userGrid = BitmapFactory.decodeResource(getResources(), R.mipmap.blue_square_grid);
         width=height=0;
+        shipsX[0] = 200;
+        shipsY[0] = 200;
+        shipsX[1] = 0;
+        shipsY[1] = 0;
     }
 
     @Override
     protected void onDraw(Canvas canvas)
     {
+
 
         for(int i =0; i<10; i++)
         {
@@ -44,8 +52,10 @@ public class SetUpShipsActivity extends SurfaceView{
             }
         }
 
-        Bitmap battleship = BitmapFactory.decodeResource(getResources(), R.drawable.battleship_horizontal);
+        battleship = BitmapFactory.decodeResource(getResources(), R.drawable.battleship_horizontal);
         canvas.drawBitmap(battleship, shipsX[1], shipsY[1], null);
+        carrier = BitmapFactory.decodeResource(getResources(), R.drawable.carrier_horizontal);
+        canvas.drawBitmap(carrier, shipsX[0], shipsY[0], null);
     }
 
 

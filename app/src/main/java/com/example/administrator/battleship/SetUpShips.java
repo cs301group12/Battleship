@@ -1,6 +1,7 @@
 package com.example.administrator.battleship;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.ActionBarActivity;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 
 public class SetUpShips extends ActionBarActivity implements View.OnTouchListener,View.OnClickListener {
@@ -45,8 +47,12 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     private Button moveRight;
     private Button goToPlayGame;
 
+    private int deltaX;
+    private int deltaY;
 
     private Canvas canvas;
+
+    private int mActivePointerId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +104,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         patrolBoatImageVer.setOnClickListener(this);
 
         //goToPlayGame = (Button) findViewById(R.id.)
+
     }
 
     @Override
@@ -126,16 +133,108 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     public boolean onTouch(View v, MotionEvent event) {
 
         if (event.getAction() == MotionEvent.ACTION_MOVE) {
-
-
             canvas = board.getHolder().lockCanvas();
-            board.shipsX[1] = MotionEventCompat.getX();
-            board.shipsY[1] = event.getY();
+            System.out.println("getX: " + event.getX() + " getY: " + event.getY() + " shipX: " + board.shipsX[1] + " shipY: " + board.shipsY[1]);
+            if (event.getX() == (board.shipsX[1]+100) && event.getY() == (board.shipsY[1]+20)) {
+                if (event.getX() > 700) {
+                    board.shipsX[1] = 700;
+                } else if (event.getX() < 1.7) {
+                    board.shipsX[1] = (float) 1.7;
+                } else {
+                    board.shipsX[1] = event.getX();
+                }
+                if (event.getY() < -10.5) {
+                    board.shipsY[1] = (float) -10.5;
+                } else if (event.getY() > 889.5) {
+                    board.shipsY[1] = (float) 889.5;
+                } else {
+                    board.shipsY[1] = event.getY();
+                }
+            }
+            else {
+                if (event.getX() > 700) {
+                    board.shipsX[0] = 700;
+                } else if (event.getX() < 1.7) {
+                    board.shipsX[0] = (float) 1.7;
+                } else {
+                    board.shipsX[0] = event.getX();
+                }
+                if (event.getY() < -10.5) {
+                    board.shipsY[0] = (float) -10.5;
+                } else if (event.getY() > 889.5) {
+                    board.shipsY[0] = (float) 889.5;
+                } else {
+                    board.shipsY[0] = event.getY();
+                }
+            }
+
+
             board.getHolder().unlockCanvasAndPost(canvas);
             board.postInvalidate();
-            return true;
         }
-        return false;
+        return true;
+        // Let the ScaleGestureDetector inspect all events.
+
+        /*
+        final int action = MotionEventCompat.getActionMasked(event);
+        float mLastTouchX = 0;
+        float mLastTouchY = 0;
+
+        switch (action) {
+            case MotionEvent.ACTION_DOWN: {
+                final int pointerIndex = MotionEventCompat.getActionIndex(event);
+                final float x = MotionEventCompat.getX(event, pointerIndex);
+                final float y = MotionEventCompat.getY(event, pointerIndex);
+
+                // Remember where we started (for dragging)
+                mLastTouchX = x;
+                mLastTouchY = y;
+                // Save the ID of this pointer (for dragging)
+                mActivePointerId = MotionEventCompat.getPointerId(event, 0);
+                break;
+            }
+
+            case MotionEvent.ACTION_MOVE:
+            {
+                // Find the index of the active pointer and fetch its position
+                final int pointerIndex =
+                        MotionEventCompat.findPointerIndex(event, mActivePointerId);
+
+                final float x = MotionEventCompat.getX(event, pointerIndex);
+                final float y = MotionEventCompat.getY(event, pointerIndex);
+
+                // Calculate the distance moved
+                final float dx = x - mLastTouchX;
+                final float dy = y - mLastTouchY;
+
+                board.shipsX[1] += dx;
+                board.shipsY[1] += dy;
+
+                board.invalidate();
+
+                // Remember this touch position for the next move event
+                mLastTouchX = x;
+                mLastTouchY = y;
+
+                break;
+            }
+
+            case MotionEvent.ACTION_UP: {
+                break;
+            }
+
+            case MotionEvent.ACTION_CANCEL: {
+                mActivePointerId = -1;
+                break;
+            }
+
+            case MotionEvent.ACTION_POINTER_UP: {
+
+                break;
+            }
+        }
+        return true;
+        */
     }
 
     @Override
