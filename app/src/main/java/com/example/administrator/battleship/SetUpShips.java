@@ -135,7 +135,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         if (event.getAction() == MotionEvent.ACTION_MOVE) {
             canvas = board.getHolder().lockCanvas();
             System.out.println("getX: " + event.getX() + " getY: " + event.getY() + " shipX: " + board.shipsX[1] + " shipY: " + board.shipsY[1]);
-            if (event.getX() == (board.shipsX[1]+100) && event.getY() == (board.shipsY[1]+20)) {
+
                 if (event.getX() > 700) {
                     board.shipsX[1] = 700;
                 } else if (event.getX() < 1.7) {
@@ -150,28 +150,12 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
                 } else {
                     board.shipsY[1] = event.getY();
                 }
-            }
-            else {
-                if (event.getX() > 700) {
-                    board.shipsX[0] = 700;
-                } else if (event.getX() < 1.7) {
-                    board.shipsX[0] = (float) 1.7;
-                } else {
-                    board.shipsX[0] = event.getX();
-                }
-                if (event.getY() < -10.5) {
-                    board.shipsY[0] = (float) -10.5;
-                } else if (event.getY() > 889.5) {
-                    board.shipsY[0] = (float) 889.5;
-                } else {
-                    board.shipsY[0] = event.getY();
-                }
-            }
 
 
             board.getHolder().unlockCanvasAndPost(canvas);
             board.postInvalidate();
         }
+
         return true;
         // Let the ScaleGestureDetector inspect all events.
 
