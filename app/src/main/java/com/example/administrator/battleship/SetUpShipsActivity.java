@@ -61,16 +61,75 @@ public class SetUpShipsActivity extends SurfaceView{
             }
         }
 
-        battleship = BitmapFactory.decodeResource(getResources(), R.drawable.battleship_horizontal);
-        canvas.drawBitmap(battleship, shipsX[1], shipsY[1], null);
-        carrier = BitmapFactory.decodeResource(getResources(), R.drawable.carrier_horizontal);
-        canvas.drawBitmap(carrier, shipsX[0], shipsY[0], null);
-        destroyer = BitmapFactory.decodeResource(getResources(), R.drawable.destroyer_horizotnal);
-        canvas.drawBitmap(destroyer, shipsX[2], shipsY[2], null);
-        submarine = BitmapFactory.decodeResource(getResources(), R.drawable.submarine_horizotnal);
-        canvas.drawBitmap(submarine, shipsX[3], shipsY[3], null);
-        ptBoat = BitmapFactory.decodeResource(getResources(), R.drawable.boat_horiztonal);
-        canvas.drawBitmap(ptBoat, shipsX[4], shipsY[4], null);
+        drawShip(carrier, 0, 1, canvas, true);
+        drawShip(battleship,1,2,canvas,true);
+        drawShip(destroyer,2,3,canvas,true);
+        drawShip(submarine,3,4,canvas,true);
+        drawShip(ptBoat,4,5,canvas,true);
+
+    }
+
+    public void drawShip(Bitmap nameOfShip,int shipNum,int imageID,Canvas canvas,boolean isHorizontal)
+    {
+        if(imageID == 1) {
+            if(isHorizontal == true) {
+                nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.carrier_horizontal);
+                canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
+            }
+            else
+            {
+                nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.carrier_vertical);
+                canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
+            }
+        }
+        else if(imageID == 2)
+        {
+            if(isHorizontal == true) {
+                nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.battleship_horizontal);
+                canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
+            }
+            else
+            {
+                nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.battleship_vertical);
+                canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
+            }
+        }
+        else if(imageID == 3)
+        {
+            if(isHorizontal == true) {
+                nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.destroyer_horizontal);
+                canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
+            }
+            else
+            {
+                nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.destroyer_vertical);
+                canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
+            }
+        }
+        else if(imageID == 4)
+        {
+            if(isHorizontal == true) {
+                nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.submarine_horizontal);
+                canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
+            }
+            else
+            {
+                nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.submarine_vertical);
+                canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
+            }
+        }
+        else if(imageID == 5)
+        {
+            if(isHorizontal == true) {
+                nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.boat_horizontal);
+                canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
+            }
+            else
+            {
+                nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.boat_vertical);
+                canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
+            }
+        }
     }
 
 

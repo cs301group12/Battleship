@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#0a42d0"
+    android:background="#ff000000"
     android:orientation="vertical"
     android:weightSum="1"
     android:id="@+id/topGUILayout">
@@ -13,35 +13,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
 
-        <Button
-            android:layout_width="170dp"
-            android:layout_height="69dp"
-            android:id="@+id/mainMenuButton"
-            android:background="@drawable/main_menu_button" />
-
-        <Space
-            android:layout_width="30dp"
-            android:layout_height="20px" />
-
-        <Button
-            android:layout_width="170dp"
-            android:layout_height="69dp"
-            android:id="@+id/readyToPlay"
-            android:textSize="20dp"
-            android:background="@drawable/start_game_button" />
-
-        <Space
-            android:layout_width="145dp"
-            android:layout_height="match_parent" />
-
         <TextView
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="75dp"
             android:text="Status"
             android:id="@+id/gameInfo"
             android:background="#aa808080"
             android:textSize="40dp"
-            android:layout_weight="0"
             android:gravity="center"
             android:textColor="#fff0f0f0"
             android:autoText="false" />
@@ -304,7 +282,7 @@
             android:layout_width="500dp"
             android:layout_height="match_parent"
             android:id="@+id/userBoard"
-            android:background="#0a42d0" />
+            android:background="#ff000000" />
 
         <LinearLayout
             android:orientation="vertical"

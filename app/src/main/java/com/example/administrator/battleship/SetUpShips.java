@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -29,6 +30,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     ImageView destroyerImageHor;
     ImageView submarineImageHor;
     ImageView patrolBoatImageHor;
+
+    GestureDetector mGestureDetector;
 
     ShipImage carrier;
     ShipImage battleship;
@@ -73,7 +76,6 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
         ptBoatButton = (Button) findViewById(R.id.selectPTBoat);
         ptBoatButton.setOnClickListener(this);
-
 
         goToMainMenu();
         playGame();
@@ -129,36 +131,92 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
         if (event.getAction() == MotionEvent.ACTION_MOVE) {
             canvas = board.getHolder().lockCanvas();
-            if ( moveBattleship && !moveCarrier) {
-                if (event.getX() > 700) {
-                    board.shipsX[1] = 700;
-                } else if (event.getX() < 1.7) {
-                    board.shipsX[1] = (float) 1.7;
+            float testX = event.getX();
+            float testY = event.getY();
+            System.out.println("Value of X: " + testX);
+            System.out.println("Value of Y: " + testY);
+
+            if (moveCarrier && !moveBattleship && !moveDestroyer && !moveSubmarine && !movePtBoat) {
+                if (event.getX() > 523) {
+                    board.shipsX[0] = 523;
+                } else if (event.getX() < 7.05) {
+                    board.shipsX[0] = (float) 7.05;
+                } else {
+                    board.shipsX[0] = event.getX();
+                }
+                if (event.getY() < 4.93) {
+                    board.shipsY[0] = (float) 4.93;
+                } else if (event.getY() > 897.13) {
+                    board.shipsY[0] = (float) 897.13;
+                } else {
+                    board.shipsY[0] = event.getY();
+                }
+            }
+            else if (!moveCarrier && moveBattleship && !moveDestroyer && !moveSubmarine && !movePtBoat){
+                if (event.getX() > 605.9) {
+                    board.shipsX[1] = (float) 605.9;
+                } else if (event.getX() < 4.93) {
+                    board.shipsX[1] = (float) 4.93;
                 } else {
                     board.shipsX[1] = event.getX();
                 }
-                if (event.getY() < -10.5) {
-                    board.shipsY[1] = (float) -10.5;
-                } else if (event.getY() > 889.5) {
-                    board.shipsY[1] = (float) 889.5;
+                if (event.getY() < 6.92) {
+                    board.shipsY[1] = (float) 6.92;
+                } else if (event.getY() > 900.1) {
+                    board.shipsY[1] = (float) 900.1;
                 } else {
                     board.shipsY[1] = event.getY();
                 }
             }
-            else {
-                if (event.getX() > 700) {
-                    board.shipsX[0] = 700;
-                } else if (event.getX() < 1.7) {
-                    board.shipsX[0] = (float) 1.7;
+            else if(!moveCarrier && !moveBattleship && moveDestroyer && !moveSubmarine && !movePtBoat)
+            {
+                if (event.getX() > 692.977) {
+                    board.shipsX[2] = (float) 692.977;
+                } else if (event.getX() < 4.93) {
+                    board.shipsX[2] = (float) 4.93;
                 } else {
-                    board.shipsX[0] = event.getX();
+                    board.shipsX[2] = event.getX();
                 }
-                if (event.getY() < -10.5) {
-                    board.shipsY[0] = (float) -10.5;
-                } else if (event.getY() > 889.5) {
-                    board.shipsY[0] = (float) 889.5;
+                if (event.getY() < 6.92) {
+                    board.shipsY[2] = (float) 6.92;
+                } else if (event.getY() > 901.9) {
+                    board.shipsY[2] = (float) 901.9;
                 } else {
-                    board.shipsY[0] = event.getY();
+                    board.shipsY[2] = event.getY();
+                }
+            }
+            else if(!moveCarrier && !moveBattleship && !moveDestroyer && moveSubmarine && !movePtBoat)
+            {
+                if (event.getX() > 692.977) {
+                    board.shipsX[3] = (float) 692.977;
+                } else if (event.getX() < 4.93) {
+                    board.shipsX[3] = (float) 4.93;
+                } else {
+                    board.shipsX[3] = event.getX();
+                }
+                if (event.getY() < 6.92) {
+                    board.shipsY[3] = (float) 6.92;
+                } else if (event.getY() > 901.9) {
+                    board.shipsY[3] = (float) 901.9;
+                } else {
+                    board.shipsY[3] = event.getY();
+                }
+            }
+            else if(!moveCarrier && !moveBattleship && !moveDestroyer && !moveSubmarine && movePtBoat)
+            {
+                if (event.getX() > 778.2733) {
+                    board.shipsX[4] = (float) 778.27337;
+                } else if (event.getX() < 4.93) {
+                    board.shipsX[4] = (float) 4.93;
+                } else {
+                    board.shipsX[4] = event.getX();
+                }
+                if (event.getY() < 6.92) {
+                    board.shipsY[4] = (float) 6.92;
+                } else if (event.getY() > 901.9) {
+                    board.shipsY[4] = (float) 901.9;
+                } else {
+                    board.shipsY[4] = event.getY();
                 }
             }
 
@@ -168,6 +226,16 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         }
         return true;
 
+    }
+
+    public float calculateDifference(int ship1,int ship2)
+    {
+        float firstShip = board.shipsX[ship1];
+        float secondShip = board.shipsY[ship2];
+
+        float difference = firstShip - secondShip;
+
+        return difference;
     }
 
     @Override

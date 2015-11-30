@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     tools:context="com.example.administrator.battleship.How_to_Play_Screen"
-    android:background="#0a42d0"
+    android:background="#ff000000"
     android:orientation="vertical">
 
     <Button
