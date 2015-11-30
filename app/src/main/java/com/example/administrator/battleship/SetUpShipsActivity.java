@@ -65,12 +65,12 @@ public class SetUpShipsActivity extends SurfaceView{
         canvas.drawBitmap(battleship, shipsX[1], shipsY[1], null);
         carrier = BitmapFactory.decodeResource(getResources(), R.drawable.carrier_horizontal);
         canvas.drawBitmap(carrier, shipsX[0], shipsY[0], null);
-        destroyer = BitmapFactory.decodeResource(getResources(), R.drawable.destroyer_horizontal);
-        canvas.drawBitmap(carrier, shipsX[2], shipsY[2], null);
-        submarine = BitmapFactory.decodeResource(getResources(), R.drawable.submarine_horizontal);
-        canvas.drawBitmap(carrier, shipsX[3], shipsY[3], null);
-        ptBoat = BitmapFactory.decodeResource(getResources(), R.drawable.boat_horizontal);
-        canvas.drawBitmap(carrier, shipsX[4], shipsY[4], null);
+        destroyer = BitmapFactory.decodeResource(getResources(), R.drawable.destroyer_horizotnal);
+        canvas.drawBitmap(destroyer, shipsX[2], shipsY[2], null);
+        submarine = BitmapFactory.decodeResource(getResources(), R.drawable.submarine_horizotnal);
+        canvas.drawBitmap(submarine, shipsX[3], shipsY[3], null);
+        ptBoat = BitmapFactory.decodeResource(getResources(), R.drawable.boat_horiztonal);
+        canvas.drawBitmap(ptBoat, shipsX[4], shipsY[4], null);
     }
 
 

@@ -60,8 +60,18 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         gameState.setUpComputerShips(AIships);
         gameState.printBoard();
 
+        goToMainMenu();
     }
 
+    private void goToMainMenu(){
+        Button mainMenu = (Button) findViewById(R.id.mainMenuButton);
+        mainMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BattleshipHumanPlayer.this, MainActivity.class));
+            }
+        });
+    }
 
 
 

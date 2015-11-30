@@ -1,6 +1,7 @@
 package com.example.administrator.battleship;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.support.v4.view.MotionEventCompat;
@@ -74,10 +75,31 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         ptBoatButton.setOnClickListener(this);
 
 
-
+        goToMainMenu();
+        playGame();
 
         //goToPlayGame = (Button) findViewById(R.id.)
 
+    }
+
+    private void goToMainMenu(){
+        Button mainMenu = (Button) findViewById(R.id.mainMenuButton);
+        mainMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SetUpShips.this, MainActivity.class));
+            }
+        });
+    }
+
+    private void playGame(){
+        Button saveAndPlay = (Button) findViewById(R.id.saveAndPlayButton);
+        saveAndPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SetUpShips.this, BattleshipHumanPlayer.class));
+            }
+        });
     }
 
     @Override

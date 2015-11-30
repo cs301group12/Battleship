@@ -2,13 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     tools:context="com.example.administrator.battleship.How_to_Play_Screen"
-    android:background="#ff000000"
+    android:background="#0a42d0"
     android:orientation="vertical">
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Main Menu"
+        android:layout_width="197dp"
+        android:layout_height="67dp"
         android:id="@+id/mainMenuButton"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
@@ -16,7 +15,8 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:layout_x="35dp"
-        android:layout_y="12dp" />
+        android:layout_y="12dp"
+        android:background="@drawable/main_menu_button" />
 
     <TextView
         android:layout_width="962dp"

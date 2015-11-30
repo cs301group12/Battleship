@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#ff000000"
+    android:background="#0a42d0"
     android:orientation="vertical"
     android:weightSum="1"
     android:id="@+id/topGUILayout">
@@ -14,21 +14,21 @@
         android:layout_gravity="center_horizontal">
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="&lt;>"
-            android:id="@+id/button2" />
+            android:layout_width="170dp"
+            android:layout_height="69dp"
+            android:id="@+id/mainMenuButton"
+            android:background="@drawable/main_menu_button" />
 
         <Space
             android:layout_width="30dp"
             android:layout_height="20px" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Start Game"
+            android:layout_width="170dp"
+            android:layout_height="69dp"
             android:id="@+id/readyToPlay"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:background="@drawable/start_game_button" />
 
         <Space
             android:layout_width="145dp"
@@ -303,7 +303,8 @@
         <com.example.administrator.battleship.BoardSV
             android:layout_width="500dp"
             android:layout_height="match_parent"
-            android:id="@+id/userBoard" />
+            android:id="@+id/userBoard"
+            android:background="#0a42d0" />
 
         <LinearLayout
             android:orientation="vertical"
