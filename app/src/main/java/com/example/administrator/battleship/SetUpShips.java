@@ -135,10 +135,10 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
         if (event.getAction() == MotionEvent.ACTION_MOVE) {
             canvas = board.getHolder().lockCanvas();
-            //float testX = event.getX();
-            //float testY = event.getY();
-           // System.out.println("Value of X: " + testX);
-           // System.out.println("Value of Y: " + testY);
+            float testX = event.getX();
+            float testY = event.getY();
+           System.out.println("Value of X: " + testX);
+           System.out.println("Value of Y: " + testY);
 
 
             if (moveCarrier && !moveBattleship && !moveDestroyer && !moveSubmarine && !movePtBoat) {
@@ -324,7 +324,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     public boolean onLongClick(View v) {
 
         if(v == carrierButton) {
-            board.setCarrierOrientation(false);
+            boolean dummy = board.getCarrierOrientation();
+            board.setCarrierOrientation(!dummy);
             System.out.println(board.getCarrierOrientation());
             return true;
         }
