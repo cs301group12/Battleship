@@ -24,6 +24,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
 
 
     private BattleshipGameState gameState;
+    private BattleshipComputerPlayer1 easyAI;
 
     private boolean moveCarrier = true;
     private boolean moveBattleship = true;
@@ -44,6 +45,8 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         userBoard = (BoardSV) findViewById(R.id.userBoard);
         userBoard.setOnTouchListener(this);
 
+        easyAI = new BattleshipComputerPlayer1();
+
         gameState = new BattleshipGameState();
         Ships[] AIships = new Ships[] {
                 new Ships(5),
@@ -56,6 +59,23 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
 
         gameState.setUpComputerShips(AIships);
         gameState.printBoard();
+
+    }
+
+    public void computerTurn() {
+        int row, col;
+        if (gameState.getPlayerID() == 1) {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            while (gameState.getPlayerID() == 1) {
+                row = easyAI.generateRandomRow();
+                col = easyAI.generateRandomCol();
+                gameState.shipHit(row, col, 0);
+            }
+        }
     }
 
     @Override
@@ -67,70 +87,31 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.quitToMainItem)
+        {
+            finish();
+            return true;
+        }
+        if (id == R.id.restartGameItem)
+        {
+            return true;
+        }
+        if (id == R.id.howToPlayItem)
+        {
+            startActivity(new Intent(BattleshipHumanPlayer.this,How_to_Play_Screen.class));
             return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        int x = (int) motionEvent.getX();
-        int y = (int) motionEvent.getY();
-
-        if (motionEvent.getAction() == MotionEvent.ACTION_MOVE) {
-            if (moveCarrier && !moveBattleship && !moveDestroyer && !movePTBoat && !moveSubmarine) {
-                canvas = userBoard.getHolder().lockCanvas();
-                userBoard.shipsX[0] = motionEvent.getX();
-                userBoard.shipsY[0] = motionEvent.getY();
-                userBoard.getHolder().unlockCanvasAndPost(canvas);
-                userBoard.postInvalidate();
-            }
-            if (moveBattleship && !moveCarrier && !moveDestroyer && !movePTBoat && !moveSubmarine) {
-                canvas = userBoard.getHolder().lockCanvas();
-                userBoard.shipsX[1] = motionEvent.getX();
-                userBoard.shipsY[1] = motionEvent.getY();
-                userBoard.getHolder().unlockCanvasAndPost(canvas);
-                userBoard.postInvalidate();
-            }
-            if (moveDestroyer && !moveBattleship && !moveCarrier && !movePTBoat && !moveSubmarine) {
-                canvas = userBoard.getHolder().lockCanvas();
-                userBoard.shipsX[2] = motionEvent.getX();
-                userBoard.shipsY[2] = motionEvent.getY();
-                userBoard.getHolder().unlockCanvasAndPost(canvas);
-                userBoard.postInvalidate();
-            }
-            if (moveSubmarine && !moveBattleship && !moveDestroyer && !movePTBoat && !moveCarrier) {
-                canvas = userBoard.getHolder().lockCanvas();
-                userBoard.shipsX[3] = motionEvent.getX();
-                userBoard.shipsY[3] = motionEvent.getY();
-                userBoard.getHolder().unlockCanvasAndPost(canvas);
-                userBoard.postInvalidate();
-            }
-            if (movePTBoat && !moveBattleship && !moveDestroyer && !moveCarrier && !moveSubmarine) {
-                canvas = userBoard.getHolder().lockCanvas();
-                userBoard.shipsX[4] = motionEvent.getX();
-                userBoard.shipsY[4] = motionEvent.getY();
-                userBoard.getHolder().unlockCanvasAndPost(canvas);
-                userBoard.postInvalidate();
-            }
-        }
-        if(x < 950 || x > 1000) {
-            messageScreen.setText("Hit!");
-            return true;
-        }
-
-        messageScreen.setText("reset");
-
-        return true;
+        return false;
     }
 
 
@@ -138,14 +119,17 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         switch (view.getId()) {
             case R.id.A1:
                 gameState.shipHit(0,0,1);
+                computerTurn();
                 break;
 
             case R.id.A2:
                 gameState.shipHit(0,1,1);
+                computerTurn();
                 break;
 
             case R.id.A3:
                 gameState.shipHit(0,2,1);
+                computerTurn();
                 break;
 
             case R.id.A4:
@@ -543,9 +527,5 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
     @Override
     public void onClick(View view) {
 
-
-        if (view == readyToPlay) {
-
-        }
     }
 }
