@@ -46,6 +46,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     private Button destroyerButton;
     private Button submarineButton;
     private Button ptBoatButton;
+    private Button mainMenu;
+    private Button saveAndPlay;
 
     private Canvas canvas;
 
@@ -54,6 +56,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     private boolean moveDestroyer = true;
     private boolean moveSubmarine = true;
     private boolean movePtBoat = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,11 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         board = (SetUpShipsActivity) findViewById(R.id.board);
         board.setOnTouchListener(this);
         board.setOnLongClickListener(this);
+
+        mainMenu = (Button) findViewById(R.id.mainMenuButton);
+        saveAndPlay = (Button) findViewById(R.id.saveAndPlayButton);
+        mainMenu.setOnClickListener(this);
+        saveAndPlay.setOnClickListener(this);
 
         carrierButton = (Button) findViewById(R.id.selectCarrier);
         carrierButton.setOnClickListener(this);
@@ -85,31 +93,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         ptBoatButton.setOnClickListener(this);
         ptBoatButton.setOnLongClickListener(this);
 
-        goToMainMenu();
-        playGame();
 
-        //goToPlayGame = (Button) findViewById(R.id.)
-
-    }
-
-    private void goToMainMenu(){
-        Button mainMenu = (Button) findViewById(R.id.mainMenuButton);
-        mainMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SetUpShips.this, MainActivity.class));
-            }
-        });
-    }
-
-    private void playGame(){
-        Button saveAndPlay = (Button) findViewById(R.id.saveAndPlayButton);
-        saveAndPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SetUpShips.this, BattleshipHumanPlayer.class));
-            }
-        });
     }
 
     @Override
@@ -642,6 +626,16 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             moveDestroyer = false;
             moveSubmarine = false;
             movePtBoat = true;
+        }
+        if (view == mainMenu){
+            finish();
+        }
+        if (view == saveAndPlay){
+            Intent intent = new Intent(this, BattleshipHumanPlayer.class);
+            intent.putExtra("Ships X",board.shipsX);
+            intent.putExtra("Ships Y",board.shipsY);
+            intent.putExtra("Ship Orientations",board.shipOrientations);
+            startActivityForResult(intent,10);
         }
     }
 

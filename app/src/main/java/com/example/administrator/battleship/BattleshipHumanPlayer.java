@@ -21,6 +21,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
     private BoardSV userBoard;
     private Canvas canvas;
     private Button readyToPlay;
+    Intent intent;
 
 
     private BattleshipGameState gameState;
@@ -40,10 +41,16 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         setContentView(R.layout.activity_playing__battleship);
 
         messageScreen = (TextView) findViewById(R.id.gameInfo);
+        messageScreen.setText("Your turn first");
         topLayout = (LinearLayout) findViewById(R.id.topGUILayout);
         topLayout.setOnTouchListener(this);
         userBoard = (BoardSV) findViewById(R.id.userBoard);
         userBoard.setOnTouchListener(this);
+
+        intent = getIntent();
+        userBoard.shipsX = (float[]) intent.getFloatArrayExtra("Ships X");
+        userBoard.shipsY = (float[]) intent.getFloatArrayExtra("Ships Y");
+        userBoard.shipOrientations = (boolean[]) intent.getBooleanArrayExtra("Ship Orientations");
 
         easyAI = new BattleshipComputerPlayer1();
 
@@ -523,6 +530,17 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
 
         }
 
+    }
+    public String checkIfGameOver (){
+        if (gameState.getPlayer1Hits() == 17){
+            return "Human won";
+        }
+        else if (gameState.getPlayer2Hits() == 17 ){
+            return "AI won";
+        }
+        else {
+            return null;
+        }
     }
     @Override
     public void onClick(View view) {
