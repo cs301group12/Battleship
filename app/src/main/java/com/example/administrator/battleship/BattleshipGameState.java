@@ -569,8 +569,12 @@ public class BattleshipGameState {
     }
 
     public void printBoard() {
+        System.out.println("\n\nAI's grid:\n");
         for (int i = 0; i < ROWS; i++)
             System.out.println(Arrays.toString(computerGrid[i]));
+        System.out.println("\n\nUser's grid:\n");
+        for (int i = 0; i < ROWS; i++)
+            System.out.println(Arrays.toString(userGrid[i]));
     }
 
 }

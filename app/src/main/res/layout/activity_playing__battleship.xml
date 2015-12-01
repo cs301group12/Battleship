@@ -14,7 +14,7 @@
         android:layout_gravity="center_horizontal">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="500dp"
             android:layout_height="75dp"
             android:text="Status"
             android:id="@+id/gameInfo"
@@ -22,7 +22,8 @@
             android:textSize="40dp"
             android:gravity="center"
             android:textColor="#fff0f0f0"
-            android:autoText="false" />
+            android:autoText="false"
+            android:layout_marginLeft="250dp" />
     </LinearLayout>
 
     <LinearLayout
