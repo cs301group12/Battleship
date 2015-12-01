@@ -132,23 +132,27 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             if (moveCarrier && !moveBattleship && !moveDestroyer && !moveSubmarine && !movePtBoat) {
                     //size of carrier 431.197
                 if(board.getCarrierOrientation() == true) {
-                    if (event.getX() < 225){
-                        board.shipsX[0] = (float) 16.83;
-                    } else if (event.getX() < 325){
-                        board.shipsX[0] = (float) 112;
-                    } else if (event.getX() < 425){
-                        board.shipsX[0] = (float) 211;
-                    } else if (event.getX() < 525){
-                        board.shipsX[0] = (float) 305.6;
-                    } else if (event.getX() < 625){
-                        board.shipsX[0] = (float) 403;
-                    } else if ((event.getX() < 725) || (event.getX() > 725)){
-                        board.shipsX[0] = (float) 498;
+                    if (event.getX() < 225 && !(isOverlapping(0,1))){
+                            board.shipsX[0] = (float) 16.83;
+                    } else if (event.getX() < 325 && !(isOverlapping(0,1))){
+
+                            board.shipsX[0] = (float) 112;
+                    } else if (event.getX() < 425 && !(isOverlapping(0,1))){
+
+                            board.shipsX[0] = (float) 211;
+
+                    } else if (event.getX() < 525 && !(isOverlapping(0,1))){
+                            board.shipsX[0] = (float) 305.6;
+
+                    } else if (event.getX() < 625 && !(isOverlapping(0,1))){
+                            board.shipsX[0] = (float) 403;
+                    } else if ((event.getX() < 725) || (event.getX() > 725) && !(isOverlapping(0,1))){
+                            board.shipsX[0] = (float) 498;
                     }
                     if (event.getY() < 98){
-                        board.shipsY[0] = (float) 21.2;
+                            board.shipsY[0] = (float) 21.2;
                     } else if (event.getY() < 196){
-                        board.shipsY[0] = (float) 117.39;
+                            board.shipsY[0] = (float) 117.39;
                     } else if (event.getY() < 292){
                         board.shipsY[0] = (float) 212.86;
                     } else if (event.getY() < 388){
@@ -474,6 +478,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
                     } else if ((event.getX() < 925) || (event.getX() > 925)){
                         board.shipsX[4] = (float) 776;
                     }
+
                     if (event.getY() < 98){
                         board.shipsY[4] = (float) 21.2;
                     } else if (event.getY() < 196){
@@ -550,6 +555,11 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         }
         return true;
 
+    }
+
+    public boolean isOverlapping(int ship1,int ship2)
+    {
+        return board.shipsX[ship1] > board.shipsX[ship2] && board.shipsX[ship1] < board.shipsX[ship2] + 390;
     }
 
     /*
