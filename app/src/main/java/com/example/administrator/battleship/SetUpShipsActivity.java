@@ -1,12 +1,16 @@
 package com.example.administrator.battleship;
 
 import android.content.Context;
+import android.gesture.Gesture;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,7 +22,8 @@ public class SetUpShipsActivity extends SurfaceView{
 
     Bitmap userGrid;
     Bitmap battleship;
-    Bitmap carrier;
+    Bitmap carrierH;
+    Bitmap carrierV;
     Bitmap destroyer;
     Bitmap submarine;
     Bitmap ptBoat;
@@ -26,6 +31,7 @@ public class SetUpShipsActivity extends SurfaceView{
     float height;
     float[] shipsX = new float[5];
     float[] shipsY = new float[5];
+    boolean carrierOrientation = true;
 
 
 
@@ -50,7 +56,6 @@ public class SetUpShipsActivity extends SurfaceView{
     protected void onDraw(Canvas canvas)
     {
 
-
         for(int i =0; i<10; i++)
         {
             for(int j = 0;j<10;j++) {
@@ -61,12 +66,33 @@ public class SetUpShipsActivity extends SurfaceView{
             }
         }
 
+
+        /*
         drawShip(carrier, 0, 1, canvas, true);
-        drawShip(battleship,1,2,canvas,true);
-        drawShip(destroyer,2,3,canvas,true);
-        drawShip(submarine,3,4,canvas,true);
+        drawShip(carrier, 0, 1, canvas, false);
+        drawShip(battleship, 1, 2, canvas, true);
+        drawShip(destroyer, 2, 3, canvas, true);
+        drawShip(submarine, 3, 4, canvas, true);
         drawShip(ptBoat,4,5,canvas,true);
 
+        */
+        boolean dummy = getCarrierOrientation();
+        if(dummy == true) {
+            drawShip(carrierH, 0, 1, canvas, true);
+        }
+        else
+        {
+            drawShip(carrierV, 0, 1, canvas, false);
+        }
+
+    }
+
+    public void setCarrierOrientation(boolean orientation){
+        carrierOrientation = orientation;
+    }
+    public boolean getCarrierOrientation() {
+
+        return carrierOrientation;
     }
 
     public void drawShip(Bitmap nameOfShip,int shipNum,int imageID,Canvas canvas,boolean isHorizontal)
@@ -130,6 +156,13 @@ public class SetUpShipsActivity extends SurfaceView{
                 canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
             }
         }
+    }
+
+    public static Bitmap RotateBitmap(Bitmap source, float angle)
+    {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 
 
