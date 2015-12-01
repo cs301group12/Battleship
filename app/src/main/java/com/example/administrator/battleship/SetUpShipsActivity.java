@@ -21,19 +21,25 @@ import android.widget.ImageView;
 public class SetUpShipsActivity extends SurfaceView{
 
     Bitmap userGrid;
-    Bitmap battleship;
     Bitmap carrierH;
     Bitmap carrierV;
-    Bitmap destroyer;
-    Bitmap submarine;
-    Bitmap ptBoat;
+    Bitmap battleshipH;
+    Bitmap battleshipV;
+    Bitmap destroyerH;
+    Bitmap destroyerV;
+    Bitmap submarineH;
+    Bitmap submarineV;
+    Bitmap ptBoatH;
+    Bitmap ptBoatV;
     float width;
     float height;
     float[] shipsX = new float[5];
     float[] shipsY = new float[5];
     boolean carrierOrientation = true;
-
-
+    boolean battleshipOrientation = true;
+    boolean destroyerOrientation = true;
+    boolean submarineOrientation = true;
+    boolean pTBoatOrientation = true;
 
     public SetUpShipsActivity(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -66,7 +72,6 @@ public class SetUpShipsActivity extends SurfaceView{
             }
         }
 
-
         /*
         drawShip(carrier, 0, 1, canvas, true);
         drawShip(carrier, 0, 1, canvas, false);
@@ -74,8 +79,8 @@ public class SetUpShipsActivity extends SurfaceView{
         drawShip(destroyer, 2, 3, canvas, true);
         drawShip(submarine, 3, 4, canvas, true);
         drawShip(ptBoat,4,5,canvas,true);
-
         */
+
         boolean dummy = getCarrierOrientation();
         if(dummy == true) {
             drawShip(carrierH, 0, 1, canvas, true);
@@ -84,16 +89,47 @@ public class SetUpShipsActivity extends SurfaceView{
         {
             drawShip(carrierV, 0, 1, canvas, false);
         }
-
+        boolean dummy2 = getBattleshipOrientation();
+        if(dummy2 == true) {
+            drawShip(battleshipH, 1, 2, canvas, true);
+        }
+        else{
+            drawShip(battleshipV, 1, 2, canvas, false);
+        }
+        boolean dummy3 = getDestroyerOrientation();
+        if(dummy3 == true){
+            drawShip(destroyerH, 2, 3, canvas, true);
+        }
+        else{
+            drawShip(destroyerV, 2, 3, canvas, false);
+        }
+        boolean dummy4 = getSubmarineOrientation();
+        if(dummy4 == true){
+            drawShip(submarineH, 3, 4, canvas, true);
+        }
+        else {
+            drawShip(submarineV, 3, 4, canvas, false);
+        }
+        boolean dummy5 = getpTBoatOrientation();
+        if(dummy5 == true){
+            drawShip(ptBoatH, 4, 5, canvas, true);
+        }
+        else{
+            drawShip(ptBoatV, 4, 5, canvas, false);
+        }
     }
 
-    public void setCarrierOrientation(boolean orientation){
-        carrierOrientation = orientation;
-    }
-    public boolean getCarrierOrientation() {
+    public void setCarrierOrientation(boolean orientation){carrierOrientation = orientation;}
+    public boolean getCarrierOrientation() {return carrierOrientation;}
+    public void setBattleshipOrientation(boolean orientation){battleshipOrientation = orientation;}
+    public boolean getBattleshipOrientation() {return battleshipOrientation;}
+    public void setDestroyerOrientation(boolean orientation){destroyerOrientation = orientation;}
+    public boolean getDestroyerOrientation(){return destroyerOrientation;}
+    public void setSubmarineOrientation(boolean orientation){submarineOrientation = orientation;}
+    public boolean getSubmarineOrientation(){return submarineOrientation;}
+    public void setpTBoatOrientation(boolean orientation){pTBoatOrientation = orientation;}
+    public boolean getpTBoatOrientation(){return pTBoatOrientation;}
 
-        return carrierOrientation;
-    }
 
     public void drawShip(Bitmap nameOfShip,int shipNum,int imageID,Canvas canvas,boolean isHorizontal)
     {

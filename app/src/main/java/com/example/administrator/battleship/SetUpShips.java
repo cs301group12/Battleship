@@ -71,15 +71,19 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
         battleshipButton = (Button) findViewById(R.id.selectBattleship);
         battleshipButton.setOnClickListener(this);
+        battleshipButton.setOnLongClickListener(this);
 
         destroyerButton = (Button) findViewById(R.id.selectDestroyer);
         destroyerButton.setOnClickListener(this);
+        destroyerButton.setOnLongClickListener(this);
 
         submarineButton = (Button) findViewById(R.id.selectSubmarine);
         submarineButton.setOnClickListener(this);
+        submarineButton.setOnLongClickListener(this);
 
         ptBoatButton = (Button) findViewById(R.id.selectPTBoat);
         ptBoatButton.setOnClickListener(this);
+        ptBoatButton.setOnLongClickListener(this);
 
         goToMainMenu();
         playGame();
@@ -143,6 +147,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
             if (moveCarrier && !moveBattleship && !moveDestroyer && !moveSubmarine && !movePtBoat) {
                     //size of carrier 431.197
+                if (board.getCarrierOrientation() == true) {
                     if (event.getX() > 523) {
                         board.shipsX[0] = 523;
                     } else if (event.getX() < 7.05) {
@@ -157,77 +162,166 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
                     } else {
                         board.shipsY[0] = event.getY();
                     }
+                }
+                else{
+                    if (event.getX() > 885) {
+                        board.shipsX[0] = 885;
+                    } else if (event.getX() < 15) {
+                        board.shipsX[0] = (float) 15;
+                    } else {
+                        board.shipsX[0] = event.getX();
+                    }
+                    if (event.getY() < 12) {
+                        board.shipsY[0] = (float) 12;
+                    } else if (event.getY() > 511) {
+                        board.shipsY[0] = (float) 511;
+                    } else {
+                        board.shipsY[0] = event.getY();
+                    }
+                }
             }
             else if (!moveCarrier && moveBattleship && !moveDestroyer && !moveSubmarine && !movePtBoat){
 
                 //size of battleship 350.8624
-               if (event.getX() > 605.9) {
-                   board.shipsX[1] = (float) 605.9;
-                } else if (event.getX() < 4.93) {
-                   board.shipsX[1] = (float) 4.93;
-                } else {
-                   board.shipsX[1] = event.getX();
+                if(board.getBattleshipOrientation() == true) {
+                    if (event.getX() > 605.9) {
+                        board.shipsX[1] = (float) 605.9;
+                    } else if (event.getX() < 4.93) {
+                        board.shipsX[1] = (float) 4.93;
+                    } else {
+                        board.shipsX[1] = event.getX();
+                    }
+                    if (event.getY() < 6.92) {
+                        board.shipsY[1] = (float) 21.424667;
+                    } else if (event.getY() > 900.1) {
+                        board.shipsY[1] = (float) 887.6427;
+                    } else {
+                        board.shipsY[1] = event.getY();
+                    }
                 }
-                if (event.getY() < 6.92) {
-                    board.shipsY[1] = (float) 21.424667;
-                } else if (event.getY() > 900.1) {
-                    board.shipsY[1] = (float) 887.6427;
-                } else {
-                    board.shipsY[1] = event.getY();
+                else{
+                    if (event.getX() > 885) {
+                        board.shipsX[1] = (float) 885;
+                    } else if (event.getX() < 15) {
+                        board.shipsX[1] = (float) 15;
+                    } else {
+                        board.shipsX[1] = event.getX();
+                    }
+                    if (event.getY() < 12) {
+                        board.shipsY[1] = (float) 12;
+                    } else if (event.getY() > 588) {
+                        board.shipsY[1] = (float) 588;
+                    } else {
+                        board.shipsY[1] = event.getY();
+                    }
                 }
             }
             else if(!moveCarrier && !moveBattleship && moveDestroyer && !moveSubmarine && !movePtBoat)
             {
                 //destroyer size 260.3315
-                if (event.getX() > 692.977) {
-                    board.shipsX[2] = (float) 692.977;
-                } else if (event.getX() < 4.93) {
-                    board.shipsX[2] = (float) 4.93;
+                if(board.destroyerOrientation == true) {
+                    if (event.getX() > 692.977) {
+                        board.shipsX[2] = (float) 692.977;
+                    } else if (event.getX() < 4.93) {
+                        board.shipsX[2] = (float) 4.93;
+                    } else {
+                        board.shipsX[2] = event.getX();
+                    }
+                    if (event.getY() < 6.92) {
+                        board.shipsY[2] = (float) 23.549;
+                    } else if (event.getY() > 901.9) {
+                        board.shipsY[2] = (float) 886.64294;
+                    } else {
+                        board.shipsY[2] = event.getY();
+                    }
+                }
+                else {
+                if (event.getX() > 890) {
+                    board.shipsX[2] = (float) 890;
+                } else if (event.getX() < 15) {
+                    board.shipsX[2] = (float) 15;
                 } else {
                     board.shipsX[2] = event.getX();
                 }
-                if (event.getY() < 6.92) {
-                    board.shipsY[2] = (float) 23.549;
-                } else if (event.getY() > 901.9) {
-                    board.shipsY[2] = (float) 886.64294;
+                if (event.getY() < 12) {
+                    board.shipsY[2] = (float) 12;
+                } else if (event.getY() > 690) {
+                    board.shipsY[2] = (float) 690;
                 } else {
                     board.shipsY[2] = event.getY();
                 }
             }
+            }
             else if(!moveCarrier && !moveBattleship && !moveDestroyer && moveSubmarine && !movePtBoat)
             {
                 //submarine size 260.3315
-                if (event.getX() > 692.977) {
-                    board.shipsX[3] = (float) 692.977;
-                } else if (event.getX() < 4.93) {
-                    board.shipsX[3] = (float) 4.93;
-                } else {
-                    board.shipsX[3] = event.getX();
+                if (board.submarineOrientation == true) {
+                    if (event.getX() > 692.977) {
+                        board.shipsX[3] = (float) 692.977;
+                    } else if (event.getX() < 4.93) {
+                        board.shipsX[3] = (float) 4.93;
+                    } else {
+                        board.shipsX[3] = event.getX();
+                    }
+                    if (event.getY() < 6.92) {
+                        board.shipsY[3] = (float) 23.549;
+                    } else if (event.getY() > 901.9) {
+                        board.shipsY[3] = (float) 886.64294;
+                    } else {
+                        board.shipsY[3] = event.getY();
+                    }
                 }
-                if (event.getY() < 6.92) {
-                    board.shipsY[3] = (float)23.549;
-                } else if (event.getY() > 901.9) {
-                    board.shipsY[3] = (float) 886.64294;
-                } else {
-                    board.shipsY[3] = event.getY();
+                else{
+                    if (event.getX() > 890) {
+                        board.shipsX[3] = (float) 890;
+                    } else if (event.getX() < 15) {
+                        board.shipsX[3] = (float) 15;
+                    } else {
+                        board.shipsX[3] = event.getX();
+                    }
+                    if (event.getY() < 12) {
+                        board.shipsY[3] = (float) 12;
+                    } else if (event.getY() > 690) {
+                        board.shipsY[3] = (float) 690;
+                    } else {
+                        board.shipsY[3] = event.getY();
+                    }
                 }
             }
             else if(!moveCarrier && !moveBattleship && !moveDestroyer && !moveSubmarine && movePtBoat)
             {
                 //size of boat 176.81208
-                if (event.getX() > 778.2733) {
-                    board.shipsX[4] = (float) 778.27337;
-                } else if (event.getX() < 4.93) {
-                    board.shipsX[4] = (float) 4.93;
-                } else {
-                    board.shipsX[4] = event.getX();
+                if (board.pTBoatOrientation == true) {
+                    if (event.getX() > 778.2733) {
+                        board.shipsX[4] = (float) 778.27337;
+                    } else if (event.getX() < 4.93) {
+                        board.shipsX[4] = (float) 4.93;
+                    } else {
+                        board.shipsX[4] = event.getX();
+                    }
+                    if (event.getY() < 6.92) {
+                        board.shipsY[4] = (float) 18.925476;
+                    } else if (event.getY() > 901.9) {
+                        board.shipsY[4] = (float) 888.14246;
+                    } else {
+                        board.shipsY[4] = event.getY();
+                    }
                 }
-                if (event.getY() < 6.92) {
-                    board.shipsY[4] = (float) 18.925476;
-                } else if (event.getY() > 901.9) {
-                    board.shipsY[4] = (float) 888.14246;
-                } else {
-                    board.shipsY[4] = event.getY();
+                else {
+                    if (event.getX() > 890) {
+                        board.shipsX[4] = (float) 890;
+                    } else if (event.getX() < 15) {
+                        board.shipsX[4] = (float) 15;
+                    } else {
+                        board.shipsX[4] = event.getX();
+                    }
+                    if (event.getY() < 9) {
+                        board.shipsY[4] = (float) 9;
+                    } else if (event.getY() > 776) {
+                        board.shipsY[4] = (float) 776;
+                    } else {
+                        board.shipsY[4] = event.getY();
+                    }
                 }
             }
 
@@ -326,7 +420,26 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         if(v == carrierButton) {
             boolean dummy = board.getCarrierOrientation();
             board.setCarrierOrientation(!dummy);
-            System.out.println(board.getCarrierOrientation());
+            return true;
+        }
+        if(v == battleshipButton) {
+            boolean dummy2 = board.getBattleshipOrientation();
+            board.setBattleshipOrientation(!dummy2);
+            return true;
+        }
+        if(v == destroyerButton){
+            boolean dummy3 = board.getDestroyerOrientation();
+            board.setDestroyerOrientation(!dummy3);
+            return true;
+        }
+        if(v == submarineButton){
+            boolean dummy4 = board.getSubmarineOrientation();
+            board.setSubmarineOrientation(!dummy4);
+            return true;
+        }
+        if(v == ptBoatButton){
+            boolean dummy5 = board.getpTBoatOrientation();
+            board.setpTBoatOrientation(!dummy5);
             return true;
         }
         return false;
