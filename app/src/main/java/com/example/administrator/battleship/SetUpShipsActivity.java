@@ -20,26 +20,27 @@ import android.widget.ImageView;
  */
 public class SetUpShipsActivity extends SurfaceView{
 
-    Bitmap userGrid;
-    Bitmap carrierH;
-    Bitmap carrierV;
-    Bitmap battleshipH;
-    Bitmap battleshipV;
-    Bitmap destroyerH;
-    Bitmap destroyerV;
-    Bitmap submarineH;
-    Bitmap submarineV;
-    Bitmap ptBoatH;
-    Bitmap ptBoatV;
-    float width;
-    float height;
-    float[] shipsX = new float[5];
-    float[] shipsY = new float[5];
-    boolean carrierOrientation = true;
-    boolean battleshipOrientation = true;
-    boolean destroyerOrientation = true;
-    boolean submarineOrientation = true;
-    boolean pTBoatOrientation = true;
+    private Bitmap userGrid;
+    private Bitmap carrierH;
+    private Bitmap carrierV;
+    private Bitmap battleshipH;
+    private Bitmap battleshipV;
+    private Bitmap destroyerH;
+    private Bitmap destroyerV;
+    private Bitmap submarineH;
+    private Bitmap submarineV;
+    private Bitmap ptBoatH;
+    private Bitmap ptBoatV;
+    private float width;
+    private float height;
+    public float[] shipsX = new float[5];
+    public float[] shipsY = new float[5];
+    public boolean[] shipOrientations = new boolean[5];
+    public boolean carrierOrientation = true;
+    public boolean battleshipOrientation = true;
+    public boolean destroyerOrientation = true;
+    public boolean submarineOrientation = true;
+    public boolean pTBoatOrientation = true;
 
     public SetUpShipsActivity(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -56,6 +57,13 @@ public class SetUpShipsActivity extends SurfaceView{
         shipsY[3] = 500;
         shipsX[4] = 400;
         shipsY[4] = 600;
+        shipOrientations[0] = carrierOrientation;
+        shipOrientations[1] = battleshipOrientation;
+        shipOrientations[2] = destroyerOrientation;
+        shipOrientations[3] = submarineOrientation;
+        shipOrientations[4] = pTBoatOrientation;
+
+
     }
 
     @Override
@@ -119,15 +127,30 @@ public class SetUpShipsActivity extends SurfaceView{
         }
     }
 
-    public void setCarrierOrientation(boolean orientation){carrierOrientation = orientation;}
+    public void setCarrierOrientation(boolean orientation){
+        carrierOrientation = orientation;
+        shipOrientations[0] = carrierOrientation;
+    }
     public boolean getCarrierOrientation() {return carrierOrientation;}
-    public void setBattleshipOrientation(boolean orientation){battleshipOrientation = orientation;}
+    public void setBattleshipOrientation(boolean orientation){
+        battleshipOrientation = orientation;
+        shipOrientations[1] = battleshipOrientation;
+    }
     public boolean getBattleshipOrientation() {return battleshipOrientation;}
-    public void setDestroyerOrientation(boolean orientation){destroyerOrientation = orientation;}
+    public void setDestroyerOrientation(boolean orientation){
+        destroyerOrientation = orientation;
+        shipOrientations[2] = destroyerOrientation;
+    }
     public boolean getDestroyerOrientation(){return destroyerOrientation;}
-    public void setSubmarineOrientation(boolean orientation){submarineOrientation = orientation;}
+    public void setSubmarineOrientation(boolean orientation){
+        submarineOrientation = orientation;
+        shipOrientations[3] = submarineOrientation;
+    }
     public boolean getSubmarineOrientation(){return submarineOrientation;}
-    public void setpTBoatOrientation(boolean orientation){pTBoatOrientation = orientation;}
+    public void setpTBoatOrientation(boolean orientation){
+        pTBoatOrientation = orientation;
+        shipOrientations[4] = pTBoatOrientation;
+    }
     public boolean getpTBoatOrientation(){return pTBoatOrientation;}
 
 
@@ -199,6 +222,13 @@ public class SetUpShipsActivity extends SurfaceView{
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
+    }
+
+    public float[] getShipsX(){
+        return shipsX;
+    }
+    public float[] getShipsY(){
+        return shipsY;
     }
 
 
