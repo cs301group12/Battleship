@@ -128,25 +128,24 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
            System.out.println("Value of X: " + testX);
            System.out.println("Value of Y: " + testY);
 
-
             if (moveCarrier && !moveBattleship && !moveDestroyer && !moveSubmarine && !movePtBoat) {
                     //size of carrier 431.197
                 if(board.getCarrierOrientation() == true) {
-                    if (event.getX() < 225 && !(isOverlapping(0,1))){
+                    if (event.getX() < 225){
                             board.shipsX[0] = (float) 16.83;
-                    } else if (event.getX() < 325 && !(isOverlapping(0,1))){
+                    } else if (event.getX() < 325){
 
                             board.shipsX[0] = (float) 112;
-                    } else if (event.getX() < 425 && !(isOverlapping(0,1))){
+                    } else if (event.getX() < 425){
 
                             board.shipsX[0] = (float) 211;
 
-                    } else if (event.getX() < 525 && !(isOverlapping(0,1))){
+                    } else if (event.getX() < 525){
                             board.shipsX[0] = (float) 305.6;
 
-                    } else if (event.getX() < 625 && !(isOverlapping(0,1))){
+                    } else if (event.getX() < 625){
                             board.shipsX[0] = (float) 403;
-                    } else if ((event.getX() < 725) || (event.getX() > 725) && !(isOverlapping(0,1))){
+                    } else if ((event.getX() < 725) || (event.getX() > 725)){
                             board.shipsX[0] = (float) 498;
                     }
                     if (event.getY() < 98){
@@ -292,6 +291,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
                 //destroyer size 260.3315
                 if(board.getDestroyerOrientation() == true) {
                     if (event.getX() < 145){
+                        isOverlappingBattleship(2,3);
                         board.shipsX[2] = (float) 16.83;
                     } else if (event.getX() < 245){
                         board.shipsX[2] = (float) 112;
@@ -375,6 +375,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             {
                 //submarine size 260.3315
                 if(board.getSubmarineOrientation() == true) {
+                    isOverlappingBattleship(3,2);
                     if (event.getX() < 145){
                         board.shipsX[3] = (float) 16.83;
                     } else if (event.getX() < 245){
@@ -557,9 +558,24 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
     }
 
-    public boolean isOverlapping(int ship1,int ship2)
+    public void isOverlappingBattleship(int ship1Num,int ship2Num)
     {
-        return board.shipsX[ship1] > board.shipsX[ship2] && board.shipsX[ship1] < board.shipsX[ship2] + 390;
+        //destroyer & carrier
+        float differenceX1 = board.shipsX[ship1Num] - board.shipsX[ship2Num];
+        float differenceY1 = board.shipsY[ship2Num] - board.shipsY[ship2Num];
+        float differenceX2 = board.shipsX[ship2Num] - board.shipsX[ship1Num];
+        float differenceY2 = board.shipsY[ship2Num] - board.shipsY[ship1Num];
+
+        if(ship1Num == 2 && ship2Num == 3 || ship1Num == 3 && ship2Num == 2) {
+            if ((differenceX1 >= 0 && differenceX1 < 276) && (differenceY1 >= 0 && differenceY1 < 46) || (differenceX2 >= 0 && differenceX2 < 276) && (differenceY2 >= 0 && differenceY2 < 46)) {
+                Toast.makeText(getApplicationContext(), "!!!!Ships Overlapping!!!!", Toast.LENGTH_SHORT).show();
+                saveAndPlay.setVisibility(View.INVISIBLE);
+            } else {
+                saveAndPlay.setVisibility(View.VISIBLE);
+            }
+        }
+
+
     }
 
     /*
@@ -655,26 +671,31 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         if(v == carrierButton) {
             boolean dummy = board.getCarrierOrientation();
             board.setCarrierOrientation(!dummy);
+            Toast.makeText(getApplicationContext(),"Carrier Orientation Has Been Changed.",Toast.LENGTH_SHORT).show();
             return true;
         }
         if(v == battleshipButton) {
             boolean dummy2 = board.getBattleshipOrientation();
             board.setBattleshipOrientation(!dummy2);
+            Toast.makeText(getApplicationContext(),"Battleship Orientation Has Been Changed.",Toast.LENGTH_SHORT).show();
             return true;
         }
         if(v == destroyerButton){
             boolean dummy3 = board.getDestroyerOrientation();
             board.setDestroyerOrientation(!dummy3);
+            Toast.makeText(getApplicationContext(),"Destroyer Orientation Has Been Changed.",Toast.LENGTH_SHORT).show();
             return true;
         }
         if(v == submarineButton){
             boolean dummy4 = board.getSubmarineOrientation();
             board.setSubmarineOrientation(!dummy4);
+            Toast.makeText(getApplicationContext(),"Submarine Orientation Has Been Changed.",Toast.LENGTH_SHORT).show();
             return true;
         }
         if(v == ptBoatButton){
             boolean dummy5 = board.getpTBoatOrientation();
             board.setpTBoatOrientation(!dummy5);
+            Toast.makeText(getApplicationContext(),"Patrol Boat Orientation Has Been Changed.",Toast.LENGTH_SHORT).show();
             return true;
         }
         return false;
