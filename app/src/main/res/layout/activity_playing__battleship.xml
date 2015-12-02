@@ -643,7 +643,8 @@
                 android:id="@+id/B3"
                 android:background="#ff309df3"
                 android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:onClick="checkHitOrMiss"/>
 
             <Button
                 android:layout_width="43dp"

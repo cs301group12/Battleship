@@ -31,20 +31,11 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
     Intent intent;
     private BattleshipGameState gameState;
     private BattleshipComputerPlayer1 easyAI;
-
-    private boolean moveCarrier = true;
-    private boolean moveBattleship = true;
-    private boolean moveDestroyer = true;
-    private boolean moveSubmarine = true;
-    private boolean movePTBoat = true;
-
     private boolean AIshipHit;
     private boolean userShipHit;
 
     private SoundPool hitSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
     private SoundPool missSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-
-    // id of the "pickup" sound
     private int pickupId1;
     private int pickupId2;
 
@@ -68,7 +59,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
 
 
         this.pickupId1 = hitSound.load(this, R.raw.explosion, 1);
-        this.pickupId2 = hitSound.load(this, R.raw.miss,1);
+        this.pickupId2 = missSound.load(this, R.raw.miss,1);
 
         easyAI = new BattleshipComputerPlayer1();
 
@@ -83,18 +74,22 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         //battleshipBoard.place(ships);
 
         gameState.setUpComputerShips(AIships);
+        setUpUserShips();
         gameState.printBoard();
 
     }
 
+    public void setUpUserShips(){
+        gameState.setUpUserShips(1,1,3,false);
+        gameState.setUpUserShips(2,4,0,true);
+        gameState.setUpUserShips(3,4,7,false);
+        gameState.setUpUserShips(4,7,4,true);
+        gameState.setUpUserShips(5,6,7,false);
+    }
+
     public void computerTurn() {
-        int row, col;
         if (gameState.getPlayerID() == 1) {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            int row, col;
             while (gameState.getPlayerID() == 1) {
                 row = easyAI.generateRandomRow();
                 col = easyAI.generateRandomCol();
@@ -102,10 +97,13 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
             }
             userShipHit = gameState.getUserShipHit();
             if (userShipHit) {
+                hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);
                 messageScreen.setText("Your ship has been hit!");
             } else {
+                missSound.play(this.pickupId2, 1, 1, 1, 0, 1.0f);
                 messageScreen.setText("Your opponent missed!");
             }
+            gameState.setUserShipHit(false);
             checkIfGameOver();
         }
     }
@@ -113,15 +111,16 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
     public void userTurn(Button pressed) {
         AIshipHit = gameState.getAIShipHit();
         if (AIshipHit) {
+            //messageScreen.setText("You hit a ship!");
             hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);
-            messageScreen.setText("You hit a ship!");
             pressed.setBackgroundColor(Color.RED);
         } else {
             missSound.play(this.pickupId2, 1, 1, 1, 0, 1.0f);
-            messageScreen.setText("You missed the enemy ships!");
+            //messageScreen.setText("You missed the enemy ships!");
             pressed.setBackgroundColor(Color.WHITE);
         }
         //gameState.setPlayer1Hits(17);
+        gameState.setAIShipHit(false);
         checkIfGameOver();
     }
 

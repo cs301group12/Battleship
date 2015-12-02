@@ -209,8 +209,10 @@ public class BattleshipGameState {
     }
 
     public boolean getAIShipHit(){ return AIshipHit; }
+    public void setAIShipHit(boolean update){ AIshipHit = update; }
 
     public boolean getUserShipHit() {return userShipHit; }
+    public void setUserShipHit(boolean update){ userShipHit = update; }
 
     public int[][] getUserGrid() {
         return userGrid;
@@ -267,6 +269,7 @@ public class BattleshipGameState {
             } else { //computer hit human's ship
                 if (userGrid[row][col] == 3) {//there is a ship in this location
                     player2Hits = player2Hits + 1;//increment hits
+                    userShipHit = true;
                     this.playerID = 0;//change turns
                     userGrid[row][col] = 1;//1 means there is a hit in this position
                     for (int i = 0; i < shipID.length; i++) {
@@ -300,6 +303,7 @@ public class BattleshipGameState {
         else {//computer missed in human's grid
             if (userGrid[row][col] == 0) {
                 userGrid[row][col] = 2;
+                userShipHit = false;
                 this.playerID = 0;
             }
         }
