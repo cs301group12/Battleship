@@ -97,10 +97,10 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
             }
             userShipHit = gameState.getUserShipHit();
             if (userShipHit) {
-                hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);
+                //hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);
                 messageScreen.setText("Your ship has been hit!");
             } else {
-                missSound.play(this.pickupId2, 1, 1, 1, 0, 1.0f);
+                //missSound.play(this.pickupId2, 1, 1, 1, 0, 1.0f);
                 messageScreen.setText("Your opponent missed!");
             }
             gameState.setUserShipHit(false);
