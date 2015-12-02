@@ -32,6 +32,8 @@ public class BattleshipGameState {
     //3 corresponds to the destroyer ship
     //4 corresponds to the submarine
     //5 corresponds to the patrol boat
+    private boolean AIshipHit = false;
+    private boolean userShipHit = false;
 
     private int[][] userGrid;//grids to place both players ships on
     private int[][] computerGrid;
@@ -206,6 +208,10 @@ public class BattleshipGameState {
         this.player1Hits = player1Hits;
     }
 
+    public boolean getAIShipHit(){ return AIshipHit; }
+
+    public boolean getUserShipHit() {return userShipHit; }
+
     public int[][] getUserGrid() {
         return userGrid;
     }
@@ -246,6 +252,7 @@ public class BattleshipGameState {
                 //their turn may not end until they hit or miss a new spot on the opponent's grid
                 if (computerGrid[row][col] == 3) { //if a grid position equals 3, that means a ship is there
                     player1Hits = player1Hits + 1;//increment hits
+                    AIshipHit = true;
                     this.playerID = 1;//change the turn of a player
                     computerGrid[row][col] = 1;//1 means there is a hit in this position
                     //loop through all ships
@@ -286,6 +293,7 @@ public class BattleshipGameState {
         if (this.playerID == 0){//human missed in computer's grid
             if (computerGrid[row][col] == 0) {//0 means has not been clicked on already and no ships are there
                 computerGrid[row][col] = 2;//change to a miss (2 corresponds to miss)
+                AIshipHit = false;
                 this.playerID = 1;//change turns
             }
         }
