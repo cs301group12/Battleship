@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -39,6 +41,13 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
     private boolean AIshipHit;
     private boolean userShipHit;
 
+    private SoundPool hitSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+    private SoundPool missSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+
+    // id of the "pickup" sound
+    private int pickupId1;
+    private int pickupId2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +67,8 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         userBoard.shipOrientations = (boolean[]) intent.getBooleanArrayExtra("Ship Orientations");
 
 
-
+        this.pickupId1 = hitSound.load(this, R.raw.explosion, 1);
+        this.pickupId2 = hitSound.load(this, R.raw.miss,1);
 
         easyAI = new BattleshipComputerPlayer1();
 
@@ -103,9 +113,11 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
     public void userTurn(Button pressed) {
         AIshipHit = gameState.getAIShipHit();
         if (AIshipHit) {
+            hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);
             messageScreen.setText("You hit a ship!");
             pressed.setBackgroundColor(Color.RED);
         } else {
+            missSound.play(this.pickupId2, 1, 1, 1, 0, 1.0f);
             messageScreen.setText("You missed the enemy ships!");
             pressed.setBackgroundColor(Color.WHITE);
         }
