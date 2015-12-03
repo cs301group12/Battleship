@@ -100,14 +100,29 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:weightSum="1">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView32"
             android:textColor="#ffffff"
-            android:text="Hold down a button to change the orientation of a ship"
+            android:text="Hold down a button to change the orientation of a ship."
+            android:textSize="20dp"
+            android:layout_weight="0.72" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="0.29" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Press the button of the ship you wish to move."
+            android:id="@+id/textView33"
+            android:textColor="#ffffffff"
             android:textSize="20dp" />
     </LinearLayout>
 
