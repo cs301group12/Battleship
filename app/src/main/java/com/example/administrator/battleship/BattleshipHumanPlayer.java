@@ -119,8 +119,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
             //messageScreen.setText("You missed the enemy ships!");
             pressed.setBackgroundColor(Color.WHITE);
         }
-        //gameState.setPlayer1Hits(17);
-        gameState.setAIShipHit(false);
+        //gameState.setAIShipHit(false);
+        pressed.setEnabled(false);
+        pressed.setClickable(false);
         checkIfGameOver();
     }
 
