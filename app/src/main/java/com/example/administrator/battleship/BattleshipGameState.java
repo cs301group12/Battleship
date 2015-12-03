@@ -9,7 +9,7 @@ import java.util.Random;
  * @author Hashim AlJawad
  * @author Kelson Sipe
  *
- * @version  11/9/2015
+ * @version  12/1/2015
  *
  * Description of BattleshipGameState class:
  * BattleshipGameState class inherits from the GameState class which is a part of the game framework.
@@ -242,7 +242,7 @@ public class BattleshipGameState {
      *
      * CAVEAT: This method assumes that the location where a user touches on the screen will be translated
      * correctly to the appropriate x(row) and y(col) in their grid. This method also assumes a valid
-     * ID will be passed in (1-5).
+     * ID will be passed in (1-5). Currently unable to pass in which ship has been hit.
      *
      * @param row coordinates for location to check
      * @param col
@@ -395,92 +395,15 @@ public class BattleshipGameState {
     }
 
     /**
-     * Description: Method to set up the computer's ships. Changes the value in the appropriate coordinate
-     * from 0 to 3. 3 means there is a ship in this coordinate.
+     * Description: Method to set up the AI's ships.
      *
-     * CAVEAT: This method assumes it is being passed valid row and col positions so that it does not
-     * go out of bounds of the 10x10 grid.
+     * CAVEAT: None known. Works well.
      *
-     * @param shipNum   indicates which ship is being set up
-     * @param row       coordinates to set up ship in grid
-     * @param col
-     * @param isHorizontal  a ship can only be set up horizontally or vertically
-
-    public void setUpComputerShips(int shipNum, int row, int col, boolean isHorizontal) {
-        if (shipNum == 1) {//carrier ship, 5 positions long
-            if (isHorizontal == true) {//the ship is positioned horizontally
-
-                computerGrid[row][col] = 3;
-                computerGrid[row + 1][col] = 3;
-                computerGrid[row + 2][col] = 3;
-                computerGrid[row + 3][col] = 3;
-                computerGrid[row + 4][col] = 3;
-
-            } else {//the ship is positioned vertically
-                computerGrid[row][col] = 3;
-                computerGrid[row][col + 1] = 3;
-                computerGrid[row][col + 2] = 3;
-                computerGrid[row][col + 3] = 3;
-                computerGrid[row][col + 4] = 3;
-            }
-        }
-        if (shipNum == 2) {//battleship, 4 positions long
-            if (isHorizontal == true) {
-
-                computerGrid[row][col] = 3;
-                computerGrid[row + 1][col] = 3;
-                computerGrid[row + 2][col] = 3;
-                computerGrid[row + 3][col] = 3;
-
-            } else {
-                computerGrid[row][col] = 3;
-                computerGrid[row][col + 1] = 3;
-                computerGrid[row][col + 2] = 3;
-                computerGrid[row][col + 3] = 3;
-            }
-        }
-        if (shipNum == 3) {//destroyer ship, 3 positions long
-            if (isHorizontal == true) {
-
-                computerGrid[row][col] = 3;
-                computerGrid[row + 1][col] = 3;
-                computerGrid[row + 2][col] = 3;
-
-            } else {
-                computerGrid[row][col] = 3;
-                computerGrid[row][col + 1] = 3;
-                computerGrid[row][col + 2] = 3;
-            }
-        }
-        if (shipNum == 4) {//submarine, 3 positions long
-            if (isHorizontal == true) {
-
-                computerGrid[row][col] = 3;
-                computerGrid[row + 1][col] = 3;
-                computerGrid[row + 2][col] = 3;
-            } else {
-                computerGrid[row][col] = 3;
-                computerGrid[row][col + 1] = 3;
-                computerGrid[row][col + 2] = 3;
-            }
-        }
-        if (shipNum == 5) {//pt boat, 2 positions long
-            if (isHorizontal == true) {
-
-                computerGrid[row][col] = 3;
-                computerGrid[row + 1][col] = 3;
-
-            } else {
-                computerGrid[row][col] = 3;
-                computerGrid[row][col + 1] = 3;
-            }
-        }
-
-    }
+     * @param AIships   array of AI's ships
      */
-
     public void setUpComputerShips(Ships[] AIships) {
 
+        //sort the ships from largest size to smallest
         Arrays.sort(AIships, new Comparator<Ships>() {
 
             @Override
@@ -489,22 +412,23 @@ public class BattleshipGameState {
             }
         });
 
+        //array to keep track if a spot was selected or not
         int[][] checked = new int[ROWS][COLS];
         Random ran = new Random();
         for (int i = 0; i <= AIships.length - 1; i++) {
             for (int j = 0; j < ROWS; j++)
                 for (int k = 0; k < COLS; k++)
                     checked[j][k] = 0; // Unchecked position
-            boolean shipPlaced = false;
-            while (!shipPlaced) {
+            boolean shipPlaced = false;//if ship is in a valid position then true
+            while (!shipPlaced) {//iterate until a ship has been placed
                 int row = ran.nextInt(ROWS);//random # from 0-9
-                int col = ran.nextInt(COLS);
+                int col = ran.nextInt(COLS);//random # from 0-9
                 if (checked[row][col] == 0) {
                     checked[row][col] = 1; // Checked position
-                    if (computerGrid[row][col] == 0) {
+                    if (computerGrid[row][col] == 0) {//0 means spot is empty
                         int shipDirection = ran.nextInt(4);//generate random # from 0-3 to determine which direction ship is facing
                         // 0 = North; 1 = East; 2 = South; 3 = West;
-                        if (checkOverlap(AIships[i], row, col, shipDirection)) {
+                        if (checkOverlap(AIships[i], row, col, shipDirection)) {//if ship can be placed then place it
                             place(AIships[i], row, col, shipDirection);
                             shipPlaced = true;
                         }
@@ -514,6 +438,17 @@ public class BattleshipGameState {
         }
     }
 
+    /**
+     * Description: Method to place the AI's ships in the grid. Changes the value in the appropriate coordinate
+     * from 0 to 3. 3 means there is a ship in this coordinate.
+     *
+     * CAVEAT: None known. Works well.
+     *
+     * @param ship      ship to be placed
+     * @param row
+     * @param col
+     * @param shipDirection     direction ship is facing
+     */
     private void place(Ships ship, int row, int col, int shipDirection) {
         int size = ship.getSize();
         switch (shipDirection) {
@@ -539,12 +474,22 @@ public class BattleshipGameState {
         }
     }
 
+    /**
+     * Description: Method to check if any ships are overlapping or if they are out of the grid.
+     *
+     * CAVEAT: None known. Works well.
+     *
+     * @param ship      ship to be placed
+     * @param row
+     * @param col
+     * @param shipDirection     direction ship is facing
+     */
     private boolean checkOverlap(Ships ship, int row, int col, int shipDirection) {
         int size = ship.getSize();
         boolean validPosition = true;
         switch (shipDirection) {
             case 0: // North
-                if (row - (size - 1) < 0)
+                if (row - (size - 1) < 0) //not in valid position
                     validPosition = false;
                 else
                     for (int  i = row; i >= row - (size - 1) && validPosition; i--)
@@ -554,32 +499,39 @@ public class BattleshipGameState {
                 break;
 
             case 1: // East
-                if (col + (size - 1) >= COLS)
+                if (col + (size - 1) >= COLS)//not in valid position
                     validPosition = false;
                 else
                     for (int i = col; i <= col + (size - 1) && validPosition; i++)
                         validPosition = validPosition & (computerGrid[row][i] == 0);
+                //validPosition will stay true if all the slots where the ship will be placed on are empty
+                //otherwise it will change to false
                 break;
 
             case 2: // South
-                if (row + (size - 1) >= ROWS)
+                if (row + (size - 1) >= ROWS)//not in valid position
                     validPosition = false;
                 else
                     for (int i = row; i <= row + (size - 1) && validPosition; i++)
                         validPosition  = validPosition & (computerGrid[i][col] == 0);
+                //validPosition will stay true if all the slots where the ship will be placed on are empty
+                //otherwise it will change to false
                 break;
 
             default: // West
-                if (col - (size - 1) < 0)
+                if (col - (size - 1) < 0)//not in valid position
                     validPosition = false;
                 else
                     for (int i = col; i >= col - (size - 1) && validPosition; i--)
                         validPosition = validPosition & (computerGrid[row][i] == 0);
+                //validPosition will stay true if all the slots where the ship will be placed on are empty
+                //otherwise it will change to false
                 break;
         }
         return validPosition;
     }
 
+    //Method for us to check if board is being set up correctly in background
     public void printBoard() {
         System.out.println("\n\nAI's grid:\n");
         for (int i = 0; i < ROWS; i++)
