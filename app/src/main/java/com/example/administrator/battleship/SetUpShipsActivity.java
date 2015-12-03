@@ -16,10 +16,21 @@ import android.view.View;
 import android.widget.ImageView;
 
 /**
- * Created by aljawad18 on 11/23/2015.
- */
+ * @author Nathan Camacho
+ * @author Hashim AlJawad
+ * @author Kelson Sipe
+ *
+ * @version  11/9/2015
+ *
+ * Description of SetUpShipsActivity class:
+ * SetUpShipsActivity draws the user ships on the grid.
+ *
+ *
+ **/
+
 public class SetUpShipsActivity extends SurfaceView{
 
+    //Initializes image variables and horizontal to true
     private Bitmap userGrid;
     private Bitmap carrierH;
     private Bitmap carrierV;
@@ -42,6 +53,7 @@ public class SetUpShipsActivity extends SurfaceView{
     public boolean submarineOrientation = true;
     public boolean pTBoatOrientation = true;
 
+    //Draws the ships horizontally onto a default place on the user grid
     public SetUpShipsActivity(Context context, AttributeSet attrs) {
         super(context, attrs);
         setWillNotDraw(false);
@@ -64,6 +76,8 @@ public class SetUpShipsActivity extends SurfaceView{
         shipOrientations[4] = pTBoatOrientation;
     }
 
+    //Draws the user grid
+    //Gets whether the ship is horizontal so that if horizontal is false, vertical will be true
     @Override
     protected void onDraw(Canvas canvas)
     {
@@ -125,6 +139,7 @@ public class SetUpShipsActivity extends SurfaceView{
         }
     }
 
+    //Sets and Returns the orientation of each ship
     public void setCarrierOrientation(boolean orientation){
         carrierOrientation = orientation;
         shipOrientations[0] = carrierOrientation;
@@ -151,7 +166,7 @@ public class SetUpShipsActivity extends SurfaceView{
     }
     public boolean getpTBoatOrientation(){return pTBoatOrientation;}
 
-
+    //Draws the ships on the user grid
     public void drawShip(Bitmap nameOfShip,int shipNum,int imageID,Canvas canvas,boolean isHorizontal)
     {
         if(imageID == 1) {
@@ -214,7 +229,7 @@ public class SetUpShipsActivity extends SurfaceView{
             }
         }
     }
-
+    
     public static Bitmap RotateBitmap(Bitmap source, float angle)
     {
         Matrix matrix = new Matrix();
@@ -222,6 +237,7 @@ public class SetUpShipsActivity extends SurfaceView{
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 
+    //Returns each ships x and y coordinates
     public float[] getShipsX(){
         return shipsX;
     }
