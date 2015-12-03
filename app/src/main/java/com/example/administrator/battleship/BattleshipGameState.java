@@ -324,7 +324,7 @@ public class BattleshipGameState {
      */
     public void setUpUserShips(int shipNum, int row, int col, boolean isHorizontal) {
         if (shipNum == 1) {//carrier ship, 5 positions long
-            if (isHorizontal == true) { //the ship is positioned horizontally
+            if (isHorizontal == false) { //the ship is positioned horizontally
 
                 userGrid[row][col] = 3;
                 userGrid[row + 1][col] = 3;
@@ -341,7 +341,7 @@ public class BattleshipGameState {
             }
         }
         if (shipNum == 2) {//battleship, 4 positions long
-            if (isHorizontal == true) {
+            if (isHorizontal == false) {
 
                 userGrid[row][col] = 3;
                 userGrid[row + 1][col] = 3;
@@ -356,7 +356,7 @@ public class BattleshipGameState {
             }
         }
         if (shipNum == 3) {//destroyer ship, 3 positions long
-            if (isHorizontal == true) {
+            if (isHorizontal == false) {
 
                 userGrid[row][col] = 3;
                 userGrid[row + 1][col] = 3;
@@ -369,7 +369,7 @@ public class BattleshipGameState {
             }
         }
         if (shipNum == 4) {//submarine, 3 positions long
-            if (isHorizontal == true) {
+            if (isHorizontal == false) {
 
                 userGrid[row][col] = 3;
                 userGrid[row + 1][col] = 3;
@@ -381,7 +381,7 @@ public class BattleshipGameState {
             }
         }
         if (shipNum == 5) {//pt boat, 2 positions long
-            if (isHorizontal == true) {
+            if (isHorizontal == false) {
 
                 userGrid[row][col] = 3;
                 userGrid[row + 1][col] = 3;

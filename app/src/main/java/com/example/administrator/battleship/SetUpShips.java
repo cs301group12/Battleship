@@ -28,18 +28,27 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     private SetUpShipsActivity board;
     private LinearLayout top;
 
+    int carrierRow;
+    int carrierCol;
+
+    int battleshipRow;
+    int battleshipCol;
+
+    int destroyerRow;
+    int destroyerCol;
+
+    int submarineRow;
+    int submarineCol;
+
+    int boatRow;
+    int boatCol;
+
     Bitmap userGrid;
     Bitmap battleship;
     Bitmap carrier;
     Bitmap destroyer;
     Bitmap submarine;
     Bitmap ptBoat;
-
-    GestureDetector mGestureDetector;
-
-
-
-    private GestureDetector myDetector = null;
 
     private Button carrierButton;
     private Button battleshipButton;
@@ -291,7 +300,6 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
                 //destroyer size 260.3315
                 if(board.getDestroyerOrientation() == true) {
                     if (event.getX() < 145){
-                        isOverlappingBattleship(2,3);
                         board.shipsX[2] = (float) 16.83;
                     } else if (event.getX() < 245){
                         board.shipsX[2] = (float) 112;
@@ -375,7 +383,6 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             {
                 //submarine size 260.3315
                 if(board.getSubmarineOrientation() == true) {
-                    isOverlappingBattleship(3,2);
                     if (event.getX() < 145){
                         board.shipsX[3] = (float) 16.83;
                     } else if (event.getX() < 245){
@@ -558,63 +565,45 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
     }
 
-    public void isOverlappingBattleship(int ship1Num,int ship2Num)
+
+    public int getRow(int y)
     {
-        //destroyer & carrier
-        float differenceX1 = board.shipsX[ship1Num] - board.shipsX[ship2Num];
-        float differenceY1 = board.shipsY[ship2Num] - board.shipsY[ship2Num];
-        float differenceX2 = board.shipsX[ship2Num] - board.shipsX[ship1Num];
-        float differenceY2 = board.shipsY[ship2Num] - board.shipsY[ship1Num];
+        //System.out.println("method " + y);
+        if(y == 21 || y == 12 || y == 20 || y == 9) { return 1; }
+        else if(y == 117 || y == 110 || y == 105) { return 2; }
+        else if(y == 212 || y == 210 || y == 205 || y == 201) { return 3; }
+        else if(y == 307 || y == 302 || y == 298) { return 4; }
+        else if(y == 404 || y == 400 || y == 396 || y == 390) { return 5; }
+        else if(y == 501 || y == 500 || y == 495 || y == 490){ return 6; }
+        else if(y == 595 || y == 600 || y == 588 || y == 580) { return 7; }
+        else if(y == 693 || y == 684 || y == 680) { return 8; }
+        else if(y == 788 || y == 772) { return 9; }
+        else if(y == 884) { return 10;}
+        else { return 0; }
+    }
 
-        if(ship1Num == 2 && ship2Num == 3 || ship1Num == 3 && ship2Num == 2) {
-            if ((differenceX1 >= 0 && differenceX1 < 276) && (differenceY1 >= 0 && differenceY1 < 46) || (differenceX2 >= 0 && differenceX2 < 276) && (differenceY2 >= 0 && differenceY2 < 46)) {
-                Toast.makeText(getApplicationContext(), "!!!!Ships Overlapping!!!!", Toast.LENGTH_SHORT).show();
-                saveAndPlay.setVisibility(View.INVISIBLE);
-            } else {
-                saveAndPlay.setVisibility(View.VISIBLE);
-            }
-        }
-
+    public int getCol(int x)
+    {
+        //System.out.println("method " + x);
+        if(x == 0 || x == 16 || x == 22 || x == 10) { return 1; }
+        else if(x == 112 || x == 118 || x == 106) { return 2; }
+        else if(x == 200 || x == 211 || x == 213 || x == 205) { return 3; }
+        else if(x == 305 || x == 310 || x == 298) { return 4; }
+        else if(x == 400 || x == 403 || x == 405 || x == 396) { return 5; }
+        else if(x == 498 || x == 501 || x == 492){ return 6; }
+        else if(x == 589 || x == 594 || x == 598 || x == 588) { return 7; }
+        else if(x == 693 || x == 685 || x == 680) { return 8; }
+        else if(x == 789 || x == 776) { return 9; }
+        else if(x == 885) { return 10;}
+        else { return 0; }
 
     }
 
-    /*
-    public boolean checkOverlapping(int shipNum) {
-        if (shipNum == 0) {
-            float size = (float) (board.getX() + 431.197);
-            for(int i = 0; i < 4; i++)
-            {
-                if(board.shipsX[0] > board.shipsX[i] && (board.shipsX[0]+size) < board.shipsX[i]  && i != shipNum)
-                {
-                    board.shipsX[0] =
-                }
-            }
-        } else if (shipNum == 1) {
-            float ship = (float) (board.getX() + 350.8624);
-        } else if (shipNum == 2)
-        {
-            float ship = (float) (board.getX() + 260.3315);
-        }
-        else if(shipNum == 3)
-        {
-            float ship = (float) (board.getX() + 260.3315);
-        }
-        else if(shipNum == 4)
-        {
-            float ship = (float) (board.getX() + 176.81208);
-        }
-        else
-        {
-            return false;
-        }
-
-        for(int i = 0; i < 4; i++)
-        {
-
-        }
+    public boolean checkOverLapping(int ship1Num, int ship2Num,int row1, int col1,int row2,int col2)
+    {
+        //TODO
+      return false;
     }
-    */
-
     @Override
     public void onClick(View view)
     {
@@ -661,6 +650,41 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             intent.putExtra("Ships X",board.shipsX);
             intent.putExtra("Ships Y",board.shipsY);
             intent.putExtra("Ship Orientations",board.shipOrientations);
+
+            carrierRow = getRow((int) board.shipsY[0]);
+            carrierCol = getCol((int) board.shipsX[0]);
+
+            battleshipRow = getRow((int) board.shipsY[1]);
+            battleshipCol = getCol((int) board.shipsX[1]);
+
+            destroyerRow = getRow((int) board.shipsY[2]);
+            destroyerCol = getCol((int) board.shipsX[2]);
+
+            submarineRow = getRow((int) board.shipsY[3]);
+            submarineCol = getCol((int) board.shipsX[3]);
+
+            boatRow = getRow((int) board.shipsY[4]);
+            boatCol = getCol((int)board.shipsX[4]);
+
+            int[] shipsVals = new int[10];
+
+            shipsVals[0] = carrierRow;
+            shipsVals[1] = carrierCol;
+
+            shipsVals[2] = battleshipRow;
+            shipsVals[3] = battleshipCol;
+
+            shipsVals[4] = destroyerRow;
+            shipsVals[5] = destroyerCol;
+
+            shipsVals[6] = submarineRow;
+            shipsVals[7] = submarineCol;
+
+            shipsVals[8] = boatRow;
+            shipsVals[9] = boatCol;
+
+            intent.putExtra("Ship Set Up",shipsVals);
+
             startActivityForResult(intent,10);
         }
     }

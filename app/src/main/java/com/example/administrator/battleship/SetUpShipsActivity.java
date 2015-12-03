@@ -48,9 +48,9 @@ public class SetUpShipsActivity extends SurfaceView{
         userGrid = BitmapFactory.decodeResource(getResources(), R.mipmap.blue_square_grid);
         width=height=0;
         shipsX[0] = 200;
-        shipsY[0] = 200;
+        shipsY[0] = 210;
         shipsX[1] = 0;
-        shipsY[1] = 0;
+        shipsY[1] = 20;
         shipsX[2] = 400;
         shipsY[2] = 400;
         shipsX[3] = 0;
@@ -62,8 +62,6 @@ public class SetUpShipsActivity extends SurfaceView{
         shipOrientations[2] = destroyerOrientation;
         shipOrientations[3] = submarineOrientation;
         shipOrientations[4] = pTBoatOrientation;
-
-
     }
 
     @Override

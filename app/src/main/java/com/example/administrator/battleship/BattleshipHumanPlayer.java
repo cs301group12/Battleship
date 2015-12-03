@@ -38,6 +38,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
     private SoundPool missSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
     private int pickupId1;
     private int pickupId2;
+    private int[] shipVals = new int[10];
 
 
     @Override
@@ -56,7 +57,30 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         userBoard.shipsX = (float[]) intent.getFloatArrayExtra("Ships X");
         userBoard.shipsY = (float[]) intent.getFloatArrayExtra("Ships Y");
         userBoard.shipOrientations = (boolean[]) intent.getBooleanArrayExtra("Ship Orientations");
+        shipVals = (int[]) intent.getIntArrayExtra("Ship Set Up");
 
+        /*
+
+        SHIP'S ROW AND COL VALUES
+
+        THEY ARE ALL GIVING THE CORRECT VALUES
+
+
+        System.out.println("carrier ROW " + shipVals[0]);
+        System.out.println("carrier COL " + shipVals[1]);
+
+        System.out.println("b ROW " + shipVals[2]);
+        System.out.println("b COL " + shipVals[3]);
+
+        System.out.println("d ROW " + shipVals[4]);
+        System.out.println("d COL " + shipVals[5]);
+
+        System.out.println("su ROW " + shipVals[6]);
+        System.out.println("sub COL " + shipVals[7]);
+
+        System.out.println("boat ROW " + shipVals[8]);
+        System.out.println("boat COL " + shipVals[9]);
+        */
 
         this.pickupId1 = hitSound.load(this, R.raw.explosion, 1);
         this.pickupId2 = missSound.load(this, R.raw.miss,1);
@@ -76,15 +100,17 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         gameState.setUpComputerShips(AIships);
         setUpUserShips();
         gameState.printBoard();
-
     }
 
     public void setUpUserShips(){
-        gameState.setUpUserShips(1,1,3,false);
-        gameState.setUpUserShips(2,4,0,true);
-        gameState.setUpUserShips(3,4,7,false);
-        gameState.setUpUserShips(4,7,4,true);
-        gameState.setUpUserShips(5,6,7,false);
+
+        gameState.setUpUserShips(1,shipVals[0],shipVals[1],userBoard.shipOrientations[0]);
+        gameState.setUpUserShips(2,shipVals[2],shipVals[3],userBoard.shipOrientations[1]);
+        gameState.setUpUserShips(3,shipVals[4],shipVals[5],userBoard.shipOrientations[2]);
+        gameState.setUpUserShips(4,shipVals[6],shipVals[7],userBoard.shipOrientations[3]);
+        gameState.setUpUserShips(5,shipVals[8],shipVals[9],userBoard.shipOrientations[4]);
+
+
     }
 
     public void computerTurn() {
