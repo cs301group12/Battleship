@@ -143,15 +143,11 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
                     if (event.getX() < 225){
                             board.shipsX[0] = (float) 16.83;
                     } else if (event.getX() < 325){
-
                             board.shipsX[0] = (float) 112;
                     } else if (event.getX() < 425){
-
                             board.shipsX[0] = (float) 211;
-
                     } else if (event.getX() < 525){
                             board.shipsX[0] = (float) 305.6;
-
                     } else if (event.getX() < 625){
                             board.shipsX[0] = (float) 403;
                     } else if ((event.getX() < 725) || (event.getX() > 725)){
@@ -696,30 +692,55 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             boolean dummy = board.getCarrierOrientation();
             board.setCarrierOrientation(!dummy);
             Toast.makeText(getApplicationContext(),"Carrier Orientation Has Been Changed.",Toast.LENGTH_SHORT).show();
+            moveCarrier = true;
+            moveBattleship = false;
+            moveDestroyer = false;
+            moveSubmarine = false;
+            movePtBoat = false;
             return true;
         }
         if(v == battleshipButton) {
             boolean dummy2 = board.getBattleshipOrientation();
             board.setBattleshipOrientation(!dummy2);
             Toast.makeText(getApplicationContext(),"Battleship Orientation Has Been Changed.",Toast.LENGTH_SHORT).show();
+            moveCarrier = false;
+            moveBattleship = true;
+            moveDestroyer = false;
+            moveSubmarine = false;
+            movePtBoat = false;
             return true;
         }
         if(v == destroyerButton){
             boolean dummy3 = board.getDestroyerOrientation();
             board.setDestroyerOrientation(!dummy3);
             Toast.makeText(getApplicationContext(),"Destroyer Orientation Has Been Changed.",Toast.LENGTH_SHORT).show();
+            moveCarrier = false;
+            moveBattleship = false;
+            moveDestroyer = true;
+            moveSubmarine = false;
+            movePtBoat = false;
             return true;
         }
         if(v == submarineButton){
             boolean dummy4 = board.getSubmarineOrientation();
             board.setSubmarineOrientation(!dummy4);
             Toast.makeText(getApplicationContext(),"Submarine Orientation Has Been Changed.",Toast.LENGTH_SHORT).show();
+            moveCarrier = false;
+            moveBattleship = false;
+            moveDestroyer = false;
+            moveSubmarine = true;
+            movePtBoat = false;
             return true;
         }
         if(v == ptBoatButton){
             boolean dummy5 = board.getpTBoatOrientation();
             board.setpTBoatOrientation(!dummy5);
             Toast.makeText(getApplicationContext(),"Patrol Boat Orientation Has Been Changed.",Toast.LENGTH_SHORT).show();
+            moveCarrier = false;
+            moveBattleship = false;
+            moveDestroyer = false;
+            moveSubmarine = false;
+            movePtBoat = true;
             return true;
         }
         return false;
