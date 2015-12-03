@@ -134,8 +134,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             canvas = board.getHolder().lockCanvas();
             float testX = event.getX();
             float testY = event.getY();
-           System.out.println("Value of X: " + testX);
-           System.out.println("Value of Y: " + testY);
+           //System.out.println("Value of X: " + testX);
+           //System.out.println("Value of Y: " + testY);
 
             if (moveCarrier && !moveBattleship && !moveDestroyer && !moveSubmarine && !movePtBoat) {
                     //size of carrier 431.197
@@ -549,12 +549,83 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
                 }
             }
 
+
+            carrierRow = getRow((int)board.shipsY[0]);
+            carrierCol = getCol((int)board.shipsX[0]);
+
+            battleshipRow = getRow((int)board.shipsY[1]);
+            battleshipCol = getCol((int)board.shipsX[1]);
+
+            destroyerRow = getRow((int)board.shipsY[2]);
+            destroyerCol = getCol((int)board.shipsX[2]);
+
+            submarineRow = getRow((int)board.shipsY[3]);
+            submarineCol = getCol((int)board.shipsX[3]);
+
+            boatRow = getRow((int)board.shipsY[4]);
+            boatCol = getCol((int)board.shipsX[4]);
+
+            boolean check1 = overlapCarrier(1,carrierRow,carrierCol,battleshipRow,battleshipCol);
+
+            boolean check2 = overlapCarrier(2,carrierRow,carrierCol,destroyerRow,destroyerCol);
+
+            boolean check3 = overlapCarrier(3,carrierRow,carrierCol,submarineRow,submarineCol);
+
+            boolean check4 = overlapCarrier(4,carrierRow,carrierCol,boatRow,boatCol);
+
+            boolean check5 = overlapBattleship(2, battleshipRow, battleshipCol, destroyerRow, destroyerCol);
+
+            boolean check6 = overlapBattleship(3, battleshipRow, battleshipCol, submarineRow, submarineCol);
+
+            boolean check7 = overlapBattleship(4,battleshipRow,battleshipCol,boatRow,boatCol);
+
+            boolean check8 = overlapDS(3, destroyerRow, destroyerCol, submarineRow, submarineCol);
+
+            boolean check9 = overlapDS(4, destroyerRow, destroyerCol, boatRow, boatCol);
+
+            boolean check10 = overlapDS(4,submarineRow,submarineCol,boatRow,boatCol);
+
+
+            if(check1 == true || check2 == true || check3 == true || check4 == true ||
+                    check5 == true || check6 == true || check7 == true
+                    || check8 == true || check9 == true || check10 == true)
+            {
+                saveAndPlay.setVisibility(View.INVISIBLE);
+            }
+            else
+            {
+                saveAndPlay.setVisibility(View.VISIBLE);
+            }
+
+            /*
+            checkOverLapping(0,2,getRow((int) board.shipsY[0]), getCol((int) board.shipsX[0]), getRow((int) board.shipsY[2]), getCol((int) board.shipsX[2]));
+            checkOverLapping(0, 3, getRow((int) board.shipsY[0]), getCol((int) board.shipsX[0]), getRow((int) board.shipsY[3]), getCol((int) board.shipsX[3]));
+            checkOverLapping(0,4,getRow((int) board.shipsY[0]), getCol((int) board.shipsX[0]), getRow((int) board.shipsY[4]), getCol((int) board.shipsX[4]));
+*/
             board.getHolder().unlockCanvasAndPost(canvas);
             board.postInvalidate();
         }
 
         if(event.getAction() == MotionEvent.ACTION_UP)
         {
+
+            System.out.println("Carrier Row: " + getRow((int) board.shipsY[0]));
+            System.out.println("Carrier Col: " + getCol((int)board.shipsX[0]));
+
+            System.out.println("Battleship Row: " + getRow((int)board.shipsY[1]));
+            System.out.println("Battleship Col: " + getCol((int) board.shipsX[1]));
+
+
+            System.out.println("Destroyer Row: " + getRow((int)board.shipsY[2]));
+            System.out.println("Destroyer Col: " + getCol((int)board.shipsX[2]));
+
+            System.out.println("Submarine Row: " + getRow((int)board.shipsY[3]));
+            System.out.println("Submarine Col: " + getCol((int)board.shipsX[3]));
+
+            System.out.println("Boat Row: " + getRow((int)board.shipsY[4]));
+            System.out.println("Boat Col: " + getCol((int)board.shipsX[4]));
+
+
 
         }
         return true;
@@ -595,10 +666,85 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
     }
 
-    public boolean checkOverLapping(int ship1Num, int ship2Num,int row1, int col1,int row2,int col2)
+    public boolean overlapCarrier(int shipNum,int row1,int col1,int row2,int col2)
     {
-        //TODO
+
+        if(row1 == row2) {
+            if (shipNum == 1) {
+                if (col1 - col2 >= -4 && col1 - col2 <= 3) {
+                    return true;
+                }
+            }
+
+
+            if (shipNum == 2) {
+                if (col1 - col2 >= -4 && col1 - col2 <= 2) {
+                    return true;
+                }
+            }
+
+            if (shipNum == 3) {
+                if (col1 - col2 >= -4 && col1 - col2 <= 2) {
+                    return true;
+                }
+            }
+
+            if (shipNum == 4) {
+                if (col1 - col2 >= -4 && col1 - col2 <= 1) {
+                    return true;
+                }
+            }
+        }
+
       return false;
+    }
+
+    public boolean overlapBattleship(int shipNum,int row1,int col1,int row2,int col2)
+    {
+
+        if(row1 == row2) {
+
+            if (shipNum == 2) {
+                if (col1 - col2 >= -3 && col1 - col2 <= 2) {
+                    return true;
+                }
+            }
+
+            if (shipNum == 3) {
+                if (col1 - col2 >= -3 && col1 - col2 <= 2) {
+                    return true;
+                }
+            }
+
+            if (shipNum == 4) {
+                if (col1 - col2 >= -3 && col1 - col2 <= 1) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public boolean overlapDS(int shipNum,int row1,int col1,int row2,int col2)
+    {
+
+        if(row1 == row2) {
+
+            if (shipNum == 3) {
+                if (col1 - col2 >= -2 && col1 - col2 <= 2) {
+                    return true;
+                }
+            }
+
+            if (shipNum == 4) {
+                if (col1 - col2 >= -2 && col1 - col2 <= 1) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
     @Override
     public void onClick(View view)
