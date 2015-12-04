@@ -2,10 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#ff000000"
     android:orientation="vertical"
     android:weightSum="1"
-    android:id="@+id/topGUILayout">
+    android:id="@+id/topGUILayout"
+    android:background="#292929">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -18,12 +18,14 @@
             android:layout_height="75dp"
             android:text="Status"
             android:id="@+id/gameInfo"
-            android:background="#aa808080"
+            android:background="@drawable/status_bar"
             android:textSize="40dp"
             android:gravity="center"
             android:textColor="#fff0f0f0"
             android:autoText="false"
-            android:layout_marginLeft="0dp" />
+            android:layout_marginLeft="0dp"
+            android:textStyle="bold|italic"
+            android:typeface="serif" />
     </LinearLayout>
 
     <LinearLayout
@@ -47,7 +49,8 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="15dp" />
+                android:layout_marginLeft="15dp"
+                android:typeface="serif" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -57,7 +60,8 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="25dp" />
+                android:layout_marginLeft="25dp"
+                android:typeface="serif" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -67,7 +71,8 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="25dp" />
+                android:layout_marginLeft="25dp"
+                android:typeface="serif" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -77,7 +82,8 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="25dp" />
+                android:layout_marginLeft="25dp"
+                android:typeface="serif" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -87,7 +93,8 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="25dp" />
+                android:layout_marginLeft="25dp"
+                android:typeface="serif" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -97,7 +104,8 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="25dp" />
+                android:layout_marginLeft="25dp"
+                android:typeface="serif" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -107,7 +115,8 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="25dp" />
+                android:layout_marginLeft="25dp"
+                android:typeface="serif" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -117,7 +126,8 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="25dp" />
+                android:layout_marginLeft="25dp"
+                android:typeface="serif" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -127,7 +137,8 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="25dp" />
+                android:layout_marginLeft="25dp"
+                android:typeface="serif" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -138,7 +149,8 @@
                 android:textSize="40dp"
                 android:layout_weight="0"
                 android:layout_marginRight="15dp"
-                android:layout_marginLeft="15dp" />
+                android:layout_marginLeft="15dp"
+                android:typeface="serif" />
 
         </LinearLayout>
 
@@ -177,7 +189,8 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="15dp" />
+                android:layout_marginLeft="15dp"
+                android:typeface="serif" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -187,7 +200,8 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="25dp" />
+                android:layout_marginLeft="25dp"
+                android:typeface="serif" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -197,7 +211,8 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="25dp" />
+                android:layout_marginLeft="25dp"
+                android:typeface="serif" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -207,7 +222,8 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="25dp" />
+                android:layout_marginLeft="25dp"
+                android:typeface="serif" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -217,7 +233,8 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="25dp" />
+                android:layout_marginLeft="25dp"
+                android:typeface="serif" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -227,7 +244,8 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="25dp" />
+                android:layout_marginLeft="25dp"
+                android:typeface="serif" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -237,7 +255,8 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="25dp" />
+                android:layout_marginLeft="25dp"
+                android:typeface="serif" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -247,7 +266,8 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="25dp" />
+                android:layout_marginLeft="25dp"
+                android:typeface="serif" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -257,7 +277,8 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="25dp" />
+                android:layout_marginLeft="25dp"
+                android:typeface="serif" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -268,7 +289,8 @@
                 android:textSize="40dp"
                 android:layout_weight="0"
                 android:layout_marginRight="0dp"
-                android:layout_marginLeft="15dp" />
+                android:layout_marginLeft="15dp"
+                android:typeface="serif" />
 
         </LinearLayout>
     </LinearLayout>
@@ -283,7 +305,7 @@
             android:layout_width="500dp"
             android:layout_height="match_parent"
             android:id="@+id/userBoard"
-            android:background="#ff000000" />
+            android:background="#292929" />
 
         <LinearLayout
             android:orientation="vertical"
@@ -299,7 +321,8 @@
                 android:textSize="30dp"
                 android:textColor="#ffffffff"
                 android:layout_marginRight="15dp"
-                android:layout_marginTop="5dp" />
+                android:layout_marginTop="5dp"
+                android:typeface="serif" />
 
             <Space
                 android:layout_width="match_parent"
@@ -312,7 +335,8 @@
                 android:id="@+id/textView2"
                 android:textSize="30dp"
                 android:textColor="#ffffffff"
-                android:layout_marginRight="15dp" />
+                android:layout_marginRight="15dp"
+                android:typeface="serif" />
 
             <Space
                 android:layout_width="match_parent"
@@ -325,7 +349,8 @@
                 android:id="@+id/textView3"
                 android:textSize="30dp"
                 android:textColor="#ffffffff"
-                android:layout_marginRight="15dp" />
+                android:layout_marginRight="15dp"
+                android:typeface="serif" />
 
             <Space
                 android:layout_width="match_parent"
@@ -338,7 +363,8 @@
                 android:id="@+id/textView4"
                 android:textSize="30dp"
                 android:textColor="#ffffffff"
-                android:layout_marginRight="15dp" />
+                android:layout_marginRight="15dp"
+                android:typeface="serif" />
 
             <Space
                 android:layout_width="match_parent"
@@ -351,7 +377,8 @@
                 android:id="@+id/textView6"
                 android:textSize="30dp"
                 android:textColor="#ffffffff"
-                android:layout_marginRight="15dp" />
+                android:layout_marginRight="15dp"
+                android:typeface="serif" />
 
             <Space
                 android:layout_width="match_parent"
@@ -364,7 +391,8 @@
                 android:id="@+id/textView7"
                 android:textSize="30dp"
                 android:textColor="#ffffffff"
-                android:layout_marginRight="15dp" />
+                android:layout_marginRight="15dp"
+                android:typeface="serif" />
 
             <Space
                 android:layout_width="match_parent"
@@ -377,7 +405,8 @@
                 android:id="@+id/textView8"
                 android:textSize="30dp"
                 android:textColor="#ffffffff"
-                android:layout_marginRight="15dp" />
+                android:layout_marginRight="15dp"
+                android:typeface="serif" />
 
             <Space
                 android:layout_width="match_parent"
@@ -390,7 +419,8 @@
                 android:id="@+id/textView9"
                 android:textSize="30dp"
                 android:textColor="#ffffffff"
-                android:layout_marginRight="15dp" />
+                android:layout_marginRight="15dp"
+                android:typeface="serif" />
 
             <Space
                 android:layout_width="match_parent"
@@ -404,7 +434,8 @@
                 android:textSize="30dp"
                 android:textColor="#ffffffff"
                 android:layout_marginRight="0dp"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:typeface="serif" />
 
             <Space
                 android:layout_width="match_parent"
@@ -417,7 +448,9 @@
                 android:id="@+id/textView5"
                 android:textSize="30dp"
                 android:textColor="#ffffffff"
-                android:layout_marginRight="15dp" />
+                android:layout_marginRight="5dp"
+                android:typeface="serif" />
+
         </LinearLayout>
 
         <LinearLayout
