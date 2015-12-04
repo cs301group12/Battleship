@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,7 +41,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
     //Initializes the layout
     private SetUpShipsActivity board;
-    private LinearLayout top;
+    private AbsoluteLayout top;
 
     //Initializes the x and y coordinates for each ship
     int carrierRow;
@@ -87,7 +88,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         super.onCreate(savedInstanceState);
         //Creates the user board and initializes on touch listeners
         setContentView(R.layout.activity_set_up_ships);
-        top = (LinearLayout) findViewById(R.id.topView);
+        top = (AbsoluteLayout) findViewById(R.id.topView);
         top.setOnTouchListener(this);
         board = (SetUpShipsActivity) findViewById(R.id.board);
         board.setOnTouchListener(this);

@@ -2,11 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     tools:context="com.example.administrator.battleship.How_to_Play_Screen"
-    android:background="#ff000000"
+    android:background="@drawable/game_info_background"
     android:orientation="vertical">
 
     <Button
-        android:layout_width="197dp"
+        android:layout_width="228dp"
         android:layout_height="67dp"
         android:id="@+id/mainMenuButton"
         android:layout_alignParentTop="true"
@@ -14,20 +14,8 @@
         android:layout_alignParentEnd="true"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_x="35dp"
-        android:layout_y="12dp"
-        android:background="@drawable/main_menu_button" />
-
-    <TextView
-        android:layout_width="962dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="2 players; one human vs one AI. \n \n Each player starts with five ships. \n Players start by secretly placing their ships on their grid. \n     The ships are placed horizontally or vertically. \n     The ships cannot exit the grid or overlap one another. \n     The ships cannot be moved once the game has begun. \n \n The game begins when the human player has finished setup. \n The first player will be chosen randomly. \n The player will take their turn by: \n     Selecting a grid square on the opponents grid. Example: A4 \n     If an opponents ship is hit the square will turn red. \n     If it is a miss the square will turn white. \n     There will be a notification when either player has lost a ship. \n     This will continue until one player has destroyed all of the enemy ships. \n Destroying the enemy ships is the action that will result in victory"
-        android:id="@+id/textView11"
-        android:textColor="#ffffffff"
-        android:textSize="26dp"
-        android:textStyle="bold"
-        android:layout_x="45dp"
-        android:layout_y="81dp" />
+        android:layout_x="753dp"
+        android:layout_y="548dp"
+        android:background="@drawable/the_main_menu_button" />
 
 </AbsoluteLayout>
