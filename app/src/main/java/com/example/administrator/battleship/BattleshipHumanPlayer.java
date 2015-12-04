@@ -110,7 +110,6 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         gameState.setUpUserShips(4,shipVals[6],shipVals[7],userBoard.shipOrientations[3]);
         gameState.setUpUserShips(5,shipVals[8],shipVals[9],userBoard.shipOrientations[4]);
 
-
     }
 
     public void computerTurn() {
