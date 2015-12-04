@@ -590,7 +590,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
             boatRow = getRow((int)board.shipsY[4]);
             boatCol = getCol((int)board.shipsX[4]);
-
+            */
+            /* Currently does not work
             boolean check1 = overlap(0,1, carrierRow, carrierCol, battleshipRow, battleshipCol);
 
             boolean check2 = overlap(0,2, carrierRow, carrierCol, destroyerRow, destroyerCol);
@@ -648,11 +649,12 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             checkOverLapping(0,2,getRow((int) board.shipsY[0]), getCol((int) board.shipsX[0]), getRow((int) board.shipsY[2]), getCol((int) board.shipsX[2]));
             checkOverLapping(0, 3, getRow((int) board.shipsY[0]), getCol((int) board.shipsX[0]), getRow((int) board.shipsY[3]), getCol((int) board.shipsX[3]));
             checkOverLapping(0,4,getRow((int) board.shipsY[0]), getCol((int) board.shipsX[0]), getRow((int) board.shipsY[4]), getCol((int) board.shipsX[4]));
-*/
+            */
             board.getHolder().unlockCanvasAndPost(canvas);
             board.postInvalidate();
         }
 
+        /*
         if(event.getAction() == MotionEvent.ACTION_UP)
         {
 
@@ -716,19 +718,19 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     }
 
     //Checks if the carrier is overlapping another ship
-    public boolean overlapCarrier(int shipNum,int row1,int col1,int row2,int col2)
+    public boolean overlap(int numOfShip, int shipNum, int row1,int col1,int row2,int col2)
     {
         boolean battleshipOrientation= board.getBattleshipOrientation() == true;
         boolean submarineOrientation = board.getSubmarineOrientation() == true;
         boolean carrierOrientation = board.getCarrierOrientation() == true;
         boolean boatOrientation =  board.getpTBoatOrientation() == true;
         boolean destroyerOrientation = board.getDestroyerOrientation() == true;
-if(numOfShip == 0) {
-    if ((row1 == row2 && carrierOrientation && battleshipOrientation && submarineOrientation && destroyerOrientation
-            && boatOrientation)) {
+    if(numOfShip == 0) {
+        if ((row1 == row2 && carrierOrientation && battleshipOrientation && submarineOrientation && destroyerOrientation
+                && boatOrientation)) {
 
-        System.out.println("Both are horizontal");
-        if (shipNum == 1) {
+            System.out.println("Both are horizontal");
+            if (shipNum == 1) {
             if (col1 - col2 >= -4 && col1 - col2 <= 3) {
                 return true;
             }
@@ -1240,6 +1242,7 @@ if(numOfShip == 4) {
 
       return false;
     }
+    */
 
     //When a ship button is clicked, the ship on the grid will be selected. Main menu button will return to the main menu
     //Save and play will save the values of the ships so that they set up correctly in the playing battleship layout; also
