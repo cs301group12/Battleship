@@ -23,23 +23,34 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
+/**
+ * @author Nathan Camacho
+ * @author Hashim AlJawad
+ * @author Kelson Sipe
+ *
+ * @version  11/9/2015
+ *
+ * Description of SetUpShips class:
+ * SetUpShips allows the user to set up ships within the bounds set by the game rules.
+ * Records the x and y coordinates of the user ships
+ *
+ **/
+
 public class SetUpShips extends ActionBarActivity implements View.OnTouchListener,View.OnClickListener,View.OnLongClickListener{
 
+    //Initializes the layout
     private SetUpShipsActivity board;
     private LinearLayout top;
 
+    //Initializes the x and y coordinates for each ship
     int carrierRow;
     int carrierCol;
-
     int battleshipRow;
     int battleshipCol;
-
     int destroyerRow;
     int destroyerCol;
-
     int submarineRow;
     int submarineCol;
-
     int boatRow;
     int boatCol;
 
@@ -50,6 +61,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     Bitmap submarine;
     Bitmap ptBoat;
 
+    //Initializes ship buttons
     private Button carrierButton;
     private Button battleshipButton;
     private Button destroyerButton;
@@ -58,8 +70,10 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     private Button mainMenu;
     private Button saveAndPlay;
 
+    //Intializes the canvas
     private Canvas canvas;
 
+    //Initializes horizontal state to true
     private boolean moveCarrier = true;
     private boolean moveBattleship = true;
     private boolean moveDestroyer = true;
@@ -67,9 +81,11 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     private boolean movePtBoat = true;
 
 
+    //Creates all of the buttons and sets up listeners for all of the buttons and the set up grid
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Creates the user board and initializes on touch listeners
         setContentView(R.layout.activity_set_up_ships);
         top = (LinearLayout) findViewById(R.id.topView);
         top.setOnTouchListener(this);
@@ -77,11 +93,14 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         board.setOnTouchListener(this);
         board.setOnLongClickListener(this);
 
+        //Initializes on click listeners for the main menu and save and play buttons
         mainMenu = (Button) findViewById(R.id.mainMenuButton);
         saveAndPlay = (Button) findViewById(R.id.saveAndPlayButton);
         mainMenu.setOnClickListener(this);
         saveAndPlay.setOnClickListener(this);
 
+        /* Initializes listeners for ship buttons. On click will select ships, while on long click
+           will rotate and select ships*/
         carrierButton = (Button) findViewById(R.id.selectCarrier);
         carrierButton.setOnClickListener(this);
         carrierButton.setOnLongClickListener(this);
@@ -105,18 +124,18 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
     }
 
+    // Inflate the menu; this adds items to the action bar if it is present.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_set_up_ships, menu);
         return true;
     }
 
+    // Handle action bar item clicks here. The action bar will
+    // automatically handle clicks on the Home/Up button, so long
+    // as you specify a parent activity in AndroidManifest.xml.
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -127,6 +146,10 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         return super.onOptionsItemSelected(item);
     }
 
+    /** Allows the user move ships on the grid. Sets the bounds so that ships cannot be placed
+     *  Outside of the grid. Makes the ships snap to each position. Ships will have a specific
+     *  x and y coordinate. Gets the values of the x and y coordinate for each ship.
+     */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 
@@ -137,6 +160,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
            //System.out.println("Value of X: " + testX);
            //System.out.println("Value of Y: " + testY);
 
+            //Sets the bounds so that ships cannot be placed Outside of the grid. Makes the ships snap to each position.
+            //Ships will have a specific x and y coordinate.
             if (moveCarrier && !moveBattleship && !moveDestroyer && !moveSubmarine && !movePtBoat) {
                     //size of carrier 431.197
                 if(board.getCarrierOrientation() == true) {
@@ -549,7 +574,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
                 }
             }
 
-
+            //Gets the values for the x and y coordinate for each ship.
             carrierRow = getRow((int)board.shipsY[0]);
             carrierCol = getCol((int)board.shipsX[0]);
 
@@ -653,7 +678,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
     }
 
-
+    //Find the y value of each ship so that it can be passed into the 2D array
     public int getRow(int y)
     {
         //System.out.println("method " + y);
@@ -670,6 +695,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         else { return 0; }
     }
 
+    //Find the x value of each ship so that it can be passed into the 2D array
     public int getCol(int x)
     {
         //System.out.println("method " + x);
@@ -687,7 +713,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
     }
 
-    public boolean overlap(int numOfShip,int shipNum,int row1,int col1,int row2,int col2)
+    public boolean overlapCarrier(int shipNum,int row1,int col1,int row2,int col2)
     {
         boolean battleshipOrientation= board.getBattleshipOrientation() == true;
         boolean submarineOrientation = board.getSubmarineOrientation() == true;
@@ -1211,6 +1237,10 @@ if(numOfShip == 4) {
 
       return false;
     }
+
+    //When a ship button is clicked, the ship on the grid will be selected. Main menu button will return to the main menu
+    //Save and play will save the values of the ships so that they set up correctly in the playing battleship layout; also
+    //goes to the playing battleship layout.
     @Override
     public void onClick(View view)
     {
@@ -1296,6 +1326,7 @@ if(numOfShip == 4) {
         }
     }
 
+    // When a ship button is held down, the ship will be rotated and selected.
     @Override
     public boolean onLongClick(View v) {
 

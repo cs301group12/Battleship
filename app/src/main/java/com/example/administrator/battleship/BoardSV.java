@@ -9,10 +9,24 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 
+/**
+ * @author Nathan Camacho
+ * @author Hashim AlJawad
+ * @author Kelson Sipe
+ *
+ * @version  12/1/2015
+ *
+ * Description of BoardSV
+ * This class draws the user's board in the BattleshipHumanPlayer activity. Also draws the ships on the board.
+ * Uses SurfaceView
+ *
+ */
+
 
 public class BoardSV extends SurfaceView{
 
-    private Bitmap userGrid;
+    private Bitmap blueSquare;//grid made up of blue squares
+    //vertical and horizontal versions of each ship
     Bitmap carrierH;
     Bitmap carrierV;
     Bitmap battleshipH;
@@ -25,32 +39,41 @@ public class BoardSV extends SurfaceView{
     Bitmap ptBoatV;
     private float width;
     private float height;
-    private SetUpShipsActivity ref;
-    public float[] shipsX = new float[5];
-    public float[] shipsY = new float[5];
+    public float[] shipsX = new float[5];//x values for ships to be drawn
+    public float[] shipsY = new float[5];//y values for ships to be drawn
     public boolean[] shipOrientations = new boolean[5];
+
+    //Constructor
     public BoardSV(Context context, AttributeSet attrs) {
         super(context,attrs);
         setWillNotDraw(false);
-        userGrid = BitmapFactory.decodeResource(getResources(), R.mipmap.blue_square_grid);
+        blueSquare = BitmapFactory.decodeResource(getResources(), R.mipmap.blue_square_grid);
         width=height=0;
 
 
     }
 
+    /**
+     * Description: Method to draw board and ships
+     *
+     * CAVEAT:
+     *
+     */
     @Override
     protected void onDraw(Canvas canvas)
     {
+        //draw board
         for(int i =0; i<10; i++)
         {
             for(int j = 0;j<10;j++) {
 
-                canvas.drawBitmap(userGrid, (float) (j * userGrid.getHeight()), (float) (i * userGrid.getWidth()), null);
-                canvas.drawBitmap(userGrid, (float) (i * userGrid.getWidth()), (float) (j * userGrid.getHeight()), null);
+                canvas.drawBitmap(blueSquare, (float) (j * blueSquare.getHeight()), (float) (i * blueSquare.getWidth()), null);
+                canvas.drawBitmap(blueSquare, (float) (i * blueSquare.getWidth()), (float) (j * blueSquare.getHeight()), null);
 
             }
         }
 
+        //Depending on orientation, draw the horizontal or vertical version of a ship at appropriate x and y values
         if(shipOrientations[0] == true) {
             carrierH = BitmapFactory.decodeResource(getResources(), R.drawable.carrier_horizontal);
             canvas.drawBitmap(carrierH, shipsX[0], shipsY[0], null);

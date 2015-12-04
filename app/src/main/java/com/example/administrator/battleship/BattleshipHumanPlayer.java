@@ -20,25 +20,40 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * @author Nathan Camacho
+ * @author Hashim AlJawad
+ * @author Kelson Sipe
+ *
+ * @version  12/1/2015
+ *
+ * Description of BattleshipGameState class:
+ * This class contains all the GUI components for the user to play the game. Alters the game state
+ * based on user actions.
+ *
+ */
+public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnClickListener{
 
-public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnTouchListener, View.OnClickListener{
-
+    //Instance variables
+    //GUI variables
     private TextView messageScreen;
     private LinearLayout topLayout;
     private BoardSV userBoard;
     private Canvas canvas;
     private Button readyToPlay;
-    Intent intent;
-    private BattleshipGameState gameState;
-    private BattleshipComputerPlayer1 easyAI;
-    private boolean AIshipHit;
-    private boolean userShipHit;
-
+    //hit and miss sound variables
     private SoundPool hitSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
     private SoundPool missSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
     private int pickupId1;
     private int pickupId2;
-    private int[] shipVals = new int[10];
+
+    Intent intent;//to receive data
+    private BattleshipGameState gameState;//game state of entire game
+    private BattleshipComputerPlayer1 easyAI;//dumb AI
+    private boolean AIshipHit;//if an AI's ship has been hit then true
+    private boolean userShipHit;//if the user's ship has been hit then true
+
+    private int[] shipVals = new int[10];//array to hold rows and columns where the users ships will be set up
 
 
     @Override
@@ -53,6 +68,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         userBoard = (BoardSV) findViewById(R.id.userBoard);
         userBoard.setOnTouchListener(this);
 
+        //receive info from previous activity
         intent = getIntent();
         userBoard.shipsX = (float[]) intent.getFloatArrayExtra("Ships X");
         userBoard.shipsY = (float[]) intent.getFloatArrayExtra("Ships Y");
@@ -82,72 +98,97 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         System.out.println("boat COL " + shipVals[9]);
         */
 
+        //load the sounds to be played
         this.pickupId1 = hitSound.load(this, R.raw.explosion, 1);
         this.pickupId2 = missSound.load(this, R.raw.miss,1);
 
-        easyAI = new BattleshipComputerPlayer1();
-
-        gameState = new BattleshipGameState();
+        easyAI = new BattleshipComputerPlayer1();//create AI
+        gameState = new BattleshipGameState();//create new game state every time activity is entered
+        //array of AI ships to be set up
         Ships[] AIships = new Ships[] {
-                new Ships(5),
-                new Ships(4),
-                new Ships(3),
-                new Ships(3),
-                new Ships(2),
+                new Ships(5),//carrier
+                new Ships(4),//battleship
+                new Ships(3),//destroyer
+                new Ships(3),//sub
+                new Ships(2),//pt boat
         };
-        //battleshipBoard.place(ships);
-
-        gameState.setUpComputerShips(AIships);
-        setUpUserShips();
+        gameState.setUpComputerShips(AIships);//set up the AI's ships
+        setUpUserShips();//set up the user's ships
         gameState.printBoard();
     }
 
+    /**
+     * Description: Method to set AI's ships in the game state.
+     *
+     * CAVEAT: Currently does not work correctly. Sets the ships up in the same position every time game is played.
+     *
+     */
     public void setUpUserShips(){
+        gameState.setUpUserShips(1,0,1,true);//carrier row 1 col 2
+        gameState.setUpUserShips(2,4,7,false);//battleship row 5 col 8
+        gameState.setUpUserShips(3,3,2,true);//destroyer row 4 col 3
+        gameState.setUpUserShips(4,9,0,true);//submarine row 10 col 1
+        gameState.setUpUserShips(5,6,2,false);//ptBoat row 7 col 3
 
+        /*
         gameState.setUpUserShips(1,shipVals[0],shipVals[1],userBoard.shipOrientations[0]);
         gameState.setUpUserShips(2,shipVals[2],shipVals[3],userBoard.shipOrientations[1]);
         gameState.setUpUserShips(3,shipVals[4],shipVals[5],userBoard.shipOrientations[2]);
         gameState.setUpUserShips(4,shipVals[6],shipVals[7],userBoard.shipOrientations[3]);
         gameState.setUpUserShips(5,shipVals[8],shipVals[9],userBoard.shipOrientations[4]);
+        */
 
     }
 
+    /**
+     * Description: Method to handle AI's turn.
+     *
+     * CAVEAT:
+     *
+     */
     public void computerTurn() {
-        if (gameState.getPlayerID() == 1) {
+        if (gameState.getPlayerID() == 1) {//if it's AI's turn
             int row, col;
-            while (gameState.getPlayerID() == 1) {
+            while (gameState.getPlayerID() == 1) {//while it is still AI's turn (AI might have chosen a coordinate it previously chose)
                 row = easyAI.generateRandomRow();
                 col = easyAI.generateRandomCol();
-                gameState.shipHit(row, col, 0);
+                gameState.shipHit(row, col, 0);//fire on this coordinate
             }
-            userShipHit = gameState.getUserShipHit();
+            userShipHit = gameState.getUserShipHit();//if they hit a user's ship tell user
             if (userShipHit) {
                 //hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);
                 messageScreen.setText("Your ship has been hit!");
-            } else {
+            } else {//if they miss a user's ship tell user
                 //missSound.play(this.pickupId2, 1, 1, 1, 0, 1.0f);
                 messageScreen.setText("Your opponent missed!");
             }
             gameState.setUserShipHit(false);
-            checkIfGameOver();
+            checkIfGameOver();//check if AI won
         }
     }
 
+    /**
+     * Description: Method to handle user's turn.
+     *
+     * CAVEAT: Messages don't display on messageScreen
+     *
+     * @param pressed   the button that was pressed
+     */
     public void userTurn(Button pressed) {
         AIshipHit = gameState.getAIShipHit();
-        if (AIshipHit) {
+        if (AIshipHit) {//if user hit AI's ship
             //messageScreen.setText("You hit a ship!");
             hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);
-            pressed.setBackgroundColor(Color.RED);
+            pressed.setBackgroundColor(Color.RED);//change button to red to represent hit
         } else {
             missSound.play(this.pickupId2, 1, 1, 1, 0, 1.0f);
             //messageScreen.setText("You missed the enemy ships!");
-            pressed.setBackgroundColor(Color.WHITE);
+            pressed.setBackgroundColor(Color.WHITE);//change button to white to represent miss
         }
-        //gameState.setAIShipHit(false);
+        //make button unable to be clicked again
         pressed.setEnabled(false);
         pressed.setClickable(false);
-        checkIfGameOver();
+        checkIfGameOver();//check if user won
     }
 
     @Override
@@ -164,7 +205,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         //noinspection SimplifiableIfStatement
         if (id == R.id.quitToMainItem)
         {
-            finish();
+            finish();//go back to sey up ships
             return true;
         }
         if (id == R.id.restartGameItem)
@@ -173,31 +214,31 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         }
         if (id == R.id.howToPlayItem)
         {
-            startActivity(new Intent(BattleshipHumanPlayer.this,How_to_Play_Screen.class));
+            startActivity(new Intent(BattleshipHumanPlayer.this,How_to_Play_Screen.class));//go to see how to play
             return true;
         }
 
         return false;
     }
 
-
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        return false;
-    }
-
-
+    /**
+     * Description: Method to handle when a user touches a button on the AI's grid
+     *
+     * CAVEAT: Since there are 100 buttons, there are 100 cases
+     *
+     * @param view
+     */
     public void checkHitOrMiss(View view) {
-        switch (view.getId()) {
+        switch (view.getId()) {//based on button pressed
             case R.id.A1:
-                gameState.shipHit(0, 0, 1);
+                gameState.shipHit(0, 0, 1);//see if ship was hit at coodrdinate A1
                 Button A1 = (Button) findViewById(R.id.A1);
                 userTurn(A1);
                 computerTurn();
                 break;
 
             case R.id.A2:
-                gameState.shipHit(0,1,1);
+                gameState.shipHit(0,1,1);//see if ship was hit at coodrdinate A2 and so on
                 Button A2 = (Button) findViewById(R.id.A2);
                 userTurn(A2);
                 computerTurn();
@@ -893,26 +934,33 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnT
         }
 
     }
+
+    /**
+     * Description: Method to check if someone has won the game.
+     *
+     * CAVEAT:
+     */
     public void checkIfGameOver (){
-        synchronized (messageScreen) {
-            if (gameState.getPlayer1Hits() == 17) {
-                messageScreen.setText("Victory! You sunk all the enemy ships!");
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        finish();
-                    }
-                }, 5000);
-            } else if (gameState.getPlayer2Hits() == 17) {
-                messageScreen.setText("No! All your ships have been sunk! Game Over");
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        finish();
-                    }
-                }, 5000);
-            }
+        if (gameState.getPlayer1Hits() == 17) {//if user won
+            messageScreen.setText("Victory! You sunk all the enemy ships!");
+            //code to wait 4 seconds then exit activity
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    finish();
+                }
+            }, 4000);
+        } else if (gameState.getPlayer2Hits() == 17) {//if AI won
+            messageScreen.setText("No! All your ships have been sunk! Game Over");
+            //code to wait 4 seconds then exit activity
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    finish();
+                }
+            }, 4000);
         }
+
     }
     @Override
     public void onClick(View view) {
