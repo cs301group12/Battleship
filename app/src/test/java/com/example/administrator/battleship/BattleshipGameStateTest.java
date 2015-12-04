@@ -125,89 +125,96 @@ public class BattleshipGameStateTest {
     @Test
     public void testShipHit() throws Exception {
         BattleshipGameState test = new BattleshipGameState();
+        int[][] AIgrid = new int[10][10];
 
         //human ships
-        test.setUpUserShips(1, 5, 5, true);//userGird[5-9][5] horizontally
-        test.setUpUserShips(2, 0, 0, true);//userGrid[0-3][0] horizontally
-        test.setUpUserShips(3, 5, 0, false);//userGrid[5][0-2] vertically
-        test.setUpUserShips(4, 6, 0, false);//userGrid[6][0-2] vertically
-        test.setUpUserShips(5, 4, 2, false);//userGrid[4][2-3] vertically
+        test.setUpUserShips(1, 5, 5, false);//userGird[5-9][5] horizontally
+        test.setUpUserShips(2, 0, 0, false);//userGrid[0-3][0] horizontally
+        test.setUpUserShips(3, 5, 0, true);//userGrid[5][0-2] vertically
+        test.setUpUserShips(4, 6, 0, true);//userGrid[6][0-2] vertically
+        test.setUpUserShips(5, 4, 2, true);//userGrid[4][2-3] vertically
 
-        //computer ships
-//        test.setUpComputerShips();//computerGird[9][5-9] vertically
-//        test.setUpComputerShips(2, 0, 0, true);//computerGird[0-3][2] horizontally
-//        test.setUpComputerShips(3, 2, 4, true);//computerGrid[2-4][4] horizontally
-//        test.setUpComputerShips(4, 6, 1, false);//computerGrid[6][1-3] vertically
-//        test.setUpComputerShips(5, 5, 0, false);//computerGrid[5][0-1] vertically
+        Ships[] AIships = new Ships[] {
+                new Ships(5),//carrier
+                new Ships(4),//battleship
+                new Ships(3),//destroyer
+                new Ships(3),//sub
+                new Ships(2),//pt boat
+        };
+        test.setUpComputerShips(AIships);
 
         //check that both players have 0 hits before the game starts
-        assertEquals(0,test.getPlayer1Hits());
-        assertEquals(0,test.getPlayer2Hits());
+        assertEquals(0, test.getPlayer1Hits());
+        assertEquals(0, test.getPlayer2Hits());
+
 
         //human turn
-        test.shipHit(9, 5, 1);//hit
+        test.shipHit(9, 5, 1);//guess
 
         //computer turn
         test.shipHit(1, 0, 2);//hit
 
         //human turn
-        test.shipHit(2, 6, 6);//should miss
+        test.shipHit(2, 6, 6);//guess
 
         //computer turn
         test.shipHit(6, 2 ,4);//hit
 
         //human turn
-        test.shipHit(9, 6, 1);//hit
+        test.shipHit(9, 6, 1);//guess
 
         //computer turn
         test.shipHit(4, 3 ,5);//hit
 
         //human turn
-        test.shipHit(6, 2, 4);//hit
+        test.shipHit(6, 2, 4);//guess
 
         //computer turn
         test.shipHit(5, 1, 3);//hit
 
         //human turn
-        test.shipHit(0, 0, 2);//hit
+        test.shipHit(0, 0, 2);//guess
 
         //computer turn
         test.shipHit(5, 6, 7);//should miss
 
         //human turn
-        test.shipHit(5, 1, 5);//hit
+        test.shipHit(5, 1, 5);//guess
 
         //computer turn
         test.shipHit(4, 2, 5);//hit
 
-        //this should be correct because the human got 5 hits and the computer got 5 hits
-        assertEquals(5,test.getPlayer1Hits());
+        //loop through AI grid to see if they user got any hits (hit represented by 1)
+        AIgrid = test.getComputerGrid();
+        int userHits = 0;
+        for (int i = 0; i < 10; i++){
+            for (int j = 0; j < 10; j++){
+                if (AIgrid[i][j] == 1) {
+                    userHits++;
+                }
+            }
+        }
+
+        //this should be correct because the human got userHits hits and the computer got 5 hits
+        assertEquals(userHits,test.getPlayer1Hits());
         assertEquals(5,test.getPlayer2Hits());
 
-        //the computer carrier ship life should be 3 because it got hit twice.
         //the human carrier ship life should be 5 because it did not get hit.
-        assertEquals(3,test.getAICarrierLife());
         assertEquals(5,test.getCarrierLife());
 
-        //the computer battleship life should be 3 because it got hit once.
         //the human battleship life should be 3 because it got hit once.
-        assertEquals(3,test.getAIBattleshipLife());
         assertEquals(3,test.getBattleshipLife());
 
-        //the computer destroyer ship life should be 3 because it did not get hit.
+
         //the human destroyer ship life should be 2 because it got hit once.
-        assertEquals(3,test.getAIDestroyerLife());
         assertEquals(2,test.getDestroyerLife());
 
         //the human submarine ship life should be 2 because it got hit once.
-        //the computer submarine ship life should be 2 because it got hit once.
         assertEquals(2,test.getSubmarineLife());
-        assertEquals(2,test.getAISubmarineLife());
+        //assertEquals(2,test.getAISubmarineLife());
 
         //the human pt boat life should be 0 because it got hit twice.
-        //the computer pt boat life should be 1 because it got hit once.
         assertEquals(0,test.getPtBoatLife());
-        assertEquals(1,test.getAIPtBoatLife());
 
     }
 
@@ -247,7 +254,7 @@ public class BattleshipGameStateTest {
 
 
         assertEquals(2,testComputerArray[3][8]);
-        assertEquals(1,testComputerArray[9][0]);
+        assertEquals(2,testComputerArray[9][0]);
         assertEquals(2,testUserArray[0][0]);
         assertEquals(2,testUserArray[5][4]);
     }
@@ -263,20 +270,20 @@ public class BattleshipGameStateTest {
 
         //Set's up the user's ships.
         test.setUpUserShips(1,3,3,true);
-        test.setUpUserShips(2, 5, 5, false);
-        test.setUpUserShips(3, 2, 2, true);
-        test.setUpUserShips(4, 8, 3, false);
-        test.setUpUserShips(5, 3, 6, false);
+        test.setUpUserShips(2, 5, 5, true);
+        test.setUpUserShips(3, 2, 2, false);
+        test.setUpUserShips(4, 7, 3, true);
+        test.setUpUserShips(5, 3, 6, true);
 
         int[][] testUserArray = test.getUserGrid();
 
         //If the ships have been set up correctly, the value 3 should be in the position where the ships
         //were set up
         assertEquals(3,testUserArray[3][3]);//Carrier
-        assertEquals(3,testUserArray[4][3]);
-        assertEquals(3,testUserArray[5][3]);
-        assertEquals(3,testUserArray[6][3]);
-        assertEquals(3,testUserArray[7][3]);
+        assertEquals(3,testUserArray[3][4]);
+        assertEquals(3,testUserArray[3][5]);
+        assertEquals(3,testUserArray[3][6]);
+        assertEquals(3,testUserArray[3][7]);
 
         assertEquals(3,testUserArray[5][5]);//Battleship
         assertEquals(3,testUserArray[5][6]);
@@ -287,9 +294,9 @@ public class BattleshipGameStateTest {
         assertEquals(3,testUserArray[3][2]);
         assertEquals(3,testUserArray[4][2]);
 
-        assertEquals(3,testUserArray[8][3]);//Submarine
-        assertEquals(3,testUserArray[8][4]);
-        assertEquals(3,testUserArray[8][5]);
+        assertEquals(3,testUserArray[7][3]);//Submarine
+        assertEquals(3,testUserArray[7][4]);
+        assertEquals(3,testUserArray[7][5]);
 
         assertEquals(3,testUserArray[3][6]);//PTBoat
         assertEquals(3,testUserArray[3][7]);
@@ -307,41 +314,57 @@ public class BattleshipGameStateTest {
     @Test
     public void testSetUpComputerShips() throws Exception {
         BattleshipGameState test = new BattleshipGameState();
+        int[][] AIgrid = new int[10][10];//array to store AIgrid
 
-        //Set's up the computer's ships.
-//        test.setUpComputerShips(1,3,3,true);
-//        test.setUpComputerShips(2,6,7,true);
-//        test.setUpComputerShips(3,3,7,false);
-//        test.setUpComputerShips(4,4,6,false);
-//        test.setUpComputerShips(5, 2, 5, true);
+        //set up AI ships
+        Ships[] AIships = new Ships[] {
+                new Ships(5),//carrier
+                new Ships(4),//battleship
+                new Ships(3),//destroyer
+                new Ships(3),//sub
+                new Ships(2),//pt boat
+        };
+        test.setUpComputerShips(AIships);
 
-        int[][] testComputerArray = test.getComputerGrid();
+        AIgrid = test.getComputerGrid();
+        int counter = 0;
+        //loop through grid, if there is a spot with a ship on it increment counter
+        for (int i = 0; i < 10; i++){
+            for (int j = 0; j < 10; j++){
+                if (AIgrid[i][j] == 3) {
+                    counter++;
+                }
+            }
+        }
+        //should be 17 spots with a ship on it since 5+4+3+3+2=17
+        assertEquals(17,counter);
 
-        //If the ships have been set up correctly, the value 3 should be in the position where the ships
-        //were set up
-        assertEquals(3, testComputerArray[3][3]);//Carrier
-        assertEquals(3, testComputerArray[4][3]);
-        assertEquals(3, testComputerArray[5][3]);
-        assertEquals(3, testComputerArray[6][3]);
-        assertEquals(3, testComputerArray[7][3]);
+        //test case 2
+        BattleshipGameState test2 = new BattleshipGameState();
+        int[][] AIgrid2 = new int[10][10];//array to store AIgrid
 
-        assertEquals(3, testComputerArray[6][7]);//Battleship
-        assertEquals(3, testComputerArray[7][7]);
-        assertEquals(3, testComputerArray[8][7]);
-        assertEquals(3, testComputerArray[9][7]);
+        //set up AI ships
+        Ships[] AIships2 = new Ships[] {
+                new Ships(3),//carrier
+                new Ships(3),//battleship
+                new Ships(3),//destroyer
+                new Ships(3),//sub
+                new Ships(3),//pt boat
+        };
+        test2.setUpComputerShips(AIships2);
 
-        assertEquals(3, testComputerArray[3][7]);//Destroyer
-        assertEquals(3, testComputerArray[3][8]);
-        assertEquals(3, testComputerArray[3][9]);
-
-        assertEquals(3, testComputerArray[4][6]);//Submarine
-        assertEquals(3, testComputerArray[4][7]);
-        assertEquals(3, testComputerArray[4][8]);
-
-        assertEquals(3, testComputerArray[2][5]);//PTBoat
-        assertEquals(3, testComputerArray[3][5]);
-
-
+        AIgrid2 = test2.getComputerGrid();
+        int counter2 = 0;
+        //loop through grid, if there is a spot with a ship on it increment counter
+        for (int i = 0; i < 10; i++){
+            for (int j = 0; j < 10; j++){
+                if (AIgrid2[i][j] == 3) {
+                    counter2++;
+                }
+            }
+        }
+        //should be 15 spots with a ship on it since 3+3+3+3+3=15
+        assertEquals(15,counter2);
     }
 
 }

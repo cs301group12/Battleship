@@ -8,7 +8,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-
+/**
+ * @author Nathan Camacho
+ * @author Hashim AlJawad
+ * @author Kelson Sipe
+ *
+ * @version  12/1/2015
+ *
+ * Description of MainActivity class:
+ * The activity that first pops up when user launches app. Allows user to decide whether they want to play the game
+ * or learn the rules.
+ *
+ */
 public class MainActivity extends ActionBarActivity {
 
     @Override
@@ -18,9 +29,9 @@ public class MainActivity extends ActionBarActivity {
 
         goToPlay();
         goToHowToPlay();
-        //hi
     }
 
+    //Method to go to set up the ships
     private void goToPlay(){
         Button playNow = (Button) findViewById(R.id.playNowButton);
         playNow.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +42,7 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
+    //method to go to see the rules of battleship
     private void goToHowToPlay(){
         Button howToPlay = (Button) findViewById(R.id.howToPlayButton);
         howToPlay.setOnClickListener(new View.OnClickListener() {

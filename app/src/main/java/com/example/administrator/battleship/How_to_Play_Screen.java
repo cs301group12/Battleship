@@ -8,6 +8,17 @@ import android.view.View;
 import android.widget.Button;
 
 
+/**
+ * @author Nathan Camacho
+ * @author Hashim AlJawad
+ * @author Kelson Sipe
+ *
+ * @version  12/1/2015
+ *
+ * Description of How_to_Play_Screen class:
+ * Activity that displays the rules of Battleship.
+ *
+ */
 public class How_to_Play_Screen extends ActionBarActivity {
 
     @Override
@@ -18,6 +29,7 @@ public class How_to_Play_Screen extends ActionBarActivity {
         htpToMainMenu();
     }
 
+    //method to go back to the main menu or back to playing battleship
     private void htpToMainMenu(){
         Button mainMenu = (Button) findViewById(R.id.mainMenuButton);
         mainMenu.setOnClickListener(new View.OnClickListener() {

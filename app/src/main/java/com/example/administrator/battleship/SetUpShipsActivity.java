@@ -92,14 +92,6 @@ public class SetUpShipsActivity extends SurfaceView{
             }
         }
 
-        /*
-        drawShip(carrier, 0, 1, canvas, true);
-        drawShip(carrier, 0, 1, canvas, false);
-        drawShip(battleship, 1, 2, canvas, true);
-        drawShip(destroyer, 2, 3, canvas, true);
-        drawShip(submarine, 3, 4, canvas, true);
-        drawShip(ptBoat,4,5,canvas,true);
-        */
 
         boolean dummy = getCarrierOrientation();
         if(dummy == true) {

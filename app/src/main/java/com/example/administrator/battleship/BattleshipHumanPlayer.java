@@ -63,11 +63,12 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
 
         messageScreen = (TextView) findViewById(R.id.gameInfo);
         messageScreen.setText("Your turn first");//initial message
+        userBoard = (BoardSV) findViewById(R.id.userBoard);
 
         //receive info from previous activity
         intent = getIntent();
-        userBoard.shipsX = (float[]) intent.getFloatArrayExtra("Ships X");
-        userBoard.shipsY = (float[]) intent.getFloatArrayExtra("Ships Y");
+        userBoard.shipsX = intent.getFloatArrayExtra("Ships X");
+        userBoard.shipsY = intent.getFloatArrayExtra("Ships Y");
         userBoard.shipOrientations = (boolean[]) intent.getBooleanArrayExtra("Ship Orientations");
         shipVals = (int[]) intent.getIntArrayExtra("Ship Set Up");
 
