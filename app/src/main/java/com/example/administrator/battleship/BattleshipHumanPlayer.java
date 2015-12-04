@@ -38,6 +38,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
     //GUI variables
     private TextView messageScreen;
     private LinearLayout topLayout;
+
     private BoardSV userBoard;
     private Canvas canvas;
     private Button readyToPlay;
@@ -64,9 +65,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
         messageScreen = (TextView) findViewById(R.id.gameInfo);
         messageScreen.setText("Your turn first");
         topLayout = (LinearLayout) findViewById(R.id.topGUILayout);
-        topLayout.setOnTouchListener(this);
+
         userBoard = (BoardSV) findViewById(R.id.userBoard);
-        userBoard.setOnTouchListener(this);
+
 
         //receive info from previous activity
         intent = getIntent();

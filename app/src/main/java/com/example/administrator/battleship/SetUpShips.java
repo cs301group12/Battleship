@@ -713,7 +713,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
     }
 
-    public boolean overlapCarrier(int shipNum,int row1,int col1,int row2,int col2)
+    public boolean overlap(int numOfShip,int shipNum,int row1,int col1,int row2,int col2)
     {
         boolean battleshipOrientation= board.getBattleshipOrientation() == true;
         boolean submarineOrientation = board.getSubmarineOrientation() == true;
