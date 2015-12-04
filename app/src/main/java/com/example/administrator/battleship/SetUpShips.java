@@ -591,33 +591,51 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             boatRow = getRow((int)board.shipsY[4]);
             boatCol = getCol((int)board.shipsX[4]);
 
-            */
-            /* Currently does not work
-            //Call method to check if ships are overlapping
-            boolean check1 = overlapCarrier(1,carrierRow,carrierCol,battleshipRow,battleshipCol);
+            boolean check1 = overlap(0,1, carrierRow, carrierCol, battleshipRow, battleshipCol);
 
-            boolean check2 = overlapCarrier(2,carrierRow,carrierCol,destroyerRow,destroyerCol);
+            boolean check2 = overlap(0,2, carrierRow, carrierCol, destroyerRow, destroyerCol);
 
-            boolean check3 = overlapCarrier(3,carrierRow,carrierCol,submarineRow,submarineCol);
+            boolean check3 = overlap(0,3, carrierRow, carrierCol, submarineRow, submarineCol);
 
-            boolean check4 = overlapCarrier(4,carrierRow,carrierCol,boatRow,boatCol);
+            boolean check4 = overlap(0,4, carrierRow, carrierCol, boatRow, boatCol);
 
-            boolean check5 = overlapBattleship(2, battleshipRow, battleshipCol, destroyerRow, destroyerCol);
+            boolean check8 = overlap(1,0, battleshipRow, battleshipCol, carrierRow, carrierCol);
 
-            boolean check6 = overlapBattleship(3, battleshipRow, battleshipCol, submarineRow, submarineCol);
+            boolean check5 = overlap(1,2, battleshipRow, battleshipCol, destroyerRow, destroyerCol);
 
-            boolean check7 = overlapBattleship(4,battleshipRow,battleshipCol,boatRow,boatCol);
+            boolean check6 = overlap(1,3, battleshipRow, battleshipCol, submarineRow, submarineCol);
 
-            boolean check8 = overlapDS(3, destroyerRow, destroyerCol, submarineRow, submarineCol);
+            boolean check7 = overlap(1,4, battleshipRow, battleshipCol, boatRow, boatCol);
 
-            boolean check9 = overlapDS(4, destroyerRow, destroyerCol, boatRow, boatCol);
+            boolean check9 = overlap(2,0, destroyerRow, destroyerCol, carrierRow, carrierCol);
 
-            boolean check10 = overlapDS(4,submarineRow,submarineCol,boatRow,boatCol);
+            boolean check10 = overlap(2,1, destroyerRow, destroyerCol, battleshipRow, battleshipCol);
+
+            boolean check11 = overlap(2,3, destroyerRow, destroyerCol, submarineRow, submarineCol);
+
+            boolean check16 = overlap(2,4, destroyerRow, destroyerCol, boatRow, boatCol);
+
+            boolean check12 = overlap(3,0, submarineRow, submarineCol, carrierRow, carrierCol);
+
+            boolean check13 = overlap(3,1, submarineRow, submarineCol, battleshipRow, battleshipCol);
+
+            boolean check14 = overlap(3,2, submarineRow, submarineCol, destroyerRow, destroyerCol);
+
+            boolean check15 = overlap(3,4, submarineRow, submarineCol, boatRow, boatCol);
+
+            boolean check17 = overlap(4,0, boatRow, boatCol, carrierRow, carrierCol);
+
+            boolean check18 = overlap(4,1,boatRow,boatCol,battleshipRow,battleshipCol);
+
+            boolean check19 = overlap(4,2,boatRow,boatCol,destroyerRow,destroyerCol);
+
+            boolean check20 = overlap(4,3,boatRow,boatCol,submarineRow,submarineCol);
 
 
             if(check1 == true || check2 == true || check3 == true || check4 == true ||
-                    check5 == true || check6 == true || check7 == true
-                    || check8 == true || check9 == true || check10 == true)
+                    check5 == true || check6 == true || check7 == true ||check8 == true ||check9 == true || check10 == true || check11 == true
+                    || check12 == true || check13 == true || check14 == true || check15 == true || check16 == true
+                    ||check17 == true || check18 == true || check19 == true || check20 == true)
             {
                 saveAndPlay.setVisibility(View.INVISIBLE);
             }
@@ -626,18 +644,15 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
                 saveAndPlay.setVisibility(View.VISIBLE);
             }
 
-
-            //checkOverLapping(0,2,getRow((int) board.shipsY[0]), getCol((int) board.shipsX[0]), getRow((int) board.shipsY[2]), getCol((int) board.shipsX[2]));
-            //checkOverLapping(0, 3, getRow((int) board.shipsY[0]), getCol((int) board.shipsX[0]), getRow((int) board.shipsY[3]), getCol((int) board.shipsX[3]));
-            //checkOverLapping(0,4,getRow((int) board.shipsY[0]), getCol((int) board.shipsX[0]), getRow((int) board.shipsY[4]), getCol((int) board.shipsX[4]));
-
+            /*
+            checkOverLapping(0,2,getRow((int) board.shipsY[0]), getCol((int) board.shipsX[0]), getRow((int) board.shipsY[2]), getCol((int) board.shipsX[2]));
+            checkOverLapping(0, 3, getRow((int) board.shipsY[0]), getCol((int) board.shipsX[0]), getRow((int) board.shipsY[3]), getCol((int) board.shipsX[3]));
+            checkOverLapping(0,4,getRow((int) board.shipsY[0]), getCol((int) board.shipsX[0]), getRow((int) board.shipsY[4]), getCol((int) board.shipsX[4]));
 */
             board.getHolder().unlockCanvasAndPost(canvas);
             board.postInvalidate();
-
         }
 
-        /* Not needed
         if(event.getAction() == MotionEvent.ACTION_UP)
         {
 
@@ -699,92 +714,532 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         else { return 0; }
 
     }
-        */
-    /*
+
     //Checks if the carrier is overlapping another ship
     public boolean overlapCarrier(int shipNum,int row1,int col1,int row2,int col2)
     {
+        boolean battleshipOrientation= board.getBattleshipOrientation() == true;
+        boolean submarineOrientation = board.getSubmarineOrientation() == true;
+        boolean carrierOrientation = board.getCarrierOrientation() == true;
+        boolean boatOrientation =  board.getpTBoatOrientation() == true;
+        boolean destroyerOrientation = board.getDestroyerOrientation() == true;
+if(numOfShip == 0) {
+    if ((row1 == row2 && carrierOrientation && battleshipOrientation && submarineOrientation && destroyerOrientation
+            && boatOrientation)) {
 
-        if(row1 == row2) {
+        System.out.println("Both are horizontal");
+        if (shipNum == 1) {
+            if (col1 - col2 >= -4 && col1 - col2 <= 3) {
+                return true;
+            }
+        }
+        if (shipNum == 2) {
+            if (col1 - col2 >= -4 && col1 - col2 <= 2) {
+                return true;
+            }
+        }
+        if (shipNum == 3) {
+            if (col1 - col2 >= -4 && col1 - col2 <= 2) {
+                return true;
+            }
+        }
+        if (shipNum == 4) {
+            if (col1 - col2 >= -4 && col1 - col2 <= 1) {
+                return true;
+            }
+        }
+    } else {
+        if (!carrierOrientation) {
+
             if (shipNum == 1) {
-                if (col1 - col2 >= -4 && col1 - col2 <= 3) {
-                    return true;
+                if (battleshipOrientation) {
+                    if ((row1 - row2 >= -4 && row1 - row2 <= -1) || row1 == row2) {
+                        if (col1 - col2 >= 0 && col1 - col2 <= 3) {
+                            return true;
+                        }
+                    }
+                } else {
+                    if (!battleshipOrientation) {
+                        if (col1 == col2) {
+                            if ((row1 - row2 >= -4) && (row1 - row2 <= 3)) {
+                                return true;
+                            }
+                        }
+                    }
                 }
             }
-
-
             if (shipNum == 2) {
-                if (col1 - col2 >= -4 && col1 - col2 <= 2) {
-                    return true;
+                if (destroyerOrientation) {
+                    if ((row1 - row2 >= -4 && row1 - row2 <= -1) || row1 == row2) {
+                        if (col1 - col2 >= 0 && col1 - col2 <= 2) {
+                            return true;
+                        }
+                    }
+                } else {
+                    if (!destroyerOrientation) {
+                        if (col1 == col2) {
+                            if ((row1 - row2 >= -4) && (row1 - row2 <= 2)) {
+                                return true;
+                            }
+                        }
+                    }
                 }
             }
 
             if (shipNum == 3) {
-                if (col1 - col2 >= -4 && col1 - col2 <= 2) {
-                    return true;
+                if (submarineOrientation) {
+                    if ((row1 - row2 >= -4 && row1 - row2 <= -1) || row1 == row2) {
+                        if (col1 - col2 >= 0 && col1 - col2 <= 2) {
+                            return true;
+                        }
+                    }
+                } else {
+                    if (!submarineOrientation) {
+                        if (col1 == col2) {
+                            if ((row1 - row2 >= -4) && (row1 - row2 <= 2)) {
+                                return true;
+                            }
+                        }
+                    }
                 }
             }
 
             if (shipNum == 4) {
-                if (col1 - col2 >= -4 && col1 - col2 <= 1) {
-                    return true;
+                if (boatOrientation) {
+                    if ((row1 - row2 >= -4 && row1 - row2 <= -1) || row1 == row2) {
+                        if (col1 - col2 >= 0 && col1 - col2 <= 1) {
+                            return true;
+                        }
+                    }
+                } else {
+                    if (!boatOrientation) {
+                        if (col1 == col2) {
+                            if ((row1 - row2 >= -4) && (row1 - row2 <= 1)) {
+                                return true;
+                            }
+                        }
+                    }
                 }
             }
         }
+    }
+}
+
+
+        if(numOfShip == 1) {
+            //battleship
+            if ((row1 == row2 && carrierOrientation && battleshipOrientation && submarineOrientation && destroyerOrientation
+                    && boatOrientation)) {
+
+                System.out.println("Both are horizontal");
+                if (shipNum == 0) {
+                    if (col1 - col2 >= -3 && col1 - col2 <= 4) {
+                        return true;
+                    }
+                }
+                if (shipNum == 2) {
+                    if (col1 - col2 >= -3 && col1 - col2 <= 2) {
+                        return true;
+                    }
+                }
+                if (shipNum == 3) {
+                    if (col1 - col2 >= -3 && col1 - col2 <= 2) {
+                        return true;
+                    }
+                }
+                if (shipNum == 4) {
+                    if (col1 - col2 >= -3 && col1 - col2 <= 1) {
+                        return true;
+                    }
+                }
+            } else {
+                if (!battleshipOrientation) {
+
+                    if (shipNum == 0) {
+                        if (carrierOrientation) {
+                            if ((row1 - row2 >= -3 && row1 - row2 <= 0) || row1 == row2) {
+                                if (col1 - col2 >= 0 && col1 - col2 <= 4) {
+                                    return true;
+                                }
+                            }
+                        } else {
+                            if (!carrierOrientation) {
+                                if (col1 == col2) {
+                                    if ((row1 - row2 >= -3) && (row1 - row2 <= 4)) {
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (shipNum == 2) {
+                        if (destroyerOrientation) {
+                            if ((row1 - row2 >= -3 && row1 - row2 <= 0) || row1 == row2) {
+                                if (col1 - col2 >= 0 && col1 - col2 <= 2) {
+                                    return true;
+                                }
+                            }
+                        } else {
+                            if (!destroyerOrientation) {
+                                if (col1 == col2) {
+                                    if ((row1 - row2 >= -3) && (row1 - row2 <= 2)) {
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (shipNum == 3) {
+                        if (submarineOrientation) {
+                            if ((row1 - row2 >= -3 && row1 - row2 <= 0) || row1 == row2) {
+                                if (col1 - col2 >= 0 && col1 - col2 <= 2) {
+                                    return true;
+                                }
+                            }
+                        } else {
+                            if (!submarineOrientation) {
+                                if (col1 == col2) {
+                                    if ((row1 - row2 >= -3) && (row1 - row2 <= 2)) {
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (shipNum == 4) {
+                        if (boatOrientation) {
+                            if ((row1 - row2 >= -3 && row1 - row2 <= 0) || row1 == row2) {
+                                if (col1 - col2 >= 0 && col1 - col2 <= 1) {
+                                    return true;
+                                }
+                            }
+                        } else {
+                            if (!boatOrientation) {
+                                if (col1 == col2) {
+                                    if ((row1 - row2 >= -3) && (row1 - row2 <= 1)) {
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //destroyer
+
+        if(numOfShip == 2) {
+            if ((row1 == row2 && carrierOrientation && battleshipOrientation && submarineOrientation && destroyerOrientation
+                    && boatOrientation)) {
+
+                System.out.println("Both are horizontal");
+                if (shipNum == 0) {
+                    if (col1 - col2 >= -2 && col1 - col2 <= 4) {
+                        return true;
+                    }
+                }
+                if (shipNum == 1) {
+                    if (col1 - col2 >= -2 && col1 - col2 <= 3) {
+                        return true;
+                    }
+                }
+                if (shipNum == 3) {
+                    if (col1 - col2 >= -2 && col1 - col2 <= 2) {
+                        return true;
+                    }
+                }
+                if (shipNum == 4) {
+                    if (col1 - col2 >= -2 && col1 - col2 <= 1) {
+                        return true;
+                    }
+                }
+            } else {
+                if (!destroyerOrientation) {
+
+                    if (shipNum == 0) {
+                        if (carrierOrientation) {
+                            if ((row1 - row2 >= -1 && row1 - row2 <= 0) || row1 == row2) {
+                                if (col1 - col2 >= 0 && col1 - col2 <= 4) {
+                                    return true;
+                                }
+                            }
+                        } else {
+                            if (!carrierOrientation) {
+                                if (col1 == col2) {
+                                    if ((row1 - row2 >= -3) && (row1 - row2 <= 4)) {
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (shipNum == 1) {
+                        if (battleshipOrientation) {
+                            if ((row1 - row2 >= -1 && row1 - row2 <= 0) || row1 == row2) {
+                                if (col1 - col2 >= 0 && col1 - col2 <= 3) {
+                                    return true;
+                                }
+                            }
+                        } else {
+                            if (!battleshipOrientation) {
+                                if (col1 == col2) {
+                                    if ((row1 - row2 >= -3) && (row1 - row2 <= 3)) {
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (shipNum == 3) {
+                        if (submarineOrientation) {
+                            if ((row1 - row2 >= -1 && row1 - row2 <= 0) || row1 == row2) {
+                                if (col1 - col2 >= 0 && col1 - col2 <= 2) {
+                                    return true;
+                                }
+                            }
+                        } else {
+                            if (!submarineOrientation) {
+                                if (col1 == col2) {
+                                    if ((row1 - row2 >= -3) && (row1 - row2 <= 2)) {
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (shipNum == 4) {
+                        if (boatOrientation) {
+                            if ((row1 - row2 >= -1 && row1 - row2 <= 0) || row1 == row2) {
+                                if (col1 - col2 >= 0 && col1 - col2 <= 1) {
+                                    return true;
+                                }
+                            }
+                        } else {
+                            if (!boatOrientation) {
+                                if (col1 == col2) {
+                                    if ((row1 - row2 >= -3) && (row1 - row2 <= 1)) {
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //submarine
+if(numOfShip == 3) {
+    if ((row1 == row2 && carrierOrientation && battleshipOrientation && submarineOrientation && destroyerOrientation
+            && boatOrientation)) {
+
+        System.out.println("Both are horizontal");
+        if (shipNum == 0) {
+            if (col1 - col2 >= -2 && col1 - col2 <= 4) {
+                return true;
+            }
+        }
+        if (shipNum == 2) {
+            if (col1 - col2 >= -2 && col1 - col2 <= 3) {
+                return true;
+            }
+        }
+        if (shipNum == 3) {
+            if (col1 - col2 >= -2 && col1 - col2 <= 2) {
+                return true;
+            }
+        }
+        if (shipNum == 4) {
+            if (col1 - col2 >= -2 && col1 - col2 <= 1) {
+                return true;
+            }
+        }
+    } else {
+        if (!submarineOrientation) {
+
+            if (shipNum == 0) {
+                if (carrierOrientation) {
+                    if ((row1 - row2 >= -2 && row1 - row2 <= 0) || row1 == row2) {
+                        if (col1 - col2 >= 0 && col1 - col2 <= 4) {
+                            return true;
+                        }
+                    }
+                } else {
+                    if (!carrierOrientation) {
+                        if (col1 == col2) {
+                            if ((row1 - row2 >= -3) && (row1 - row2 <= 4)) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            if (shipNum == 1) {
+                if (battleshipOrientation) {
+                    if ((row1 - row2 >= -2 && row1 - row2 <= 0) || row1 == row2) {
+                        if (col1 - col2 >= 0 && col1 - col2 <= 3) {
+                            return true;
+                        }
+                    }
+                } else {
+                    if (!battleshipOrientation) {
+                        if (col1 == col2) {
+                            if ((row1 - row2 >= -3) && (row1 - row2 <= 3)) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (shipNum == 2) {
+                if (destroyerOrientation) {
+                    if ((row1 - row2 >= -2 && row1 - row2 <= 0) || row1 == row2) {
+                        if (col1 - col2 >= 0 && col1 - col2 <= 2) {
+                            return true;
+                        }
+                    }
+                } else {
+                    if (!destroyerOrientation) {
+                        if (col1 == col2) {
+                            if ((row1 - row2 >= -3) && (row1 - row2 <= 2)) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (shipNum == 4) {
+                if (boatOrientation) {
+                    if ((row1 - row2 >= -2 && row1 - row2 <= 0) || row1 == row2) {
+                        if (col1 - col2 >= 0 && col1 - col2 <= 1) {
+                            return true;
+                        }
+                    }
+                } else {
+                    if (!boatOrientation) {
+                        if (col1 == col2) {
+                            if ((row1 - row2 >= -3) && (row1 - row2 <= 1)) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+        //boat
+if(numOfShip == 4) {
+    if ((row1 == row2 && carrierOrientation && battleshipOrientation && submarineOrientation && destroyerOrientation
+            && boatOrientation)) {
+
+        System.out.println("Both are horizontal");
+        if (shipNum == 0) {
+            if (col1 - col2 >= -1 && col1 - col2 <= 4) {
+                return true;
+            }
+        }
+        if (shipNum == 1) {
+            if (col1 - col2 >= -1 && col1 - col2 <= 3) {
+                return true;
+            }
+        }
+        if (shipNum == 2) {
+            if (col1 - col2 >= -1 && col1 - col2 <= 2) {
+                return true;
+            }
+        }
+        if (shipNum == 3) {
+            if (col1 - col2 >= -1 && col1 - col2 <= 2) {
+                return true;
+            }
+        }
+    } else {
+        if (!boatOrientation) {
+            if (shipNum == 0) {
+                if (carrierOrientation) {
+                    if ((row1 - row2 >= -2 && row1 - row2 <= 0) || row1 == row2) {
+                        if (col1 - col2 >= 0 && col1 - col2 <= 4) {
+                            return true;
+                        }
+                    }
+                } else {
+                    if (!carrierOrientation) {
+                        if (col1 == col2) {
+                            if ((row1 - row2 >= -1) && (row1 - row2 <= 4)) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            if (shipNum == 1) {
+                if (battleshipOrientation) {
+                    if ((row1 - row2 >= -2 && row1 - row2 <= 0) || row1 == row2) {
+                        if (col1 - col2 >= 0 && col1 - col2 <= 3) {
+                            return true;
+                        }
+                    }
+                } else {
+                    if (!battleshipOrientation) {
+                        if (col1 == col2) {
+                            if ((row1 - row2 >= -1) && (row1 - row2 <= 3)) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (shipNum == 2) {
+                if (destroyerOrientation) {
+                    if ((row1 - row2 >= -2 && row1 - row2 <= 0) || row1 == row2) {
+                        if (col1 - col2 >= 0 && col1 - col2 <= 2) {
+                            return true;
+                        }
+                    }
+                } else {
+                    if (!destroyerOrientation) {
+                        if (col1 == col2) {
+                            if ((row1 - row2 >= -1) && (row1 - row2 <= 2)) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (shipNum == 3) {
+                if (submarineOrientation) {
+                    if ((row1 - row2 >= -2 && row1 - row2 <= 0) || row1 == row2) {
+                        if (col1 - col2 >= 0 && col1 - col2 <= 2) {
+                            return true;
+                        }
+                    }
+                } else {
+                    if (!submarineOrientation) {
+                        if (col1 == col2) {
+                            if ((row1 - row2 >= -1) && (row1 - row2 <= 2)) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
       return false;
     }
-
-    //Checks if the battleship is overlapping another ship
-    public boolean overlapBattleship(int shipNum,int row1,int col1,int row2,int col2)
-    {
-
-        if(row1 == row2) {
-
-            if (shipNum == 2) {
-                if (col1 - col2 >= -3 && col1 - col2 <= 2) {
-                    return true;
-                }
-            }
-
-            if (shipNum == 3) {
-                if (col1 - col2 >= -3 && col1 - col2 <= 2) {
-                    return true;
-                }
-            }
-
-            if (shipNum == 4) {
-                if (col1 - col2 >= -3 && col1 - col2 <= 1) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    //Checks if the destroyer or submarine is overlapping another ship
-    public boolean overlapDS(int shipNum,int row1,int col1,int row2,int col2)
-    {
-
-        if(row1 == row2) {
-
-            if (shipNum == 3) {
-                if (col1 - col2 >= -2 && col1 - col2 <= 2) {
-                    return true;
-                }
-            }
-
-            if (shipNum == 4) {
-                if (col1 - col2 >= -2 && col1 - col2 <= 1) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-*/
 
     //When a ship button is clicked, the ship on the grid will be selected. Main menu button will return to the main menu
     //Save and play will save the values of the ships so that they set up correctly in the playing battleship layout; also

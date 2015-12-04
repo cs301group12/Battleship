@@ -67,8 +67,8 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
 
         //receive info from previous activity
         intent = getIntent();
-        userBoard.shipsX = intent.getFloatArrayExtra("Ships X");
-        userBoard.shipsY = intent.getFloatArrayExtra("Ships Y");
+        userBoard.shipsX = (float[]) intent.getFloatArrayExtra("Ships X");
+        userBoard.shipsY = (float[]) intent.getFloatArrayExtra("Ships Y");
         userBoard.shipOrientations = (boolean[]) intent.getBooleanArrayExtra("Ship Orientations");
         shipVals = (int[]) intent.getIntArrayExtra("Ship Set Up");
 
