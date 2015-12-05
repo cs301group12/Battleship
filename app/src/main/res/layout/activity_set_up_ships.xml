@@ -124,4 +124,13 @@
         android:layout_x="100dp"
         android:layout_y="530dp" />
 
+    <ImageView
+        android:layout_width="276dp"
+        android:layout_height="142dp"
+        android:id="@+id/errorOverlapping"
+        android:layout_x="350dp"
+        android:layout_y="485dp"
+        android:background="@drawable/error_overlapping"
+        android:visibility="invisible" />
+
 </AbsoluteLayout>

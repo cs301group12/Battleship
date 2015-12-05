@@ -62,6 +62,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     Bitmap submarine;
     Bitmap ptBoat;
 
+    ImageView errorOverlap;
+
     //Initializes ship buttons
     private Button carrierButton;
     private Button battleshipButton;
@@ -121,6 +123,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         ptBoatButton = (Button) findViewById(R.id.selectPTBoat);
         ptBoatButton.setOnClickListener(this);
         ptBoatButton.setOnLongClickListener(this);
+
+        errorOverlap = (ImageView) findViewById(R.id.errorOverlapping);
 
 
     }
@@ -575,7 +579,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
                 }
             }
 
-            /* Currently does not work
+
             //Gets the values for the x and y coordinate for each ship.
             carrierRow = getRow((int)board.shipsY[0]);
             carrierCol = getCol((int)board.shipsX[0]);
@@ -591,8 +595,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
             boatRow = getRow((int)board.shipsY[4]);
             boatCol = getCol((int)board.shipsX[4]);
-            */
-            /* Currently does not work
+
+
             boolean check1 = overlap(0,1, carrierRow, carrierCol, battleshipRow, battleshipCol);
 
             boolean check2 = overlap(0,2, carrierRow, carrierCol, destroyerRow, destroyerCol);
@@ -601,13 +605,13 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
             boolean check4 = overlap(0,4, carrierRow, carrierCol, boatRow, boatCol);
 
-            boolean check8 = overlap(1,0, battleshipRow, battleshipCol, carrierRow, carrierCol);
+            boolean check5 = overlap(1,0, battleshipRow, battleshipCol, carrierRow, carrierCol);
 
-            boolean check5 = overlap(1,2, battleshipRow, battleshipCol, destroyerRow, destroyerCol);
+            boolean check6 = overlap(1,2, battleshipRow, battleshipCol, destroyerRow, destroyerCol);
 
-            boolean check6 = overlap(1,3, battleshipRow, battleshipCol, submarineRow, submarineCol);
+            boolean check7 = overlap(1,3, battleshipRow, battleshipCol, submarineRow, submarineCol);
 
-            boolean check7 = overlap(1,4, battleshipRow, battleshipCol, boatRow, boatCol);
+            boolean check8 = overlap(1,4, battleshipRow, battleshipCol, boatRow, boatCol);
 
             boolean check9 = overlap(2,0, destroyerRow, destroyerCol, carrierRow, carrierCol);
 
@@ -615,15 +619,15 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
             boolean check11 = overlap(2,3, destroyerRow, destroyerCol, submarineRow, submarineCol);
 
-            boolean check16 = overlap(2,4, destroyerRow, destroyerCol, boatRow, boatCol);
+            boolean check12 = overlap(2,4, destroyerRow, destroyerCol, boatRow, boatCol);
 
-            boolean check12 = overlap(3,0, submarineRow, submarineCol, carrierRow, carrierCol);
+            boolean check13 = overlap(3,0, submarineRow, submarineCol, carrierRow, carrierCol);
 
-            boolean check13 = overlap(3,1, submarineRow, submarineCol, battleshipRow, battleshipCol);
+            boolean check14 = overlap(3,1, submarineRow, submarineCol, battleshipRow, battleshipCol);
 
-            boolean check14 = overlap(3,2, submarineRow, submarineCol, destroyerRow, destroyerCol);
+            boolean check15 = overlap(3,2, submarineRow, submarineCol, destroyerRow, destroyerCol);
 
-            boolean check15 = overlap(3,4, submarineRow, submarineCol, boatRow, boatCol);
+            boolean check16 = overlap(3,4, submarineRow, submarineCol, boatRow, boatCol);
 
             boolean check17 = overlap(4,0, boatRow, boatCol, carrierRow, carrierCol);
 
@@ -635,30 +639,30 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
 
             if(check1 == true || check2 == true || check3 == true || check4 == true ||
-                    check5 == true || check6 == true || check7 == true ||check8 == true ||check9 == true || check10 == true || check11 == true
-                    || check12 == true || check13 == true || check14 == true || check15 == true || check16 == true
+                    check5 == true || check6 == true || check7 == true ||check8 == true
+                    ||check9 == true || check10 == true || check11 == true || check12 == true ||
+                    check13 == true || check14 == true || check15 == true || check16 == true
                     ||check17 == true || check18 == true || check19 == true || check20 == true)
             {
                 saveAndPlay.setVisibility(View.INVISIBLE);
+                errorOverlap.setVisibility(View.VISIBLE);
             }
             else
             {
                 saveAndPlay.setVisibility(View.VISIBLE);
+                errorOverlap.setVisibility(View.INVISIBLE);
             }
 
-            /*
-            checkOverLapping(0,2,getRow((int) board.shipsY[0]), getCol((int) board.shipsX[0]), getRow((int) board.shipsY[2]), getCol((int) board.shipsX[2]));
-            checkOverLapping(0, 3, getRow((int) board.shipsY[0]), getCol((int) board.shipsX[0]), getRow((int) board.shipsY[3]), getCol((int) board.shipsX[3]));
-            checkOverLapping(0,4,getRow((int) board.shipsY[0]), getCol((int) board.shipsX[0]), getRow((int) board.shipsY[4]), getCol((int) board.shipsX[4]));
-            */
+
             board.getHolder().unlockCanvasAndPost(canvas);
             board.postInvalidate();
         }
 
-        /*
+
         if(event.getAction() == MotionEvent.ACTION_UP)
         {
 
+            /*
             System.out.println("Carrier Row: " + getRow((int) board.shipsY[0]));
             System.out.println("Carrier Col: " + getCol((int)board.shipsX[0]));
 
@@ -674,15 +678,15 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
             System.out.println("Boat Row: " + getRow((int)board.shipsY[4]));
             System.out.println("Boat Col: " + getCol((int)board.shipsX[4]));
-
+            */
 
 
         }
-        */
+
         return true;
 
     }
-    /*
+
     //Find the y value of each ship so that it can be passed into the 2D array
     public int getRow(int y)
     {
@@ -727,27 +731,42 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         boolean boatOrientation =  board.getpTBoatOrientation() == true;
         boolean destroyerOrientation = board.getDestroyerOrientation() == true;
     if(numOfShip == 0) {
-        if ((row1 == row2 && carrierOrientation && battleshipOrientation && submarineOrientation && destroyerOrientation
-                && boatOrientation)) {
+        if ((row1 == row2 && carrierOrientation)) {
 
-            System.out.println("Both are horizontal");
+
             if (shipNum == 1) {
-            if (col1 - col2 >= -4 && col1 - col2 <= 3) {
+            if (col1 - col2 >= -4 && col1 - col2 <= 3 && battleshipOrientation) {
+                return true;
+            }
+            else if(col1 - col2 >= -4 && col1 - col2 <= 0 && !battleshipOrientation)
+            {
                 return true;
             }
         }
         if (shipNum == 2) {
-            if (col1 - col2 >= -4 && col1 - col2 <= 2) {
+            if (col1 - col2 >= -4 && col1 - col2 <= 2 && destroyerOrientation) {
+                return true;
+            }
+            else if(col1 - col2 >= -4 && col1 - col2 <= 0 && !destroyerOrientation)
+            {
                 return true;
             }
         }
         if (shipNum == 3) {
-            if (col1 - col2 >= -4 && col1 - col2 <= 2) {
+            if (col1 - col2 >= -4 && col1 - col2 <= 2 && submarineOrientation) {
+                return true;
+            }
+            else if(col1 - col2 >= -4 && col1 - col2 <= 0 && !submarineOrientation)
+            {
                 return true;
             }
         }
         if (shipNum == 4) {
-            if (col1 - col2 >= -4 && col1 - col2 <= 1) {
+            if (col1 - col2 >= -4 && col1 - col2 <= 1 && boatOrientation) {
+                return true;
+            }
+            else if(col1 - col2 >= -4 && col1 - col2 <= 0 && !boatOrientation)
+            {
                 return true;
             }
         }
@@ -831,27 +850,41 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
         if(numOfShip == 1) {
             //battleship
-            if ((row1 == row2 && carrierOrientation && battleshipOrientation && submarineOrientation && destroyerOrientation
-                    && boatOrientation)) {
+            if ((row1 == row2 && battleshipOrientation)) {
 
-                System.out.println("Both are horizontal");
                 if (shipNum == 0) {
-                    if (col1 - col2 >= -3 && col1 - col2 <= 4) {
+                    if (col1 - col2 >= -3 && col1 - col2 <= 4 && carrierOrientation) {
+                        return true;
+                    }
+                    else if(col1 - col2 >= -3 && col1 - col2 <= 0 && !carrierOrientation)
+                    {
                         return true;
                     }
                 }
                 if (shipNum == 2) {
-                    if (col1 - col2 >= -3 && col1 - col2 <= 2) {
+                    if (col1 - col2 >= -3 && col1 - col2 <= 2 && destroyerOrientation) {
+                        return true;
+                    }
+                    else if(col1 - col2 >= -3 && col1 - col2 <= 0 && !destroyerOrientation)
+                    {
                         return true;
                     }
                 }
                 if (shipNum == 3) {
-                    if (col1 - col2 >= -3 && col1 - col2 <= 2) {
+                    if (col1 - col2 >= -3 && col1 - col2 <= 2 && submarineOrientation) {
+                        return true;
+                    }
+                    else if(col1 - col2 >= -3 && col1 - col2 <= 0 && !submarineOrientation)
+                    {
                         return true;
                     }
                 }
                 if (shipNum == 4) {
-                    if (col1 - col2 >= -3 && col1 - col2 <= 1) {
+                    if (col1 - col2 >= -3 && col1 - col2 <= 1 && boatOrientation) {
+                        return true;
+                    }
+                    else if(col1 - col2 >= -3 && col1 - col2 <= 0 && !boatOrientation)
+                    {
                         return true;
                     }
                 }
@@ -935,27 +968,41 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         //destroyer
 
         if(numOfShip == 2) {
-            if ((row1 == row2 && carrierOrientation && battleshipOrientation && submarineOrientation && destroyerOrientation
-                    && boatOrientation)) {
+            if ((row1 == row2 && destroyerOrientation)) {
 
-                System.out.println("Both are horizontal");
                 if (shipNum == 0) {
-                    if (col1 - col2 >= -2 && col1 - col2 <= 4) {
+                    if (col1 - col2 >= -2 && col1 - col2 <= 4 && carrierOrientation) {
+                        return true;
+                    }
+                    else if(col1 - col2 >= -2 && col1 - col2 <= 0 && !carrierOrientation)
+                    {
                         return true;
                     }
                 }
                 if (shipNum == 1) {
-                    if (col1 - col2 >= -2 && col1 - col2 <= 3) {
+                    if (col1 - col2 >= -2 && col1 - col2 <= 3 && battleshipOrientation) {
+                        return true;
+                    }
+                    else if(col1 - col2 >= -2 && col1 - col2 <= 0 && !battleshipOrientation)
+                    {
                         return true;
                     }
                 }
                 if (shipNum == 3) {
-                    if (col1 - col2 >= -2 && col1 - col2 <= 2) {
+                    if (col1 - col2 >= -2 && col1 - col2 <= 2 && submarineOrientation) {
+                        return true;
+                    }
+                    else if(col1 - col2 >= -2 && col1 - col2 <= 0 && !submarineOrientation)
+                    {
                         return true;
                     }
                 }
                 if (shipNum == 4) {
-                    if (col1 - col2 >= -2 && col1 - col2 <= 1) {
+                    if (col1 - col2 >= -2 && col1 - col2 <= 1 && boatOrientation) {
+                        return true;
+                    }
+                    else if(col1 - col2 >= -2 && col1 - col2 <= 0 && !boatOrientation)
+                    {
                         return true;
                     }
                 }
@@ -964,7 +1011,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
                     if (shipNum == 0) {
                         if (carrierOrientation) {
-                            if ((row1 - row2 >= -1 && row1 - row2 <= 0) || row1 == row2) {
+                            if ((row1 - row2 >= -2 && row1 - row2 <= 0) || row1 == row2) {
                                 if (col1 - col2 >= 0 && col1 - col2 <= 4) {
                                     return true;
                                 }
@@ -972,7 +1019,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
                         } else {
                             if (!carrierOrientation) {
                                 if (col1 == col2) {
-                                    if ((row1 - row2 >= -3) && (row1 - row2 <= 4)) {
+                                    if ((row1 - row2 >= -2) && (row1 - row2 <= 4)) {
                                         return true;
                                     }
                                 }
@@ -981,7 +1028,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
                     }
                     if (shipNum == 1) {
                         if (battleshipOrientation) {
-                            if ((row1 - row2 >= -1 && row1 - row2 <= 0) || row1 == row2) {
+                            if ((row1 - row2 >= -2 && row1 - row2 <= 0) || row1 == row2) {
                                 if (col1 - col2 >= 0 && col1 - col2 <= 3) {
                                     return true;
                                 }
@@ -989,7 +1036,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
                         } else {
                             if (!battleshipOrientation) {
                                 if (col1 == col2) {
-                                    if ((row1 - row2 >= -3) && (row1 - row2 <= 3)) {
+                                    if ((row1 - row2 >= -2) && (row1 - row2 <= 3)) {
                                         return true;
                                     }
                                 }
@@ -999,7 +1046,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
                     if (shipNum == 3) {
                         if (submarineOrientation) {
-                            if ((row1 - row2 >= -1 && row1 - row2 <= 0) || row1 == row2) {
+                            if ((row1 - row2 >= -2 && row1 - row2 <= 0) || row1 == row2) {
                                 if (col1 - col2 >= 0 && col1 - col2 <= 2) {
                                     return true;
                                 }
@@ -1007,7 +1054,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
                         } else {
                             if (!submarineOrientation) {
                                 if (col1 == col2) {
-                                    if ((row1 - row2 >= -3) && (row1 - row2 <= 2)) {
+                                    if ((row1 - row2 >= -2) && (row1 - row2 <= 2)) {
                                         return true;
                                     }
                                 }
@@ -1017,7 +1064,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
                     if (shipNum == 4) {
                         if (boatOrientation) {
-                            if ((row1 - row2 >= -1 && row1 - row2 <= 0) || row1 == row2) {
+                            if ((row1 - row2 >= -2 && row1 - row2 <= 0) || row1 == row2) {
                                 if (col1 - col2 >= 0 && col1 - col2 <= 1) {
                                     return true;
                                 }
@@ -1025,7 +1072,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
                         } else {
                             if (!boatOrientation) {
                                 if (col1 == col2) {
-                                    if ((row1 - row2 >= -3) && (row1 - row2 <= 1)) {
+                                    if ((row1 - row2 >= -2) && (row1 - row2 <= 1)) {
                                         return true;
                                     }
                                 }
@@ -1038,27 +1085,41 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
         //submarine
 if(numOfShip == 3) {
-    if ((row1 == row2 && carrierOrientation && battleshipOrientation && submarineOrientation && destroyerOrientation
-            && boatOrientation)) {
+    if ((row1 == row2 && submarineOrientation)) {
 
-        System.out.println("Both are horizontal");
+        if (shipNum == 1) {
+            if (col1 - col2 >= -2 && col1 - col2 <= 3 && battleshipOrientation) {
+                return true;
+            }
+            else if(col1 - col2 >= -2 && col1 - col2 <= 0 && !battleshipOrientation)
+            {
+                return true;
+            }
+        }
         if (shipNum == 0) {
-            if (col1 - col2 >= -2 && col1 - col2 <= 4) {
+            if (col1 - col2 >= -2 && col1 - col2 <= 4 && carrierOrientation) {
+                return true;
+            }
+            else if(col1 - col2 >= -2 && col1 - col2 <= 0 && !carrierOrientation)
+            {
                 return true;
             }
         }
         if (shipNum == 2) {
-            if (col1 - col2 >= -2 && col1 - col2 <= 3) {
+            if (col1 - col2 >= -2 && col1 - col2 <= 2 && destroyerOrientation) {
                 return true;
             }
-        }
-        if (shipNum == 3) {
-            if (col1 - col2 >= -2 && col1 - col2 <= 2) {
+            else if(col1 - col2 >= -2 && col1 - col2 <= 0 && !destroyerOrientation)
+            {
                 return true;
             }
         }
         if (shipNum == 4) {
-            if (col1 - col2 >= -2 && col1 - col2 <= 1) {
+            if (col1 - col2 >= -2 && col1 - col2 <= 1 && boatOrientation) {
+                return true;
+            }
+            else if(col1 - col2 >= -2 && col1 - col2 <= 0 && !boatOrientation)
+            {
                 return true;
             }
         }
@@ -1075,7 +1136,7 @@ if(numOfShip == 3) {
                 } else {
                     if (!carrierOrientation) {
                         if (col1 == col2) {
-                            if ((row1 - row2 >= -3) && (row1 - row2 <= 4)) {
+                            if ((row1 - row2 >= -2) && (row1 - row2 <= 4)) {
                                 return true;
                             }
                         }
@@ -1092,7 +1153,7 @@ if(numOfShip == 3) {
                 } else {
                     if (!battleshipOrientation) {
                         if (col1 == col2) {
-                            if ((row1 - row2 >= -3) && (row1 - row2 <= 3)) {
+                            if ((row1 - row2 >= -2) && (row1 - row2 <= 3)) {
                                 return true;
                             }
                         }
@@ -1110,7 +1171,7 @@ if(numOfShip == 3) {
                 } else {
                     if (!destroyerOrientation) {
                         if (col1 == col2) {
-                            if ((row1 - row2 >= -3) && (row1 - row2 <= 2)) {
+                            if ((row1 - row2 >= -2) && (row1 - row2 <= 2)) {
                                 return true;
                             }
                         }
@@ -1128,7 +1189,7 @@ if(numOfShip == 3) {
                 } else {
                     if (!boatOrientation) {
                         if (col1 == col2) {
-                            if ((row1 - row2 >= -3) && (row1 - row2 <= 1)) {
+                            if ((row1 - row2 >= -2) && (row1 - row2 <= 1)) {
                                 return true;
                             }
                         }
@@ -1141,27 +1202,44 @@ if(numOfShip == 3) {
 
         //boat
 if(numOfShip == 4) {
-    if ((row1 == row2 && carrierOrientation && battleshipOrientation && submarineOrientation && destroyerOrientation
-            && boatOrientation)) {
+    if ((row1 == row2 && boatOrientation && (carrierOrientation||!carrierOrientation) &&
+            (battleshipOrientation||!battleshipOrientation) && (submarineOrientation||!submarineOrientation)
+            && (destroyerOrientation||!destroyerOrientation)
+            )) {
 
-        System.out.println("Both are horizontal");
         if (shipNum == 0) {
-            if (col1 - col2 >= -1 && col1 - col2 <= 4) {
+            if (col1 - col2 >= -1 && col1 - col2 <= 4 && carrierOrientation) {
+                return true;
+            }
+            else if(col1 - col2 >= -1 && col1 - col2 <= 0 && !carrierOrientation)
+            {
                 return true;
             }
         }
         if (shipNum == 1) {
-            if (col1 - col2 >= -1 && col1 - col2 <= 3) {
+            if (col1 - col2 >= -1 && col1 - col2 <= 3 && battleshipOrientation) {
+                return true;
+            }
+            else if(col1 - col2 >= -1 && col1 - col2 <= 0 && !battleshipOrientation)
+            {
                 return true;
             }
         }
         if (shipNum == 2) {
-            if (col1 - col2 >= -1 && col1 - col2 <= 2) {
+            if (col1 - col2 >= -1 && col1 - col2 <= 2 && destroyerOrientation) {
+                return true;
+            }
+            else if(col1 - col2 >= -1 && col1 - col2 <= 0 && !destroyerOrientation)
+            {
                 return true;
             }
         }
         if (shipNum == 3) {
-            if (col1 - col2 >= -1 && col1 - col2 <= 2) {
+            if (col1 - col2 >= -1 && col1 - col2 <= 2 && destroyerOrientation) {
+                return true;
+            }
+            else if(col1 - col2 >= -1 && col1 - col2 <= 0 && !destroyerOrientation)
+            {
                 return true;
             }
         }
@@ -1169,7 +1247,7 @@ if(numOfShip == 4) {
         if (!boatOrientation) {
             if (shipNum == 0) {
                 if (carrierOrientation) {
-                    if ((row1 - row2 >= -2 && row1 - row2 <= 0) || row1 == row2) {
+                    if ((row1 - row2 >= -1 && row1 - row2 <= 0) || row1 == row2) {
                         if (col1 - col2 >= 0 && col1 - col2 <= 4) {
                             return true;
                         }
@@ -1186,7 +1264,7 @@ if(numOfShip == 4) {
             }
             if (shipNum == 1) {
                 if (battleshipOrientation) {
-                    if ((row1 - row2 >= -2 && row1 - row2 <= 0) || row1 == row2) {
+                    if ((row1 - row2 >= -1 && row1 - row2 <= 0) || row1 == row2) {
                         if (col1 - col2 >= 0 && col1 - col2 <= 3) {
                             return true;
                         }
@@ -1204,7 +1282,7 @@ if(numOfShip == 4) {
 
             if (shipNum == 2) {
                 if (destroyerOrientation) {
-                    if ((row1 - row2 >= -2 && row1 - row2 <= 0) || row1 == row2) {
+                    if ((row1 - row2 >= -1 && row1 - row2 <= 0) || row1 == row2) {
                         if (col1 - col2 >= 0 && col1 - col2 <= 2) {
                             return true;
                         }
@@ -1222,7 +1300,7 @@ if(numOfShip == 4) {
 
             if (shipNum == 3) {
                 if (submarineOrientation) {
-                    if ((row1 - row2 >= -2 && row1 - row2 <= 0) || row1 == row2) {
+                    if ((row1 - row2 >= -1 && row1 - row2 <= 0) || row1 == row2) {
                         if (col1 - col2 >= 0 && col1 - col2 <= 2) {
                             return true;
                         }
@@ -1243,7 +1321,7 @@ if(numOfShip == 4) {
 
       return false;
     }
-    */
+
 
     //When a ship button is clicked, the ship on the grid will be selected. Main menu button will return to the main menu
     //Save and play will save the values of the ships so that they set up correctly in the playing battleship layout; also
@@ -1296,7 +1374,7 @@ if(numOfShip == 4) {
             intent.putExtra("Ships Y",board.shipsY);
             intent.putExtra("Ship Orientations",board.shipOrientations);
 
-            /* Currently does not work
+
             carrierRow = getRow((int) board.shipsY[0]);
             carrierCol = getCol((int) board.shipsX[0]);
 
@@ -1330,7 +1408,7 @@ if(numOfShip == 4) {
             shipsVals[9] = boatCol;
 
             intent.putExtra("Ship Set Up",shipsVals);
-            */
+
 
             startActivityForResult(intent,10);
         }
