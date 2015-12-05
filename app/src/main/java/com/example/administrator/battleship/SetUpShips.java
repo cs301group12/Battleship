@@ -595,8 +595,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
             boatRow = getRow((int)board.shipsY[4]);
             boatCol = getCol((int)board.shipsX[4]);
-            */
-            /* Currently does not work
+
+
             boolean check1 = overlap(0,1, carrierRow, carrierCol, battleshipRow, battleshipCol);
 
             boolean check2 = overlap(0,2, carrierRow, carrierCol, destroyerRow, destroyerCol);
@@ -1372,7 +1372,7 @@ if(numOfShip == 4) {
             intent.putExtra("Ships Y",board.shipsY);
             intent.putExtra("Ship Orientations",board.shipOrientations);
 
-            /* Currently does not work
+
             carrierRow = getRow((int) board.shipsY[0]);
             carrierCol = getCol((int) board.shipsX[0]);
 
@@ -1406,7 +1406,7 @@ if(numOfShip == 4) {
             shipsVals[9] = boatCol;
 
             intent.putExtra("Ship Set Up",shipsVals);
-            */
+
 
             startActivityForResult(intent,10);
         }
