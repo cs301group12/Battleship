@@ -575,7 +575,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
                 }
             }
 
-            /* Currently does not work
+            /*
             //Gets the values for the x and y coordinate for each ship.
             carrierRow = getRow((int)board.shipsY[0]);
             carrierCol = getCol((int)board.shipsX[0]);
@@ -591,7 +591,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
             boatRow = getRow((int)board.shipsY[4]);
             boatCol = getCol((int)board.shipsX[4]);
-            */
+
+
             /* Currently does not work
             boolean check1 = overlap(0,1, carrierRow, carrierCol, battleshipRow, battleshipCol);
 
@@ -682,42 +683,42 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         return true;
 
     }
-    /*
+
     //Find the y value of each ship so that it can be passed into the 2D array
     public int getRow(int y)
     {
         //System.out.println("method " + y);
-        if(y == 21 || y == 12 || y == 20 || y == 9) { return 1; }
-        else if(y == 117 || y == 110 || y == 105) { return 2; }
-        else if(y == 212 || y == 210 || y == 205 || y == 201) { return 3; }
-        else if(y == 307 || y == 302 || y == 298) { return 4; }
-        else if(y == 404 || y == 400 || y == 396 || y == 390) { return 5; }
-        else if(y == 501 || y == 500 || y == 495 || y == 490){ return 6; }
-        else if(y == 595 || y == 600 || y == 588 || y == 580) { return 7; }
-        else if(y == 693 || y == 684 || y == 680) { return 8; }
-        else if(y == 788 || y == 772) { return 9; }
-        else if(y == 884) { return 10;}
-        else { return 0; }
+        if(y == 21 || y == 12 || y == 20 || y == 9) { return 0; }
+        else if(y == 117 || y == 110 || y == 105) { return 1; }
+        else if(y == 212 || y == 210 || y == 205 || y == 201) { return 2; }
+        else if(y == 307 || y == 302 || y == 298) { return 3; }
+        else if(y == 404 || y == 400 || y == 396 || y == 390) { return 4; }
+        else if(y == 501 || y == 500 || y == 495 || y == 490){ return 5; }
+        else if(y == 595 || y == 600 || y == 588 || y == 580) { return 6; }
+        else if(y == 693 || y == 684 || y == 680) { return 7; }
+        else if(y == 788 || y == 772) { return 8; }
+        else if(y == 884) { return 9;}
+        else { return -1; }
     }
 
     //Find the x value of each ship so that it can be passed into the 2D array
     public int getCol(int x)
     {
         //System.out.println("method " + x);
-        if(x == 0 || x == 16 || x == 22 || x == 10) { return 1; }
-        else if(x == 112 || x == 118 || x == 106) { return 2; }
-        else if(x == 200 || x == 211 || x == 213 || x == 205) { return 3; }
-        else if(x == 305 || x == 310 || x == 298) { return 4; }
-        else if(x == 400 || x == 403 || x == 405 || x == 396) { return 5; }
-        else if(x == 498 || x == 501 || x == 492){ return 6; }
-        else if(x == 589 || x == 594 || x == 598 || x == 588) { return 7; }
-        else if(x == 693 || x == 685 || x == 680) { return 8; }
-        else if(x == 789 || x == 776) { return 9; }
-        else if(x == 885) { return 10;}
-        else { return 0; }
+        if(x == 0 || x == 16 || x == 22 || x == 10) { return 0; }
+        else if(x == 112 || x == 118 || x == 106) { return 1; }
+        else if(x == 200 || x == 211 || x == 213 || x == 205) { return 2; }
+        else if(x == 305 || x == 310 || x == 298) { return 3; }
+        else if(x == 400 || x == 403 || x == 405 || x == 396) { return 4; }
+        else if(x == 498 || x == 501 || x == 492){ return 5; }
+        else if(x == 589 || x == 594 || x == 598 || x == 588) { return 6; }
+        else if(x == 693 || x == 685 || x == 680) { return 7; }
+        else if(x == 789 || x == 776) { return 8; }
+        else if(x == 885) { return 9;}
+        else { return -1; }
 
     }
-
+    /*
     //Checks if the carrier is overlapping another ship
     public boolean overlap(int numOfShip, int shipNum, int row1,int col1,int row2,int col2)
     {
@@ -1296,7 +1297,7 @@ if(numOfShip == 4) {
             intent.putExtra("Ships Y",board.shipsY);
             intent.putExtra("Ship Orientations",board.shipOrientations);
 
-            /* Currently does not work
+
             carrierRow = getRow((int) board.shipsY[0]);
             carrierCol = getCol((int) board.shipsX[0]);
 
@@ -1330,7 +1331,7 @@ if(numOfShip == 4) {
             shipsVals[9] = boatCol;
 
             intent.putExtra("Ship Set Up",shipsVals);
-            */
+
 
             startActivityForResult(intent,10);
         }

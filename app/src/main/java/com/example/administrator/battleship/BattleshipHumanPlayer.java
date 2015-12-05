@@ -70,13 +70,13 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
         userBoard.shipsX = (float[]) intent.getFloatArrayExtra("Ships X");
         userBoard.shipsY = (float[]) intent.getFloatArrayExtra("Ships Y");
         userBoard.shipOrientations = (boolean[]) intent.getBooleanArrayExtra("Ship Orientations");
-        //shipVals = (int[]) intent.getIntArrayExtra("Ship Set Up");
+        shipVals = (int[]) intent.getIntArrayExtra("Ship Set Up");
 
-        /*
 
-        SHIP'S ROW AND COL VALUES
 
-        THEY ARE ALL GIVING THE CORRECT VALUES
+        //SHIP'S ROW AND COL VALUES
+
+        //THEY ARE ALL GIVING THE CORRECT VALUES
 
 
         System.out.println("carrier ROW " + shipVals[0]);
@@ -93,7 +93,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
 
         System.out.println("boat ROW " + shipVals[8]);
         System.out.println("boat COL " + shipVals[9]);
-        */
+
 
         //load the sounds to be played
         this.pickupId1 = hitSound.load(this, R.raw.explosion, 1);
@@ -121,19 +121,20 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
      *
      */
     public void setUpUserShips(){
+        /*
         gameState.setUpUserShips(1,0,1,true);//carrier row 1 col 2
         gameState.setUpUserShips(2,4,7,false);//battleship row 5 col 8
         gameState.setUpUserShips(3,3,2,true);//destroyer row 4 col 3
         gameState.setUpUserShips(4,9,0,true);//submarine row 10 col 1
         gameState.setUpUserShips(5,6,2,false);//ptBoat row 7 col 3
+        */
 
-        /*
         gameState.setUpUserShips(1,shipVals[0],shipVals[1],userBoard.shipOrientations[0]);
         gameState.setUpUserShips(2,shipVals[2],shipVals[3],userBoard.shipOrientations[1]);
         gameState.setUpUserShips(3,shipVals[4],shipVals[5],userBoard.shipOrientations[2]);
         gameState.setUpUserShips(4,shipVals[6],shipVals[7],userBoard.shipOrientations[3]);
         gameState.setUpUserShips(5,shipVals[8],shipVals[9],userBoard.shipOrientations[4]);
-        */
+
 
     }
 
