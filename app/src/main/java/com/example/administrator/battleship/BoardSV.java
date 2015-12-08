@@ -26,6 +26,8 @@ import android.view.SurfaceView;
 public class BoardSV extends SurfaceView{
 
     private Bitmap blueSquare;//grid made up of blue squares
+    private Bitmap redSquare;
+    private Bitmap whiteSquare;
     //vertical and horizontal versions of each ship
     Bitmap carrierH;
     Bitmap carrierV;
@@ -42,14 +44,26 @@ public class BoardSV extends SurfaceView{
     public float[] shipsX = new float[5];//x values for ships to be drawn
     public float[] shipsY = new float[5];//y values for ships to be drawn
     public boolean[] shipOrientations = new boolean[5];
+    private int[][] userGrid = new int[10][10];
+    private int chosenRow;
+    private int chosenCol;
+    private boolean shipHit =false;
 
     //Constructor
     public BoardSV(Context context, AttributeSet attrs) {
-        super(context,attrs);
+        super(context, attrs);
         setWillNotDraw(false);
         blueSquare = BitmapFactory.decodeResource(getResources(), R.mipmap.blue_square_grid);
+        redSquare = BitmapFactory.decodeResource(getResources(), R.mipmap.red_square_grid);
+        whiteSquare = BitmapFactory.decodeResource(getResources(), R.mipmap.white_square_grid);
         width=height=0;
-
+        chosenRow=chosenCol=-1;
+        for(int i =0; i<10; i++)
+        {
+            for(int j = 0;j<10;j++) {
+                userGrid[i][j] = 0;
+            }
+        }
 
     }
 
@@ -66,7 +80,6 @@ public class BoardSV extends SurfaceView{
         for(int i =0; i<10; i++)
         {
             for(int j = 0;j<10;j++) {
-
                 canvas.drawBitmap(blueSquare, (float) (j * blueSquare.getHeight()), (float) (i * blueSquare.getWidth()), null);
                 canvas.drawBitmap(blueSquare, (float) (i * blueSquare.getWidth()), (float) (j * blueSquare.getHeight()), null);
 
@@ -116,7 +129,51 @@ public class BoardSV extends SurfaceView{
             canvas.drawBitmap(ptBoatV, shipsX[4], shipsY[4], null);
         }
 
+        chosenRow = getChosenRow();
+        chosenCol = getChosenCol();
+        shipHit = isShipHit();
+        drawHitOrMiss(chosenRow, chosenCol, shipHit, canvas);
+
     }
 
 
+    public void drawHitOrMiss(int row, int col, boolean hit, Canvas canvas) {
+        for(int i =0; i<10; i++)
+        {
+            for(int j = 0;j<10;j++) {
+                if (userGrid[i][j] == 1){
+                    canvas.drawBitmap(redSquare, (float) (j * redSquare.getHeight()), (float) (i * redSquare.getWidth()), null);
+                }
+                else if (userGrid[i][j] == 2){
+                    canvas.drawBitmap(whiteSquare, (float) (j * whiteSquare.getHeight()), (float) (i * whiteSquare.getWidth()), null);
+                }
+
+            }
+        }
+
+    }
+    public int getChosenRow() {
+        return chosenRow;
+    }
+
+    public int getChosenCol() {
+        return chosenCol;
+    }
+
+    public void hitOnGrid(int row, int col){
+        chosenRow = row;
+        chosenCol = col;
+        shipHit = true;
+        userGrid[row][col] = 1;
+    }
+    public void missOnGrid(int row, int col){
+        chosenRow = row;
+        chosenCol = col;
+        shipHit = false;
+        userGrid[row][col] = 2;
+    }
+
+    public boolean isShipHit() {
+        return shipHit;
+    }
 }
