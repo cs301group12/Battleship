@@ -245,40 +245,40 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             else if (!moveCarrier && moveBattleship && !moveDestroyer && !moveSubmarine && !movePtBoat){
                 //size of battleship 350.8624
                 if(board.getBattleshipOrientation() == true) {
-                    if (event.getX() < 225){
+                    if (event.getX() < 225) {
                         board.shipsX[1] = (float) 16.83;
-                    } else if (event.getX() < 325){
+                    } else if (event.getX() < 325) {
                         board.shipsX[1] = (float) 112;
-                    } else if (event.getX() < 425){
+                    } else if (event.getX() < 425) {
                         board.shipsX[1] = (float) 211;
-                    } else if (event.getX() < 525){
+                    } else if (event.getX() < 525) {
                         board.shipsX[1] = (float) 305.6;
-                    } else if (event.getX() < 625){
+                    } else if (event.getX() < 625) {
                         board.shipsX[1] = (float) 403;
-                    } else if (event.getX() < 725){
+                    } else if (event.getX() < 725) {
                         board.shipsX[1] = (float) 498;
-                    } else if ((event.getX() < 825) || (event.getX() > 825)){
+                    } else if ((event.getX() < 825) || (event.getX() > 825)) {
                         board.shipsX[1] = (float) 594;
                     }
-                    if (event.getY() < 98){
+                    if (event.getY() < 98) {
                         board.shipsY[1] = (float) 21.2;
-                    } else if (event.getY() < 196){
+                    } else if (event.getY() < 196) {
                         board.shipsY[1] = (float) 117.39;
-                    } else if (event.getY() < 292){
+                    } else if (event.getY() < 292) {
                         board.shipsY[1] = (float) 212.86;
-                    } else if (event.getY() < 388){
+                    } else if (event.getY() < 388) {
                         board.shipsY[1] = (float) 307.8;
-                    } else if (event.getY() < 484){
+                    } else if (event.getY() < 484) {
                         board.shipsY[1] = (float) 404.8;
-                    } else if (event.getY() < 580){
+                    } else if (event.getY() < 580) {
                         board.shipsY[1] = (float) 501.76;
-                    } else if (event.getY() < 676){
+                    } else if (event.getY() < 676) {
                         board.shipsY[1] = (float) 595.7;
-                    } else if (event.getY() < 772){
+                    } else if (event.getY() < 772) {
                         board.shipsY[1] = (float) 693.2;
-                    } else if (event.getY() < 868){
+                    } else if (event.getY() < 868) {
                         board.shipsY[1] = (float) 788.68;
-                    } else if ((event.getY() < 964) || (event.getY() > 964)){
+                    } else if ((event.getY() < 964) || (event.getY() > 964)) {
                         board.shipsY[1] = (float) 884.6;
                     }
                 }
@@ -304,6 +304,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
                     } else if ((event.getX() < 956) || (event.getX() > 956)){
                         board.shipsX[1] = (float) 885.78;
                     }
+
                     if (event.getY() < 196) {
                         board.shipsY[1] = (float) 12;
                     } else if (event.getY() < 292){
@@ -696,10 +697,10 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         else if(y == 212 || y == 210 || y == 205 || y == 201) { return 2; }
         else if(y == 307 || y == 302 || y == 298) { return 3; }
         else if(y == 404 || y == 400 || y == 396 || y == 390) { return 4; }
-        else if(y == 501 || y == 500 || y == 495 || y == 490){ return 5; }
-        else if(y == 595 || y == 600 || y == 588 || y == 580) { return 6; }
-        else if(y == 693 || y == 684 || y == 680) { return 7; }
-        else if(y == 788 || y == 772) { return 8; }
+        else if(y == 501 || y == 500 || y == 495 || y == 490 || y == 498){ return 5; }
+        else if(y == 595 || y == 600 || y == 588 || y == 580 || y == 594) { return 6; }
+        else if(y == 693 || y == 684 || y == 680 || y == 685) { return 7; }
+        else if(y == 788 || y == 772 || y == 776) { return 8; }
         else if(y == 884) { return 9;}
         else { return -1; }
     }
@@ -990,6 +991,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     public void onClick(View view)
     {
         if(view == carrierButton){
+            System.out.println("BATTLESHIP X: " + board.shipsX[1]);
+            System.out.println("BATTLESHIP Y: " + board.shipsY[1]);
             moveCarrier = true;
             moveBattleship = false;
             moveDestroyer = false;
@@ -997,6 +1000,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             movePtBoat = false;
         }
         if (view == battleshipButton){
+            System.out.println("BATTLESHIP X: " + board.shipsX[1]);
+            System.out.println("BATTLESHIP Y: " + board.shipsY[1]);
             moveCarrier = false;
             moveBattleship = true;
             moveDestroyer = false;
@@ -1004,6 +1009,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             movePtBoat = false;
         }
         if (view == destroyerButton) {
+            System.out.println("BATTLESHIP X: " + board.shipsX[1]);
+            System.out.println("BATTLESHIP Y: " + board.shipsY[1]);
             moveCarrier = false;
             moveBattleship = false;
             moveDestroyer = true;
@@ -1011,6 +1018,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             movePtBoat = false;
         }
         if (view == submarineButton){
+            System.out.println("BATTLESHIP X: " + board.shipsX[1]);
+            System.out.println("BATTLESHIP Y: " + board.shipsY[1]);
             moveCarrier = false;
             moveBattleship = false;
             moveDestroyer = false;
@@ -1018,6 +1027,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             movePtBoat = false;
         }
         if (view == ptBoatButton){
+            System.out.println("BATTLESHIP X: " + board.shipsX[1]);
+            System.out.println("BATTLESHIP Y: " + board.shipsY[1]);
             moveCarrier = false;
             moveBattleship = false;
             moveDestroyer = false;
@@ -1082,6 +1093,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             boolean dummy = board.getCarrierOrientation();
             board.setCarrierOrientation(!dummy);
             Toast.makeText(getApplicationContext(),"Carrier Orientation Has Been Changed.",Toast.LENGTH_SHORT).show();
+            System.out.println("BATTLESHIP X: " + board.shipsX[1]);
+            System.out.println("BATTLESHIP Y: " + board.shipsY[1]);
             moveCarrier = true;
             moveBattleship = false;
             moveDestroyer = false;

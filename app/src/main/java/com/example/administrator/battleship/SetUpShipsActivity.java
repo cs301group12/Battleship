@@ -163,35 +163,42 @@ public class SetUpShipsActivity extends SurfaceView{
     {
         if(imageID == 1) {
             if(isHorizontal == true) {
+                checkOutOfBoundsX(0);
                 nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.carrier_horizontal);
                 canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
             }
             else
             {
+                checkOutOfBoundsY(0);
                 nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.carrier_vertical);
                 canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
             }
-        }
-        else if(imageID == 2)
-        {
-            if(isHorizontal == true) {
+        } else if (imageID == 2) {
+            if (isHorizontal == true) {
                 nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.battleship_horizontal);
+                checkOutOfBoundsX(1);
                 canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
-            }
-            else
+                System.out.println("HORZ X: " + shipsX[shipNum]);
+                System.out.println("HORZ Y: " + shipsY[shipNum]);
+            } else
             {
+                checkOutOfBoundsY(1);
                 nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.battleship_vertical);
                 canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
+                System.out.println("VER X: " + shipsX[shipNum]);
+                System.out.println("VER Y: " + shipsY[shipNum]);
             }
         }
         else if(imageID == 3)
         {
             if(isHorizontal == true) {
+                checkOutOfBoundsX(2);
                 nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.destroyer_horizontal);
                 canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
             }
             else
             {
+                checkOutOfBoundsY(2);
                 nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.destroyer_vertical);
                 canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
             }
@@ -199,11 +206,13 @@ public class SetUpShipsActivity extends SurfaceView{
         else if(imageID == 4)
         {
             if(isHorizontal == true) {
+                checkOutOfBoundsX(3);
                 nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.submarine_horizontal);
                 canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
             }
             else
             {
+                checkOutOfBoundsY(3);
                 nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.submarine_vertical);
                 canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
             }
@@ -211,23 +220,19 @@ public class SetUpShipsActivity extends SurfaceView{
         else if(imageID == 5)
         {
             if(isHorizontal == true) {
+                checkOutOfBoundsX(4);
                 nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.boat_horizontal);
                 canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
             }
             else
             {
+                checkOutOfBoundsY(4);
                 nameOfShip = BitmapFactory.decodeResource(getResources(), R.drawable.boat_vertical);
                 canvas.drawBitmap(nameOfShip, shipsX[shipNum], shipsY[shipNum], null);
             }
         }
     }
-    
-    public static Bitmap RotateBitmap(Bitmap source, float angle)
-    {
-        Matrix matrix = new Matrix();
-        matrix.postRotate(angle);
-        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
-    }
+
 
     //Returns each ships x and y coordinates
     public float[] getShipsX(){
@@ -237,5 +242,24 @@ public class SetUpShipsActivity extends SurfaceView{
         return shipsY;
     }
 
+    public void checkOutOfBoundsX(int shipNum)
+    {
+        if(shipNum == 0) { if (shipsX[shipNum] > 498) { shipsX[shipNum] = 498; } }
+        else if(shipNum == 1) { if (shipsX[shipNum] > 594) { shipsX[shipNum] = 594; } }
+        else if(shipNum == 2) { if (shipsX[shipNum] > 685) { shipsX[shipNum] = 685; } }
+        else if(shipNum == 3) { if (shipsX[shipNum] > 685) { shipsX[shipNum] = 685; } }
+        else if(shipNum == 4) { if (shipsX[shipNum] > 776) { shipsX[shipNum] = 776; } }
+        else { return; }
+    }
+
+    public void checkOutOfBoundsY(int shipNum)
+    {
+        if(shipNum == 0) { if (shipsY[shipNum] > 498) { shipsY[shipNum] = 498; } }
+        else if(shipNum == 1) { if (shipsY[shipNum] > 594) { shipsY[shipNum] = 594; } }
+        else if(shipNum == 2) { if (shipsY[shipNum] > 685) { shipsY[shipNum] = 685; } }
+        else if(shipNum == 3) { if (shipsY[shipNum] > 685) { shipsY[shipNum] = 685; } }
+        else if(shipNum == 4) { if (shipsY[shipNum] > 776) { shipsY[shipNum] = 776; } }
+        else { return; }
+    }
 
 }
