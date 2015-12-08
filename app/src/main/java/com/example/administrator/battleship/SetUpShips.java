@@ -17,11 +17,19 @@ import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.AbsoluteLayout;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 /**
@@ -37,7 +45,7 @@ import android.widget.Toast;
  *
  **/
 
-public class SetUpShips extends ActionBarActivity implements View.OnTouchListener,View.OnClickListener,View.OnLongClickListener{
+public class SetUpShips extends ActionBarActivity implements View.OnTouchListener,View.OnClickListener,View.OnLongClickListener,AdapterView.OnItemSelectedListener{
 
     //Initializes the layout
     private SetUpShipsActivity board;
@@ -73,7 +81,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     private Button mainMenu;
     private Button saveAndPlay;
 
-    //Intializes the canvas
+    //Initializes the canvas
     private Canvas canvas;
 
     //Initializes horizontal state to true
@@ -82,6 +90,13 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     private boolean moveDestroyer = true;
     private boolean moveSubmarine = true;
     private boolean movePtBoat = true;
+
+    //Initializes AI difficulty Spinner
+    private Spinner aiDifficulty;
+
+    private ArrayAdapter<String> aiDifficultyAdapterArray;
+
+    private ArrayList<String> aiDifficultyArray;
 
 
     //Creates all of the buttons and sets up listeners for all of the buttons and the set up grid
@@ -102,8 +117,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         mainMenu.setOnClickListener(this);
         saveAndPlay.setOnClickListener(this);
 
-        /* Initializes listeners for ship buttons. On click will select ships, while on long click
-           will rotate and select ships*/
+        // Initializes listeners for ship buttons. On click will select ships, while on long click
+        // will rotate and select ships
         carrierButton = (Button) findViewById(R.id.selectCarrier);
         carrierButton.setOnClickListener(this);
         carrierButton.setOnLongClickListener(this);
@@ -126,6 +141,22 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
         errorOverlap = (ImageView) findViewById(R.id.errorOverlapping);
 
+       // String[] aiDifficultyArray = {"normal","hard"};
+        aiDifficultyArray = new ArrayList<String>(Arrays.asList("Easy", "Hard"));
+        aiDifficulty = (Spinner) findViewById(R.id.aiDiffSpin);
+        aiDifficultyAdapterArray = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,aiDifficultyArray);
+
+        aiDifficulty.setAdapter(aiDifficultyAdapterArray);
+        aiDifficulty.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int i, long l){
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 
@@ -1033,6 +1064,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             intent.putExtra("Ships X",board.shipsX);
             intent.putExtra("Ships Y",board.shipsY);
             intent.putExtra("Ship Orientations",board.shipOrientations);
+            intent.putStringArrayListExtra("player",aiDifficultyArray);
 
 
             carrierRow = getRow((int) board.shipsY[0]);
@@ -1135,4 +1167,5 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         }
         return false;
     }
+
 }
