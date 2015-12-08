@@ -145,8 +145,10 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
      *
      */
     public void computerTurn() {
+        canvas = userBoard.getHolder().lockCanvas();
+        int row = -1;
+        int col = -1;
         if (gameState.getPlayerID() == 1) {//if it's AI's turn
-            int row, col;
             while (gameState.getPlayerID() == 1) {//while it is still AI's turn (AI might have chosen a coordinate it previously chose)
                 row = easyAI.generateRandomRow();
                 col = easyAI.generateRandomCol();
@@ -156,10 +158,14 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
             if (userShipHit) {
                 //hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);
                 messageScreen.setText("Your ship has been hit!");
+                userBoard.hitOnGrid(row,col);
             } else {//if they miss a user's ship tell user
                 //missSound.play(this.pickupId2, 1, 1, 1, 0, 1.0f);
                 messageScreen.setText("Your opponent missed!");
+                userBoard.missOnGrid(row,col);
             }
+            userBoard.getHolder().unlockCanvasAndPost(canvas);
+            userBoard.postInvalidate();
             gameState.setUserShipHit(false);
             checkIfGameOver();//check if AI won
         }
