@@ -43,11 +43,6 @@
         android:layout_height="wrap_content"
         android:weightSum="1">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_weight="0.29" />
-
     </LinearLayout>
 
     <Button
@@ -132,5 +127,20 @@
         android:layout_y="485dp"
         android:background="@drawable/error_overlapping"
         android:visibility="invisible" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="0.29"
+        android:layout_x="35dp"
+        android:layout_y="-7dp" />
+
+    <Spinner
+        android:layout_width="90dp"
+        android:layout_height="60dp"
+        android:id="@+id/aiDiffSpin"
+        android:layout_y="530dp"
+        android:spinnerMode="dropdown"
+        android:background="#ffcbcbcb" />
 
 </AbsoluteLayout>

@@ -20,6 +20,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * @author Nathan Camacho
  * @author Hashim AlJawad
@@ -52,6 +55,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
     private BattleshipComputerPlayer1 easyAI;//dumb AI
     private boolean AIshipHit;//if an AI's ship has been hit then true
     private boolean userShipHit;//if the user's ship has been hit then true
+    private ArrayList<String> aiDifficultyArray;
 
     private int[] shipVals = new int[10];//array to hold rows and columns where the users ships will be set up
 
@@ -71,6 +75,8 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
         userBoard.shipsY = (float[]) intent.getFloatArrayExtra("Ships Y");
         userBoard.shipOrientations = (boolean[]) intent.getBooleanArrayExtra("Ship Orientations");
         shipVals = (int[]) intent.getIntArrayExtra("Ship Set Up");
+        aiDifficultyArray = intent.getStringArrayListExtra("player");
+
 
 
 
@@ -98,8 +104,12 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
         //load the sounds to be played
         this.pickupId1 = hitSound.load(this, R.raw.explosion, 1);
         this.pickupId2 = missSound.load(this, R.raw.miss,1);
-
         easyAI = new BattleshipComputerPlayer1();//create AI
+
+        if(aiDifficultyArray.equals(aiDifficultyArray.get(0))) {
+            easyAI = new BattleshipComputerPlayer1();//create AI
+        }
+
         gameState = new BattleshipGameState();//create new game state every time activity is entered
         //array of AI ships to be set up
         Ships[] AIships = new Ships[] {
@@ -145,8 +155,10 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
      *
      */
     public void computerTurn() {
+        canvas = userBoard.getHolder().lockCanvas();
+        int row = -1;
+        int col = -1;
         if (gameState.getPlayerID() == 1) {//if it's AI's turn
-            int row, col;
             while (gameState.getPlayerID() == 1) {//while it is still AI's turn (AI might have chosen a coordinate it previously chose)
                 row = easyAI.generateRandomRow();
                 col = easyAI.generateRandomCol();
@@ -156,10 +168,14 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
             if (userShipHit) {
                 //hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);
                 messageScreen.setText("Your ship has been hit!");
+                userBoard.hitOnGrid(row,col);
             } else {//if they miss a user's ship tell user
                 //missSound.play(this.pickupId2, 1, 1, 1, 0, 1.0f);
                 messageScreen.setText("Your opponent missed!");
+                userBoard.missOnGrid(row,col);
             }
+            userBoard.getHolder().unlockCanvasAndPost(canvas);
+            userBoard.postInvalidate();
             gameState.setUserShipHit(false);
             checkIfGameOver();//check if AI won
         }
