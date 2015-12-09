@@ -148,6 +148,9 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
         aiDifficulty.setAdapter(aiDifficultyAdapterArray);
         aiDifficulty.setOnItemSelectedListener(this);
+
+        System.out.println(aiDifficulty.getSelectedItem().toString() + "\n");
+
     }
 
     @Override
@@ -1075,8 +1078,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             intent.putExtra("Ships X",board.shipsX);
             intent.putExtra("Ships Y",board.shipsY);
             intent.putExtra("Ship Orientations",board.shipOrientations);
-            intent.putStringArrayListExtra("player",aiDifficultyArray);
-
+            intent.putExtra("difficulty", aiDifficulty.getSelectedItem().toString());
 
             carrierRow = getRow((int) board.shipsY[0]);
             carrierCol = getCol((int) board.shipsX[0]);

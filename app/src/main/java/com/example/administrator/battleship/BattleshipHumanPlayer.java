@@ -77,8 +77,8 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
         userBoard.shipsY = (float[]) intent.getFloatArrayExtra("Ships Y");
         userBoard.shipOrientations = (boolean[]) intent.getBooleanArrayExtra("Ship Orientations");
         shipVals = (int[]) intent.getIntArrayExtra("Ship Set Up");
-        aiDifficultyArray = intent.getStringArrayListExtra("player");
-
+        String AIdifficulty = (String) intent.getStringExtra("difficulty");
+        System.out.println(AIdifficulty + "\n");
 
 
 
@@ -109,7 +109,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
         this.pickupId2 = missSound.load(this, R.raw.miss,1);
         easyAI = new BattleshipComputerPlayer1();//create AI
 
-        if(aiDifficultyArray.equals(aiDifficultyArray.get(0))) {
+        if(AIdifficulty.equals("Easy")) {
             easyAI = new BattleshipComputerPlayer1();//create AI
             AIchoice = 0;
         }
@@ -117,7 +117,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
             hardAI = new BattleshipComputerPlayer2();
             AIchoice = 1;
         }
-
+        System.out.println(AIchoice + "\n");
         gameState = new BattleshipGameState();//create new game state every time activity is entered
         //array of AI ships to be set up
         Ships[] AIships = new Ships[] {
