@@ -1113,6 +1113,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             intent.putExtra("Ship Set Up",shipsVals);
 
 
+
             startActivityForResult(intent,10);
         }
     }

@@ -53,6 +53,8 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
     Intent intent;//to receive data
     private BattleshipGameState gameState;//game state of entire game
     private BattleshipComputerPlayer1 easyAI;//dumb AI
+    private BattleshipComputerPlayer2 hardAI;
+    private int AIchoice;
     private boolean AIshipHit;//if an AI's ship has been hit then true
     private boolean userShipHit;//if the user's ship has been hit then true
     private ArrayList<String> aiDifficultyArray;
@@ -76,6 +78,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
         userBoard.shipOrientations = (boolean[]) intent.getBooleanArrayExtra("Ship Orientations");
         shipVals = (int[]) intent.getIntArrayExtra("Ship Set Up");
         aiDifficultyArray = intent.getStringArrayListExtra("player");
+
 
 
 
@@ -108,6 +111,11 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
 
         if(aiDifficultyArray.equals(aiDifficultyArray.get(0))) {
             easyAI = new BattleshipComputerPlayer1();//create AI
+            AIchoice = 0;
+        }
+        else {
+            hardAI = new BattleshipComputerPlayer2();
+            AIchoice = 1;
         }
 
         gameState = new BattleshipGameState();//create new game state every time activity is entered
@@ -159,10 +167,17 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
         int row = -1;
         int col = -1;
         if (gameState.getPlayerID() == 1) {//if it's AI's turn
-            while (gameState.getPlayerID() == 1) {//while it is still AI's turn (AI might have chosen a coordinate it previously chose)
-                row = easyAI.generateRandomRow();
-                col = easyAI.generateRandomCol();
-                gameState.shipHit(row, col, 0);//fire on this coordinate
+            if (AIchoice == 0) {
+                while (gameState.getPlayerID() == 1) {//while it is still AI's turn (AI might have chosen a coordinate it previously chose)
+                    row = easyAI.generateRandomRow();
+                    col = easyAI.generateRandomCol();
+                    gameState.shipHit(row, col, 0);//fire on this coordinate
+                }
+            }
+            else {
+                hardAI.fire(gameState);
+                row = hardAI.getRow();
+                col = hardAI.getCol();
             }
             userShipHit = gameState.getUserShipHit();//if they hit a user's ship tell user
             if (userShipHit) {
