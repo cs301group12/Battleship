@@ -182,11 +182,11 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
             userShipHit = gameState.getUserShipHit();//if they hit a user's ship tell user
             if (userShipHit) {
                 //hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);
-                messageScreen.setText("Your ship has been hit!");
+                //messageScreen.setText("Your ship has been hit!");
                 userBoard.hitOnGrid(row,col);
             } else {//if they miss a user's ship tell user
                 //missSound.play(this.pickupId2, 1, 1, 1, 0, 1.0f);
-                messageScreen.setText("Your opponent missed!");
+                //messageScreen.setText("Your opponent missed!");
                 userBoard.missOnGrid(row,col);
             }
             userBoard.getHolder().unlockCanvasAndPost(canvas);
@@ -206,12 +206,12 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
     public void userTurn(Button pressed) {
         AIshipHit = gameState.getAIShipHit();
         if (AIshipHit) {//if user hit AI's ship
-            //messageScreen.setText("You hit a ship!");
+            messageScreen.setText("You hit a ship!");
             hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);
             pressed.setBackgroundColor(Color.RED);//change button to red to represent hit
         } else {
             missSound.play(this.pickupId2, 1, 1, 1, 0, 1.0f);
-            //messageScreen.setText("You missed the enemy ships!");
+            messageScreen.setText("You missed the enemy ships!");
             pressed.setBackgroundColor(Color.WHITE);//change button to white to represent miss
         }
         //make button unable to be clicked again
@@ -971,7 +971,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
      */
     public void checkIfGameOver (){
         if (gameState.getPlayer1Hits() == 17) {//if user won
-            messageScreen.setText("Victory! You sunk all the enemy ships!");
+            messageScreen.setText("Victory!");
             //code to wait 4 seconds then exit activity
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -980,7 +980,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 }
             }, 4000);
         } else if (gameState.getPlayer2Hits() == 17) {//if AI won
-            messageScreen.setText("No! All your ships have been sunk! Game Over");
+            messageScreen.setText("Defeat!");
             //code to wait 4 seconds then exit activity
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
