@@ -14,7 +14,7 @@ import android.view.SurfaceView;
  * @author Hashim AlJawad
  * @author Kelson Sipe
  *
- * @version  12/1/2015
+ * @version  12/9/2015
  *
  * Description of BoardSV
  * This class draws the user's board in the BattleshipHumanPlayer activity. Also draws the ships on the board.
@@ -46,9 +46,6 @@ public class BoardSV extends SurfaceView{
     public float[] shipsY = new float[5];//y values for ships to be drawn
     public boolean[] shipOrientations = new boolean[5];
     private int[][] userGrid = new int[10][10];
-    private int chosenRow;
-    private int chosenCol;
-    private boolean shipHit =false;
 
     //Constructor
     public BoardSV(Context context, AttributeSet attrs) {
@@ -58,8 +55,7 @@ public class BoardSV extends SurfaceView{
         redSquare = BitmapFactory.decodeResource(getResources(), R.mipmap.red_square_grid);
         whiteSquare = BitmapFactory.decodeResource(getResources(), R.mipmap.white_square_grid);
         width=height=0;
-        chosenRow=chosenCol=-1;
-        for(int i =0; i<10; i++)
+        for(int i =0; i<10; i++)//initialize board to 0
         {
             for(int j = 0;j<10;j++) {
                 userGrid[i][j] = 0;
@@ -130,28 +126,22 @@ public class BoardSV extends SurfaceView{
             canvas.drawBitmap(ptBoatV, shipsX[4], shipsY[4], null);
         }
 
-        chosenRow = getChosenRow();
-        chosenCol = getChosenCol();
-        shipHit = isShipHit();
-        drawHitOrMiss(chosenRow, chosenCol, shipHit, canvas);
+        drawHitOrMiss(canvas);
 
     }
 
     /** Draws hits and misses on the player's board
      *
-     * @param row
-     * @param col
-     * @param hit
      * @param canvas
      */
-    public void drawHitOrMiss(int row, int col, boolean hit, Canvas canvas) {
+    public void drawHitOrMiss(Canvas canvas) {
         for(int i =0; i<10; i++)
         {
             for(int j = 0;j<10;j++) {
-                if (userGrid[i][j] == 1){
+                if (userGrid[i][j] == 1){//if there is a hit draw redSquare
                     canvas.drawBitmap(redSquare, (float) (j * redSquare.getHeight()), (float) (i * redSquare.getWidth()), null);
                 }
-                else if (userGrid[i][j] == 2){
+                else if (userGrid[i][j] == 2){//if there is a hit draw whiteSquare
                     canvas.drawBitmap(whiteSquare, (float) (j * whiteSquare.getHeight()), (float) (i * whiteSquare.getWidth()), null);
                 }
 
@@ -159,28 +149,12 @@ public class BoardSV extends SurfaceView{
         }
 
     }
-    public int getChosenRow() {
-        return chosenRow;
-    }
-
-    public int getChosenCol() {
-        return chosenCol;
-    }
 
     public void hitOnGrid(int row, int col){
-        chosenRow = row;
-        chosenCol = col;
-        shipHit = true;
-        userGrid[row][col] = 1;
+        userGrid[row][col] = 1;//1 means hit
     }
     public void missOnGrid(int row, int col){
-        chosenRow = row;
-        chosenCol = col;
-        shipHit = false;
-        userGrid[row][col] = 2;
+        userGrid[row][col] = 2;//2 means miss
     }
 
-    public boolean isShipHit() {
-        return shipHit;
-    }
 }

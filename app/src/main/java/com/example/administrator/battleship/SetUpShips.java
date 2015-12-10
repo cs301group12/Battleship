@@ -1170,7 +1170,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         if(v == carrierButton) {
             boolean dummy = board.getCarrierOrientation();
             board.setCarrierOrientation(!dummy);
-            Toast.makeText(getApplicationContext(),"Carrier Orientation Has Been Changed.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Carrier Orientation Has Been Changed. Please touch grid now.",Toast.LENGTH_SHORT).show();
             System.out.println("BATTLESHIP X: " + board.shipsX[1]);
             System.out.println("BATTLESHIP Y: " + board.shipsY[1]);
             moveCarrier = true;
@@ -1183,7 +1183,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         if(v == battleshipButton) {
             boolean dummy2 = board.getBattleshipOrientation();
             board.setBattleshipOrientation(!dummy2);
-            Toast.makeText(getApplicationContext(),"Battleship Orientation Has Been Changed.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Battleship Orientation Has Been Changed. Please touch grid now.",Toast.LENGTH_SHORT).show();
             moveCarrier = false;
             moveBattleship = true;
             moveDestroyer = false;
@@ -1194,7 +1194,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         if(v == destroyerButton){
             boolean dummy3 = board.getDestroyerOrientation();
             board.setDestroyerOrientation(!dummy3);
-            Toast.makeText(getApplicationContext(),"Destroyer Orientation Has Been Changed.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Destroyer Orientation Has Been Changed. Please touch grid now.",Toast.LENGTH_SHORT).show();
             moveCarrier = false;
             moveBattleship = false;
             moveDestroyer = true;
@@ -1205,7 +1205,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         if(v == submarineButton){
             boolean dummy4 = board.getSubmarineOrientation();
             board.setSubmarineOrientation(!dummy4);
-            Toast.makeText(getApplicationContext(),"Submarine Orientation Has Been Changed.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Submarine Orientation Has Been Changed. Please touch grid now.",Toast.LENGTH_SHORT).show();
             moveCarrier = false;
             moveBattleship = false;
             moveDestroyer = false;
@@ -1216,7 +1216,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         if(v == ptBoatButton){
             boolean dummy5 = board.getpTBoatOrientation();
             board.setpTBoatOrientation(!dummy5);
-            Toast.makeText(getApplicationContext(),"Patrol Boat Orientation Has Been Changed.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Patrol Boat Orientation Has Been Changed. Please touch grid now.",Toast.LENGTH_SHORT).show();
             moveCarrier = false;
             moveBattleship = false;
             moveDestroyer = false;
