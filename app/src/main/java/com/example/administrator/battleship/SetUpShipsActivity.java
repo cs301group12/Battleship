@@ -30,10 +30,10 @@ import android.widget.ImageView;
 
 public class SetUpShipsActivity extends SurfaceView{
 
-    //Initializes image variables and horizontal to true
+    //Initializes image variables and horizontal for all ships to true
     private Bitmap userGrid;
-    private Bitmap carrierH;
-    private Bitmap carrierV;
+    private Bitmap carrierH;    //Horizontal Carrier
+    private Bitmap carrierV;    //Vertical Carrier
     private Bitmap battleshipH;
     private Bitmap battleshipV;
     private Bitmap destroyerH;
@@ -44,30 +44,34 @@ public class SetUpShipsActivity extends SurfaceView{
     private Bitmap ptBoatV;
     private float width;
     private float height;
-    public float[] shipsX = new float[5];
-    public float[] shipsY = new float[5];
-    public boolean[] shipOrientations = new boolean[5];
-    public boolean carrierOrientation = true;
+    public float[] shipsX = new float[5];   //Array for the x coordinate for each ship
+    public float[] shipsY = new float[5];   //Array for the y coordinate for each ship
+    public boolean[] shipOrientations = new boolean[5]; //Array for whether each ship is horizontal
+    public boolean carrierOrientation = true;       //Initializes each ship to be horizontal
     public boolean battleshipOrientation = true;
     public boolean destroyerOrientation = true;
     public boolean submarineOrientation = true;
     public boolean pTBoatOrientation = true;
 
-    //Draws the ships horizontally onto a default place on the user grid
+    /** Draws the ships horizontally onto a default place on the user grid
+     *
+     * @param context
+     * @param attrs
+     */
     public SetUpShipsActivity(Context context, AttributeSet attrs) {
         super(context, attrs);
         setWillNotDraw(false);
         userGrid = BitmapFactory.decodeResource(getResources(), R.mipmap.blue_square_grid);
         width=height=0;
-        shipsX[0] = 200;
+        shipsX[0] = 200; //Carrier
         shipsY[0] = 210;
-        shipsX[1] = 0;
+        shipsX[1] = 0;   //Battleship
         shipsY[1] = 20;
-        shipsX[2] = 400;
+        shipsX[2] = 400; //Destroyer
         shipsY[2] = 400;
-        shipsX[3] = 0;
+        shipsX[3] = 0;   //Submarine
         shipsY[3] = 500;
-        shipsX[4] = 400;
+        shipsX[4] = 400; //PTBoat
         shipsY[4] = 600;
         shipOrientations[0] = carrierOrientation;
         shipOrientations[1] = battleshipOrientation;
@@ -76,8 +80,11 @@ public class SetUpShipsActivity extends SurfaceView{
         shipOrientations[4] = pTBoatOrientation;
     }
 
-    //Draws the user grid
-    //Gets whether the ship is horizontal so that if horizontal is false, vertical will be true
+    /**
+     * Description: Draws the user grid. Gets whether the ship is horizontal so that if horizontal is false, vertical will be true
+     *
+     * @param canvas
+     */
     @Override
     protected void onDraw(Canvas canvas)
     {
@@ -92,7 +99,7 @@ public class SetUpShipsActivity extends SurfaceView{
             }
         }
 
-
+        // Checks if a ship is Horizontal, and sets the canvas to draw the ships in the appropriate orientation.
         boolean dummy = getCarrierOrientation();
         if(dummy == true) {
             drawShip(carrierH, 0, 1, canvas, true);
@@ -131,7 +138,10 @@ public class SetUpShipsActivity extends SurfaceView{
         }
     }
 
-    //Sets and Returns the orientation of each ship
+    /**Sets and Returns the orientation of each ship
+     *
+     * @param orientation
+     */
     public void setCarrierOrientation(boolean orientation){
         carrierOrientation = orientation;
         shipOrientations[0] = carrierOrientation;
@@ -158,7 +168,14 @@ public class SetUpShipsActivity extends SurfaceView{
     }
     public boolean getpTBoatOrientation(){return pTBoatOrientation;}
 
-    //Draws the ships on the user grid
+    /**Draws the ships on the user grid and checks if a ship is out of bounds
+     *
+     * @param nameOfShip
+     * @param shipNum
+     * @param imageID
+     * @param canvas
+     * @param isHorizontal
+     */
     public void drawShip(Bitmap nameOfShip,int shipNum,int imageID,Canvas canvas,boolean isHorizontal)
     {
         if(imageID == 1) {
@@ -242,6 +259,10 @@ public class SetUpShipsActivity extends SurfaceView{
         return shipsY;
     }
 
+    /** Redraws an out of bounds ship so that it is no longer out of bounds
+     *
+     * @param shipNum
+     */
     public void checkOutOfBoundsX(int shipNum)
     {
         if(shipNum == 0) { if (shipsX[shipNum] > 498) { shipsX[shipNum] = 498; } }

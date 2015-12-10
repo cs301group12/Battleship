@@ -98,8 +98,10 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
     private ArrayList<String> aiDifficultyArray;
 
-
-    //Creates all of the buttons and sets up listeners for all of the buttons and the set up grid
+    /** Creates all of the buttons and sets up listeners for all of the buttons and the set up grid
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -757,7 +759,16 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
     }
 
-    //Checks if the carrier is overlapping another ship
+    /** Checks if the carrier is overlapping another ship
+     *
+     * @param numOfShip
+     * @param shipNum
+     * @param row1
+     * @param col1
+     * @param row2
+     * @param col2
+     * @return
+     */
     public boolean overlap(int numOfShip, int shipNum, int row1,int col1,int row2,int col2)
     {
         boolean battleshipOrientation= board.getBattleshipOrientation() == true;
@@ -1017,10 +1028,12 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
       return false;
     }
 
-
-    //When a ship button is clicked, the ship on the grid will be selected. Main menu button will return to the main menu
-    //Save and play will save the values of the ships so that they set up correctly in the playing battleship layout; also
-    //goes to the playing battleship layout.
+    /**When a ship button is clicked, the ship on the grid will be selected. Main menu button will return to the main menu
+     * Save and play will save the values of the ships so that they set up correctly in the playing battleship layout; also
+     * goes to the playing battleship layout.
+     *
+     * @param view
+     */
     @Override
     public void onClick(View view)
     {
@@ -1120,7 +1133,11 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         }
     }
 
-    // When a ship button is held down, the ship will be rotated and selected.
+    /** When a ship button is held down, the ship will be rotated and selected.
+     *
+     * @param v
+     * @return
+     */
     @Override
     public boolean onLongClick(View v) {
 

@@ -25,6 +25,7 @@ import android.view.SurfaceView;
 
 public class BoardSV extends SurfaceView{
 
+    //Instance Variables
     private Bitmap blueSquare;//grid made up of blue squares
     private Bitmap redSquare;
     private Bitmap whiteSquare;
@@ -136,7 +137,13 @@ public class BoardSV extends SurfaceView{
 
     }
 
-
+    /** Draws hits and misses on the player's board
+     *
+     * @param row
+     * @param col
+     * @param hit
+     * @param canvas
+     */
     public void drawHitOrMiss(int row, int col, boolean hit, Canvas canvas) {
         for(int i =0; i<10; i++)
         {
