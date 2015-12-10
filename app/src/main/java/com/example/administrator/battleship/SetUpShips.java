@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.Window;
 import android.widget.AbsoluteLayout;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -103,8 +104,10 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //Creates the user board and initializes on touch listeners
         setContentView(R.layout.activity_set_up_ships);
+
         top = (AbsoluteLayout) findViewById(R.id.topView);
         top.setOnTouchListener(this);
         board = (SetUpShipsActivity) findViewById(R.id.board);
@@ -632,6 +635,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             boatCol = getCol((int)board.shipsX[4]);
 
 
+            //calls for the overlap method
             boolean check1 = overlap(0,1, carrierRow, carrierCol, battleshipRow, battleshipCol);
 
             boolean check2 = overlap(0,2, carrierRow, carrierCol, destroyerRow, destroyerCol);
@@ -673,6 +677,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             boolean check20 = overlap(4,3,boatRow,boatCol,submarineRow,submarineCol);
 
 
+            //check if at least one of the ships is overlapping and set the save and play button invisivle and display an error.
             if(check1 == true || check2 == true || check3 == true || check4 == true ||
                     check5 == true || check6 == true || check7 == true ||check8 == true
                     ||check9 == true || check10 == true || check11 == true || check12 == true ||
@@ -757,18 +762,39 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
     }
 
-    //Checks if the carrier is overlapping another ship
+    /**
+     * Description: A method to check for overlapping ships before playing the game.
+     *
+     * CAVEAT:
+     *
+     */
     public boolean overlap(int numOfShip, int shipNum, int row1,int col1,int row2,int col2)
     {
+        //variables to determine the ship's current orientation
         boolean battleshipOrientation= board.getBattleshipOrientation() == true;
         boolean submarineOrientation = board.getSubmarineOrientation() == true;
         boolean carrierOrientation = board.getCarrierOrientation() == true;
         boolean boatOrientation =  board.getpTBoatOrientation() == true;
         boolean destroyerOrientation = board.getDestroyerOrientation() == true;
+
+        //if number of the ships is carrier
     if(numOfShip == 0) {
+        //check if both ships are on the same row and horizontal
         if ((row1 == row2 && carrierOrientation)) {
 
+            /*
+                shipNum = 0 -> Carrier
+                shipNum = 1 -> Battleship
+                shipNum = 2 -> Destroyer
+                shipNum = 3 -> Submarine
+                shipNum = 4 -> Patrol Boat
+             */
+
+            //if the other ship is battleship, then check if it is horizontal and the distance between the ships is more
+            // than or equal -4 and less than or equal to 3 then the ships overlap. Same thing applies for other if statements.
             if (shipNum == 1) { if (col1 - col2 >= -4 && col1 - col2 <= 3 && battleshipOrientation) { return true; }
+            //if battleship is vertical and the distance between the ships is more than or equal -4 and less
+            //than or equal to 0 then the ships overlap. Same thing applies for other else if statements.
             else if(col1 - col2 >= -4 && col1 - col2 <= 0 && !battleshipOrientation) { return true; } }
 
             if (shipNum == 2) { if (col1 - col2 >= -4 && col1 - col2 <= 2 && destroyerOrientation) { return true; }
@@ -780,10 +806,13 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             if (shipNum == 4) { if (col1 - col2 >= -4 && col1 - col2 <= 1 && boatOrientation) { return true; }
             else if(col1 - col2 >= -4 && col1 - col2 <= 0 && !boatOrientation) { return true; } }
         }
-
+        //if carrier is vertical
         else {
             if (!carrierOrientation) {
-
+                //if its battleship then check if its horizontal, then check for the distance between the ships' rows
+                // and then check for the distance between the columns.
+                //if its vertical, then check if they are on the same column, then check
+                // for the distance between the ships' rows. Same applies for the rest of the ships.
                 if (shipNum == 1) { if (battleshipOrientation) {
                     if ((row1 - row2 >= -4 && row1 - row2 <= -1) || row1 == row2) {
                         if (col1 - col2 >= 0 && col1 - col2 <= 3) { return true; } } }
@@ -868,7 +897,6 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         }
 
         //destroyer
-
         if(numOfShip == 2) {
             if ((row1 == row2 && destroyerOrientation)) {
 
@@ -1014,7 +1042,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             }
         }
 
-      return false;
+      return false; //return false if ships are not overlapping.
     }
 
 

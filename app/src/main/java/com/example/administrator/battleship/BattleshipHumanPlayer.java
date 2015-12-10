@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -66,6 +67,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playing__battleship);
+
 
         messageScreen = (TextView) findViewById(R.id.gameInfo);
         messageScreen.setText("Your turn first");//initial message
@@ -972,6 +974,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
     public void checkIfGameOver (){
         if (gameState.getPlayer1Hits() == 17) {//if user won
             messageScreen.setText("Victory!");
+            Button A1 = (Button) findViewById(R.id.A1);
+            A1.setEnabled(false);
+            A1.setClickable(false);
             //code to wait 4 seconds then exit activity
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -995,4 +1000,6 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
     public void onClick(View view) {
 
     }
+
+
 }
