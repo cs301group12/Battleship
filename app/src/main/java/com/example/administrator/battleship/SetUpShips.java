@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.Window;
 import android.widget.AbsoluteLayout;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -99,15 +98,15 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
     private ArrayList<String> aiDifficultyArray;
 
-
-    //Creates all of the buttons and sets up listeners for all of the buttons and the set up grid
+    /** Creates all of the buttons and sets up listeners for all of the buttons and the set up grid
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         //Creates the user board and initializes on touch listeners
         setContentView(R.layout.activity_set_up_ships);
-
         top = (AbsoluteLayout) findViewById(R.id.topView);
         top.setOnTouchListener(this);
         board = (SetUpShipsActivity) findViewById(R.id.board);
@@ -768,6 +767,16 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
      * CAVEAT:
      *
      */
+    /** Checks if the carrier is overlapping another ship
+     *
+     * @param numOfShip
+     * @param shipNum
+     * @param row1
+     * @param col1
+     * @param row2
+     * @param col2
+     * @return
+     */
     public boolean overlap(int numOfShip, int shipNum, int row1,int col1,int row2,int col2)
     {
         //variables to determine the ship's current orientation
@@ -1045,10 +1054,12 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
       return false; //return false if ships are not overlapping.
     }
 
-
-    //When a ship button is clicked, the ship on the grid will be selected. Main menu button will return to the main menu
-    //Save and play will save the values of the ships so that they set up correctly in the playing battleship layout; also
-    //goes to the playing battleship layout.
+    /**When a ship button is clicked, the ship on the grid will be selected. Main menu button will return to the main menu
+     * Save and play will save the values of the ships so that they set up correctly in the playing battleship layout; also
+     * goes to the playing battleship layout.
+     *
+     * @param view
+     */
     @Override
     public void onClick(View view)
     {
@@ -1148,7 +1159,11 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         }
     }
 
-    // When a ship button is held down, the ship will be rotated and selected.
+    /** When a ship button is held down, the ship will be rotated and selected.
+     *
+     * @param v
+     * @return
+     */
     @Override
     public boolean onLongClick(View v) {
 

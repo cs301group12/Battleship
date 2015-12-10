@@ -310,7 +310,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="475dp"
             android:id="@+id/linearLayout2">
 
             <TextView
@@ -324,10 +324,6 @@
                 android:layout_marginTop="5dp"
                 android:typeface="serif" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="13dp" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -336,11 +332,8 @@
                 android:textSize="30dp"
                 android:textColor="#ffffffff"
                 android:layout_marginRight="15dp"
-                android:typeface="serif" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="13dp" />
+                android:typeface="serif"
+                android:layout_marginTop="9dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -350,11 +343,8 @@
                 android:textSize="30dp"
                 android:textColor="#ffffffff"
                 android:layout_marginRight="15dp"
-                android:typeface="serif" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="13dp" />
+                android:typeface="serif"
+                android:layout_marginTop="9dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -364,11 +354,8 @@
                 android:textSize="30dp"
                 android:textColor="#ffffffff"
                 android:layout_marginRight="15dp"
-                android:typeface="serif" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="13dp" />
+                android:typeface="serif"
+                android:layout_marginTop="9dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -378,11 +365,8 @@
                 android:textSize="30dp"
                 android:textColor="#ffffffff"
                 android:layout_marginRight="15dp"
-                android:typeface="serif" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="13dp" />
+                android:typeface="serif"
+                android:layout_marginTop="9dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -392,11 +376,8 @@
                 android:textSize="30dp"
                 android:textColor="#ffffffff"
                 android:layout_marginRight="15dp"
-                android:typeface="serif" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="13dp" />
+                android:typeface="serif"
+                android:layout_marginTop="9dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -406,11 +387,8 @@
                 android:textSize="30dp"
                 android:textColor="#ffffffff"
                 android:layout_marginRight="15dp"
-                android:typeface="serif" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="13dp" />
+                android:typeface="serif"
+                android:layout_marginTop="9dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -420,11 +398,8 @@
                 android:textSize="30dp"
                 android:textColor="#ffffffff"
                 android:layout_marginRight="15dp"
-                android:typeface="serif" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="13dp" />
+                android:typeface="serif"
+                android:layout_marginTop="9dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -435,11 +410,8 @@
                 android:textColor="#ffffffff"
                 android:layout_marginRight="0dp"
                 android:layout_marginLeft="5dp"
-                android:typeface="serif" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="13dp" />
+                android:typeface="serif"
+                android:layout_marginTop="9dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -449,7 +421,9 @@
                 android:textSize="30dp"
                 android:textColor="#ffffffff"
                 android:layout_marginRight="5dp"
-                android:typeface="serif" />
+                android:typeface="serif"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="9dp" />
 
         </LinearLayout>
 

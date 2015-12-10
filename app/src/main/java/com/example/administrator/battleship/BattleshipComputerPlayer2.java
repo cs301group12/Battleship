@@ -1,21 +1,34 @@
 package com.example.administrator.battleship;
 
 /**
- * Created by camachon18 on 12/9/2015.
+ * @author Nathan Camacho
+ * @author Hashim AlJawad
+ * @author Kelson Sipe
+ *
+ * @version  12/9/2015
+ *
+ * Description of BattleshipComputerPlayer2 class:
+ * Currently this class represents our "hard" AI. This AI chooses random coordinates, but then chooses locations
+ * around a ship they hit. May be seen as not "hard" enough
+ *
  */
 public class BattleshipComputerPlayer2 {
+    //Instance variables
+    //row and col chosen by AI
     private int row;
     private int col;
+    //variables to keep track of the AI's last hit/first hit
     private int lastHitRow;
     private int lastHitCol;
     private int firstHitRow;
     private int firstHitCol;
-    private boolean stillOnTarget;
-    private boolean goVertical;
-    private boolean huntMode;
-    private boolean killMode;
-    private int[][] userGrid = new int[10][10];
+    private boolean stillOnTarget;//we are still looking for locations around a hit
+    private boolean goVertical;//tells the AI to choose vertical locations around hit
+    private boolean huntMode;//AI is "hunting"(searching) for ships
+    private boolean killMode;//AI has hit a ship so now it switches to a mode where it's trying to sink the ship
+    private int[][] userGrid = new int[10][10];//replica of user grid
 
+    //Initialize variables in consrtuctor
     public BattleshipComputerPlayer2() {
         huntMode = true;
         killMode = false;
@@ -23,11 +36,18 @@ public class BattleshipComputerPlayer2 {
         goVertical = false;
     }
 
+    /**
+     * Description: Method that allows the AI to choose appropriate locations to fire
+     *
+     * CAVEAT:
+     *
+     * @param state The game state variable passed in from BattleshipHumanPlayer
+     */
     public void fire(BattleshipGameState state) {
-        if (killMode){
-            if (!goVertical) {
+        if (killMode){//If in kill mode, then look for locations around hit
+            if (!goVertical) {//The user's ship is probably horizontal
                 int i = 0;
-                while (state.getPlayerID() == 1) {
+                while (state.getPlayerID() == 1) {//while it's still the AI's turn
                     if (i == 0) {//fire at right adjacent
                         row = lastHitRow;
                         col = lastHitCol + 1;
@@ -41,7 +61,7 @@ public class BattleshipComputerPlayer2 {
                         if (col < 0) {//out of bounds on left
                             row = lastHitRow - 1;//change to fire at top of hit
                             col = lastHitCol;
-                            if (row < 0){
+                            if (row < 0){//out of bounds on top
                                 row = lastHitRow + 1;//change to bottom
                             }
                         }
@@ -64,9 +84,11 @@ public class BattleshipComputerPlayer2 {
                     }
                     i++;
                     if (i > 3) {
-                        break;
+                        break;//all 4 adjacent spots have been checked
                     }
                 }
+                //all spots around lastHit were checked, now go back to the firstHit and check around there
+                //same algorithm for choosing location used above
                 int j = 0;
                 while (state.getPlayerID() == 1) {
                     if (j == 0) {//fire at right adjacent
@@ -82,7 +104,7 @@ public class BattleshipComputerPlayer2 {
                         if (col < 0) {//out of bounds on left
                             row = firstHitRow - 1;//change to fire at top of hit
                             col = firstHitCol;
-                            if (row < 0) {
+                            if (row < 0) {//out of bounds on top
                                 row = firstHitRow + 1; //change to bottom
                             }
                         }
@@ -109,7 +131,9 @@ public class BattleshipComputerPlayer2 {
                     }
                 }
             }
-            else {
+            else {//the user's ship may be vertical
+                //Same algorithm used above, but instead the AI will choose a location above or below
+                //the hit first, instead of the right and left
                 int i = 0;
                 while (state.getPlayerID() == 1) {
                     if (i == 0) {//fire at top adjacent
@@ -126,7 +150,7 @@ public class BattleshipComputerPlayer2 {
                         if (row > 9) {//out of bounds on bottom
                             row = lastHitRow;//change to right
                             col = lastHitCol + 1;
-                            if (col > 9) {
+                            if (col > 9) {//out of bounds on right
                                 col = lastHitCol - 1;//change to left
                             }
                         }
@@ -144,15 +168,17 @@ public class BattleshipComputerPlayer2 {
                         row = lastHitRow;
                         col = lastHitCol - 1;
                         if (col < 0) {//out of bounds on left
-                            break;
+                            break;//no more spots to check
                         }
                         state.shipHit(row, col, 0);
                     }
                     i++;
                     if (i > 3) {
-                        break;
+                        break;//all 4 spots have been checked
                     }
                 }
+                //all spots around lastHit were checked, now go back to the firstHit and check around there
+                //same algorithm for choosing location used above
                 int j = 0;
                 while (state.getPlayerID() == 1) {
                     if (j == 0) {//fire at top adjacent
@@ -169,7 +195,7 @@ public class BattleshipComputerPlayer2 {
                         if (row > 9) {//out of bounds on bottom
                             row = firstHitRow;//change to right
                             col = firstHitCol + 1;
-                            if (col > 9) {
+                            if (col > 9) {//out of bounds on right
                                 col = firstHitCol - 1;//change to left
                             }
                         }
@@ -197,15 +223,16 @@ public class BattleshipComputerPlayer2 {
                     }
                 }
             }
-            if (state.getPlayerID() == 1){//if all spots around hit were checked
-                if (firstHitCol != lastHitCol && firstHitRow != lastHitRow) {
+            if (state.getPlayerID() == 1){//if all spots around hit were checked but it's still AI's turn
+                if (firstHitCol != lastHitCol && firstHitRow != lastHitRow) {//let first hit be last hit since
+                    //all checks around each hit were checked
                     firstHitRow = lastHitRow;
                     firstHitCol = lastHitCol;
                 }
-                else {
+                else {//We're done checking for more hits around a hit
                     goVertical = false;
                     stillOnTarget = false;
-                }
+                }//generate a new random location
                 while (state.getPlayerID() == 1) {
                     row = (int) (Math.random() * 10);
                     col = (int) (Math.random() * 10);
@@ -213,31 +240,32 @@ public class BattleshipComputerPlayer2 {
                 }
             }
         }
-        else {
+        else {//not in killMode, then hunt by generating random locations
             while (state.getPlayerID() == 1) {
                 row = (int) (Math.random() * 10);
                 col = (int) (Math.random() * 10);
                 state.shipHit(row, col, 0);
             }
         }
-        if (state.getUserShipHit()){
-            huntMode = false;
+        if (state.getUserShipHit()){//If a user's ship was hit
+            huntMode = false;//no longer in huntMode switch to killMode
             killMode = true;
-            lastHitRow = row;
+            lastHitRow = row;//store location of listHit
             lastHitCol = col;
-            goVertical = twoInARowVertical(state,row,col);
-            if (stillOnTarget == false) {
+            goVertical = twoInARowVertical(state,row,col);//check if the user's ship may be vertical
+            if (stillOnTarget == false) {//When a person gets a hit that means there is probably more hits around
+                //that location so, keep looking until all spots around hit have been checked
                 stillOnTarget = true;
-                firstHitRow = row;
+                firstHitRow = row;//store the location of first hit
                 firstHitCol = col;
             }
 
         }
-        else {
-            if (stillOnTarget) {
+        else {//the AI missed
+            if (stillOnTarget) {//if we're still searching for locations around hit, stay in killMode
                 huntMode = false;
                 killMode = true;
-            } else {
+            } else { //switch to huntMode
                 huntMode = true;
                 killMode = false;
             }
@@ -245,8 +273,18 @@ public class BattleshipComputerPlayer2 {
 
     }
 
+    /**
+     * Description: Method that checks if the AI has two vertical hits in a row. If they do, this means
+     * the user's ship is probably vertical.
+     *
+     * CAVEAT:
+     *
+     * @param state     The game state variable passed in from BattleshipHumanPlayer
+     * @param rowHit    Coordinates for the hit we are checking around
+     * @param colHit
+     */
     public boolean twoInARowVertical( BattleshipGameState state,int rowHit, int colHit) {
-        userGrid = state.getUserGrid();
+        userGrid = state.getUserGrid();//get the user's grid
         if (rowHit == 0) {//if hit at top only check below
             if (userGrid[rowHit+1][colHit] == 1) {
                 return true;
@@ -257,6 +295,7 @@ public class BattleshipComputerPlayer2 {
                 return true;
             }
         }
+        //check above and below hit
         else if (userGrid[rowHit-1][colHit] == 1 || userGrid[rowHit+1][colHit] == 1)  {//if user hit 2 squares in a row vertically
             return true;
         }
