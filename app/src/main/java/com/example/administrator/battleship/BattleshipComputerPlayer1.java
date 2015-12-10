@@ -9,7 +9,7 @@ import java.util.Random;
  *
  * @version  12/1/2015
  *
- * Description of BattleshipGameState class:
+ * Description of BattleshipComputerPlayer1 class:
  * Currently this class represents our "dumb" AI. This AI chooses random coordinates to fire upon
  *
  */

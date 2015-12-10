@@ -28,22 +28,20 @@ import java.util.Arrays;
  * @author Hashim AlJawad
  * @author Kelson Sipe
  *
- * @version  12/1/2015
+ * @version  12/9/2015
  *
- * Description of BattleshipGameState class:
+ * Description of BattleshipHumanPlayer class:
  * This class contains all the GUI components for the user to play the game. Alters the game state
  * based on user actions.
  *
  */
-public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnClickListener{
+public class BattleshipHumanPlayer extends ActionBarActivity {
 
     //Instance variables
     //GUI variables
     private TextView messageScreen;
-    private LinearLayout topLayout;
     private BoardSV userBoard;
     private Canvas canvas;
-    private Button readyToPlay;
     //hit and miss sound variables
     private SoundPool hitSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
     private SoundPool missSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
@@ -54,10 +52,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
     private BattleshipGameState gameState;//game state of entire game
     private BattleshipComputerPlayer1 easyAI;//dumb AI
     private BattleshipComputerPlayer2 hardAI;
-    private int AIchoice;
+    private int AIchoice;//which AI to use
     private boolean AIshipHit;//if an AI's ship has been hit then true
     private boolean userShipHit;//if the user's ship has been hit then true
-    private ArrayList<String> aiDifficultyArray;
 
     private int[] shipVals = new int[10];//array to hold rows and columns where the users ships will be set up
 
@@ -78,30 +75,6 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
         userBoard.shipOrientations = (boolean[]) intent.getBooleanArrayExtra("Ship Orientations");
         shipVals = (int[]) intent.getIntArrayExtra("Ship Set Up");
         String AIdifficulty = (String) intent.getStringExtra("difficulty");
-        System.out.println(AIdifficulty + "\n");
-
-
-
-
-        //SHIP'S ROW AND COL VALUES
-
-        //THEY ARE ALL GIVING THE CORRECT VALUES
-
-
-        System.out.println("carrier ROW " + shipVals[0]);
-        System.out.println("carrier COL " + shipVals[1]);
-
-        System.out.println("b ROW " + shipVals[2]);
-        System.out.println("b COL " + shipVals[3]);
-
-        System.out.println("d ROW " + shipVals[4]);
-        System.out.println("d COL " + shipVals[5]);
-
-        System.out.println("su ROW " + shipVals[6]);
-        System.out.println("sub COL " + shipVals[7]);
-
-        System.out.println("boat ROW " + shipVals[8]);
-        System.out.println("boat COL " + shipVals[9]);
 
 
         //load the sounds to be played
@@ -109,6 +82,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
         this.pickupId2 = missSound.load(this, R.raw.miss,1);
         easyAI = new BattleshipComputerPlayer1();//create AI
 
+        //See which AI has been chosen
         if(AIdifficulty.equals("Easy")) {
             easyAI = new BattleshipComputerPlayer1();//create AI
             AIchoice = 0;
@@ -117,7 +91,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
             hardAI = new BattleshipComputerPlayer2();
             AIchoice = 1;
         }
-        System.out.println(AIchoice + "\n");
+
         gameState = new BattleshipGameState();//create new game state every time activity is entered
         //array of AI ships to be set up
         Ships[] AIships = new Ships[] {
@@ -135,25 +109,15 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
     /**
      * Description: Method to set AI's ships in the game state.
      *
-     * CAVEAT: Currently does not work correctly. Sets the ships up in the same position every time game is played.
+     * CAVEAT:
      *
      */
     public void setUpUserShips(){
-        /*
-        gameState.setUpUserShips(1,0,1,true);//carrier row 1 col 2
-        gameState.setUpUserShips(2,4,7,false);//battleship row 5 col 8
-        gameState.setUpUserShips(3,3,2,true);//destroyer row 4 col 3
-        gameState.setUpUserShips(4,9,0,true);//submarine row 10 col 1
-        gameState.setUpUserShips(5,6,2,false);//ptBoat row 7 col 3
-        */
-
-        gameState.setUpUserShips(1,shipVals[0],shipVals[1],userBoard.shipOrientations[0]);
-        gameState.setUpUserShips(2,shipVals[2],shipVals[3],userBoard.shipOrientations[1]);
-        gameState.setUpUserShips(3,shipVals[4],shipVals[5],userBoard.shipOrientations[2]);
-        gameState.setUpUserShips(4,shipVals[6],shipVals[7],userBoard.shipOrientations[3]);
-        gameState.setUpUserShips(5,shipVals[8],shipVals[9],userBoard.shipOrientations[4]);
-
-
+        gameState.setUpUserShips(1,shipVals[0],shipVals[1],userBoard.shipOrientations[0]);//carrier
+        gameState.setUpUserShips(2,shipVals[2],shipVals[3],userBoard.shipOrientations[1]);//battleship
+        gameState.setUpUserShips(3,shipVals[4],shipVals[5],userBoard.shipOrientations[2]);//destroyer
+        gameState.setUpUserShips(4,shipVals[6],shipVals[7],userBoard.shipOrientations[3]);//submarine
+        gameState.setUpUserShips(5,shipVals[8],shipVals[9],userBoard.shipOrientations[4]);//pt boat
     }
 
     /**
@@ -163,34 +127,30 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
      *
      */
     public void computerTurn() {
-        canvas = userBoard.getHolder().lockCanvas();
+        canvas = userBoard.getHolder().lockCanvas();//we will be making changes to user's board
         int row = -1;
         int col = -1;
         if (gameState.getPlayerID() == 1) {//if it's AI's turn
-            if (AIchoice == 0) {
+            if (AIchoice == 0) {//easy AI
                 while (gameState.getPlayerID() == 1) {//while it is still AI's turn (AI might have chosen a coordinate it previously chose)
                     row = easyAI.generateRandomRow();
                     col = easyAI.generateRandomCol();
                     gameState.shipHit(row, col, 0);//fire on this coordinate
                 }
             }
-            else {
+            else {//hard AI
                 hardAI.fire(gameState);
                 row = hardAI.getRow();
                 col = hardAI.getCol();
             }
-            userShipHit = gameState.getUserShipHit();//if they hit a user's ship tell user
-            if (userShipHit) {
-                //hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);
-                //messageScreen.setText("Your ship has been hit!");
+            userShipHit = gameState.getUserShipHit();//if they hit a user's ship
+            if (userShipHit) {//update board
                 userBoard.hitOnGrid(row,col);
-            } else {//if they miss a user's ship tell user
-                //missSound.play(this.pickupId2, 1, 1, 1, 0, 1.0f);
-                //messageScreen.setText("Your opponent missed!");
+            } else {//if they miss update board
                 userBoard.missOnGrid(row,col);
             }
             userBoard.getHolder().unlockCanvasAndPost(canvas);
-            userBoard.postInvalidate();
+            userBoard.postInvalidate();//post update
             gameState.setUserShipHit(false);
             checkIfGameOver();//check if AI won
         }
@@ -199,7 +159,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
     /**
      * Description: Method to handle user's turn.
      *
-     * CAVEAT: Messages don't display on messageScreen
+     * CAVEAT:
      *
      * @param pressed   the button that was pressed
      */
@@ -989,10 +949,6 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 }
             }, 4000);
         }
-
-    }
-    @Override
-    public void onClick(View view) {
 
     }
 }
