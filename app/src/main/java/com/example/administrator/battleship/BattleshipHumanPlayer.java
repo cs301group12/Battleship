@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
@@ -47,6 +48,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
     private SoundPool missSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
     private int pickupId1;
     private int pickupId2;
+    private MediaPlayer backgroundMusic1;
 
     Intent intent;//to receive data
     private BattleshipGameState gameState;//game state of entire game
@@ -63,6 +65,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playing__battleship);
+        backgroundMusic1 = MediaPlayer.create(this, R.raw.background1);
 
         messageScreen = (TextView) findViewById(R.id.gameInfo);
         messageScreen.setText("Your turn first");//initial message
@@ -103,6 +106,12 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
         gameState.setUpComputerShips(AIships);//set up the AI's ships
         setUpUserShips();//set up the user's ships
         gameState.printBoard();
+        playBackgroundMusic();
+    }
+
+    public void playBackgroundMusic(){
+        backgroundMusic1.start();
+        backgroundMusic1.setLooping(true);
     }
 
     /**
@@ -167,10 +176,10 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
         if (AIshipHit) {//if user hit AI's ship
             messageScreen.setText("You hit a ship!");
 
-            if(gameState.checkComputerCarrierHit(gameState.getCarrierComputerRow(),gameState.getCarrierComputerCol()) == true)
-            {
-                Toast.makeText(getApplicationContext(),"Carrier Got It",Toast.LENGTH_LONG).show();
-            }
+//            if(gameState.checkComputerCarrierHit(gameState.getCarrierComputerRow(),gameState.getCarrierComputerCol()) == true)
+//            {
+//                Toast.makeText(getApplicationContext(),"Carrier Got It",Toast.LENGTH_LONG).show();
+//            }
 
             hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);
             pressed.setBackgroundColor(Color.RED);//change button to red to represent hit
@@ -200,6 +209,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
         if (id == R.id.quitToMainItem)
         {
             finish();//go back to sey up ships
+            backgroundMusic1.stop();
             return true;
         }
         if (id == R.id.restartGameItem)
@@ -937,6 +947,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
     public void checkIfGameOver (){
         if (gameState.getPlayer1Hits() == 17) {//if user won
             messageScreen.setText("Victory!");
+            backgroundMusic1.stop();
             //code to wait 4 seconds then exit activity
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -946,6 +957,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
             }, 4000);
         } else if (gameState.getPlayer2Hits() == 17) {//if AI won
             messageScreen.setText("Defeat!");
+            backgroundMusic1.stop();
             //code to wait 4 seconds then exit activity
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {

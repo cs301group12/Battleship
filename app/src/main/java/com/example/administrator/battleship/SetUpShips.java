@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.media.MediaPlayer;
 import android.os.Vibrator;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.ActionBarActivity;
@@ -98,6 +99,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
     private ArrayList<String> aiDifficultyArray;
 
+    private MediaPlayer backgroundMusic5;
+
     /** Creates all of the buttons and sets up listeners for all of the buttons and the set up grid
      *
      * @param savedInstanceState
@@ -105,6 +108,9 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        backgroundMusic5 = MediaPlayer.create(this, R.raw.background5);
+
         //Creates the user board and initializes on touch listeners
         setContentView(R.layout.activity_set_up_ships);
         top = (AbsoluteLayout) findViewById(R.id.topView);
@@ -153,17 +159,19 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
         System.out.println(aiDifficulty.getSelectedItem().toString() + "\n");
 
+        playBackgroundMusic();
+    }
+
+    public void playBackgroundMusic(){
+        backgroundMusic5.start();
+        backgroundMusic5.setLooping(true);
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int i, long l){
-
-    }
+    public void onItemSelected(AdapterView<?> parent, View view, int i, long l){}
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
+    public void onNothingSelected(AdapterView<?> parent) {}
 
     // Inflate the menu; this adds items to the action bar if it is present.
     @Override
@@ -1109,9 +1117,11 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             movePtBoat = true;
         }
         if (view == mainMenu){
+            backgroundMusic5.stop();
             finish();
         }
         if (view == saveAndPlay){
+            backgroundMusic5.reset();
             Intent intent = new Intent(this, BattleshipHumanPlayer.class);
 
             intent.putExtra("Ships X",board.shipsX);

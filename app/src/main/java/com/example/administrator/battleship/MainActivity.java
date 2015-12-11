@@ -2,6 +2,7 @@ package com.example.administrator.battleship;
 
 import android.content.Intent;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -25,15 +26,22 @@ import android.widget.Button;
  */
 public class MainActivity extends ActionBarActivity {
 
-    private SoundPool music = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+    //private SoundPool music = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+    private MediaPlayer backgroundMusic5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        backgroundMusic5 = new MediaPlayer().create(this, R.raw.background5);
         goToPlay();
         goToHowToPlay();
+        playBackgroundMusic();
+    }
+
+    public void playBackgroundMusic(){
+        backgroundMusic5.start();
+        backgroundMusic5.setLooping(true);
     }
 
     //Method to go to set up the ships
@@ -42,6 +50,7 @@ public class MainActivity extends ActionBarActivity {
         playNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                backgroundMusic5.stop();
                 startActivity(new Intent(MainActivity.this, SetUpShips.class));
             }
         });
@@ -53,6 +62,7 @@ public class MainActivity extends ActionBarActivity {
         howToPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                backgroundMusic5.stop();
                 startActivity(new Intent(MainActivity.this, How_to_Play_Screen.class));
             }
         });
