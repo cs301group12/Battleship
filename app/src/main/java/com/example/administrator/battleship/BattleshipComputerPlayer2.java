@@ -24,6 +24,7 @@ public class BattleshipComputerPlayer2 {
     private int firstHitCol;
     private boolean stillOnTarget;//we are still looking for locations around a hit
     private boolean goVertical;//tells the AI to choose vertical locations around hit
+    private boolean goHorizontal;//tells AI to choose horizontal locations around  hit
     private boolean huntMode;//AI is "hunting"(searching) for ships
     private boolean killMode;//AI has hit a ship so now it switches to a mode where it's trying to sink the ship
     private int[][] userGrid = new int[10][10];//replica of user grid to be used by AI to see if they made
@@ -38,6 +39,7 @@ public class BattleshipComputerPlayer2 {
         killMode = false;
         stillOnTarget = false;
         goVertical = false;
+        goHorizontal = false;
     }
 
     /**
@@ -70,21 +72,24 @@ public class BattleshipComputerPlayer2 {
                             }
                         }
                         state.shipHit(row, col, 0);
-                    } else if (i == 2) {//fire at top adjacent
-                        row = lastHitRow - 1;
-                        col = lastHitCol;
-                        if (row < 0) {//out of bounds on top
-                            row = lastHitRow + 1;//change to fire below hit
-                        }
-                        state.shipHit(row, col, 0);
                     }
-                    if (i == 3) {//fire at bottom adjacent
-                        row = lastHitRow + 1;
-                        col = lastHitCol;
-                        if (row > 9) {//out of bounds on bottom
-                            break; //no spots left around hit;
+                    if (!goHorizontal) {
+                        if (i == 2) {//fire at top adjacent
+                            row = lastHitRow - 1;
+                            col = lastHitCol;
+                            if (row < 0) {//out of bounds on top
+                                row = lastHitRow + 1;//change to fire below hit
+                            }
+                            state.shipHit(row, col, 0);
                         }
-                        state.shipHit(row, col, 0);
+                        else if (i == 3) {//fire at bottom adjacent
+                            row = lastHitRow + 1;
+                            col = lastHitCol;
+                            if (row > 9) {//out of bounds on bottom
+                                break; //no spots left around hit;
+                            }
+                            state.shipHit(row, col, 0);
+                        }
                     }
                     i++;
                     if (i > 3) {
@@ -113,21 +118,24 @@ public class BattleshipComputerPlayer2 {
                             }
                         }
                         state.shipHit(row, col, 0);
-                    } else if (j == 2) {//fire at top adjacent
-                        row = firstHitRow - 1;
-                        col = firstHitCol;
-                        if (row < 0) {//out of bounds on top
-                            row = firstHitRow + 1;//change to fire below hit
-                        }
-                        state.shipHit(row, col, 0);
                     }
-                    if (j == 3) {//fire at bottom adjacent
-                        row = firstHitRow + 1;
-                        col = firstHitCol;
-                        if (row > 9) {//out of bounds on bottom
-                            break; //no spots left around hit;
+                    if (!goHorizontal) {
+                        if (j == 2) {//fire at top adjacent
+                            row = firstHitRow - 1;
+                            col = firstHitCol;
+                            if (row < 0) {//out of bounds on top
+                                row = firstHitRow + 1;//change to fire below hit
+                            }
+                            state.shipHit(row, col, 0);
                         }
-                        state.shipHit(row, col, 0);
+                        else if (j == 3) {//fire at bottom adjacent
+                            row = firstHitRow + 1;
+                            col = firstHitCol;
+                            if (row > 9) {//out of bounds on bottom
+                                break; //no spots left around hit;
+                            }
+                            state.shipHit(row, col, 0);
+                        }
                     }
                     j++;
                     if (j > 3) {
@@ -160,21 +168,23 @@ public class BattleshipComputerPlayer2 {
                         }
                         state.shipHit(row, col, 0);
                     }
-                    else if (i == 2) {//fire at right adjacent
-                        row = lastHitRow;
-                        col = lastHitCol + 1;
-                        if (col > 9) {//out of bounds on right
-                            col = lastHitCol - 1;//change to left of hit
+                    if (!goVertical) {
+                        if (i == 2) {//fire at right adjacent
+                            row = lastHitRow;
+                            col = lastHitCol + 1;
+                            if (col > 9) {//out of bounds on right
+                                col = lastHitCol - 1;//change to left of hit
+                            }
+                            state.shipHit(row, col, 0);
                         }
-                        state.shipHit(row, col, 0);
-                    }
-                    else if (i == 3) {//fire at left adjacent
-                        row = lastHitRow;
-                        col = lastHitCol - 1;
-                        if (col < 0) {//out of bounds on left
-                            break;//no more spots to check
+                        else if (i == 3) {//fire at left adjacent
+                            row = lastHitRow;
+                            col = lastHitCol - 1;
+                            if (col < 0) {//out of bounds on left
+                                break;//no more spots to check
+                            }
+                            state.shipHit(row, col, 0);
                         }
-                        state.shipHit(row, col, 0);
                     }
                     i++;
                     if (i > 3) {
@@ -205,21 +215,23 @@ public class BattleshipComputerPlayer2 {
                         }
                         state.shipHit(row, col, 0);
                     }
-                    else if (j == 2) {//fire at right adjacent
-                        row = firstHitRow;
-                        col = firstHitCol + 1;
-                        if (col > 9) {//out of bounds on right
-                            col = firstHitCol - 1;//change to left of hit
+                    if (!goVertical) {
+                        if (j == 2) {//fire at right adjacent
+                            row = firstHitRow;
+                            col = firstHitCol + 1;
+                            if (col > 9) {//out of bounds on right
+                                col = firstHitCol - 1;//change to left of hit
+                            }
+                            state.shipHit(row, col, 0);
                         }
-                        state.shipHit(row, col, 0);
-                    }
-                    else if (j == 3) {//fire at left adjacent
-                        row = firstHitRow;
-                        col = firstHitCol - 1;
-                        if (col < 0) {//out of bounds on left
-                            break;
+                        else if (j == 3) {//fire at left adjacent
+                            row = firstHitRow;
+                            col = firstHitCol - 1;
+                            if (col < 0) {//out of bounds on left
+                                break;
+                            }
+                            state.shipHit(row, col, 0);
                         }
-                        state.shipHit(row, col, 0);
                     }
                     j++;
                     if (j > 3) {
@@ -297,6 +309,7 @@ public class BattleshipComputerPlayer2 {
             lastHitRow = row;//store location of listHit
             lastHitCol = col;
             goVertical = twoInARowVertical(state,row,col);//check if the user's ship may be vertical
+            goHorizontal = twoInARowHorizontal(state,row,col);
             if (stillOnTarget == false) {//When a person gets a hit that means there is probably more hits around
                 //that location so, keep looking until all spots around hit have been checked
                 stillOnTarget = true;
@@ -347,17 +360,38 @@ public class BattleshipComputerPlayer2 {
         return false;
     }
 
+    public boolean twoInARowHorizontal( BattleshipGameState state,int rowHit, int colHit) {
+        userGrid = state.getUserGrid();//get the user's grid
+        if (colHit == 0) {//if hit at leftmost only check to the right
+            if (userGrid[rowHit][colHit+1] == 1) {
+                return true;
+            }
+        }
+        else if (colHit == 9) {//if hit at rightmost only check to the left
+            if (userGrid[rowHit][colHit-1] == 1) {
+                return true;
+            }
+        }
+        //check right and left of hit
+        else if (userGrid[rowHit][colHit-1] == 1 || userGrid[rowHit][colHit+1] == 1)  {//if user hit 2 squares in a row horizontally
+            return true;
+        }
+
+        return false;
+    }
+
     public void findUserShip(int[][] userGrid) {
         userShipFound = false;
         int i = 0;
         int j = 0;
-        for (i = 0; i <= 9; i++) {
-            for (j = 0; j <= 9; j++) {
+        for (i = 0; i < 10; i++) {
+            for (j = 0; j < 10; j++) {
                 if (userGrid[i][j] == 3) {
                     userShipFound = true;
                     break;
                 }
             }
+            if (j == 10) { j=9; }
             if (userGrid[i][j] == 3) {
                 userShipFound = true;
                 break;
