@@ -23,6 +23,20 @@ public class BattleshipGameState {
     //Instance variables
     private int player1Hits;
     private int player2Hits;
+
+    private int carrierComputerRow;
+    private int carrierComputerCol;
+    private int battleshipComputerRow;
+    private int battleshipComputerCol;
+    private int destroyerComputerRow;
+    private int destroyerComputerCol;
+    private int submarineComputerRow;
+    private int submarineComputerCol;
+    private int boatComputerRow;
+    private int boatComputerCol;
+
+
+    int computerShipDirection;
     private int playerID;//to keep track of whose turn it is
     private int[] shipsLife = new int[5];//human's ships life
     private int[] computerShipsLife = new int[5];//AI's ships life
@@ -421,15 +435,46 @@ public class BattleshipGameState {
                     checked[j][k] = 0; // Unchecked position
             boolean shipPlaced = false;//if ship is in a valid position then true
             while (!shipPlaced) {//iterate until a ship has been placed
-                int row = ran.nextInt(ROWS);//random # from 0-9
-                int col = ran.nextInt(COLS);//random # from 0-9
+                  int row = ran.nextInt(ROWS);//random # from 0-9
+                  int col = ran.nextInt(COLS);//random # from 0-9
+                System.out.println("ROW COMPUTER: " +computerGrid[row][col]);
                 if (checked[row][col] == 0) {
                     checked[row][col] = 1; // Checked position
                     if (computerGrid[row][col] == 0) {//0 means spot is empty
-                        int shipDirection = ran.nextInt(4);//generate random # from 0-3 to determine which direction ship is facing
+                        computerShipDirection = ran.nextInt(4);//generate random # from 0-3 to determine which direction ship is facing
                         // 0 = North; 1 = East; 2 = South; 3 = West;
-                        if (checkOverlap(AIships[i], row, col, shipDirection)) {//if ship can be placed then place it
-                            place(AIships[i], row, col, shipDirection);
+                        if (checkOverlap(AIships[i], row, col, computerShipDirection)) {//if ship can be placed then place it
+                            place(AIships[i], row, col, computerShipDirection);
+                            if(i == 0)
+                            {
+                                carrierComputerRow = row;
+                                carrierComputerCol = col;
+                            }
+
+                            if(i == 1)
+                            {
+                                battleshipComputerRow = row;
+                                battleshipComputerCol = col;
+                            }
+
+                            if(i == 2)
+                            {
+                                destroyerComputerRow = row;
+                                destroyerComputerCol = col;
+                            }
+
+                            if(i == 3)
+                            {
+                                submarineComputerRow = row;
+                                submarineComputerCol = col;
+                            }
+
+                            if(i == 4)
+                            {
+                                boatComputerRow = row;
+                                boatComputerCol = col;
+                            }
+
                             shipPlaced = true;
                         }
                     }
@@ -540,5 +585,40 @@ public class BattleshipGameState {
         for (int i = 0; i < ROWS; i++)
             System.out.println(Arrays.toString(userGrid[i]));
     }
+
+/*
+
+    NOT FINISHED
+
+    
+    public boolean checkComputerCarrierHit(int row, int col) {
+
+            if (computerShipDirection == 0 && computerGrid[row-i][col] == 3 && row >= 0){
+                return true;
+            }
+            if(computerShipDirection == 1 && computerGrid[row][col+i] == 3 && col <= 9)
+            {
+                return true;
+            }
+            if(computerShipDirection == 2 && computerGrid[row+i][col] == 3 && row <= 9)
+            {
+                return true;
+            }
+            if(computerGrid[row][col-i] == 3 && col >= 0)
+            {
+                return true;
+            }
+            */
+
+    public int getCarrierComputerRow()
+    {
+        return carrierComputerRow;
+    }
+
+    public int getCarrierComputerCol()
+    {
+        return carrierComputerCol;
+    }
+
 
 }
