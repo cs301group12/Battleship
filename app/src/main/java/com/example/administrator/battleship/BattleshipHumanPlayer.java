@@ -100,6 +100,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
                 new Ships(3),//sub
                 new Ships(2),//pt boat
         };
+
         gameState.setUpComputerShips(AIships);//set up the AI's ships
         setUpUserShips();//set up the user's ships
         gameState.printBoard();
@@ -167,9 +168,25 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
         if (AIshipHit) {//if user hit AI's ship
             messageScreen.setText("You hit a ship!");
 
-            if(gameState.checkComputerCarrierHit(gameState.getCarrierComputerRow(),gameState.getCarrierComputerCol()) == true)
+            if(gameState.checkComputerHit(0,gameState.getCarrierComputerRow(),gameState.getCarrierComputerCol()) == true)
             {
-                Toast.makeText(getApplicationContext(),"Carrier Got It",Toast.LENGTH_LONG).show();
+                messageScreen.setText("Computer Carrier Got Hit!");
+            }
+            else if(gameState.checkComputerHit(1,gameState.getBattleshipComputerRow(),gameState.getBattleshipComputerCol()) == true)
+            {
+                messageScreen.setText("Computer Battleship Got Hit!");
+            }
+            else if(gameState.checkComputerHit(2,gameState.getDestroyerComputerRow(),gameState.getDestroyerComputerCol()) == true)
+            {
+                messageScreen.setText("Computer Destroyer Got Hit!");
+            }
+            else if(gameState.checkComputerHit(3,gameState.getSubmarineComputerRow(),gameState.getSubmarineComputerCol()) == true)
+            {
+                messageScreen.setText("Computer Submarine Got Hit!");
+            }
+            else if(gameState.checkComputerHit(4,gameState.getBoatComputerRow(),gameState.getBoatComputerCol()) == true)
+            {
+                messageScreen.setText("Computer Patrol Boat Got Hit!");
             }
 
             hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);

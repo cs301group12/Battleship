@@ -51,6 +51,10 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     private SetUpShipsActivity board;
     private AbsoluteLayout top;
 
+
+    private Vibrator v;
+
+
     //Initializes the x and y coordinates for each ship
     int carrierRow;
     int carrierCol;

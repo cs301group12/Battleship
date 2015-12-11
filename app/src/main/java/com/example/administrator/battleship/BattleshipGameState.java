@@ -437,7 +437,6 @@ public class BattleshipGameState {
             while (!shipPlaced) {//iterate until a ship has been placed
                   int row = ran.nextInt(ROWS);//random # from 0-9
                   int col = ran.nextInt(COLS);//random # from 0-9
-                System.out.println("ROW COMPUTER: " +computerGrid[row][col]);
                 if (checked[row][col] == 0) {
                     checked[row][col] = 1; // Checked position
                     if (computerGrid[row][col] == 0) {//0 means spot is empty
@@ -447,32 +446,28 @@ public class BattleshipGameState {
                             place(AIships[i], row, col, computerShipDirection);
                             if(i == 0)
                             {
-                                carrierComputerRow = row;
-                                carrierComputerCol = col;
+                                boatComputerRow = row;
+                                boatComputerCol = col;
                             }
-
-                            if(i == 1)
-                            {
-                                battleshipComputerRow = row;
-                                battleshipComputerCol = col;
-                            }
-
-                            if(i == 2)
-                            {
-                                destroyerComputerRow = row;
-                                destroyerComputerCol = col;
-                            }
-
-                            if(i == 3)
+                            else if(i == 1)
                             {
                                 submarineComputerRow = row;
                                 submarineComputerCol = col;
                             }
-
-                            if(i == 4)
+                            else if(i == 2)
                             {
-                                boatComputerRow = row;
-                                boatComputerCol = col;
+                                destroyerComputerRow = row;
+                                destroyerComputerCol = col;
+                            }
+                            else if(i == 3)
+                            {
+                                battleshipComputerRow = row;
+                                battleshipComputerCol = col;
+                            }
+                            else if(i == 4)
+                            {
+                                carrierComputerRow = row;
+                                carrierComputerCol = col;
                             }
 
                             shipPlaced = true;
@@ -586,38 +581,148 @@ public class BattleshipGameState {
             System.out.println(Arrays.toString(userGrid[i]));
     }
 
-/*
 
-    NOT FINISHED
+    /*DOESN;T WORK*/
+    public boolean checkComputerHit(int shipNum,int row, int col) {
 
-    
-    public boolean checkComputerCarrierHit(int row, int col) {
-
-            if (computerShipDirection == 0 && computerGrid[row-i][col] == 3 && row >= 0){
+        if(shipNum == 4) {
+                if (computerShipDirection == 0 && computerGrid[row][col] == 3 && computerGrid[row-1][col] == 3
+                        && computerGrid[row-2][col] == 3 && computerGrid[row-3][col] == 3
+                        && computerGrid[row-4][col] == 3) {
+                    System.out.println("Carrier Orientation: " + computerShipDirection);
+                    return true;
+                }
+                else if (computerShipDirection == 1 && computerGrid[row][col] == 3 && computerGrid[row][col + 1] == 3
+                        && computerGrid[row][col + 2] == 3  && computerGrid[row][col + 3] == 3
+                        && computerGrid[row][col + 4] == 3) {
+                    System.out.println("Carrier Orientation: " + computerShipDirection);
+                    return true;
+                }
+                else if (computerShipDirection == 2 && computerGrid[row][col] == 3 && computerGrid[row+1][col] == 3
+                        && computerGrid[row+2][col] == 3 && computerGrid[row+3][col] == 3
+                        && computerGrid[row+4][col] == 3) {
+                    System.out.println("Carrier Orientation: " + computerShipDirection);
+                    return true;
+                }
+                else if (computerGrid[row][col] == 3 && computerGrid[row][col-1] == 3 && computerGrid[row][col-2] == 3
+                        && computerGrid[row][col-2] == 3 && computerGrid[row][col-3] == 3 && computerGrid[row][col-4] == 3) {
+                    System.out.println("Carrier Orientation: " + computerShipDirection);
+                    return true;
+                }
+        }
+        else if(shipNum == 1)
+        {
+            if (computerShipDirection == 0 && computerGrid[row][col] == 3 && computerGrid[row-1][col] == 3
+                    && computerGrid[row-2][col] == 3 && computerGrid[row-3][col] == 3) {
+                System.out.println("Battleship Orientation: " + computerShipDirection);
                 return true;
             }
-            if(computerShipDirection == 1 && computerGrid[row][col+i] == 3 && col <= 9)
-            {
+            else if (computerShipDirection == 1 && computerGrid[row][col] == 3 && computerGrid[row][col + 1] == 3
+                    && computerGrid[row][col + 2] == 3  && computerGrid[row][col + 3] == 3) {
+                System.out.println("Battleship Orientation: " + computerShipDirection);
                 return true;
             }
-            if(computerShipDirection == 2 && computerGrid[row+i][col] == 3 && row <= 9)
-            {
+            else if (computerShipDirection == 2 && computerGrid[row][col] == 3 && computerGrid[row+1][col] == 3
+                    && computerGrid[row+2][col] == 3 && computerGrid[row+3][col] == 3) {
+                System.out.println("Battleship Orientation: " + computerShipDirection);
                 return true;
             }
-            if(computerGrid[row][col-i] == 3 && col >= 0)
-            {
+            else if (computerGrid[row][col] == 3 && computerGrid[row][col-1] == 3 && computerGrid[row][col-2] == 3
+                    && computerGrid[row][col-2] == 3 && computerGrid[row][col-3] == 3) {
+                System.out.println("Battleship Orientation: " + computerShipDirection);
                 return true;
             }
-            */
+        }
+        else if(shipNum == 2)
+        {
+            if (computerShipDirection == 0 && computerGrid[row][col] == 3 && computerGrid[row-1][col] == 3
+                    && computerGrid[row-2][col] == 3) {
+                    System.out.println("Destroyer Orientation: " + computerShipDirection);
+                return true;
+            }
+            else if (computerShipDirection == 1 && computerGrid[row][col] == 3 && computerGrid[row][col + 1] == 3
+                    && computerGrid[row][col + 2] == 3) {
+                      System.out.println("Destroyer Orientation: " + computerShipDirection);
+                return true;
+            }
+            else if (computerShipDirection == 2 && computerGrid[row][col] == 3 && computerGrid[row+1][col] == 3
+                    && computerGrid[row+2][col] == 3) {
+                     System.out.println("Destroyer Orientation: " + computerShipDirection);
+                return true;
+            }
+            else if (computerGrid[row][col] == 3 && computerGrid[row][col-1] == 3 && computerGrid[row][col-2] == 3
+                    && computerGrid[row][col-2] == 3) {
+                    System.out.println("Destroyer Orientation: " + computerShipDirection);
+                return true;
+            }
+        }
+        else if(shipNum == 3)
+        {
+            if (computerShipDirection == 0 && computerGrid[row][col] == 3 && computerGrid[row-1][col] == 3
+                    && computerGrid[row-2][col] == 3) {
+                System.out.println("Submarine Orientation: " + computerShipDirection);
+                return true;
+            }
+            else if (computerShipDirection == 1 && computerGrid[row][col] == 3 && computerGrid[row][col + 1] == 3
+                    && computerGrid[row][col + 2] == 3) {
+                System.out.println("Submarine Orientation: " + computerShipDirection);
+                return true;
+            }
+            else if (computerShipDirection == 2 && computerGrid[row][col] == 3 && computerGrid[row+1][col] == 3
+                    && computerGrid[row+2][col] == 3) {
+                System.out.println("Submarine Orientation: " + computerShipDirection);
+                return true;
+            }
+            else if (computerGrid[row][col] == 3 && computerGrid[row][col-1] == 3 && computerGrid[row][col-2] == 3
+                    && computerGrid[row][col-2] == 3) {
+                System.out.println("Submarine Orientation: " + computerShipDirection);
+                return true;
+            }
+        }
+        else if(shipNum == 0)
+        {
 
-    public int getCarrierComputerRow()
-    {
-        return carrierComputerRow;
+            if (computerShipDirection == 0 && computerGrid[row][col] == 3 && computerGrid[row-1][col] == 3
+                    && computerGrid[row-2][col] == 3) {
+                System.out.println("Boat Orientation: " + computerShipDirection);
+                return true;
+            }
+            else if (computerShipDirection == 1 && computerGrid[row][col] == 3 && computerGrid[row][col + 1] == 3
+                    && computerGrid[row][col + 2] == 3) {
+                System.out.println("Boat Orientation: " + computerShipDirection);
+                return true;
+            }
+            else if (computerShipDirection == 2 && computerGrid[row][col] == 3 && computerGrid[row+1][col] == 3
+                    && computerGrid[row+2][col] == 3) {
+                System.out.println("Boat Orientation: " + computerShipDirection);
+                return true;
+            }
+            else if (computerGrid[row][col] == 3 && computerGrid[row][col-1] == 3 && computerGrid[row][col-2] == 3
+                    && computerGrid[row][col-2] == 3) {
+                System.out.println("Boat Orientation: " + computerShipDirection);
+                return true;
+            }
+
+        }
+        return false;
     }
 
-    public int getCarrierComputerCol()
+    public int getCarrierComputerRow() { return carrierComputerRow;}
+    public int getCarrierComputerCol() { return carrierComputerCol; }
+
+    public int getBattleshipComputerRow() { return battleshipComputerRow;}
+    public int getBattleshipComputerCol() { return battleshipComputerCol; }
+
+    public int getDestroyerComputerRow() { return destroyerComputerRow;}
+    public int getDestroyerComputerCol() { return destroyerComputerCol; }
+
+    public int getSubmarineComputerRow() { return submarineComputerRow;}
+    public int getSubmarineComputerCol() { return submarineComputerCol; }
+
+    public int getBoatComputerRow() { return boatComputerRow;}
+    public int getBoatComputerCol()
     {
-        return carrierComputerCol;
+        return boatComputerCol;
     }
 
 
