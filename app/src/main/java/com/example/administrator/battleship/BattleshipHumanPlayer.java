@@ -166,6 +166,12 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
         AIshipHit = gameState.getAIShipHit();
         if (AIshipHit) {//if user hit AI's ship
             messageScreen.setText("You hit a ship!");
+
+            if(gameState.checkComputerCarrierHit(gameState.getCarrierComputerRow(),gameState.getCarrierComputerCol()) == true)
+            {
+                Toast.makeText(getApplicationContext(),"Carrier Got It",Toast.LENGTH_LONG).show();
+            }
+
             hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);
             pressed.setBackgroundColor(Color.RED);//change button to red to represent hit
         } else {
