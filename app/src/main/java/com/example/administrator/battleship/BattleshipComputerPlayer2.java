@@ -26,7 +26,11 @@ public class BattleshipComputerPlayer2 {
     private boolean goVertical;//tells the AI to choose vertical locations around hit
     private boolean huntMode;//AI is "hunting"(searching) for ships
     private boolean killMode;//AI has hit a ship so now it switches to a mode where it's trying to sink the ship
-    private int[][] userGrid = new int[10][10];//replica of user grid
+    private int[][] userGrid = new int[10][10];//replica of user grid to be used by AI to see if they made
+    //two vertical hits in a row and to "cheat" a little (for the hard AI)
+    private int userShipRow;//Variables to store location of user ship. Used for hard AI to cheat
+    private int userShipCol;
+    private boolean userShipFound;
 
     //Initialize variables in consrtuctor
     public BattleshipComputerPlayer2() {
@@ -43,7 +47,7 @@ public class BattleshipComputerPlayer2 {
      *
      * @param state The game state variable passed in from BattleshipHumanPlayer
      */
-    public void fire(BattleshipGameState state) {
+    public void fire(BattleshipGameState state, int whichAI) {
         if (killMode){//If in kill mode, then look for locations around hit
             if (!goVertical) {//The user's ship is probably horizontal
                 int i = 0;
@@ -234,17 +238,57 @@ public class BattleshipComputerPlayer2 {
                     stillOnTarget = false;
                 }//generate a new random location
                 while (state.getPlayerID() == 1) {
-                    row = (int) (Math.random() * 10);
-                    col = (int) (Math.random() * 10);
-                    state.shipHit(row, col, 0);
+                    if (whichAI == 0) {//normal AI
+                        row = (int) (Math.random() * 10);
+                        col = (int) (Math.random() * 10);
+                        state.shipHit(row, col, 0);
+                    }
+                    else {//hard AI
+                        if (Math.random() > 0.3) { //70% chance of cheating
+                            userGrid = state.getUserGrid();
+                            findUserShip(userGrid);
+                            row = userShipRow;
+                            col = userShipCol;
+                            if (!userShipFound) {//user ship was not found
+                                row = (int) (Math.random() * 10);
+                                col = (int) (Math.random() * 10);
+                            }
+                            state.shipHit(row, col, 0);
+                        }
+                        else {//don't cheat
+                            row = (int) (Math.random() * 10);
+                            col = (int) (Math.random() * 10);
+                            state.shipHit(row, col, 0);
+                        }
+                    }
                 }
             }
         }
         else {//not in killMode, then hunt by generating random locations
             while (state.getPlayerID() == 1) {
-                row = (int) (Math.random() * 10);
-                col = (int) (Math.random() * 10);
-                state.shipHit(row, col, 0);
+                if (whichAI == 0) {//normal AI
+                    row = (int) (Math.random() * 10);
+                    col = (int) (Math.random() * 10);
+                    state.shipHit(row, col, 0);
+                }
+                else {//hard AI
+                    if (Math.random() > 0.3) { //70% chance of cheating
+                        userGrid = state.getUserGrid();
+                        findUserShip(userGrid);
+                        row = userShipRow;
+                        col = userShipCol;
+                        if (!userShipFound) {//user ship was not found
+                            row = (int) (Math.random() * 10);
+                            col = (int) (Math.random() * 10);
+                        }
+                        state.shipHit(row, col, 0);
+                    }
+                    else {//don't cheat
+                        row = (int) (Math.random() * 10);
+                        col = (int) (Math.random() * 10);
+                        state.shipHit(row, col, 0);
+                    }
+                }
             }
         }
         if (state.getUserShipHit()){//If a user's ship was hit
@@ -303,8 +347,36 @@ public class BattleshipComputerPlayer2 {
         return false;
     }
 
+    public void findUserShip(int[][] userGrid) {
+        userShipFound = false;
+        int i = 0;
+        int j = 0;
+        for (i = 0; i <= 9; i++) {
+            for (j = 0; j <= 9; j++) {
+                if (userGrid[i][j] == 3) {
+                    userShipFound = true;
+                    break;
+                }
+            }
+            if (userGrid[i][j] == 3) {
+                userShipFound = true;
+                break;
+            }
+        }
+        userShipRow = i;
+        userShipCol = j;
+    }
+
 
     public int getRow(){return row;}
     public int getCol(){return col;}
 
+    public int getUserShipRow() {
+        return userShipRow;
+    }
+
+    public int getUserShipCol() {
+        return userShipCol;
+    }
+    public boolean getUserShipFound() { return userShipFound; }
 }

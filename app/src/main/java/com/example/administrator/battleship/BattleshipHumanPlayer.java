@@ -138,7 +138,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
                 }
             }
             else {//hard AI
-                hardAI.fire(gameState);
+                hardAI.fire(gameState,0);
                 row = hardAI.getRow();
                 col = hardAI.getCol();
             }
