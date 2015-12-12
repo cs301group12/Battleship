@@ -256,7 +256,7 @@ public class BattleshipComputerPlayer2 {
                         state.shipHit(row, col, 0);
                     }
                     else {//hard AI
-                        if (Math.random() > 0.3) { //70% chance of cheating
+                        if (Math.random() > 0.5) { //70% chance of cheating
                             userGrid = state.getUserGrid();
                             findUserShip(userGrid);
                             row = userShipRow;
@@ -284,7 +284,7 @@ public class BattleshipComputerPlayer2 {
                     state.shipHit(row, col, 0);
                 }
                 else {//hard AI
-                    if (Math.random() > 0.4) { //60% chance of cheating
+                    if (Math.random() > 0.5) { //70% chance of cheating
                         userGrid = state.getUserGrid();
                         findUserShip(userGrid);
                         row = userShipRow;
@@ -306,10 +306,12 @@ public class BattleshipComputerPlayer2 {
         if (state.getUserShipHit()){//If a user's ship was hit
             huntMode = false;//no longer in huntMode switch to killMode
             killMode = true;
-            lastHitRow = row;//store location of listHit
+            lastHitRow = row;//store location of lastHit
             lastHitCol = col;
             goVertical = twoInARowVertical(state,row,col);//check if the user's ship may be vertical
-            goHorizontal = twoInARowHorizontal(state,row,col);
+            if (whichAI != 0) {
+                goHorizontal = twoInARowHorizontal(state, row, col);
+            }
             if (stillOnTarget == false) {//When a person gets a hit that means there is probably more hits around
                 //that location so, keep looking until all spots around hit have been checked
                 stillOnTarget = true;
