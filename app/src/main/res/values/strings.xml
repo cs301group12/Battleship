@@ -7,4 +7,6 @@
     <string name="title_activity_how_to__play__screen">HOW TO PLAY BATTLESHIP</string>
     <string name="title_activity_set_up_ship">SetUpShipActivity</string>
     <string name="title_activity_set_up_ships">SET UP YOUR SHIPS</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="title_activity_set_up_ship_instruction">INSTRUCTIONS</string>
 </resources>

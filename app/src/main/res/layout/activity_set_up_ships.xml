@@ -8,7 +8,7 @@
     android:id="@+id/topView"
     android:weightSum="1"
     android:orientation="horizontal"
-    android:background="@drawable/setting_up_the_game_background">
+    android:background="@drawable/set_up_ships_activity_background">
 
     <com.example.administrator.battleship.SetUpShipsActivity
         android:layout_width="500dp"
@@ -159,5 +159,13 @@
         android:layout_marginLeft="800dp"
         android:layout_x="523dp"
         android:layout_y="338dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/showInstructionButton"
+        android:layout_x="605dp"
+        android:layout_y="30dp"
+        android:background="@drawable/show_instruction_button" />
 
 </AbsoluteLayout>

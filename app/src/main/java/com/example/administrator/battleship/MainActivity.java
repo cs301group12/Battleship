@@ -31,6 +31,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     private MediaPlayer backgroundMusic5;
     private Button unmute;
     private Button mute;
+    private SoundPool buttonSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+    private int pickupId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         mute = (Button) findViewById(R.id.mutebutton);
         mute.setOnClickListener(this);
         unmute.setOnClickListener(this);
+
+        this.pickupId = buttonSound.load(this, R.raw.button_sound_effect, 1);
     }
 
     public void playBackgroundMusic(){
@@ -76,6 +80,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         playNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                buttonSound.play(pickupId, 1, 1, 1, 0, 1.0f);
                 backgroundMusic5.stop();
                 startActivity(new Intent(MainActivity.this, SetUpShips.class));
             }
@@ -88,6 +93,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         howToPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                buttonSound.play(pickupId, 1, 1, 1, 0, 1.0f);
                 //backgroundMusic5.stop();
                 startActivity(new Intent(MainActivity.this, How_to_Play_Screen.class));
             }

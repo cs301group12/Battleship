@@ -1,5 +1,7 @@
 package com.example.administrator.battleship;
 
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,11 +24,15 @@ import android.widget.Button;
  */
 public class How_to_Play_Screen extends ActionBarActivity {
 
+    private SoundPool buttonSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+    private int pickupId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_to__play__screen);
 
+        this.pickupId = buttonSound.load(this, R.raw.button_sound_effect, 1);
         htpToMainMenu();
     }
 
@@ -36,6 +42,7 @@ public class How_to_Play_Screen extends ActionBarActivity {
         mainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                buttonSound.play(pickupId, 1, 1, 1, 0, 1.0f);
                 finish();
             }
         });

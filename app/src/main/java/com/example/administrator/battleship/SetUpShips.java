@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Vibrator;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.ActionBarActivity;
@@ -55,6 +57,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
     private Vibrator v;
 
+    private SoundPool buttonSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+    private int pickupId;
 
     //Initializes the x and y coordinates for each ship
     int carrierRow;
@@ -85,6 +89,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     private Button ptBoatButton;
     private Button mainMenu;
     private Button saveAndPlay;
+    private Button showInstruction;
 
     //Initializes the canvas
     private Canvas canvas;
@@ -116,6 +121,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         super.onCreate(savedInstanceState);
 
         backgroundMusic5 = MediaPlayer.create(this, R.raw.background5);
+
+        this.pickupId = buttonSound.load(this, R.raw.button_sound_effect, 1);
 
         //Creates the user board and initializes on touch listeners
         setContentView(R.layout.activity_set_up_ships);
@@ -152,6 +159,11 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         ptBoatButton = (Button) findViewById(R.id.selectPTBoat);
         ptBoatButton.setOnClickListener(this);
         ptBoatButton.setOnLongClickListener(this);
+
+
+        showInstruction = (Button) findViewById(R.id.showInstructionButton);
+        showInstruction.setOnClickListener(this);
+
 
         errorOverlap = (ImageView) findViewById(R.id.errorOverlapping);
 
@@ -1128,12 +1140,15 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         }
         if (view == mainMenu){
             startActivity(new Intent(SetUpShips.this, MainActivity.class));
+            buttonSound.play(this.pickupId, 1, 1, 1, 0, 1.0f);
             backgroundMusic5.stop();
             finish();
         }
         if (view == saveAndPlay){
             backgroundMusic5.reset();
             Intent intent = new Intent(this, BattleshipHumanPlayer.class);
+
+            buttonSound.play(this.pickupId, 1, 1, 1, 0, 1.0f);
 
             intent.putExtra("Ships X",board.shipsX);
             intent.putExtra("Ships Y",board.shipsY);
@@ -1184,6 +1199,11 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         if (view == unmute){
             backgroundMusic5.start();
             backgroundMusic5.setLooping(true);
+        }
+        if (view == showInstruction)
+        {
+            startActivity(new Intent(SetUpShips.this,SetUpShipInstruction.class));
+            buttonSound.play(this.pickupId, 1, 1, 1, 0, 1.0f);
         }
     }
 

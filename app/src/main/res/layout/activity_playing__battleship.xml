@@ -18,7 +18,7 @@
             android:layout_height="75dp"
             android:text="Status"
             android:id="@+id/gameInfo"
-            android:background="@drawable/status_bar"
+            android:background="@drawable/status_bar_gui"
             android:textSize="40dp"
             android:gravity="center"
             android:textColor="#fff0f0f0"
