@@ -11,13 +11,16 @@ import android.media.SoundPool;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,6 +89,12 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
     private boolean destroyerDestroyed = false;
     private boolean submarineDestroyed = false;
     private boolean boatDestroyed = false;
+
+    TextView message;
+    PopupWindow gameOver;
+    LinearLayout layout;
+    LayoutParams params;
+    LinearLayout mainLayout;
 
 
     @Override
@@ -159,6 +168,12 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
         setUpUserShips();//set up the user's ships
         gameState.printBoard();
         playBackgroundMusic();
+
+        gameOver = new PopupWindow(this);
+        layout = new LinearLayout(this);
+        mainLayout = new LinearLayout(this);
+        //message = (TextView) findViewById(R.id.gameOverMessage);
+        message = new TextView(this);
     }
 
     public void playBackgroundMusic(){
@@ -1017,7 +1032,10 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
      */
     public void checkIfGameOver (){
         if (gameState.getPlayer1Hits() == 17) {//if user won
-            messageScreen.setText("Victory!");
+            Intent intent = new Intent(this,GameOverPopup.class);
+            intent.putExtra("Winner","Human");
+            startActivity(intent);
+            //messageScreen.setText("Victory!");
             backgroundMusic1.stop();
             //code to wait 4 seconds then exit activity
             Handler handler = new Handler();
@@ -1027,7 +1045,10 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 }
             }, 4000);
         } else if (gameState.getPlayer2Hits() == 17) {//if AI won
-            messageScreen.setText("Defeat!");
+            Intent intent = new Intent(this,GameOverPopup.class);
+            intent.putExtra("Winner", "AI");
+            startActivity(intent);
+            //messageScreen.setText("Defeat!");
             backgroundMusic1.stop();
             //code to wait 4 seconds then exit activity
             Handler handler = new Handler();

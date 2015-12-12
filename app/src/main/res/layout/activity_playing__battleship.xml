@@ -19,7 +19,7 @@
             android:text="Status"
             android:id="@+id/gameInfo"
             android:background="@drawable/status_bar"
-            android:textSize="40dp"
+            android:textSize="30dp"
             android:gravity="center"
             android:textColor="#fff0f0f0"
             android:autoText="false"

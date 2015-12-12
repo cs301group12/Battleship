@@ -35,6 +35,9 @@
             android:name=".SetUpShips"
             android:label="@string/title_activity_set_up_ships" >
         </activity>
+        <activity android:name=".GameOverPopup"
+            android:theme="@style/AppTheme.PopupTheme">
+        </activity>
     </application>
 
 </manifest>
