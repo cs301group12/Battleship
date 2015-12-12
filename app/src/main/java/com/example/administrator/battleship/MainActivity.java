@@ -25,7 +25,7 @@ import android.widget.Button;
  * or learn the rules.
  *
  */
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements View.OnClickListener{
 
     //private SoundPool music = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
     private MediaPlayer backgroundMusic5;
@@ -43,11 +43,31 @@ public class MainActivity extends ActionBarActivity {
 
         unmute = (Button) findViewById(R.id.unmuteButton);
         mute = (Button) findViewById(R.id.mutebutton);
+        mute.setOnClickListener(this);
+        unmute.setOnClickListener(this);
     }
 
     public void playBackgroundMusic(){
         backgroundMusic5.start();
         backgroundMusic5.setLooping(true);
+    }
+
+    @Override
+    public void onClick(View view){
+        if (view == mute){
+            backgroundMusic5.pause();
+        }
+        if (view == unmute){
+            backgroundMusic5.start();
+            backgroundMusic5.setLooping(true);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        backgroundMusic5.stop();
+        finish();
+      //  super.onBackPressed();
     }
 
     //Method to go to set up the ships
@@ -68,7 +88,7 @@ public class MainActivity extends ActionBarActivity {
         howToPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backgroundMusic5.stop();
+                //backgroundMusic5.stop();
                 startActivity(new Intent(MainActivity.this, How_to_Play_Screen.class));
             }
         });

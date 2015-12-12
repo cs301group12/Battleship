@@ -104,6 +104,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     private ArrayList<String> aiDifficultyArray;
 
     private MediaPlayer backgroundMusic5;
+    private Button unmute;
+    private Button mute;
 
     /** Creates all of the buttons and sets up listeners for all of the buttons and the set up grid
      *
@@ -163,6 +165,10 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
         System.out.println(aiDifficulty.getSelectedItem().toString() + "\n");
 
+        unmute = (Button) findViewById(R.id.unmuteButtonSetUp);
+        mute = (Button) findViewById(R.id.mutebuttonSetUp);
+        mute.setOnClickListener(this);
+        unmute.setOnClickListener(this);
         playBackgroundMusic();
     }
 
@@ -1121,6 +1127,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             movePtBoat = true;
         }
         if (view == mainMenu){
+            startActivity(new Intent(SetUpShips.this, MainActivity.class));
             backgroundMusic5.stop();
             finish();
         }
@@ -1171,6 +1178,20 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
             startActivityForResult(intent,10);
         }
+        if (view == mute){
+            backgroundMusic5.pause();
+        }
+        if (view == unmute){
+            backgroundMusic5.start();
+            backgroundMusic5.setLooping(true);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        backgroundMusic5.stop();
+        startActivity(new Intent(SetUpShips.this, MainActivity.class));
+      //  super.onBackPressed();
     }
 
     /** When a ship button is held down, the ship will be rotated and selected.
