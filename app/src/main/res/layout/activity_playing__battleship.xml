@@ -31,8 +31,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0">
+        android:layout_height="50dp">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -148,7 +147,7 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="0dp"
                 android:layout_marginLeft="15dp"
                 android:typeface="serif" />
 
@@ -164,9 +163,26 @@
             android:layout_height="20px"
             android:layout_weight="0" />
 
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:id="@+id/muteButtonPlaying"
+            android:background="@drawable/mute_button"
+            android:layout_x="523dp"
+            android:layout_y="224dp"
+            android:layout_marginLeft="-20dp" />
+
         <Space
             android:layout_width="20px"
             android:layout_height="20px"
+            android:layout_weight="0" />
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/unmuteButtonPlaying"
+            android:background="@drawable/unmute_button"
+            android:layout_marginLeft="-15dp"
             android:layout_weight="0" />
 
         <LinearLayout
@@ -176,11 +192,6 @@
             android:layout_marginLeft="0dp"
             android:layout_weight="0">
 
-            <Space
-                android:layout_width="20px"
-                android:layout_height="20px"
-                android:layout_weight="0" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -189,7 +200,7 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="0dp"
                 android:typeface="serif" />
 
             <TextView
@@ -200,7 +211,7 @@
                 android:textColor="#ffffffff"
                 android:textSize="40dp"
                 android:layout_weight="0"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="20dp"
                 android:typeface="serif" />
 
             <TextView
