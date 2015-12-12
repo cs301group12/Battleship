@@ -154,7 +154,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         errorOverlap = (ImageView) findViewById(R.id.errorOverlapping);
 
        // String[] aiDifficultyArray = {"normal","hard"};
-        aiDifficultyArray = new ArrayList<String>(Arrays.asList("Easy", "Hard"));
+        aiDifficultyArray = new ArrayList<String>(Arrays.asList("Easy", "Normal", "Hard"));
         aiDifficulty = (Spinner) findViewById(R.id.aiDiffSpin);
         aiDifficultyAdapterArray = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,aiDifficultyArray);
 
