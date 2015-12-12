@@ -36,7 +36,7 @@ import java.util.Arrays;
  * based on user actions.
  *
  */
-public class BattleshipHumanPlayer extends ActionBarActivity {
+public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnClickListener{
 
     //Instance variables
     //GUI variables
@@ -51,6 +51,8 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
     private int pickupId2;
     private int pickupId3;
     private MediaPlayer backgroundMusic1;
+    private Button unmute;
+    private Button mute;
 
     Intent intent;//to receive data
     private BattleshipGameState gameState;//game state of entire game
@@ -90,6 +92,10 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playing__battleship);
         backgroundMusic1 = MediaPlayer.create(this, R.raw.background1);
+        unmute = (Button) findViewById(R.id.unmuteButtonPlaying);
+        mute = (Button) findViewById(R.id.muteButtonPlaying);
+        mute.setOnClickListener(this);
+        unmute.setOnClickListener(this);
 
         messageScreen = (TextView) findViewById(R.id.gameInfo);
         messageScreen.setText("Your turn first");//initial message
@@ -238,6 +244,24 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
     }
 
     @Override
+    public void onClick(View view){
+        if (view == mute){
+            backgroundMusic1.pause();
+        }
+        if (view == unmute){
+            backgroundMusic1.start();
+            backgroundMusic1.setLooping(true);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        backgroundMusic1.stop();
+        startActivity(new Intent(BattleshipHumanPlayer.this, SetUpShips.class));
+      //  super.onBackPressed();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
@@ -245,6 +269,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
         if (id == R.id.quitToMainItem)
         {
             finish();//go back to sey up ships
+            startActivity(new Intent(BattleshipHumanPlayer.this, SetUpShips.class));
             backgroundMusic1.stop();
             return true;
         }

@@ -143,4 +143,21 @@
         android:spinnerMode="dropdown"
         android:background="#ffcbcbcb" />
 
+    <Button
+        android:layout_width="49dp"
+        android:layout_height="68dp"
+        android:id="@+id/mutebuttonSetUp"
+        android:background="@drawable/mute_button"
+        android:layout_x="523dp"
+        android:layout_y="224dp" />
+
+    <Button
+        android:layout_width="49dp"
+        android:layout_height="68dp"
+        android:id="@+id/unmuteButtonSetUp"
+        android:background="@drawable/unmute_button"
+        android:layout_marginLeft="800dp"
+        android:layout_x="523dp"
+        android:layout_y="338dp" />
+
 </AbsoluteLayout>
