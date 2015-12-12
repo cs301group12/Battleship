@@ -1,6 +1,7 @@
 package com.example.administrator.battleship;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
@@ -28,6 +29,8 @@ public class MainActivity extends ActionBarActivity {
 
     //private SoundPool music = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
     private MediaPlayer backgroundMusic5;
+    private Button unmute;
+    private Button mute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,9 @@ public class MainActivity extends ActionBarActivity {
         goToPlay();
         goToHowToPlay();
         playBackgroundMusic();
+
+        unmute = (Button) findViewById(R.id.unmuteButton);
+        mute = (Button) findViewById(R.id.mutebutton);
     }
 
     public void playBackgroundMusic(){
@@ -89,4 +95,5 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

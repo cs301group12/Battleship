@@ -125,8 +125,8 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
         gameState.setUpUserShips(1,shipVals[0],shipVals[1],userBoard.shipOrientations[0]);//carrier
         gameState.setUpUserShips(2,shipVals[2],shipVals[3],userBoard.shipOrientations[1]);//battleship
         gameState.setUpUserShips(3,shipVals[4],shipVals[5],userBoard.shipOrientations[2]);//destroyer
-        gameState.setUpUserShips(4,shipVals[6],shipVals[7],userBoard.shipOrientations[3]);//submarine
-        gameState.setUpUserShips(5,shipVals[8],shipVals[9],userBoard.shipOrientations[4]);//pt boat
+        gameState.setUpUserShips(4, shipVals[6], shipVals[7], userBoard.shipOrientations[3]);//submarine
+        gameState.setUpUserShips(5, shipVals[8], shipVals[9], userBoard.shipOrientations[4]);//pt boat
     }
 
     /**
@@ -175,31 +175,11 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
     public void userTurn(Button pressed) {
         AIshipHit = gameState.getAIShipHit();
         if (AIshipHit) {//if user hit AI's ship
-            messageScreen.setText("You hit a ship!");
-
-            if(gameState.checkComputerHit(0,gameState.getCarrierComputerRow(),gameState.getCarrierComputerCol()) == true)
-            {
-                messageScreen.setText("Computer Carrier Got Hit!");
-            }
-            else if(gameState.checkComputerHit(1,gameState.getBattleshipComputerRow(),gameState.getBattleshipComputerCol()) == true)
-            {
-                messageScreen.setText("Computer Battleship Got Hit!");
-            }
-            else if(gameState.checkComputerHit(2,gameState.getDestroyerComputerRow(),gameState.getDestroyerComputerCol()) == true)
-            {
-                messageScreen.setText("Computer Destroyer Got Hit!");
-            }
-            else if(gameState.checkComputerHit(3,gameState.getSubmarineComputerRow(),gameState.getSubmarineComputerCol()) == true)
-            {
-                messageScreen.setText("Computer Submarine Got Hit!");
-            }
-            else if(gameState.checkComputerHit(4,gameState.getBoatComputerRow(),gameState.getBoatComputerCol()) == true)
-            {
-                messageScreen.setText("Computer Patrol Boat Got Hit!");
-            }
-
+            //messageScreen.setText("You hit a ship!");
             hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);
             pressed.setBackgroundColor(Color.RED);//change button to red to represent hit
+
+            checkHits();
         } else {
             missSound.play(this.pickupId2, 1, 1, 1, 0, 1.0f);
             messageScreen.setText("You missed the enemy ships!");
@@ -259,273 +239,273 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
                 break;
 
             case R.id.A2:
-                gameState.shipHit(0,1,1);//see if ship was hit at coodrdinate A2 and so on
+                gameState.shipHit(0, 1, 1);//see if ship was hit at coodrdinate A2 and so on
                 Button A2 = (Button) findViewById(R.id.A2);
                 userTurn(A2);
                 computerTurn();
                 break;
 
             case R.id.A3:
-                gameState.shipHit(0,2,1);
+                gameState.shipHit(0, 2, 1);
                 Button A3 = (Button) findViewById(R.id.A3);
                 userTurn(A3);
                 computerTurn();
                 break;
 
             case R.id.A4:
-                gameState.shipHit(0,3,1);
+                gameState.shipHit(0, 3, 1);
                 Button A4 = (Button) findViewById(R.id.A4);
                 userTurn(A4);
                 computerTurn();
                 break;
 
             case R.id.A5:
-                gameState.shipHit(0,4,1);
+                gameState.shipHit(0, 4, 1);
                 Button A5 = (Button) findViewById(R.id.A5);
                 userTurn(A5);
                 computerTurn();
                 break;
 
             case R.id.A6:
-                gameState.shipHit(0,5,1);
+                gameState.shipHit(0, 5, 1);
                 Button A6 = (Button) findViewById(R.id.A6);
                 userTurn(A6);
                 computerTurn();
                 break;
 
             case R.id.A7:
-                gameState.shipHit(0,6,1);
+                gameState.shipHit(0, 6, 1);
                 Button A7 = (Button) findViewById(R.id.A7);
                 userTurn(A7);
                 computerTurn();
                 break;
 
             case R.id.A8:
-                gameState.shipHit(0,7,1);
+                gameState.shipHit(0, 7, 1);
                 Button A8 = (Button) findViewById(R.id.A8);
                 userTurn(A8);
                 computerTurn();
                 break;
 
             case R.id.A9:
-                gameState.shipHit(0,8,1);
+                gameState.shipHit(0, 8, 1);
                 Button A9 = (Button) findViewById(R.id.A9);
                 userTurn(A9);
                 computerTurn();
                 break;
 
             case R.id.A10:
-                gameState.shipHit(0,9,1);
+                gameState.shipHit(0, 9, 1);
                 Button A10 = (Button) findViewById(R.id.A10);
                 userTurn(A10);
                 computerTurn();
                 break;
 
             case R.id.B1:
-                gameState.shipHit(1,0,1);
+                gameState.shipHit(1, 0, 1);
                 Button B1 = (Button) findViewById(R.id.B1);
                 userTurn(B1);
                 computerTurn();
                 break;
 
             case R.id.B2:
-                gameState.shipHit(1,1,1);
+                gameState.shipHit(1, 1, 1);
                 Button B2 = (Button) findViewById(R.id.B2);
                 userTurn(B2);
                 computerTurn();
                 break;
 
             case R.id.B3:
-                gameState.shipHit(1,2,1);
+                gameState.shipHit(1, 2, 1);
                 Button B3 = (Button) findViewById(R.id.B3);
                 userTurn(B3);
                 computerTurn();
                 break;
 
             case R.id.B4:
-                gameState.shipHit(1,3,1);
+                gameState.shipHit(1, 3, 1);
                 Button B4 = (Button) findViewById(R.id.B4);
                 userTurn(B4);
                 computerTurn();
                 break;
 
             case R.id.B5:
-                gameState.shipHit(1,4,1);
+                gameState.shipHit(1, 4, 1);
                 Button B5 = (Button) findViewById(R.id.B5);
                 userTurn(B5);
                 computerTurn();
                 break;
 
             case R.id.B6:
-                gameState.shipHit(1,5,1);
+                gameState.shipHit(1, 5, 1);
                 Button B6 = (Button) findViewById(R.id.B6);
                 userTurn(B6);
                 computerTurn();
                 break;
 
             case R.id.B7:
-                gameState.shipHit(1,6,1);
+                gameState.shipHit(1, 6, 1);
                 Button B7 = (Button) findViewById(R.id.B7);
                 userTurn(B7);
                 computerTurn();
                 break;
 
             case R.id.B8:
-                gameState.shipHit(1,7,1);
+                gameState.shipHit(1, 7, 1);
                 Button B8 = (Button) findViewById(R.id.B8);
                 userTurn(B8);
                 computerTurn();
                 break;
 
             case R.id.B9:
-                gameState.shipHit(1,8,1);
+                gameState.shipHit(1, 8, 1);
                 Button B9 = (Button) findViewById(R.id.B9);
                 userTurn(B9);
                 computerTurn();
                 break;
 
             case R.id.B10:
-                gameState.shipHit(1,9,1);
+                gameState.shipHit(1, 9, 1);
                 Button B10 = (Button) findViewById(R.id.B10);
                 userTurn(B10);
                 computerTurn();
                 break;
 
             case R.id.C1:
-                gameState.shipHit(2,0,1);
+                gameState.shipHit(2, 0, 1);
                 Button C1 = (Button) findViewById(R.id.C1);
                 userTurn(C1);
                 computerTurn();
                 break;
 
             case R.id.C2:
-                gameState.shipHit(2,1,1);
+                gameState.shipHit(2, 1, 1);
                 Button C2 = (Button) findViewById(R.id.C2);
                 userTurn(C2);
                 computerTurn();
                 break;
 
             case R.id.C3:
-                gameState.shipHit(2,2,1);
+                gameState.shipHit(2, 2, 1);
                 Button C3 = (Button) findViewById(R.id.C3);
                 userTurn(C3);
                 computerTurn();
                 break;
 
             case R.id.C4:
-                gameState.shipHit(2,3,1);
+                gameState.shipHit(2, 3, 1);
                 Button C4 = (Button) findViewById(R.id.C4);
                 userTurn(C4);
                 computerTurn();
                 break;
 
             case R.id.C5:
-                gameState.shipHit(2,4,1);
+                gameState.shipHit(2, 4, 1);
                 Button C5 = (Button) findViewById(R.id.C5);
                 userTurn(C5);
                 computerTurn();
                 break;
 
             case R.id.C6:
-                gameState.shipHit(2,5,1);
+                gameState.shipHit(2, 5, 1);
                 Button C6 = (Button) findViewById(R.id.C6);
                 userTurn(C6);
                 computerTurn();
                 break;
 
             case R.id.C7:
-                gameState.shipHit(2,6,1);
+                gameState.shipHit(2, 6, 1);
                 Button C7 = (Button) findViewById(R.id.C7);
                 userTurn(C7);
                 computerTurn();
                 break;
 
             case R.id.C8:
-                gameState.shipHit(2,7,1);
+                gameState.shipHit(2, 7, 1);
                 Button C8 = (Button) findViewById(R.id.C8);
                 userTurn(C8);
                 computerTurn();
                 break;
 
             case R.id.C9:
-                gameState.shipHit(2,8,1);
+                gameState.shipHit(2, 8, 1);
                 Button C9 = (Button) findViewById(R.id.C9);
                 userTurn(C9);
                 computerTurn();
                 break;
 
             case R.id.C10:
-                gameState.shipHit(2,9,1);
+                gameState.shipHit(2, 9, 1);
                 Button C10 = (Button) findViewById(R.id.C10);
                 userTurn(C10);
                 computerTurn();
                 break;
 
             case R.id.D1:
-                gameState.shipHit(3,0,1);
+                gameState.shipHit(3, 0, 1);
                 Button D1 = (Button) findViewById(R.id.D1);
                 userTurn(D1);
                 computerTurn();
                 break;
 
             case R.id.D2:
-                gameState.shipHit(3,1,1);
+                gameState.shipHit(3, 1, 1);
                 Button D2 = (Button) findViewById(R.id.D2);
                 userTurn(D2);
                 computerTurn();
                 break;
 
             case R.id.D3:
-                gameState.shipHit(3,2,1);
+                gameState.shipHit(3, 2, 1);
                 Button D3 = (Button) findViewById(R.id.D3);
                 userTurn(D3);
                 computerTurn();
                 break;
 
             case R.id.D4:
-                gameState.shipHit(3,3,1);
+                gameState.shipHit(3, 3, 1);
                 Button D4 = (Button) findViewById(R.id.D4);
                 userTurn(D4);
                 computerTurn();
                 break;
 
             case R.id.D5:
-                gameState.shipHit(3,4,1);
+                gameState.shipHit(3, 4, 1);
                 Button D5 = (Button) findViewById(R.id.D5);
                 userTurn(D5);
                 computerTurn();
                 break;
 
             case R.id.D6:
-                gameState.shipHit(3,5,1);
+                gameState.shipHit(3, 5, 1);
                 Button D6 = (Button) findViewById(R.id.D6);
                 userTurn(D6);
                 computerTurn();
                 break;
 
             case R.id.D7:
-                gameState.shipHit(3,6,1);
+                gameState.shipHit(3, 6, 1);
                 Button D7 = (Button) findViewById(R.id.D7);
                 userTurn(D7);
                 computerTurn();
                 break;
 
             case R.id.D8:
-                gameState.shipHit(3,7,1);
+                gameState.shipHit(3, 7, 1);
                 Button D8 = (Button) findViewById(R.id.D8);
                 userTurn(D8);
                 computerTurn();
                 break;
 
             case R.id.D9:
-                gameState.shipHit(3,8,1);
+                gameState.shipHit(3, 8, 1);
                 Button D9 = (Button) findViewById(R.id.D9);
                 userTurn(D9);
                 computerTurn();
                 break;
 
             case R.id.D10:
-                gameState.shipHit(3,9,1);
+                gameState.shipHit(3, 9, 1);
                 Button D10 = (Button) findViewById(R.id.D10);
                 userTurn(D10);
                 computerTurn();
@@ -984,5 +964,33 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
             }, 4000);
         }
 
+    }
+
+    public void checkHits()
+    {
+        if(gameState.checkComputerHit(4,gameState.computerShipDirection,gameState.getCarrierComputerRow(),gameState.getCarrierComputerCol()) == true)
+        {
+            messageScreen.setText("You Destroyed Computer's Carrier!");
+        }
+
+        if(gameState.checkComputerHit(3,gameState.computerShipDirection,gameState.getBattleshipComputerRow(),gameState.getBattleshipComputerCol()) == true)
+        {
+            messageScreen.setText("You Destroyed Computer's Battleship!");
+        }
+
+        if(gameState.checkComputerHit(2,gameState.computerShipDirection,gameState.getDestroyerComputerRow(),gameState.getDestroyerComputerCol()) == true)
+        {
+            messageScreen.setText("You Destroyed Computer's Destroyer!");
+        }
+
+        if(gameState.checkComputerHit(1,gameState.computerShipDirection,gameState.getSubmarineComputerRow(),gameState.getSubmarineComputerCol()) == true)
+        {
+            messageScreen.setText("You Destroyed Computer's Submarine!");
+        }
+
+        if(gameState.checkComputerHit(0,gameState.computerShipDirection,gameState.getBoatComputerRow(),gameState.getBoatComputerCol()) == true)
+        {
+            messageScreen.setText("You Destroyed Computer's Boat!");
+        }
     }
 }

@@ -31,6 +31,26 @@
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal" />
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:layout_width="49dp"
+            android:layout_height="68dp"
+            android:id="@+id/mutebutton"
+            android:background="@drawable/mute_button" />
+
+        <Button
+            android:layout_width="49dp"
+            android:layout_height="68dp"
+            android:id="@+id/unmuteButton"
+            android:background="@drawable/unmute_button"
+            android:layout_marginLeft="800dp" />
+    </LinearLayout>
+
     <Space
         android:layout_width="match_parent"
         android:layout_height="20dp" />
@@ -44,7 +64,7 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="85dp"
             android:id="@+id/playNowButton"
             android:textSize="40dp"
             android:textStyle="bold"
@@ -58,7 +78,7 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="85dp"
             android:id="@+id/howToPlayButton"
             android:textSize="40dp"
             android:layout_alignParentBottom="true"

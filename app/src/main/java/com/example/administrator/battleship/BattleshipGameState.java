@@ -448,23 +448,36 @@ public class BattleshipGameState {
                             {
                                 boatComputerRow = row;
                                 boatComputerCol = col;
+                                System.out.println("Boat C Row: " + boatComputerRow);
+                                System.out.println("Boat C Col: " + boatComputerCol);
+
                             }
-                            else if(i == 1)
+
+                            if(i == 1)
                             {
                                 submarineComputerRow = row;
                                 submarineComputerCol = col;
+
+                                System.out.println("Submarine C Row: " + submarineComputerRow);
+                                System.out.println("Submarine C Col: " + submarineComputerCol);
                             }
-                            else if(i == 2)
+
+                            if(i == 2)
                             {
                                 destroyerComputerRow = row;
                                 destroyerComputerCol = col;
+
+                                System.out.println("Destroyer C Row: " + destroyerComputerRow);
+                                System.out.println("Destroyer C Col: " + destroyerComputerCol);
                             }
-                            else if(i == 3)
+
+                            if(i == 3)
                             {
                                 battleshipComputerRow = row;
                                 battleshipComputerCol = col;
                             }
-                            else if(i == 4)
+
+                            if(i == 4)
                             {
                                 carrierComputerRow = row;
                                 carrierComputerCol = col;
@@ -583,127 +596,140 @@ public class BattleshipGameState {
 
 
     /*DOESN;T WORK*/
-    public boolean checkComputerHit(int shipNum,int row, int col) {
+    public boolean checkComputerHit(int shipNum,int direction,int row, int col) {
 
         if(shipNum == 4) {
-                if (computerShipDirection == 0 && computerGrid[row][col] == 3 && computerGrid[row-1][col] == 3
-                        && computerGrid[row-2][col] == 3 && computerGrid[row-3][col] == 3
-                        && computerGrid[row-4][col] == 3) {
-                    System.out.println("Carrier Orientation: " + computerShipDirection);
-                    return true;
+                if (direction == 0 && (computerGrid[row][col] == 1 && computerGrid[row-1][col] == 1 && computerGrid[row-2][col] == 1
+                    && computerGrid[row-3][col] == 1 && computerGrid[row-4][col] == 1)) {
+
+                        return true;
                 }
-                else if (computerShipDirection == 1 && computerGrid[row][col] == 3 && computerGrid[row][col + 1] == 3
-                        && computerGrid[row][col + 2] == 3  && computerGrid[row][col + 3] == 3
-                        && computerGrid[row][col + 4] == 3) {
-                    System.out.println("Carrier Orientation: " + computerShipDirection);
-                    return true;
+
+                if (direction == 1 && computerGrid[row][col] == 1 && computerGrid[row][col + 1] == 1 && computerGrid[row][col + 2] == 1
+                        && computerGrid[row][col + 3] == 1 && computerGrid[row][col + 4] == 1) {
+
+                        return true;
                 }
-                else if (computerShipDirection == 2 && computerGrid[row][col] == 3 && computerGrid[row+1][col] == 3
-                        && computerGrid[row+2][col] == 3 && computerGrid[row+3][col] == 3
-                        && computerGrid[row+4][col] == 3) {
-                    System.out.println("Carrier Orientation: " + computerShipDirection);
-                    return true;
+
+                if (direction == 2 && computerGrid[row][col] == 1 && computerGrid[row+1][col] == 1 ||
+                        computerGrid[row+2][col] == 1 && computerGrid[row+3][col] == 1
+                        && computerGrid[row+4][col] == 1) {
+                        return true;
+
                 }
-                else if (computerGrid[row][col] == 3 && computerGrid[row][col-1] == 3 && computerGrid[row][col-2] == 3
-                        && computerGrid[row][col-2] == 3 && computerGrid[row][col-3] == 3 && computerGrid[row][col-4] == 3) {
-                    System.out.println("Carrier Orientation: " + computerShipDirection);
-                    return true;
+
+                if (computerGrid[row][col] == 1 && computerGrid[row][col-1] == 1 && computerGrid[row][col-2] == 1
+                        && computerGrid[row][col-2] == 1 && computerGrid[row][col-3] == 1 && computerGrid[row][col-4] == 1) {
+                        return true;
                 }
         }
-        else if(shipNum == 1)
+
+        if(shipNum == 3)
         {
-            if (computerShipDirection == 0 && computerGrid[row][col] == 3 && computerGrid[row-1][col] == 3
-                    && computerGrid[row-2][col] == 3 && computerGrid[row-3][col] == 3) {
+            if (direction == 0 && computerGrid[row][col] == 1 && computerGrid[row-1][col] == 1
+                    && computerGrid[row-2][col] == 1 && computerGrid[row-3][col] == 1) {
                 System.out.println("Battleship Orientation: " + computerShipDirection);
                 return true;
             }
-            else if (computerShipDirection == 1 && computerGrid[row][col] == 3 && computerGrid[row][col + 1] == 3
-                    && computerGrid[row][col + 2] == 3  && computerGrid[row][col + 3] == 3) {
+
+            if (direction == 1 && computerGrid[row][col] == 1 && computerGrid[row][col + 1] == 1
+                    && computerGrid[row][col + 2] == 1  && computerGrid[row][col + 3] == 1) {
                 System.out.println("Battleship Orientation: " + computerShipDirection);
                 return true;
             }
-            else if (computerShipDirection == 2 && computerGrid[row][col] == 3 && computerGrid[row+1][col] == 3
-                    && computerGrid[row+2][col] == 3 && computerGrid[row+3][col] == 3) {
+
+            if (direction == 2 && computerGrid[row][col] == 1 && computerGrid[row+1][col] == 1
+                    && computerGrid[row+2][col] == 1 && computerGrid[row+3][col] == 1) {
                 System.out.println("Battleship Orientation: " + computerShipDirection);
                 return true;
             }
-            else if (computerGrid[row][col] == 3 && computerGrid[row][col-1] == 3 && computerGrid[row][col-2] == 3
-                    && computerGrid[row][col-2] == 3 && computerGrid[row][col-3] == 3) {
+
+            if (computerGrid[row][col] == 1 && computerGrid[row][col-1] == 1 && computerGrid[row][col-2] == 1
+                    && computerGrid[row][col-2] == 1 && computerGrid[row][col-3] == 1) {
                 System.out.println("Battleship Orientation: " + computerShipDirection);
                 return true;
             }
         }
-        else if(shipNum == 2)
+
+        if(shipNum == 2)
         {
-            if (computerShipDirection == 0 && computerGrid[row][col] == 3 && computerGrid[row-1][col] == 3
-                    && computerGrid[row-2][col] == 3) {
+            if (direction == 0 && computerGrid[row][col] == 1 && computerGrid[row-1][col] == 1
+                    && computerGrid[row-2][col] == 1) {
                     System.out.println("Destroyer Orientation: " + computerShipDirection);
                 return true;
             }
-            else if (computerShipDirection == 1 && computerGrid[row][col] == 3 && computerGrid[row][col + 1] == 3
-                    && computerGrid[row][col + 2] == 3) {
+
+            if (direction == 1 && computerGrid[row][col] == 1 && computerGrid[row][col + 1] == 1
+                    && computerGrid[row][col + 2] == 1) {
                       System.out.println("Destroyer Orientation: " + computerShipDirection);
                 return true;
             }
-            else if (computerShipDirection == 2 && computerGrid[row][col] == 3 && computerGrid[row+1][col] == 3
-                    && computerGrid[row+2][col] == 3) {
+
+            if (direction == 2 && computerGrid[row][col] == 1 && computerGrid[row+1][col] == 1
+                    && computerGrid[row+2][col] == 1) {
                      System.out.println("Destroyer Orientation: " + computerShipDirection);
                 return true;
             }
-            else if (computerGrid[row][col] == 3 && computerGrid[row][col-1] == 3 && computerGrid[row][col-2] == 3
-                    && computerGrid[row][col-2] == 3) {
+
+            if (computerGrid[row][col] == 1 && computerGrid[row][col-1] == 1 && computerGrid[row][col-2] == 1
+                    && computerGrid[row][col-2] == 1) {
                     System.out.println("Destroyer Orientation: " + computerShipDirection);
                 return true;
             }
         }
-        else if(shipNum == 3)
+
+        if(shipNum == 1)
         {
-            if (computerShipDirection == 0 && computerGrid[row][col] == 3 && computerGrid[row-1][col] == 3
-                    && computerGrid[row-2][col] == 3) {
+            if (direction == 0 && computerGrid[row][col] == 1 && computerGrid[row-1][col] == 1
+                    && computerGrid[row-2][col] == 1) {
                 System.out.println("Submarine Orientation: " + computerShipDirection);
                 return true;
             }
-            else if (computerShipDirection == 1 && computerGrid[row][col] == 3 && computerGrid[row][col + 1] == 3
-                    && computerGrid[row][col + 2] == 3) {
+
+            if (direction == 1 && computerGrid[row][col] == 1 && computerGrid[row][col + 1] == 1
+                    && computerGrid[row][col + 2] == 1) {
                 System.out.println("Submarine Orientation: " + computerShipDirection);
                 return true;
             }
-            else if (computerShipDirection == 2 && computerGrid[row][col] == 3 && computerGrid[row+1][col] == 3
-                    && computerGrid[row+2][col] == 3) {
+
+            if (direction == 2 && computerGrid[row][col] == 1 && computerGrid[row+1][col] == 1
+                    && computerGrid[row+2][col] == 1) {
                 System.out.println("Submarine Orientation: " + computerShipDirection);
                 return true;
             }
-            else if (computerGrid[row][col] == 3 && computerGrid[row][col-1] == 3 && computerGrid[row][col-2] == 3
-                    && computerGrid[row][col-2] == 3) {
+
+            if (computerGrid[row][col] == 1 && computerGrid[row][col-1] == 1 && computerGrid[row][col-2] == 1
+                    && computerGrid[row][col-2] == 1) {
                 System.out.println("Submarine Orientation: " + computerShipDirection);
                 return true;
             }
         }
-        else if(shipNum == 0)
+
+        if(shipNum == 0)
         {
 
-            if (computerShipDirection == 0 && computerGrid[row][col] == 3 && computerGrid[row-1][col] == 3
-                    && computerGrid[row-2][col] == 3) {
+            if (computerShipDirection == 0 && computerGrid[row][col] == 1 && computerGrid[row-1][col] == 1) {
                 System.out.println("Boat Orientation: " + computerShipDirection);
                 return true;
             }
-            else if (computerShipDirection == 1 && computerGrid[row][col] == 3 && computerGrid[row][col + 1] == 3
-                    && computerGrid[row][col + 2] == 3) {
+
+            if (computerShipDirection == 1 && computerGrid[row][col] == 1 && computerGrid[row][col + 1] == 1) {
                 System.out.println("Boat Orientation: " + computerShipDirection);
                 return true;
             }
-            else if (computerShipDirection == 2 && computerGrid[row][col] == 3 && computerGrid[row+1][col] == 3
-                    && computerGrid[row+2][col] == 3) {
+
+            if (computerShipDirection == 2 && computerGrid[row][col] == 1 && computerGrid[row+1][col] == 1) {
                 System.out.println("Boat Orientation: " + computerShipDirection);
                 return true;
             }
-            else if (computerGrid[row][col] == 3 && computerGrid[row][col-1] == 3 && computerGrid[row][col-2] == 3
-                    && computerGrid[row][col-2] == 3) {
+
+            if (computerGrid[row][col] == 1 && computerGrid[row][col-1] == 1) {
                 System.out.println("Boat Orientation: " + computerShipDirection);
                 return true;
             }
 
         }
+
         return false;
     }
 
@@ -725,5 +751,6 @@ public class BattleshipGameState {
         return boatComputerCol;
     }
 
+    public int getComputerShipDirection() { return computerShipDirection; }
 
 }
