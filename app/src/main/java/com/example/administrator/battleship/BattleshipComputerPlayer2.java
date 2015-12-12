@@ -284,7 +284,7 @@ public class BattleshipComputerPlayer2 {
                     state.shipHit(row, col, 0);
                 }
                 else {//hard AI
-                    if (Math.random() > 0.3) { //70% chance of cheating
+                    if (Math.random() > 0.4) { //60% chance of cheating
                         userGrid = state.getUserGrid();
                         findUserShip(userGrid);
                         row = userShipRow;

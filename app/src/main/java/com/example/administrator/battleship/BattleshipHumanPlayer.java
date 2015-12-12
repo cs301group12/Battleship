@@ -46,8 +46,10 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
     //hit and miss sound variables
     private SoundPool hitSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
     private SoundPool missSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+    private SoundPool explosion = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
     private int pickupId1;
     private int pickupId2;
+    private int pickupId3;
     private MediaPlayer backgroundMusic1;
 
     Intent intent;//to receive data
@@ -59,6 +61,28 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
     private boolean userShipHit;//if the user's ship has been hit then true
 
     private int[] shipVals = new int[10];//array to hold rows and columns where the users ships will be set up
+    private int[][] AIgrid = new int[10][10];
+
+    private int carrierComputerRow;
+    private int carrierComputerCol;
+    private int battleshipComputerRow;
+    private int battleshipComputerCol;
+    private int destroyerComputerRow;
+    private int destroyerComputerCol;
+    private int submarineComputerRow;
+    private int submarineComputerCol;
+    private int boatComputerRow;
+    private int boatComputerCol;
+    private int AIcarrierDirection;
+    private int AIbattleshipDirection;
+    private int AIdestroyerDirection;
+    private int AIsubmarineDiretion;
+    private int AIptBoatDirection;
+    private boolean carrierDestroyed = false;
+    private boolean battleshipDestroyed = false;
+    private boolean destroyerDestroyed = false;
+    private boolean submarineDestroyed = false;
+    private boolean boatDestroyed = false;
 
 
     @Override
@@ -82,6 +106,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
         //load the sounds to be played
         this.pickupId1 = hitSound.load(this, R.raw.explosion, 1);
         this.pickupId2 = missSound.load(this, R.raw.miss,1);
+        this.pickupId3 = explosion.load(this,R.raw.destroyed,1);
         easyAI = new BattleshipComputerPlayer1();//create AI
 
         //See which AI has been chosen
@@ -105,6 +130,21 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
         };
 
         gameState.setUpComputerShips(AIships);//set up the AI's ships
+        carrierComputerRow = gameState.getCarrierComputerRow();
+        carrierComputerCol = gameState.getCarrierComputerCol();
+        battleshipComputerCol = gameState.getBattleshipComputerCol();
+        battleshipComputerRow = gameState.getBattleshipComputerRow();
+        destroyerComputerCol = gameState.getDestroyerComputerCol();
+        destroyerComputerRow = gameState.getDestroyerComputerRow();
+        submarineComputerCol = gameState.getSubmarineComputerCol();
+        submarineComputerRow = gameState.getSubmarineComputerRow();
+        boatComputerCol = gameState.getBoatComputerCol();
+        boatComputerRow = gameState.getBoatComputerRow();
+        AIcarrierDirection = gameState.getCarrierDirection();
+        AIbattleshipDirection = gameState.getBattleshipDirection();
+        AIdestroyerDirection = gameState.getDestroyerDirection();
+        AIsubmarineDiretion = gameState.getSubmarineDirection();
+        AIptBoatDirection = gameState.getBoatDirection();
         setUpUserShips();//set up the user's ships
         gameState.printBoard();
         playBackgroundMusic();
@@ -175,11 +215,10 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
     public void userTurn(Button pressed) {
         AIshipHit = gameState.getAIShipHit();
         if (AIshipHit) {//if user hit AI's ship
-            //messageScreen.setText("You hit a ship!");
+            messageScreen.setText("You hit a ship!");
             hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);
             pressed.setBackgroundColor(Color.RED);//change button to red to represent hit
-
-            checkHits();
+            checkComputerSunkShips(gameState);
         } else {
             missSound.play(this.pickupId2, 1, 1, 1, 0, 1.0f);
             messageScreen.setText("You missed the enemy ships!");
@@ -966,31 +1005,226 @@ public class BattleshipHumanPlayer extends ActionBarActivity {
 
     }
 
-    public void checkHits()
+    public void checkComputerSunkShips(BattleshipGameState state)
     {
-        if(gameState.checkComputerHit(4,gameState.computerShipDirection,gameState.getCarrierComputerRow(),gameState.getCarrierComputerCol()) == true)
-        {
-            messageScreen.setText("You Destroyed Computer's Carrier!");
+        AIgrid = state.getComputerGrid();
+        System.out.println("ROW: " + carrierComputerRow + "\nCOL: " + carrierComputerCol + "\n");
+
+        //check carrier
+        if (AIcarrierDirection == 0){
+            if (AIgrid[carrierComputerRow][carrierComputerCol] == 1 && AIgrid[carrierComputerRow-1][carrierComputerCol] == 1
+                    && AIgrid[carrierComputerRow-2][carrierComputerCol] == 1
+                    && AIgrid[carrierComputerRow-3][carrierComputerCol] == 1 && AIgrid[carrierComputerRow-4][carrierComputerCol] == 1) {
+                    if (carrierDestroyed == false){
+                        messageScreen.setText("You Destroyed Computer's Carrier!");
+                        carrierDestroyed = true;
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
+            }
+        }
+        else if (AIcarrierDirection == 1){
+            if (AIgrid[carrierComputerRow][carrierComputerCol] == 1 && AIgrid[carrierComputerRow][carrierComputerCol+1] == 1
+                    && AIgrid[carrierComputerRow][carrierComputerCol+2] == 1
+                    && AIgrid[carrierComputerRow][carrierComputerCol+3] == 1 && AIgrid[carrierComputerRow][carrierComputerCol+4] == 1) {
+                if (carrierDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Carrier!");
+                    carrierDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                }
+            }
+        }
+        else if (AIcarrierDirection == 2){
+            if (AIgrid[carrierComputerRow][carrierComputerCol] == 1 && AIgrid[carrierComputerRow+1][carrierComputerCol] == 1
+                    && AIgrid[carrierComputerRow+2][carrierComputerCol] == 1
+                    && AIgrid[carrierComputerRow+3][carrierComputerCol] == 1 && AIgrid[carrierComputerRow+4][carrierComputerCol] == 1) {
+                if (carrierDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Carrier!");
+                    carrierDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                }
+            }
+        }
+        else if (AIcarrierDirection == 3){
+            if (AIgrid[carrierComputerRow][carrierComputerCol] == 1 && AIgrid[carrierComputerRow][carrierComputerCol-1] == 1
+                    && AIgrid[carrierComputerRow][carrierComputerCol-2] == 1
+                    && AIgrid[carrierComputerRow][carrierComputerCol-3] == 1 && AIgrid[carrierComputerRow][carrierComputerCol-4] == 1) {
+                if (carrierDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Carrier!");
+                    carrierDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                }
+            }
         }
 
-        if(gameState.checkComputerHit(3,gameState.computerShipDirection,gameState.getBattleshipComputerRow(),gameState.getBattleshipComputerCol()) == true)
-        {
-            messageScreen.setText("You Destroyed Computer's Battleship!");
+        //check battleship
+        if (AIbattleshipDirection == 0){
+            if (AIgrid[battleshipComputerRow][battleshipComputerCol] == 1 && AIgrid[battleshipComputerRow-1][battleshipComputerCol] == 1
+                    && AIgrid[battleshipComputerRow-2][battleshipComputerCol] == 1
+                    && AIgrid[battleshipComputerRow-3][battleshipComputerCol] == 1) {
+                if (battleshipDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Battleship!");
+                    battleshipDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                }
+            }
+        }
+        else if (AIbattleshipDirection == 1){
+            if (AIgrid[battleshipComputerRow][battleshipComputerCol] == 1 && AIgrid[battleshipComputerRow][battleshipComputerCol+1] == 1
+                    && AIgrid[battleshipComputerRow][battleshipComputerCol+2] == 1
+                    && AIgrid[battleshipComputerRow][battleshipComputerCol+3] == 1) {
+                if (battleshipDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Battleship!");
+                    battleshipDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                }
+            }
+        }
+        else if (AIbattleshipDirection == 2){
+            if (AIgrid[battleshipComputerRow][battleshipComputerCol] == 1 && AIgrid[battleshipComputerRow+1][battleshipComputerCol] == 1
+                    && AIgrid[battleshipComputerRow+2][battleshipComputerCol] == 1
+                    && AIgrid[battleshipComputerRow+3][battleshipComputerCol] == 1) {
+                if (battleshipDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Battleship!");
+                    battleshipDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                }
+            }
+        }
+        else if (AIbattleshipDirection == 3){
+            if (AIgrid[battleshipComputerRow][battleshipComputerCol] == 1 && AIgrid[battleshipComputerRow][battleshipComputerCol-1] == 1
+                    && AIgrid[battleshipComputerRow][battleshipComputerCol-2] == 1
+                    && AIgrid[battleshipComputerRow][battleshipComputerCol-3] == 1) {
+                if (battleshipDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Battleship!");
+                    battleshipDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                }
+            }
         }
 
-        if(gameState.checkComputerHit(2,gameState.computerShipDirection,gameState.getDestroyerComputerRow(),gameState.getDestroyerComputerCol()) == true)
-        {
-            messageScreen.setText("You Destroyed Computer's Destroyer!");
+        //check destroyer
+        if (AIdestroyerDirection == 0){
+            if (AIgrid[destroyerComputerRow][destroyerComputerCol] == 1 && AIgrid[destroyerComputerRow-1][destroyerComputerCol] == 1
+                    && AIgrid[destroyerComputerRow-2][destroyerComputerCol] == 1) {
+                if (destroyerDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Destroyer!");
+                    destroyerDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                }
+            }
+        }
+        else if (AIdestroyerDirection == 1){
+            if (AIgrid[destroyerComputerRow][destroyerComputerCol] == 1 && AIgrid[destroyerComputerRow][destroyerComputerCol+1] == 1
+                    && AIgrid[destroyerComputerRow][destroyerComputerCol+2] == 1) {
+                if (destroyerDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Destroyer!");
+                    destroyerDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                }
+            }
+        }
+        else if (AIdestroyerDirection == 2){
+            if (AIgrid[destroyerComputerRow][destroyerComputerCol] == 1 && AIgrid[destroyerComputerRow+1][destroyerComputerCol] == 1
+                    && AIgrid[destroyerComputerRow+2][destroyerComputerCol] == 1) {
+                if (destroyerDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Destroyer!");
+                    destroyerDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                }
+            }
+        }
+        else if (AIdestroyerDirection == 3){
+            if (AIgrid[destroyerComputerRow][destroyerComputerCol] == 1 && AIgrid[destroyerComputerRow][destroyerComputerCol-1] == 1
+                    && AIgrid[destroyerComputerRow][destroyerComputerCol-2] == 1) {
+                if (destroyerDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Destroyer!");
+                    destroyerDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                }
+            }
         }
 
-        if(gameState.checkComputerHit(1,gameState.computerShipDirection,gameState.getSubmarineComputerRow(),gameState.getSubmarineComputerCol()) == true)
-        {
-            messageScreen.setText("You Destroyed Computer's Submarine!");
+
+        //check submarine
+        if (AIsubmarineDiretion == 0){
+            if (AIgrid[submarineComputerRow][submarineComputerCol] == 1 && AIgrid[submarineComputerRow-1][submarineComputerCol] == 1
+                    && AIgrid[submarineComputerRow-2][submarineComputerCol] == 1) {
+                if (submarineDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Submarine!");
+                    submarineDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                }
+            }
+        }
+        else if (AIsubmarineDiretion == 1){
+            if (AIgrid[submarineComputerRow][submarineComputerCol] == 1 && AIgrid[submarineComputerRow][submarineComputerCol+1] == 1
+                    && AIgrid[submarineComputerRow][submarineComputerCol+2] == 1) {
+                if (submarineDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Submarine!");
+                    submarineDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+
+                }
+            }
+        }
+        else if (AIsubmarineDiretion == 2){
+            if (AIgrid[submarineComputerRow][submarineComputerCol] == 1 && AIgrid[submarineComputerRow+1][submarineComputerCol] == 1
+                    && AIgrid[submarineComputerRow+2][submarineComputerCol] == 1) {
+                if (submarineDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Submarine!");
+                    submarineDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                }
+            }
+        }
+        else if (AIsubmarineDiretion == 3){
+            if (AIgrid[submarineComputerRow][submarineComputerCol] == 1 && AIgrid[submarineComputerRow][submarineComputerCol-1] == 1
+                    && AIgrid[submarineComputerRow][submarineComputerCol-2] == 1) {
+                if (submarineDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Submarine!");
+                    submarineDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                }
+            }
         }
 
-        if(gameState.checkComputerHit(0,gameState.computerShipDirection,gameState.getBoatComputerRow(),gameState.getBoatComputerCol()) == true)
-        {
-            messageScreen.setText("You Destroyed Computer's Boat!");
+        //check boat
+        if (AIptBoatDirection == 0){
+            if (AIgrid[boatComputerRow][boatComputerCol] == 1 && AIgrid[boatComputerRow-1][boatComputerCol] == 1) {
+                if (boatDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Boat!");
+                    boatDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                }
+            }
+        }
+        else if (AIptBoatDirection == 1){
+            if (AIgrid[boatComputerRow][boatComputerCol] == 1 && AIgrid[boatComputerRow][boatComputerCol+1] == 1) {
+                if (boatDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Boat!");
+                    boatDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                }
+            }
+        }
+        else if (AIptBoatDirection == 2){
+            if (AIgrid[boatComputerRow][boatComputerCol] == 1 && AIgrid[boatComputerRow+1][boatComputerCol] == 1) {
+                if (boatDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Boat!");
+                    boatDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                }
+            }
+        }
+        else if (AIptBoatDirection == 3){
+            if (AIgrid[boatComputerRow][boatComputerCol] == 1 && AIgrid[boatComputerRow][boatComputerCol-1] == 1) {
+                if (boatDestroyed == false){
+                    messageScreen.setText("You Destroyed Computer's Boat!");
+                    boatDestroyed = true;
+                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                }
+            }
         }
     }
+
 }
