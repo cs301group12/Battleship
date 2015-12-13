@@ -55,7 +55,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     private AbsoluteLayout top;
 
 
-    private Vibrator v;
+    private Vibrator vibrator;//instance of vibrator class to make the device vibrate when the ships overlap
+    private long[] pattern = { 0, 200, 0 };//vibration pattern
 
     private SoundPool buttonSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
     private int pickupId;
@@ -159,6 +160,8 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         ptBoatButton = (Button) findViewById(R.id.selectPTBoat);
         ptBoatButton.setOnClickListener(this);
         ptBoatButton.setOnLongClickListener(this);
+
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
 
         showInstruction = (Button) findViewById(R.id.showInstructionButton);
@@ -710,11 +713,13 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             {
                 saveAndPlay.setVisibility(View.INVISIBLE);
                 errorOverlap.setVisibility(View.VISIBLE);
+                vibrator.vibrate(pattern,0);
             }
             else
             {
                 saveAndPlay.setVisibility(View.VISIBLE);
                 errorOverlap.setVisibility(View.INVISIBLE);
+                vibrator.cancel();
             }
 
 
