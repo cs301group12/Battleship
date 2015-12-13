@@ -8,7 +8,7 @@
     <Button
         android:layout_width="228dp"
         android:layout_height="67dp"
-        android:id="@+id/mainMenuButton"
+        android:id="@+id/backButton"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -16,6 +16,6 @@
         android:textStyle="bold"
         android:layout_x="753dp"
         android:layout_y="548dp"
-        android:background="@drawable/the_main_menu_button" />
+        android:background="@drawable/back_button" />
 
 </AbsoluteLayout>
