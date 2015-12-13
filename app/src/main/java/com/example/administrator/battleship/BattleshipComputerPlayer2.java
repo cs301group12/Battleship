@@ -8,8 +8,9 @@ package com.example.administrator.battleship;
  * @version  12/9/2015
  *
  * Description of BattleshipComputerPlayer2 class:
- * Currently this class represents our "hard" AI. This AI chooses random coordinates, but then chooses locations
- * around a ship they hit. May be seen as not "hard" enough
+ * Currently this class represents our normal and hard AI. The normal AI chooses random coordinates, but then chooses locations
+ * around a ship they hit. The hard AI has a 30% chance to choose to "cheat" and see the user's grid. If not,
+ * they will choose a random location and if they get a hit choose locations around that hit.
  *
  */
 public class BattleshipComputerPlayer2 {
@@ -29,9 +30,9 @@ public class BattleshipComputerPlayer2 {
     private boolean killMode;//AI has hit a ship so now it switches to a mode where it's trying to sink the ship
     private int[][] userGrid = new int[10][10];//replica of user grid to be used by AI to see if they made
     //two vertical hits in a row and to "cheat" a little (for the hard AI)
-    private int userShipRow;//Variables to store location of user ship. Used for hard AI to cheat
+    private int userShipRow;//Variables to store location of user ship. Used for hard AI to "cheat"
     private int userShipCol;
-    private boolean userShipFound;
+    private boolean userShipFound;//true if a user ship was found
 
     //Initialize variables in consrtuctor
     public BattleshipComputerPlayer2() {
@@ -73,7 +74,9 @@ public class BattleshipComputerPlayer2 {
                         }
                         state.shipHit(row, col, 0);
                     }
-                    if (!goHorizontal) {
+                    if (!goHorizontal) {//if goHorizontal is true then we probably don't need to check
+                        //spots above or below the hit since the user ship is probably horizontal. If it is
+                        //false then we do.
                         if (i == 2) {//fire at top adjacent
                             row = lastHitRow - 1;
                             col = lastHitCol;
@@ -119,7 +122,9 @@ public class BattleshipComputerPlayer2 {
                         }
                         state.shipHit(row, col, 0);
                     }
-                    if (!goHorizontal) {
+                    if (!goHorizontal) {//if goHorizontal is true then we probably don't need to check
+                        //spots above or below the hit since the user ship is probably horizontal. If it is
+                        //false then we do.
                         if (j == 2) {//fire at top adjacent
                             row = firstHitRow - 1;
                             col = firstHitCol;
@@ -168,7 +173,9 @@ public class BattleshipComputerPlayer2 {
                         }
                         state.shipHit(row, col, 0);
                     }
-                    if (!goVertical) {
+                    if (!goVertical) {//if goVertical is true then we probably don't need to check
+                        //spots to the right or left of the hit since the user ship is probably vertical. If it is
+                        //false then we do.
                         if (i == 2) {//fire at right adjacent
                             row = lastHitRow;
                             col = lastHitCol + 1;
@@ -215,7 +222,9 @@ public class BattleshipComputerPlayer2 {
                         }
                         state.shipHit(row, col, 0);
                     }
-                    if (!goVertical) {
+                    if (!goVertical) {//if goVertical is true then we probably don't need to check
+                        //spots to the right or left of the hit since the user ship is probably vertical. If it is
+                        //false then we do.
                         if (j == 2) {//fire at right adjacent
                             row = firstHitRow;
                             col = firstHitCol + 1;
@@ -248,26 +257,26 @@ public class BattleshipComputerPlayer2 {
                 else {//We're done checking for more hits around a hit
                     goVertical = false;
                     stillOnTarget = false;
-                }//generate a new random location
-                while (state.getPlayerID() == 1) {
+                }//generate a new location to fire at
+                while (state.getPlayerID() == 1) {//while it's still AI's turn
                     if (whichAI == 0) {//normal AI
                         row = (int) (Math.random() * 10);
                         col = (int) (Math.random() * 10);
                         state.shipHit(row, col, 0);
                     }
                     else {//hard AI
-                        if (Math.random() > 0.7) { //70% chance of cheating
-                            userGrid = state.getUserGrid();
-                            findUserShip(userGrid);
-                            row = userShipRow;
+                        if (Math.random() > 0.7) { //30% chance of choosing to cheat
+                            userGrid = state.getUserGrid();//get the user's grid
+                            findUserShip(userGrid);//find coordinates of a user ship
+                            row = userShipRow;//assign row and col of a user's ship to fire at
                             col = userShipCol;
-                            if (!userShipFound) {//user ship was not found
+                            if (!userShipFound) {//user ship was not found, just generate random
                                 row = (int) (Math.random() * 10);
                                 col = (int) (Math.random() * 10);
                             }
                             state.shipHit(row, col, 0);
                         }
-                        else {//don't cheat
+                        else {//don't cheat, generate random
                             row = (int) (Math.random() * 10);
                             col = (int) (Math.random() * 10);
                             state.shipHit(row, col, 0);
@@ -276,7 +285,7 @@ public class BattleshipComputerPlayer2 {
                 }
             }
         }
-        else {//not in killMode, then hunt by generating random locations
+        else {//not in killMode, then hunt by generating new locations
             while (state.getPlayerID() == 1) {
                 if (whichAI == 0) {//normal AI
                     row = (int) (Math.random() * 10);
@@ -284,10 +293,10 @@ public class BattleshipComputerPlayer2 {
                     state.shipHit(row, col, 0);
                 }
                 else {//hard AI
-                    if (Math.random() > 0.7) { //70% chance of cheating
+                    if (Math.random() > 0.7) { //30% chance of cheating
                         userGrid = state.getUserGrid();
                         findUserShip(userGrid);
-                        row = userShipRow;
+                        row = userShipRow;//assign row and col of a user's ship to fire at
                         col = userShipCol;
                         if (!userShipFound) {//user ship was not found
                             row = (int) (Math.random() * 10);
@@ -309,7 +318,8 @@ public class BattleshipComputerPlayer2 {
             lastHitRow = row;//store location of lastHit
             lastHitCol = col;
             goVertical = twoInARowVertical(state,row,col);//check if the user's ship may be vertical
-            if (whichAI != 0) {
+            if (whichAI != 0) {//only the hard AI will be smart enough to figure out if a user's ship is
+                //probably horizontal so that it won't fire at positions above or below the hit
                 goHorizontal = twoInARowHorizontal(state, row, col);
             }
             if (stillOnTarget == false) {//When a person gets a hit that means there is probably more hits around
@@ -362,6 +372,16 @@ public class BattleshipComputerPlayer2 {
         return false;
     }
 
+    /**
+     * Description: Method that checks if the AI has two horizontal hits in a row. If they do, this means
+     * the user's ship is probably horizontal.
+     *
+     * CAVEAT:
+     *
+     * @param state     The game state variable passed in from BattleshipHumanPlayer
+     * @param rowHit    Coordinates for the hit we are checking around
+     * @param colHit
+     */
     public boolean twoInARowHorizontal( BattleshipGameState state,int rowHit, int colHit) {
         userGrid = state.getUserGrid();//get the user's grid
         if (colHit == 0) {//if hit at leftmost only check to the right
@@ -379,40 +399,39 @@ public class BattleshipComputerPlayer2 {
             return true;
         }
 
-        return false;
+        return false;//no two horizontal hits in a row found
     }
 
+    /**
+     * Description: Method that loops through the user's grid and finds the first occurrence of a user's
+     * ship on the grid. Sets these coordinates to variable for the hard AI to use.
+     *
+     * CAVEAT:
+     *
+     * @param userGrid  the grid that this method will iterate through
+     */
     public void findUserShip(int[][] userGrid) {
         userShipFound = false;
         int i = 0;
         int j = 0;
-        for (i = 0; i < 10; i++) {
+        for (i = 0; i < 10; i++) {//loop through grid
             for (j = 0; j < 10; j++) {
-                if (userGrid[i][j] == 3) {
+                if (userGrid[i][j] == 3) {//if a ship is on this coordinate
                     userShipFound = true;
                     break;
                 }
             }
-            if (j == 10) { j=9; }
-            if (userGrid[i][j] == 3) {
+            if (j == 10) { j=9; }//so no out of bounds error
+            if (userGrid[i][j] == 3) {//if a ship is on this coordinate
                 userShipFound = true;
                 break;
             }
         }
-        userShipRow = i;
+        userShipRow = i;//store coordinates of user's ship
         userShipCol = j;
     }
 
 
     public int getRow(){return row;}
     public int getCol(){return col;}
-
-    public int getUserShipRow() {
-        return userShipRow;
-    }
-
-    public int getUserShipCol() {
-        return userShipCol;
-    }
-    public boolean getUserShipFound() { return userShipFound; }
 }
