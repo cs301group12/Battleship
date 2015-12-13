@@ -8,7 +8,17 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
-
+/**
+ * @author Nathan Camacho
+ * @author Hashim AlJawad
+ * @author Kelson Sipe
+ *
+ * @version  12/12/2015
+ *
+ * Description of SetUpShipsInstruction
+ * GUI for popup screen for instructions in setUpShips
+ *
+ */
 public class SetUpShipInstruction extends ActionBarActivity {
 
     @Override
@@ -18,6 +28,7 @@ public class SetUpShipInstruction extends ActionBarActivity {
         setContentView(R.layout.activity_set_up_ship_instruction);
 
 
+        //used for size of popup window
         DisplayMetrics displayMessage = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMessage);
         int width = displayMessage.widthPixels;
