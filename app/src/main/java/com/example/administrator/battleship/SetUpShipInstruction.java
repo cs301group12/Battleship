@@ -27,7 +27,7 @@ public class SetUpShipInstruction extends ActionBarActivity {
 
         setContentView(R.layout.activity_set_up_ship_instruction);
 
-
+        //set size of popup window
         DisplayMetrics displayMessage = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMessage);
 
