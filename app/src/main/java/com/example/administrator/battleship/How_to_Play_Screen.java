@@ -16,7 +16,7 @@ import android.widget.Button;
  * @author Hashim AlJawad
  * @author Kelson Sipe
  *
- * @version  12/1/2015
+ * @version  12/12/2015
  *
  * Description of How_to_Play_Screen class:
  * Activity that displays the rules of Battleship.

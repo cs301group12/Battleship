@@ -40,7 +40,7 @@ import java.util.Arrays;
  * @author Hashim AlJawad
  * @author Kelson Sipe
  *
- * @version  11/9/2015
+ * @version  12/12/2015
  *
  * Description of SetUpShips class:
  * SetUpShips allows the user to set up ships within the bounds set by the game rules.
@@ -226,11 +226,6 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
         if (event.getAction() == MotionEvent.ACTION_MOVE) {
             canvas = board.getHolder().lockCanvas();
-            float testX = event.getX();
-            float testY = event.getY();
-           //System.out.println("Value of X: " + testX);
-           //System.out.println("Value of Y: " + testY);
-
             //Sets the bounds so that ships cannot be placed Outside of the grid. Makes the ships snap to each position.
             //Ships will have a specific x and y coordinate.
             if (moveCarrier && !moveBattleship && !moveDestroyer && !moveSubmarine && !movePtBoat) {
@@ -727,36 +722,11 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             board.postInvalidate();
         }
 
-
-        if(event.getAction() == MotionEvent.ACTION_UP)
-        {
-
-            /*
-            System.out.println("Carrier Row: " + getRow((int) board.shipsY[0]));
-            System.out.println("Carrier Col: " + getCol((int)board.shipsX[0]));
-
-            System.out.println("Battleship Row: " + getRow((int)board.shipsY[1]));
-            System.out.println("Battleship Col: " + getCol((int) board.shipsX[1]));
-
-
-            System.out.println("Destroyer Row: " + getRow((int)board.shipsY[2]));
-            System.out.println("Destroyer Col: " + getCol((int)board.shipsX[2]));
-
-            System.out.println("Submarine Row: " + getRow((int)board.shipsY[3]));
-            System.out.println("Submarine Col: " + getCol((int)board.shipsX[3]));
-
-            System.out.println("Boat Row: " + getRow((int)board.shipsY[4]));
-            System.out.println("Boat Col: " + getCol((int)board.shipsX[4]));
-            */
-
-
-        }
-
         return true;
 
     }
 
-    //Find the y value of each ship so that it can be passed into the 2D array
+    //Find the y value of each ship so that it can be translated to the appropriate row to be passed into the 2D array
     public int getRow(int y)
     {
         //System.out.println("method " + y);
@@ -773,7 +743,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
         else { return -1; }
     }
 
-    //Find the x value of each ship so that it can be passed into the 2D array
+    //Find the x value of each ship so that it can be translated to the appropriate col to be passed into the 2D array
     public int getCol(int x)
     {
         //System.out.println("method " + x);
@@ -1094,8 +1064,6 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     public void onClick(View view)
     {
         if(view == carrierButton){
-            System.out.println("BATTLESHIP X: " + board.shipsX[1]);
-            System.out.println("BATTLESHIP Y: " + board.shipsY[1]);
             moveCarrier = true;
             moveBattleship = false;
             moveDestroyer = false;
@@ -1103,8 +1071,6 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             movePtBoat = false;
         }
         if (view == battleshipButton){
-            System.out.println("BATTLESHIP X: " + board.shipsX[1]);
-            System.out.println("BATTLESHIP Y: " + board.shipsY[1]);
             moveCarrier = false;
             moveBattleship = true;
             moveDestroyer = false;
@@ -1112,8 +1078,6 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             movePtBoat = false;
         }
         if (view == destroyerButton) {
-            System.out.println("BATTLESHIP X: " + board.shipsX[1]);
-            System.out.println("BATTLESHIP Y: " + board.shipsY[1]);
             moveCarrier = false;
             moveBattleship = false;
             moveDestroyer = true;
@@ -1121,8 +1085,6 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             movePtBoat = false;
         }
         if (view == submarineButton){
-            System.out.println("BATTLESHIP X: " + board.shipsX[1]);
-            System.out.println("BATTLESHIP Y: " + board.shipsY[1]);
             moveCarrier = false;
             moveBattleship = false;
             moveDestroyer = false;
@@ -1130,8 +1092,6 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             movePtBoat = false;
         }
         if (view == ptBoatButton){
-            System.out.println("BATTLESHIP X: " + board.shipsX[1]);
-            System.out.println("BATTLESHIP Y: " + board.shipsY[1]);
             moveCarrier = false;
             moveBattleship = false;
             moveDestroyer = false;
@@ -1153,7 +1113,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             intent.putExtra("Ships X",board.shipsX);
             intent.putExtra("Ships Y",board.shipsY);
             intent.putExtra("Ship Orientations",board.shipOrientations);
-            intent.putExtra("difficulty", aiDifficulty.getSelectedItem().toString());
+            intent.putExtra("difficulty", aiDifficulty.getSelectedItem().toString());//send difficulties chosen
 
             carrierRow = getRow((int) board.shipsY[0]);
             carrierCol = getCol((int) board.shipsX[0]);
@@ -1187,9 +1147,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             shipsVals[8] = boatRow;
             shipsVals[9] = boatCol;
 
-            intent.putExtra("Ship Set Up",shipsVals);
-
-
+            intent.putExtra("Ship Set Up",shipsVals);//send locations of user's ships to be drawn on screen in next activity
 
             startActivityForResult(intent,10);
         }
@@ -1211,7 +1169,6 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
     public void onBackPressed() {
         backgroundMusic5.stop();
         startActivity(new Intent(SetUpShips.this, MainActivity.class));
-      //  super.onBackPressed();
     }
 
     /** When a ship button is held down, the ship will be rotated and selected.
@@ -1226,8 +1183,6 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
             boolean dummy = board.getCarrierOrientation();
             board.setCarrierOrientation(!dummy);
             Toast.makeText(getApplicationContext(),"Carrier Orientation Has Been Changed. Please touch grid now.",Toast.LENGTH_SHORT).show();
-            System.out.println("BATTLESHIP X: " + board.shipsX[1]);
-            System.out.println("BATTLESHIP Y: " + board.shipsY[1]);
             moveCarrier = true;
             moveBattleship = false;
             moveDestroyer = false;

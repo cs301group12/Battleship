@@ -5,10 +5,6 @@
         android:orderInCategory="200"
         android:title="Quit Game"/>
     <item
-        android:id="@+id/restartGameItem"
-        android:orderInCategory="300"
-        android:title="RestartGame"/>
-    <item
         android:id="@+id/howToPlayItem"
         android:orderInCategory="400"
         android:title="How To Play"/>

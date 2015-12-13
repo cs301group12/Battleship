@@ -5,7 +5,7 @@ package com.example.administrator.battleship;
  * @author Hashim AlJawad
  * @author Kelson Sipe
  *
- * @version  12/9/2015
+ * @version  12/12/2015
  *
  * Description of BattleshipComputerPlayer2 class:
  * Currently this class represents our normal and hard AI. The normal AI chooses random coordinates, but then chooses locations
@@ -61,7 +61,7 @@ public class BattleshipComputerPlayer2 {
                         if (col > 9) {//out of bounds on right
                             col = lastHitCol - 1;//change to left of hit
                         }
-                        state.shipHit(row, col, 0);
+                        state.shipHit(row, col);
                     } else if (i == 1) {//fire at left adjacent
                         row = lastHitRow;
                         col = lastHitCol - 1;
@@ -72,7 +72,7 @@ public class BattleshipComputerPlayer2 {
                                 row = lastHitRow + 1;//change to bottom
                             }
                         }
-                        state.shipHit(row, col, 0);
+                        state.shipHit(row, col);
                     }
                     if (!goHorizontal) {//if goHorizontal is true then we probably don't need to check
                         //spots above or below the hit since the user ship is probably horizontal. If it is
@@ -83,7 +83,7 @@ public class BattleshipComputerPlayer2 {
                             if (row < 0) {//out of bounds on top
                                 row = lastHitRow + 1;//change to fire below hit
                             }
-                            state.shipHit(row, col, 0);
+                            state.shipHit(row, col);
                         }
                         else if (i == 3) {//fire at bottom adjacent
                             row = lastHitRow + 1;
@@ -91,7 +91,7 @@ public class BattleshipComputerPlayer2 {
                             if (row > 9) {//out of bounds on bottom
                                 break; //no spots left around hit;
                             }
-                            state.shipHit(row, col, 0);
+                            state.shipHit(row, col);
                         }
                     }
                     i++;
@@ -109,7 +109,7 @@ public class BattleshipComputerPlayer2 {
                         if (col > 9) {//out of bounds on right
                             col = firstHitCol - 1;//change to left of hit
                         }
-                        state.shipHit(row, col, 0);
+                        state.shipHit(row, col);
                     } else if (j == 1) {//fire at left adjacent
                         row = firstHitRow;
                         col = firstHitCol - 1;
@@ -120,7 +120,7 @@ public class BattleshipComputerPlayer2 {
                                 row = firstHitRow + 1; //change to bottom
                             }
                         }
-                        state.shipHit(row, col, 0);
+                        state.shipHit(row, col);
                     }
                     if (!goHorizontal) {//if goHorizontal is true then we probably don't need to check
                         //spots above or below the hit since the user ship is probably horizontal. If it is
@@ -131,7 +131,7 @@ public class BattleshipComputerPlayer2 {
                             if (row < 0) {//out of bounds on top
                                 row = firstHitRow + 1;//change to fire below hit
                             }
-                            state.shipHit(row, col, 0);
+                            state.shipHit(row, col);
                         }
                         else if (j == 3) {//fire at bottom adjacent
                             row = firstHitRow + 1;
@@ -139,7 +139,7 @@ public class BattleshipComputerPlayer2 {
                             if (row > 9) {//out of bounds on bottom
                                 break; //no spots left around hit;
                             }
-                            state.shipHit(row, col, 0);
+                            state.shipHit(row, col);
                         }
                     }
                     j++;
@@ -159,7 +159,7 @@ public class BattleshipComputerPlayer2 {
                         if (row < 0) {//out of bounds on top
                             row = lastHitRow + 1;//change to fire below hit
                         }
-                        state.shipHit(row, col, 0);
+                        state.shipHit(row, col);
                     }
                     else if (i == 1) {//fire at bottom adjacent
                         row = lastHitRow + 1;
@@ -171,7 +171,7 @@ public class BattleshipComputerPlayer2 {
                                 col = lastHitCol - 1;//change to left
                             }
                         }
-                        state.shipHit(row, col, 0);
+                        state.shipHit(row, col);
                     }
                     if (!goVertical) {//if goVertical is true then we probably don't need to check
                         //spots to the right or left of the hit since the user ship is probably vertical. If it is
@@ -182,7 +182,7 @@ public class BattleshipComputerPlayer2 {
                             if (col > 9) {//out of bounds on right
                                 col = lastHitCol - 1;//change to left of hit
                             }
-                            state.shipHit(row, col, 0);
+                            state.shipHit(row, col);
                         }
                         else if (i == 3) {//fire at left adjacent
                             row = lastHitRow;
@@ -190,7 +190,7 @@ public class BattleshipComputerPlayer2 {
                             if (col < 0) {//out of bounds on left
                                 break;//no more spots to check
                             }
-                            state.shipHit(row, col, 0);
+                            state.shipHit(row, col);
                         }
                     }
                     i++;
@@ -208,7 +208,7 @@ public class BattleshipComputerPlayer2 {
                         if (row < 0) {//out of bounds on top
                             row = firstHitRow + 1;//change to fire below hit
                         }
-                        state.shipHit(row, col, 0);
+                        state.shipHit(row, col);
                     }
                     else if (j == 1) {//fire at bottom adjacent
                         row = firstHitRow + 1;
@@ -220,7 +220,7 @@ public class BattleshipComputerPlayer2 {
                                 col = firstHitCol - 1;//change to left
                             }
                         }
-                        state.shipHit(row, col, 0);
+                        state.shipHit(row, col);
                     }
                     if (!goVertical) {//if goVertical is true then we probably don't need to check
                         //spots to the right or left of the hit since the user ship is probably vertical. If it is
@@ -231,7 +231,7 @@ public class BattleshipComputerPlayer2 {
                             if (col > 9) {//out of bounds on right
                                 col = firstHitCol - 1;//change to left of hit
                             }
-                            state.shipHit(row, col, 0);
+                            state.shipHit(row, col);
                         }
                         else if (j == 3) {//fire at left adjacent
                             row = firstHitRow;
@@ -239,7 +239,7 @@ public class BattleshipComputerPlayer2 {
                             if (col < 0) {//out of bounds on left
                                 break;
                             }
-                            state.shipHit(row, col, 0);
+                            state.shipHit(row, col);
                         }
                     }
                     j++;
@@ -262,7 +262,7 @@ public class BattleshipComputerPlayer2 {
                     if (whichAI == 0) {//normal AI
                         row = (int) (Math.random() * 10);
                         col = (int) (Math.random() * 10);
-                        state.shipHit(row, col, 0);
+                        state.shipHit(row, col);
                     }
                     else {//hard AI
                         if (Math.random() > 0.7) { //30% chance of choosing to cheat
@@ -274,12 +274,12 @@ public class BattleshipComputerPlayer2 {
                                 row = (int) (Math.random() * 10);
                                 col = (int) (Math.random() * 10);
                             }
-                            state.shipHit(row, col, 0);
+                            state.shipHit(row, col);
                         }
                         else {//don't cheat, generate random
                             row = (int) (Math.random() * 10);
                             col = (int) (Math.random() * 10);
-                            state.shipHit(row, col, 0);
+                            state.shipHit(row, col);
                         }
                     }
                 }
@@ -290,7 +290,7 @@ public class BattleshipComputerPlayer2 {
                 if (whichAI == 0) {//normal AI
                     row = (int) (Math.random() * 10);
                     col = (int) (Math.random() * 10);
-                    state.shipHit(row, col, 0);
+                    state.shipHit(row, col);
                 }
                 else {//hard AI
                     if (Math.random() > 0.7) { //30% chance of cheating
@@ -302,12 +302,12 @@ public class BattleshipComputerPlayer2 {
                             row = (int) (Math.random() * 10);
                             col = (int) (Math.random() * 10);
                         }
-                        state.shipHit(row, col, 0);
+                        state.shipHit(row, col);
                     }
                     else {//don't cheat
                         row = (int) (Math.random() * 10);
                         col = (int) (Math.random() * 10);
-                        state.shipHit(row, col, 0);
+                        state.shipHit(row, col);
                     }
                 }
             }

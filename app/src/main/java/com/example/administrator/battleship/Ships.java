@@ -5,7 +5,7 @@ package com.example.administrator.battleship;
  * @author Hashim AlJawad
  * @author Kelson Sipe
  *
- * @version  12/1/2015
+ * @version  12/12/2015
  *
  * Description of Ship class:
  * This class represents a ship with a certain size

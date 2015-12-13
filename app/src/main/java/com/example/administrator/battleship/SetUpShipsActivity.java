@@ -20,7 +20,7 @@ import android.widget.ImageView;
  * @author Hashim AlJawad
  * @author Kelson Sipe
  *
- * @version  11/9/2015
+ * @version  12/12/2015
  *
  * Description of SetUpShipsActivity class:
  * SetUpShipsActivity draws the user ships on the grid.

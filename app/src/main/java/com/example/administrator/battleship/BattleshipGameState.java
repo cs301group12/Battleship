@@ -9,7 +9,7 @@ import java.util.Random;
  * @author Hashim AlJawad
  * @author Kelson Sipe
  *
- * @version  12/1/2015
+ * @version  12/12/2015
  *
  * Description of BattleshipGameState class:
  * BattleshipGameState class inherits from the GameState class which is a part of the game framework.
@@ -24,6 +24,7 @@ public class BattleshipGameState {
     private int player1Hits;
     private int player2Hits;
 
+    //Variables to store locations of where AI ships are at, to be used to keep track of each ship's life
     private int carrierComputerRow;
     private int carrierComputerCol;
     private int battleshipComputerRow;
@@ -39,18 +40,9 @@ public class BattleshipGameState {
     private int destroyerDirection;
     private int battleshipDirection;
     private int carrierDirection;
+    private int computerShipDirection;
 
-
-    int computerShipDirection;
     private int playerID;//to keep track of whose turn it is
-    private int[] shipsLife = new int[5];//human's ships life
-    private int[] computerShipsLife = new int[5];//AI's ships life
-    private int[] shipID = {1,2,3,4,5};//shipID's
-    //1 corresponds to the carrier ship
-    //2 corresponds to the battleship
-    //3 corresponds to the destroyer ship
-    //4 corresponds to the submarine
-    //5 corresponds to the patrol boat
     private boolean AIshipHit = false;
     private boolean userShipHit = false;
 
@@ -68,19 +60,6 @@ public class BattleshipGameState {
         player1Hits = 0;
         player2Hits = 0;
         playerID = 0;//ID 0 refers to the human player. 1 refers to the AI. Human will go first.
-
-        //All ships have a certain amount of life that will decrease by 1 if hit
-        shipsLife[0] = 5;//carrier life
-        shipsLife[1] = 4;//battleship life
-        shipsLife[2] = 3;//destroyer ship life
-        shipsLife[3] = 3;//submarine ship life
-        shipsLife[4] = 2;//patrol boat life
-
-        computerShipsLife[0] = 5;//carrier ship life
-        computerShipsLife[1] = 4;//battleship life
-        computerShipsLife[2] = 3;//destroyer ship life
-        computerShipsLife[3] = 3;//submarine ship life
-        computerShipsLife[4] = 2;//patrol boat life
 
         //Initialize a 10x10 grid for each player
         //Each location in the 10x10 grid will contain a 0,1,2, or 3
@@ -115,18 +94,6 @@ public class BattleshipGameState {
         this.player2Hits = object.player2Hits;
         this.playerID = object.playerID;
 
-        this.shipsLife[0] = object.shipsLife[0];
-        this.shipsLife[1] = object.shipsLife[1];
-        this.shipsLife[2] = object.shipsLife[2];
-        this.shipsLife[3] = object.shipsLife[3];
-        this.shipsLife[4] = object.shipsLife[4];
-
-        this.computerShipsLife[0] = object.computerShipsLife[0];
-        this.computerShipsLife[1] = object.computerShipsLife[1];
-        this.computerShipsLife[2] = object.computerShipsLife[2];
-        this.computerShipsLife[3] = object.computerShipsLife[3];
-        this.computerShipsLife[4] = object.computerShipsLife[4];
-
         userGrid = new int[ROWS][COLS];
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
@@ -143,66 +110,6 @@ public class BattleshipGameState {
     }
 
     //Getters and setters
-    public int getPtBoatLife() {return shipsLife[4];}
-
-    public void setPtBoatLife(int ptBoatLife) {this.shipsLife[4] = ptBoatLife;}
-
-    public int getSubmarineLife() {return shipsLife[3];}
-
-    public void setSubmarineLife(int submarineLife) {this.shipsLife[3] = submarineLife;}
-
-    public int getDestroyerLife() {return shipsLife[2];}
-
-    public void setDestroyerLife(int destroyerLife) {
-        this.shipsLife[2] = destroyerLife;
-    }
-
-    public int getBattleshipLife() {
-        return shipsLife[1];
-    }
-
-    public void setBattleshipLife(int battleshipLife) {
-        this.shipsLife[1] = battleshipLife;
-    }
-
-    public int getCarrierLife() {
-        return shipsLife[0];
-    }
-
-    public void setCarrierLife(int carrierLife) {
-        this.shipsLife[0] = carrierLife;
-    }
-
-    public int getAIPtBoatLife() {return computerShipsLife[4];}
-
-    public void setAIPtBoatLife(int ptBoatLife) {this.computerShipsLife[4] = ptBoatLife;}
-
-    public int getAISubmarineLife() {return computerShipsLife[3];}
-
-    public void setAISubmarineLife(int submarineLife) {this.computerShipsLife[3] = submarineLife;}
-
-    public int getAIDestroyerLife() {return computerShipsLife[2];}
-
-    public void setAIDestroyerLife(int destroyerLife) {
-        this.computerShipsLife[2] = destroyerLife;
-    }
-
-    public int getAIBattleshipLife() {
-        return computerShipsLife[1];
-    }
-
-    public void setAIBattleshipLife(int battleshipLife) {
-        this.computerShipsLife[1] = battleshipLife;
-    }
-
-    public int getAICarrierLife() {
-        return computerShipsLife[0];
-    }
-
-    public void setAICarrierLife(int carrierLife) {
-        this.computerShipsLife[0] = carrierLife;
-    }
-
     public int getPlayerID() {
         return playerID;
     }
@@ -248,10 +155,6 @@ public class BattleshipGameState {
         this.computerGrid[row][col] = value;
     }
 
-    public int[] getShipsLife() { return shipsLife; }
-
-    public int[] getComputerShipsLife() { return computerShipsLife; }
-
     /**
      * Description: Checks to see if one player has hit another player's ship. If this is true, then
      * this method will make the appropriate alterations to the game state. If the action from a player
@@ -259,15 +162,12 @@ public class BattleshipGameState {
      * turn will not change if they have not clicked on a valid location in the grid. i.e. if they clicked
      * on a coordinate they already hit or missed.
      *
-     * CAVEAT: This method assumes that the location where a user touches on the screen will be translated
-     * correctly to the appropriate x(row) and y(col) in their grid. This method also assumes a valid
-     * ID will be passed in (1-5). Currently unable to pass in which ship has been hit.
+     * CAVEAT:
      *
      * @param row coordinates for location to check
      * @param col
-     * @param ID ID of the ship that was hit
      */
-    public void shipHit(int row, int col, int ID) {
+    public void shipHit(int row, int col) {
             if (this.playerID == 0) {//human hit computer's ship
                 //the player should be unable to click on a spot they already missed
                 //their turn may not end until they hit or miss a new spot on the opponent's grid
@@ -276,12 +176,6 @@ public class BattleshipGameState {
                     AIshipHit = true;
                     this.playerID = 1;//change the turn of a player
                     computerGrid[row][col] = 1;//1 means there is a hit in this position
-                    //loop through all ships
-                    for (int i = 0; i < shipID.length; i++) {
-                        if (ID == shipID[i]) { //decrease the life of the ship that was hit by 1
-                            computerShipsLife[i] = computerShipsLife[i] - 1;
-                        }
-                    }
                 } else {
                     this.shipMissed(row, col);//there is a miss in this location
                 }
@@ -291,12 +185,6 @@ public class BattleshipGameState {
                     userShipHit = true;
                     this.playerID = 0;//change turns
                     userGrid[row][col] = 1;//1 means there is a hit in this position
-                    for (int i = 0; i < shipID.length; i++) {
-                        if (ID == shipID[i]) {//decrease life of ship that was hit by 1
-                            shipsLife[i] = shipsLife[i] - 1;
-
-                        }
-                    }
                 } else {
                     this.shipMissed(row, col);//there is a miss in this location
                 }
@@ -343,7 +231,7 @@ public class BattleshipGameState {
      */
     public void setUpUserShips(int shipNum, int row, int col, boolean isHorizontal) {
         if (shipNum == 1) {//carrier ship, 5 positions long
-            if (isHorizontal == false) { //the ship is positioned horizontally
+            if (isHorizontal == false) { //the ship is positioned vertically
 
                 userGrid[row][col] = 3;
                 userGrid[row + 1][col] = 3;
@@ -351,7 +239,7 @@ public class BattleshipGameState {
                 userGrid[row + 3][col] = 3;
                 userGrid[row + 4][col] = 3;
 
-            } else {// the ship is positioned vertically
+            } else {// the ship is positioned horizontally
                 userGrid[row][col] = 3;
                 userGrid[row][col + 1] = 3;
                 userGrid[row][col + 2] = 3;
@@ -416,7 +304,7 @@ public class BattleshipGameState {
     /**
      * Description: Method to set up the AI's ships.
      *
-     * CAVEAT: None known. Works well.
+     * CAVEAT:
      *
      * @param AIships   array of AI's ships
      */
@@ -449,13 +337,12 @@ public class BattleshipGameState {
                         // 0 = North; 1 = East; 2 = South; 3 = West;
                         if (checkOverlap(AIships[i], row, col, computerShipDirection)) {//if ship can be placed then place it
                             place(AIships[i], row, col, computerShipDirection);
+                            //store locations and direction of each ship
                             if(i == 0)
                             {
                                 boatComputerRow = row;
                                 boatComputerCol = col;
                                 boatDirection = computerShipDirection;
-                                System.out.println("Boat C Row: " + boatComputerRow);
-                                System.out.println("Boat C Col: " + boatComputerCol);
 
                             }
 
@@ -464,8 +351,6 @@ public class BattleshipGameState {
                                 submarineComputerRow = row;
                                 submarineComputerCol = col;
                                 submarineDirection = computerShipDirection;
-                                System.out.println("Submarine C Row: " + submarineComputerRow);
-                                System.out.println("Submarine C Col: " + submarineComputerCol);
                             }
 
                             if(i == 2)
@@ -473,9 +358,6 @@ public class BattleshipGameState {
                                 destroyerComputerRow = row;
                                 destroyerComputerCol = col;
                                 destroyerDirection = computerShipDirection;
-
-                                System.out.println("Destroyer C Row: " + destroyerComputerRow);
-                                System.out.println("Destroyer C Col: " + destroyerComputerCol);
                             }
 
                             if(i == 3)
@@ -504,7 +386,7 @@ public class BattleshipGameState {
      * Description: Method to place the AI's ships in the grid. Changes the value in the appropriate coordinate
      * from 0 to 3. 3 means there is a ship in this coordinate.
      *
-     * CAVEAT: None known. Works well.
+     * CAVEAT:
      *
      * @param ship      ship to be placed
      * @param row
@@ -539,7 +421,7 @@ public class BattleshipGameState {
     /**
      * Description: Method to check if any ships are overlapping or if they are out of the grid.
      *
-     * CAVEAT: None known. Works well.
+     * CAVEAT:
      *
      * @param ship      ship to be placed
      * @param row
@@ -603,146 +485,6 @@ public class BattleshipGameState {
             System.out.println(Arrays.toString(userGrid[i]));
     }
 
-
-    /*DOESN;T WORK*/
-    public boolean checkComputerHit(int shipNum,int direction,int row, int col) {
-
-        if(shipNum == 4) {
-
-            System.out.println("Val: " + computerGrid[row][col]);
-                if (direction == 0 && ((computerGrid[row][col] == 1 && computerGrid[row-1][col] == 1 && computerGrid[row-2][col] == 1
-                    && computerGrid[row-3][col] == 1 && computerGrid[row-4][col] == 1 && row >= 0))) {
-
-                        return true;
-                }
-
-                if (direction == 1 && (computerGrid[row][col] == 1 && computerGrid[row][col + 1] == 1 && computerGrid[row][col + 2] == 1
-                        && computerGrid[row][col + 3] == 1 && computerGrid[row][col + 4] == 1 && col <= 9)) {
-
-                        return true;
-                }
-
-                if (direction == 2 && (computerGrid[row][col] == 1 && computerGrid[row+1][col] == 1 ||
-                        computerGrid[row+2][col] == 1 && computerGrid[row+3][col] == 1
-                        && computerGrid[row+4][col] == 1 && row <= 9)) {
-                        return true;
-
-                }
-
-                if ((computerGrid[row][col] == 1 && computerGrid[row][col-1] == 1 && computerGrid[row][col-2] == 1
-                        && computerGrid[row][col-2] == 1 && computerGrid[row][col-3] == 1 && computerGrid[row][col-4] == 1 && col >= 0)) {
-                        return true;
-                }
-        }
-
-        if(shipNum == 3)
-        {
-            if (direction == 0 && computerGrid[row][col] == 1 && computerGrid[row-1][col] == 1
-                    && computerGrid[row-2][col] == 1 && computerGrid[row-3][col] == 1 && row >=0) {
-                System.out.println("Battleship Orientation: " + computerShipDirection);
-                return true;
-            }
-
-            if (direction == 1 && computerGrid[row][col] == 1 && computerGrid[row][col + 1] == 1
-                    && computerGrid[row][col + 2] == 1  && computerGrid[row][col + 3] == 1 && col <= 9) {
-                System.out.println("Battleship Orientation: " + computerShipDirection);
-                return true;
-            }
-
-            if (direction == 2 && computerGrid[row][col] == 1 && computerGrid[row+1][col] == 1
-                    && computerGrid[row+2][col] == 1 && computerGrid[row+3][col] == 1 && row <= 9) {
-                System.out.println("Battleship Orientation: " + computerShipDirection);
-                return true;
-            }
-
-            if (computerGrid[row][col] == 1 && computerGrid[row][col-1] == 1 && computerGrid[row][col-2] == 1
-                    && computerGrid[row][col-2] == 1 && computerGrid[row][col-3] == 1 && col >= 0) {
-                System.out.println("Battleship Orientation: " + computerShipDirection);
-                return true;
-            }
-        }
-
-        if(shipNum == 2)
-        {
-            if (direction == 0 && computerGrid[row][col] == 1 && computerGrid[row-1][col] == 1
-                    && computerGrid[row-2][col] == 1 && row >=0) {
-                    System.out.println("Destroyer Orientation: " + computerShipDirection);
-                return true;
-            }
-
-            if (direction == 1 && computerGrid[row][col] == 1 && computerGrid[row][col + 1] == 1
-                    && computerGrid[row][col + 2] == 1 && col <= 9) {
-                      System.out.println("Destroyer Orientation: " + computerShipDirection);
-                return true;
-            }
-
-            if (direction == 2 && computerGrid[row][col] == 1 && computerGrid[row+1][col] == 1
-                    && computerGrid[row+2][col] == 1 && row <= 9) {
-                     System.out.println("Destroyer Orientation: " + computerShipDirection);
-                return true;
-            }
-
-            if (computerGrid[row][col] == 1 && computerGrid[row][col-1] == 1 && computerGrid[row][col-2] == 1
-                    && computerGrid[row][col-2] == 1 && col >= 0) {
-                    System.out.println("Destroyer Orientation: " + computerShipDirection);
-                return true;
-            }
-        }
-
-        if(shipNum == 1)
-        {
-            if (direction == 0 && computerGrid[row][col] == 1 && computerGrid[row-1][col] == 1
-                    && computerGrid[row-2][col] == 1 && row >=0) {
-                System.out.println("Submarine Orientation: " + computerShipDirection);
-                return true;
-            }
-
-            if (direction == 1 && computerGrid[row][col] == 1 && computerGrid[row][col + 1] == 1
-                    && computerGrid[row][col + 2] == 1 && col <=9) {
-                System.out.println("Submarine Orientation: " + computerShipDirection);
-                return true;
-            }
-
-            if (direction == 2 && computerGrid[row][col] == 1 && computerGrid[row+1][col] == 1
-                    && computerGrid[row+2][col] == 1 && row <= 9) {
-                System.out.println("Submarine Orientation: " + computerShipDirection);
-                return true;
-            }
-
-            if (computerGrid[row][col] == 1 && computerGrid[row][col-1] == 1 && computerGrid[row][col-2] == 1
-                    && computerGrid[row][col-2] == 1 && col >= 0) {
-                System.out.println("Submarine Orientation: " + computerShipDirection);
-                return true;
-            }
-        }
-
-        if(shipNum == 0)
-        {
-
-            if (computerShipDirection == 0 && computerGrid[row][col] == 1 && computerGrid[row-1][col] == 1 && row >= 0) {
-                System.out.println("Boat Orientation: " + computerShipDirection);
-                return true;
-            }
-
-            if (computerShipDirection == 1 && computerGrid[row][col] == 1 && computerGrid[row][col + 1] == 1 && col <= 9) {
-                System.out.println("Boat Orientation: " + computerShipDirection);
-                return true;
-            }
-
-            if (computerShipDirection == 2 && computerGrid[row][col] == 1 && computerGrid[row+1][col] == 1 && row <= 9) {
-                System.out.println("Boat Orientation: " + computerShipDirection);
-                return true;
-            }
-
-            if (computerGrid[row][col] == 1 && computerGrid[row][col-1] == 1 && col >= 0) {
-                System.out.println("Boat Orientation: " + computerShipDirection);
-                return true;
-            }
-
-        }
-
-        return false;
-    }
 
     public int getCarrierComputerRow() { return carrierComputerRow;}
     public int getCarrierComputerCol() { return carrierComputerCol; }

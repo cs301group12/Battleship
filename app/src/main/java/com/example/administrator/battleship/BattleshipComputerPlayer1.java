@@ -7,7 +7,7 @@ import java.util.Random;
  * @author Hashim AlJawad
  * @author Kelson Sipe
  *
- * @version  12/1/2015
+ * @version  12/12/2015
  *
  * Description of BattleshipComputerPlayer1 class:
  * Currently this class represents our "dumb" AI. This AI chooses random coordinates to fire upon

@@ -18,7 +18,7 @@ import android.widget.Button;
  * @author Hashim AlJawad
  * @author Kelson Sipe
  *
- * @version  12/1/2015
+ * @version  12/12/2015
  *
  * Description of MainActivity class:
  * The activity that first pops up when user launches app. Allows user to decide whether they want to play the game

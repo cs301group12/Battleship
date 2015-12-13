@@ -14,7 +14,7 @@ import android.view.SurfaceView;
  * @author Hashim AlJawad
  * @author Kelson Sipe
  *
- * @version  12/9/2015
+ * @version  12/12/2015
  *
  * Description of BoardSV
  * This class draws the user's board in the BattleshipHumanPlayer activity. Also draws the ships on the board.
