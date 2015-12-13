@@ -15,8 +15,8 @@ import android.view.WindowManager;
  *
  * @version  12/12/2015
  *
- * Description of SetUpShipsInstruction
- * GUI for popup screen for instructions in setUpShips
+ * Description of SetUpShipInstruction: This class is used for displaying a pop up window in the SetUpShips activity that illustrates how
+ * to move the ships on the screen.
  *
  */
 public class SetUpShipInstruction extends ActionBarActivity {
@@ -28,11 +28,12 @@ public class SetUpShipInstruction extends ActionBarActivity {
         setContentView(R.layout.activity_set_up_ship_instruction);
 
 
-        //used for size of popup window
         DisplayMetrics displayMessage = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMessage);
+
         int width = displayMessage.widthPixels;
         int height = displayMessage.heightPixels;
+
         getWindow().setLayout((int)(width*.6),(int)(height*.6));
     }
 
