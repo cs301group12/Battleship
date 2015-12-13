@@ -56,6 +56,7 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
     private MediaPlayer backgroundMusic1;
     private Button unmute;
     private Button mute;
+    private boolean muteSoundEffects = false;
 
     Intent intent;//to receive data
     private BattleshipGameState gameState;//game state of entire game
@@ -241,11 +242,15 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
         AIshipHit = gameState.getAIShipHit();
         if (AIshipHit) {//if user hit AI's ship
             messageScreen.setText("You hit a ship!");
-            hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);
+            if (!muteSoundEffects) {
+                hitSound.play(this.pickupId1, 1, 1, 1, 0, 1.0f);
+            }
             pressed.setBackgroundColor(Color.RED);//change button to red to represent hit
             checkComputerSunkShips(gameState);//check if one of the AI's ships were destroyed
         } else {
-            missSound.play(this.pickupId2, 1, 1, 1, 0, 1.0f);
+            if (!muteSoundEffects) {
+                missSound.play(this.pickupId2, 1, 1, 1, 0, 1.0f);
+            }
             messageScreen.setText("You missed the enemy ships!");
             pressed.setBackgroundColor(Color.WHITE);//change button to white to represent miss
         }
@@ -266,10 +271,12 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
     public void onClick(View view){
         if (view == mute){
             backgroundMusic1.pause();
+            muteSoundEffects = true;
         }
         if (view == unmute){
             backgroundMusic1.start();
             backgroundMusic1.setLooping(true);
+            muteSoundEffects = false;
         }
     }
 
@@ -1074,7 +1081,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                     if (carrierDestroyed == false){
                         messageScreen.setText("You Destroyed Computer's Carrier!");
                         carrierDestroyed = true;
-                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                        if (!muteSoundEffects) {
+                            explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                        }
                     }
             }
         }
@@ -1085,7 +1094,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (carrierDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Carrier!");
                     carrierDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
                 }
             }
         }
@@ -1096,7 +1107,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (carrierDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Carrier!");
                     carrierDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
                 }
             }
         }
@@ -1107,7 +1120,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (carrierDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Carrier!");
                     carrierDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
                 }
             }
         }
@@ -1120,7 +1135,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (battleshipDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Battleship!");
                     battleshipDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
                 }
             }
         }
@@ -1131,7 +1148,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (battleshipDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Battleship!");
                     battleshipDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
                 }
             }
         }
@@ -1142,7 +1161,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (battleshipDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Battleship!");
                     battleshipDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
                 }
             }
         }
@@ -1153,7 +1174,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (battleshipDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Battleship!");
                     battleshipDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
                 }
             }
         }
@@ -1165,7 +1188,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (destroyerDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Destroyer!");
                     destroyerDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
                 }
             }
         }
@@ -1175,7 +1200,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (destroyerDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Destroyer!");
                     destroyerDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
                 }
             }
         }
@@ -1185,7 +1212,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (destroyerDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Destroyer!");
                     destroyerDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
                 }
             }
         }
@@ -1195,7 +1224,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (destroyerDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Destroyer!");
                     destroyerDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
                 }
             }
         }
@@ -1208,7 +1239,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (submarineDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Submarine!");
                     submarineDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
                 }
             }
         }
@@ -1218,7 +1251,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (submarineDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Submarine!");
                     submarineDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
 
                 }
             }
@@ -1229,7 +1264,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (submarineDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Submarine!");
                     submarineDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
                 }
             }
         }
@@ -1239,7 +1276,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (submarineDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Submarine!");
                     submarineDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
                 }
             }
         }
@@ -1250,7 +1289,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (boatDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Boat!");
                     boatDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
                 }
             }
         }
@@ -1259,7 +1300,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (boatDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Boat!");
                     boatDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
                 }
             }
         }
@@ -1268,7 +1311,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (boatDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Boat!");
                     boatDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
                 }
             }
         }
@@ -1277,7 +1322,9 @@ public class BattleshipHumanPlayer extends ActionBarActivity implements View.OnC
                 if (boatDestroyed == false){
                     messageScreen.setText("You Destroyed Computer's Boat!");
                     boatDestroyed = true;
-                    explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    if (!muteSoundEffects) {
+                        explosion.play(this.pickupId3, 1, 1, 1, 0, 1.0f);
+                    }
                 }
             }
         }

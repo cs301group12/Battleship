@@ -20,10 +20,8 @@ public class SetUpShipInstruction extends ActionBarActivity {
 
         DisplayMetrics displayMessage = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMessage);
-
         int width = displayMessage.widthPixels;
         int height = displayMessage.heightPixels;
-
         getWindow().setLayout((int)(width*.6),(int)(height*.6));
     }
 

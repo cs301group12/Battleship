@@ -17,14 +17,22 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
- * Created by camachon18 on 12/12/2015.
+ * @author Nathan Camacho
+ * @author Hashim AlJawad
+ * @author Kelson Sipe
+ *
+ * @version  12/12/2015
+ *
+ * Description of GameOverPopup
+ * GUI for popup screen when game is over
+ *
  */
 public class GameOverPopup extends Activity {
-    RelativeLayout layout;
-    Drawable victoryScreen;
+    RelativeLayout layout;//main layout
+    Drawable victoryScreen;//backgrounds for popup screens
     Drawable defeatScreen;
-    Intent intent;
-    String winner;
+    Intent intent;//used to receive data about who won game
+    String winner;//who won
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,14 +42,14 @@ public class GameOverPopup extends Activity {
         victoryScreen = getResources().getDrawable(R.drawable.gameover_victory);
         defeatScreen = getResources().getDrawable(R.drawable.gameover_screen);
 
+        //Adjust size of popup screen
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
-
         int width = dm.widthPixels;
         int height = dm.heightPixels;
+        getWindow().setLayout((int) (width * .6), (int) (height * .6));
 
-        getWindow().setLayout((int) (width * .8), (int) (height * .8));
-
+        //get who won game
         intent = getIntent();
         winner = (String) intent.getStringExtra("Winner");
         if (winner.equals("Human")){
