@@ -21,10 +21,12 @@
         </activity>
         <activity
             android:name=".BattleshipHumanPlayer"
+            android:screenOrientation="landscape"
             android:label="@string/title_activity_playing__battleship" >
         </activity>
         <activity
             android:name=".How_to_Play_Screen"
+            android:screenOrientation="landscape"
             android:label="@string/title_activity_how_to__play__screen" >
         </activity>
         <activity
@@ -33,14 +35,17 @@
         </activity>
         <activity
             android:name=".SetUpShips"
+            android:screenOrientation="landscape"
             android:label="@string/title_activity_set_up_ships" >
         </activity>
         <activity
             android:name=".SetUpShipInstruction"
+            android:screenOrientation="landscape"
             android:label="@string/title_activity_set_up_ship_instruction"
             android:theme="@style/AppTheme.CustomTheme">
         </activity>
         <activity android:name=".GameOverPopup"
+            android:screenOrientation="landscape"
             android:theme="@style/AppTheme.PopupTheme">
         </activity>
     </application>
