@@ -8,7 +8,17 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
-
+/**
+ * @author Nathan Camacho
+ * @author Hashim AlJawad
+ * @author Kelson Sipe
+ *
+ * @version  12/12/2015
+ *
+ * Description of SetUpShipInstruction: This class is used for displaying a pop up window in the SetUpShips activity that illustrates how
+ * to move the ships on the screen.
+ *
+ */
 public class SetUpShipInstruction extends ActionBarActivity {
 
     @Override
@@ -21,10 +31,10 @@ public class SetUpShipInstruction extends ActionBarActivity {
         DisplayMetrics displayMessage = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMessage);
 
-        int width = displayMessage.widthPixels;
-        int height = displayMessage.heightPixels;
+        int width = displayMessage.widthPixels;//width of the window
+        int height = displayMessage.heightPixels;//height of the window
 
-        getWindow().setLayout((int)(width*.6),(int)(height*.6));
+        getWindow().setLayout((int)(width*.6),(int)(height*.6));//sets up the pop up window
     }
 
     @Override
