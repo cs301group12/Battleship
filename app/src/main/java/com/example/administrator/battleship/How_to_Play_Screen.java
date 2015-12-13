@@ -38,8 +38,8 @@ public class How_to_Play_Screen extends ActionBarActivity {
 
     //method to go back to the main menu or back to playing battleship
     private void htpToMainMenu(){
-        Button mainMenu = (Button) findViewById(R.id.mainMenuButton);
-        mainMenu.setOnClickListener(new View.OnClickListener() {
+        Button backButton = (Button) findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 buttonSound.play(pickupId, 1, 1, 1, 0, 1.0f);
