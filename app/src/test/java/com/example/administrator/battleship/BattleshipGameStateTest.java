@@ -25,16 +25,6 @@ public class BattleshipGameStateTest {
         assertEquals(0,test.getPlayer1Hits());
         assertEquals(0,test.getPlayer2Hits());
 
-        assertEquals(5,test.getCarrierLife());
-        assertEquals(4,test.getBattleshipLife());
-        assertEquals(3,test.getDestroyerLife());
-        assertEquals(3,test.getSubmarineLife());
-        assertEquals(2,test.getPtBoatLife());
-        assertEquals(5,test.getAICarrierLife());
-        assertEquals(4,test.getAIBattleshipLife());
-        assertEquals(3,test.getAIDestroyerLife());
-        assertEquals(3,test.getAISubmarineLife());
-        assertEquals(2,test.getAIPtBoatLife());
 
         int[][] testArray = test.getUserGrid();
         boolean dummy = true;//dummy will change to false if there is a position in the userGrid not
@@ -68,11 +58,6 @@ public class BattleshipGameStateTest {
         test.setPlayer2Hits(2);
         test.setPlayerID(1);
 
-        test.setCarrierLife(3);
-        test.setAIBattleshipLife(2);
-        test.setSubmarineLife(1);
-        test.setAIPtBoatLife(0);
-
         testArray[3][1] = 3;
         testArray[8][6] = 3;
 
@@ -84,11 +69,6 @@ public class BattleshipGameStateTest {
         assertEquals(1,test2.getPlayerID());
         assertEquals(3,test2.getPlayer1Hits());
         assertEquals(2,test2.getPlayer2Hits());
-
-        assertEquals(3,test2.getCarrierLife());
-        assertEquals(1,test2.getSubmarineLife());
-        assertEquals(2,test2.getAIBattleshipLife());
-        assertEquals(0,test2.getAIPtBoatLife());
 
         int[][] test2Array = test2.getUserGrid();//userGrid should be same as userGrid from test, if
         // copied correctly
@@ -149,40 +129,40 @@ public class BattleshipGameStateTest {
 
 
         //human turn
-        test.shipHit(9, 5, 1);//guess
+        test.shipHit(9, 5);//guess
 
         //computer turn
-        test.shipHit(1, 0, 2);//hit
+        test.shipHit(1, 0);//hit
 
         //human turn
-        test.shipHit(2, 6, 6);//guess
+        test.shipHit(2, 6);//guess
 
         //computer turn
-        test.shipHit(6, 2 ,4);//hit
+        test.shipHit(6, 2);//hit
 
         //human turn
-        test.shipHit(9, 6, 1);//guess
+        test.shipHit(9, 6);//guess
 
         //computer turn
-        test.shipHit(4, 3 ,5);//hit
+        test.shipHit(4, 3);//hit
 
         //human turn
-        test.shipHit(6, 2, 4);//guess
+        test.shipHit(6, 2);//guess
 
         //computer turn
-        test.shipHit(5, 1, 3);//hit
+        test.shipHit(5, 1);//hit
 
         //human turn
-        test.shipHit(0, 0, 2);//guess
+        test.shipHit(0, 0);//guess
 
         //computer turn
-        test.shipHit(5, 6, 7);//should miss
+        test.shipHit(5, 6);//should miss
 
         //human turn
-        test.shipHit(5, 1, 5);//guess
+        test.shipHit(5, 1);//guess
 
         //computer turn
-        test.shipHit(4, 2, 5);//hit
+        test.shipHit(4, 2);//hit
 
         //loop through AI grid to see if they user got any hits (hit represented by 1)
         AIgrid = test.getComputerGrid();
@@ -198,24 +178,6 @@ public class BattleshipGameStateTest {
         //this should be correct because the human got userHits hits and the computer got 5 hits
         assertEquals(userHits,test.getPlayer1Hits());
         assertEquals(5,test.getPlayer2Hits());
-
-        //the human carrier ship life should be 5 because it did not get hit.
-        assertEquals(5,test.getCarrierLife());
-
-        //the human battleship life should be 3 because it got hit once.
-        assertEquals(3,test.getBattleshipLife());
-
-
-        //the human destroyer ship life should be 2 because it got hit once.
-        assertEquals(2,test.getDestroyerLife());
-
-        //the human submarine ship life should be 2 because it got hit once.
-        assertEquals(2,test.getSubmarineLife());
-        //assertEquals(2,test.getAISubmarineLife());
-
-        //the human pt boat life should be 0 because it got hit twice.
-        assertEquals(0,test.getPtBoatLife());
-
     }
 
     /**
@@ -236,10 +198,8 @@ public class BattleshipGameStateTest {
         //human turn
         test.shipMissed(3,8);//should not do anything, since this spot is already a miss. Still human's turn.
 
-       // test.setUpComputerShips(2,9,0,false);//place a ship in the position computerGrid[9][0]
-
         //still human turn
-        test.shipHit(9, 0, 3);//should change the value in this position in computerGrid to 1 since it is a hit
+        test.shipHit(9, 0);//should change the value in this position in computerGrid to 1 since it is a hit
 
         //computer turn
         test.shipMissed(5,4);//should change the value in this position in userGrid to 2
