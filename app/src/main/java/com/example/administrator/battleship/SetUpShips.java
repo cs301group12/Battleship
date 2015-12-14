@@ -56,7 +56,7 @@ public class SetUpShips extends ActionBarActivity implements View.OnTouchListene
 
 
     private Vibrator vibrator;//instance of vibrator class to make the device vibrate when the ships overlap
-    private long[] pattern = { 0, 200, 0 };//vibration pattern
+    private long[] pattern = {0, 200, 500};//vibration pattern
 
     private SoundPool buttonSound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
     private int pickupId;
